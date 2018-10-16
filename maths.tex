@@ -1,0 +1,695 @@
+\documentclass[a4paper,11pt]{article}
+\title{Maths}
+\author{Izaak van Dongen}
+
+% so the title can be accessed by fancyhdr (and is automatically correctly
+% spelled etc)
+\makeatletter
+\let\thetitle\@title
+\makeatother
+
+%% fonts
+%\usepackage[p,osf]{cochineal}
+%\usepackage[scale=.95,type1]{cabin}
+%\usepackage[cochineal,bigdelims,cmintegrals,vvarbb]{newtxmath}
+%% fixed width font with 80 chars per listing line
+%\usepackage[scaled=.94]{newtxtt}
+%\usepackage[cal=boondoxo]{mathalfa}
+
+% provides mathbb
+\usepackage{amsfonts}
+
+% make the document take up more of the page
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
+
+% no paragraph indent
+\usepackage[parfill]{parskip}
+
+% custom document header/footer
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\thetitle}
+\rhead{Izaak van Dongen}
+\rfoot{Page \thepage\ of \pageref{LastPage}}
+
+% pretty table rules and multirow entries. Also page-breaking tables
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+
+% plotting mathematical functions (needs version request)
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+
+% \url function and clickable table of contents. no ugly red boxes though
+\usepackage[hidelinks]{hyperref}
+
+% maths symbols and other stuff (supersedes the ams* packages)
+\usepackage{mathtools}
+
+% provides typesetting of derivatives
+\usepackage{commath}
+
+% typesetting units
+\usepackage{siunitx}
+
+% For framing definitions
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{definition}{
+freelance,
+before=\par\vspace{2\bigskipamount}\noindent,
+after=\par\bigskip,
+frame code={
+  \node[
+  anchor=south west,
+  inner xsep=8pt,
+  xshift=8pt,
+  rounded corners=5pt,
+  font=\bfseries\color{white},
+  fill=gray] at (frame.north west) (tit) {\strut Definition:};
+  \draw[
+  line width=3pt,
+  rounded corners=5pt,gray
+  ] (tit.west) -| (frame.south west) -- ([xshift=15pt]frame.south west);
+},
+interior code={},
+top=2pt
+}
+
+% for better table of contents stuff, providing the \listof* commands and not
+% listing the tables in the table of contents
+\usepackage[nottoc,notlof,notlot]{tocbibind}
+
+% more advanced handling of utf8 and fonts or something. apparently good to have
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% bibliography management with square braces for citations
+\usepackage[square,numbers]{natbib}
+
+% graphics, like eps files and stuff (supersedes graphics)
+\usepackage{graphicx}
+
+% used to horizontally align floats
+\usepackage{subfig}
+
+% used for figures
+\usepackage{float}
+
+% needed for colouring and stuff (xcolor supersedes color)
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{ 0,0.6,0}
+
+% listings of code
+\usepackage{minted}
+\setminted{breaklines,
+           breakbytokenanywhere,
+           linenos
+}
+\usemintedstyle{friendly}
+% bigger line numbers
+\renewcommand\theFancyVerbLine{\footnotesize\arabic{FancyVerbLine}}
+
+% that can break across pages while being captioned figures
+\usepackage{caption}
+\newenvironment{longlisting}
+{\addvspace{\baselineskip}\captionsetup{type=listing}}
+{\addvspace{\baselineskip}}
+
+% allow maths to break across pages
+\allowdisplaybreaks
+
+\begin{document}
+    \maketitle\thispagestyle{empty} % no page number under title
+    \tableofcontents
+
+    %FIXME generally: add links to everything.
+
+    \section{Miscellaneous}
+
+    \subsection{Numerical solutions to equations}
+
+    \subsection{Fundamental Theorem of Arithmetic}
+
+    \subsection{Fundamental Theorem of Algebra}
+
+    \subsection{Dimensional Analysis}
+
+    \subsection{Difference of two Squares}
+
+    \subsection{Infinitude of Primes}
+
+    \subsection[Irrationality of $\sqrt 2$]{Irrationality of \boldmath$\sqrt 2$}
+
+    Assume $\sqrt 2 = \frac ab : a, b \in \mathbb{Z}$.
+
+    \subsection{Pythagoras' Theorem} \label{sec:pythagoras}
+
+    %FIXME add diagram
+
+    If a triangle has sides $a$, $b$, $c$ opposed by angles $A$, $B$, $C$,
+    then $C = \frac 12 \pi$ iff $a^2 + b^2 = c^2$.
+
+    \subsection{Quadratic formula} \label{sec:quad_formula}
+
+    Roots of $P(x) = ax^2 + bx + c$ are
+    $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+
+    $P(x) = ax^2 + bx + c = 0$, so $x^2 + \frac{b}{a}x + \frac{c}{a} = 0$
+    By completing the square, we have
+    \\$(x + \frac{b}{2a}x)^2 = (\frac{b}{2a})^2 - \frac{c}{a}
+    = \frac{b^2 - 4ac}{4a^2}$. It follows that
+    \\$x + \frac{b}{2a} = \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
+    = \pm \frac{\sqrt{b^2 - 4ac}}{2a}$ so
+    \\$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$ as required.
+
+    Corollaries are that the number of real roots is determined by the
+    discriminant \\$\Delta = b^2 - 4ac$.
+    \\$\Delta = 0 \Rightarrow P(x)$ has one real root with multiplicity.
+    \\$\Delta < 0 \Rightarrow P(x)$ has no real roots.
+    \\$\Delta > 0 \Rightarrow P(x)$ has two real roots.
+
+    \subsection{Cauchy-Shwarz inequality for $\mathbb{R}^n$}
+
+    For sequences $u_i, v_i \in \mathbb{R}$,
+    $(\sum u_i v_i)^2 \le (\sum u_i^2) (\sum v_i^2)$.
+
+    Consider
+    $P(x) = \sum (u_i x + v_i)^2 = 0$. Note that $P(x) \ge 0$ and is a quadratic
+    \\$(\sum u_i^2) x^2 + (\sum 2 u_i v_i) x + \sum v_i^2 = 0$, so has
+    at most one real root. Therefore, the discriminant
+    \\$\Delta = b^2 - 4ac \le 0$ (by \ref{sec:quad_formula}), so
+    $(\sum 2 u_i v_i)^2 - 4(\sum u_i^2)(\sum v_i^2) \le 0 \Rightarrow
+     (\sum u_i v_i)^2 \le (\sum u_i^2) (\sum v_i^2)$, as required.
+
+    \subsection{AM-GM inequality}
+
+    For a sequence $u_i \in \mathbb{R}$, for $1 \le i \le k$ and $u_i \ge 0$,
+    $(\prod u_i)^\frac{1}{k} \le \frac{1}{k}\sum u_i$.
+
+    \subsection{Square Triangular numbers}
+
+    %FIXME: add link annotations
+
+    The sequence of perfect squares $\text{ST}_n = a_n^2$
+    such that $a_n^2 = \frac 12 b_n(b_n + 1)$, where
+    $a, b \in \mathbb{Z}_0^+$.
+
+    Where $\frac{b}{c}$ is the $n$th convergent of $\sqrt 2$,
+    $\text{ST}_n = b^2 c^2$.
+
+    $\text{ST}_n$ also satisfies the recurrence relations where
+    $\text{ST}_0 = 0$ and $\text{ST}_1 = 1$
+    \\$\text{ST}_n = 34\text{ST}_{n - 1} - \text{ST}_{n - 2} + 2$ and
+    \\$a_n = 6a_{n - 1} - a_{n - 2}$.
+
+    \subsection{Fibonacci Sequence}
+
+    The Fibonacci numbers $F_n: n \in \mathbb{N}$ are such that $F_1 = F_2 = 1$
+    and $F_n = F_{n - 1} + F_{n - 2}$.
+
+    $F_n$ can be given by the closed form
+    $\displaystyle F_n = \frac{\varphi^n - \psi^n}{\sqrt 5}$, where
+    $\displaystyle \varphi = \frac{1 + \sqrt 5} 2$ and
+    $\displaystyle \psi = \frac{1 - \sqrt 5} 2$.
+
+    Combined with Exponentation by Squaring (\ref{sec:exp_by_squaring}), and
+    some simple surd arithmetic, this should be a particularly fast way to
+    calculate $F_n$, as compared to utterly na\"ive recursion, or somewhat
+    faster iteration or memoized recursion.
+
+    \subsection{de Moivre's Theorem}
+
+    \section{Discrete Maths (Computer Science)}
+
+    \subsection{Exponentiation by Squaring} \label{sec:exp_by_squaring}
+
+    For $y \in \mathbb{Z}_0^+$, $x^y$ is given by
+    $x^y =
+        \begin{cases}
+        1 & y = 0 \\
+        x & y = 1 \\
+        (x ^ 2)^{\frac 12 y} & y \equiv 0 \pmod 2\\
+        x(x ^ 2)^{\frac 12 (y-1)} & y \equiv 1 \pmod 2\\
+        \end{cases}$
+
+    This follows from the fact that
+    $x^{2y'} = (x^2)^{y'}$ and $x^{2y' + 1} = x(x^2)^{y'}$.
+
+    \section{Set Theory}
+
+    \section{Linear Algebra}
+
+    \section{Geometry}
+
+    \subsection{Area of a Circle}
+
+    %FIXME add diagram
+
+    From the definition of a circle as the set of points equidistant from a
+    centre point, we form the equation of a circle using \ref{sec:pythagoras}:
+    $x^2 + y^2 = r^2$, where the centre is $(0, 0)$ and the radius is $r$.
+
+    We can find half the area enclosed by the curve by integrating:
+
+    $\displaystyle \frac 12 A = \int_{-r}^r \sqrt{r^2 - x^2} \dif x$. We use the
+    substitution (\ref{sec:calc_trig_substitution})
+    $x = r \cos \theta \iff \dod x\theta = -r \sin \theta$ so that
+
+    $\displaystyle \frac 12 A = \int_{\arccos -1}^{\arccos 1}
+        r\sqrt{1 - \cos^2 \theta} \cdot -r \sin \theta \dif \theta
+      = -\int_\pi^0 r^2 \sin^2 \theta \dif \theta$, by \ref{sec:trig_pythag}. We
+      use \ref{sec:trig_double_angle} to derive that
+
+    $\displaystyle \frac 12 A = -\int_\pi^0
+        r^2 \frac 12 (1 - \cos 2 \theta) \dif \theta \Rightarrow
+     A = r^2 \int_0^\pi (1 - \cos 2 \theta) \dif \theta =
+     r^2\left[\theta - \frac 12 \sin 2 \theta \right]_0^\pi
+     \\= r^2 \left(\pi - \frac 12 \sin 2 \pi -
+                   \left(0 - \frac 12 \sin 0\right)\right) \boxed{= \pi r^2}$
+
+    One might alternatively use the parametric form of a circle,
+    $y = r \sin \theta$ and $x = r \cos \theta$
+    (note that $x^2 + y^2 = r^2(\sin^2 \theta + \cos^2 \theta) = r^2$
+    (\ref{sec:trig_pythag})), and calculate the area using
+    \ref{sec:calc_parametric_area}:
+
+    $\displaystyle A = \int_0^{2\pi}
+        r \sin \theta \cdot -r \sin \theta \dif \theta =
+     \frac 12 r^2 \int_0^{2\pi} (1 - \cos 2 \theta) \dif \theta =
+     \frac 12 r^2 \left[\theta - \frac 12 \sin 2 \theta\right]_0^{2\pi}
+     \\= \frac 12 r^2 \left(2\pi - \frac 12 \sin 4 \pi -
+                      \left(0 - \sin 0\right)\right) = \pi r^2$
+
+    \subsection{Volume of a sphere}
+
+    \subsection{Circle Theorems}
+
+    \section{Trigonometry}
+
+    \subsection{Definitions} \label{sec:trig_definitions}
+
+    %FIXME add diagram
+
+    $\displaystyle\sin \theta = \frac OH$
+
+    $\displaystyle\cos \theta = \frac AH$
+
+    $\displaystyle\tan \theta = \frac OA = \frac{\sin \theta}{\cos \theta}$
+
+    \subsubsection[Relation between $\sin \theta$ and $\cos \theta$]
+                  {Relation between \boldmath$\sin \theta$ and $\cos \theta$}
+    \label{sec:trig_sin_cos_relation}
+
+    Because they are in the same right triangle, and the sum of angles in a
+    triangle is $\pi$ ($\ang{180}$) (\ref{sec:polygon_angles}), the angle other
+    than $\theta$ must be $\frac 12 \pi - \theta$. Therefore,
+    \\$\sin \theta \equiv \cos(\frac 12 \pi - \theta)$ and
+    $\cos \theta \equiv \sin(\frac 12 \pi - \theta)$.
+
+    \subsubsection{Parity} \label{sec:trig_parity}
+
+    From \ref{sec:trig_definitions}, we see that $\sin \theta$ and $\tan \theta$
+    are \textit{odd} functions: $\sin -x = -\sin x$ and $\tan -x = -\tan x$,
+    whereas $\cos \theta$ is an \textit{even} function: $\cos -x = \cos x$.
+
+    \subsubsection{Reciprocal functions} \label{sec:trig_reciprocal}
+
+    $\displaystyle\sec \theta = \frac{1}{\cos \theta}$
+
+    $\displaystyle\csc \theta = \operatorname{cosec} \theta
+        = \frac{1}{\sin \theta}$
+
+    $\displaystyle\cot \theta = \frac{1}{\tan \theta}
+        = \frac{\cos \theta}{\sin \theta}$
+
+    \subsection{Special Angles}
+
+    %FIXME: diagrams
+    %FIXME: talk about deriving other special angles using formulae
+
+    \subsection{Cosine Rule}
+
+    \subsection{Sine Rule}
+
+    \subsection{Sine Area Rule}
+
+    \subsection{Pythagorean Identities} \label{sec:trig_pythag}
+
+    It follows from the triangle definition of the trig functions, and
+    Pythagoras' Theorem (\ref{sec:pythagoras}) that
+    \\$\cos^2 \theta + \sin^2 \theta \equiv 1$, and then from the definition of
+    $\tan$, $\cot$, $\sec$, $\csc$ (\ref{sec:trig_reciprocal}) that
+    \\$\tan^2 \theta + 1 \equiv \sec^2 \theta$ and
+    \\$\cot^2 \theta + 1 \equiv \csc^2 \theta$.
+
+    Equivalent formulations that are sometimes useful include:
+
+    %FIXME finish this
+
+    \subsection{Compound Angle Identities} \label{sec:comp_angle}
+
+    %FIXME add diagram
+
+    It can be shown geometrically that
+    \\$\sin(\alpha + \beta) \equiv
+       \sin \alpha \cos \beta +  \sin \beta \cos \alpha$
+
+    From this, it follows that
+    \\$\cos(\alpha + \beta) \equiv
+       \cos \alpha \cos \beta - \sin \alpha \sin \beta$
+    \\as $\cos(\alpha + \beta) \equiv \sin(\frac 12 \pi - \alpha - \beta) \equiv
+        \sin(\frac 12 \pi - \alpha)\cos \beta +
+        \sin \beta \cos(\frac 12 \pi - \alpha) \equiv
+        \cos \alpha \cos \beta + \sin \beta \sin \alpha$
+    (using section \ref{sec:trig_sin_cos_relation}). This may also be shown
+    with a similar geometrical argument.
+
+    We can now deduce that
+
+    $\displaystyle \tan(\alpha + \beta) \equiv
+        \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta}$,
+
+    as $\displaystyle\tan(\alpha + \beta) \equiv
+        \frac{\sin(\alpha + \beta)}{\cos(\alpha + \beta)} \equiv
+        \frac{\sin \alpha \cos \beta + \sin \beta \cos \alpha}
+             {\cos \alpha \cos \beta + \sin \alpha \sin \beta} \equiv
+        \frac{\frac{\sin \alpha}{\cos \alpha} + \frac{\sin \beta}{\cos \beta}}
+             {\frac 11 + \frac{\sin \alpha \sin \beta}{\cos \alpha \cos \beta}}
+             \equiv
+        \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta}$.
+
+    Results for a function of a difference are derived easily from the parity of
+    each function (\ref{sec:trig_parity}). One might also just assume it's
+    probably ok to flip signs. In either case, the full results are:
+
+    $\sin \alpha \pm \beta \equiv
+       \sin \alpha \cos \beta \pm \sin \beta \cos \alpha$
+    \\$\cos \alpha \pm \beta \equiv
+       \cos \alpha \cos \beta \mp \sin \alpha \sin \beta$
+
+    $\displaystyle \tan \alpha \pm \beta \equiv
+        \frac{\tan \alpha \pm \tan \beta}{1 \mp \tan \alpha \tan \beta}$
+
+    \subsubsection{Double Angle Formulae} \label{sec:trig_double_angle}
+
+    $\sin 2\theta \equiv
+       2\sin \theta \cos \theta$
+    \\$\cos 2\theta \equiv
+       \cos^2 \theta - \sin^2 \theta \equiv
+       2\cos^2 \theta - 1 \equiv 1 - 2\sin^2 \theta$ (by \ref{sec:trig_pythag}).
+
+    $\displaystyle \tan 2\theta \equiv
+        \frac{2\tan \theta}{1 - \tan^2 \theta}$
+
+    From these, it follows that
+
+    $\displaystyle \sin^2 \theta \equiv
+        \frac{1 - \cos 2 \theta} 2$ and
+
+    $\displaystyle \cos^2 \theta \equiv
+        \frac{1 + \cos 2 \theta} 2$, used in \ref{calc:common}.
+
+    $\displaystyle \tan^2 \theta \equiv \frac{\sin^2 \theta}{\cos^2 \theta}
+        \equiv \frac{1 - \cos 2 \theta}{1 + \cos 2 \theta}
+        \equiv \frac{1 - \cos^2 2 \theta}{(1 + \cos 2 \theta)^2}
+        \equiv \left(\frac{\sin 2 \theta}{1 + \cos 2 \theta}\right)^2
+        \equiv \frac{(1 - \cos 2 \theta)^2}{1 - \cos^2 2 \theta}
+        \equiv \left(\frac{1 - \cos 2 \theta}{\sin 2 \theta}\right)^2$
+
+    It follows that
+
+    $\displaystyle \sin \theta \equiv
+        \pm\sqrt{\frac{1 - \cos 2 \theta} 2}$, ($\pm$ depends on the quadrant)
+    (so $\displaystyle \sin \frac \theta 2 \equiv
+        \pm\sqrt{\frac{1 - \cos \theta} 2}$) and
+
+    $\displaystyle \cos \theta \equiv
+        \pm\sqrt{\frac{1 + \cos 2 \theta} 2}$, (so
+    $\displaystyle \cos \frac \theta 2 \equiv
+        \pm\sqrt{\frac{1 + \cos \theta} 2}$).
+
+    $\displaystyle \tan \theta
+        \equiv \frac{\sin 2 \theta}{1 + \cos 2 \theta}
+        \equiv \frac{1 - \cos 2 \theta}{\sin 2 \theta}$
+    (so $\displaystyle \tan \frac \theta 2
+        \equiv \frac{\sin \theta}{1 + \cos \theta}
+        \equiv \frac{1 - \cos \theta}{\sin \theta}$)
+
+    \subsection{Product-Sum Identities}
+
+    The sum of sines, $\displaystyle \boxed{\sin \alpha + \sin \beta \equiv
+        2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta}2}$.
+
+    We derive by considering the RHS:
+
+    $\displaystyle
+        2 \sin \frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2 \equiv
+        2 \cdot \sqrt{\frac{1 - \cos(\alpha + \beta)} 2 \cdot
+            \frac{1 + \cos(\alpha - \beta)} 2}\ 
+                \text{(by \ref{sec:trig_double_angle})} \\\\\equiv
+        \sqrt{(1 - \cos(\alpha + \beta))(1 + \cos(\alpha - \beta))} \equiv
+        \sqrt{1 + \cos(\alpha - \beta) - \cos(\alpha + \beta) -
+              \cos(\alpha - \beta)\cos(\alpha + \beta)} \\\\\equiv
+        \sqrt{1 + \cos \alpha \cos \beta + \sin \alpha \sin \beta -
+              \cos \alpha \cos \beta + \sin \alpha \sin \beta -
+              (\cos \alpha \cos \beta - \sin \alpha \sin \beta)(
+               \cos \alpha \cos \beta + \sin \alpha \sin \beta)} \\\\\equiv
+        \sqrt{1 + 2 \sin \alpha \sin \beta -
+              \cos^2 \alpha \cos^2 \beta + \sin^2 \alpha \sin^2 \beta}
+                  \\\\\equiv
+        \sqrt{1 + 2 \sin \alpha \sin \beta + \sin^2 \alpha \sin^2 \beta -
+              (1 - \sin^2 \alpha)(1 - \sin^2 \beta)} \\\\\equiv
+        \sqrt{1 + 2 \sin \alpha \sin \beta + \sin^2 \alpha \sin^2 \beta -
+              1 + \sin^2 \alpha + \sin^2 \beta - \sin^2 \alpha \sin^2 \beta}
+                \\\\\equiv
+        \sqrt{2 \sin \alpha \sin \beta + \sin^2 \alpha + \sin^2 \beta}
+                \equiv
+        \sqrt{(\sin \alpha + \sin \beta)^2} \equiv \sin \alpha + \sin \beta$,
+    as required.
+
+    Now, it becomes fairly trivial to show that
+
+    $\displaystyle \boxed{\sin \alpha - \sin \beta =
+        \sin \alpha + \sin -\beta =
+        2 \sin \frac{\alpha - \beta} 2 \cos\frac{\alpha + \beta} 2}$.
+
+    We also aim to show that
+    $\displaystyle \boxed{\cos \alpha + \cos \beta \equiv
+        2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2}$.
+
+    We again derive from the RHS:
+
+    $\displaystyle 2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2
+        \equiv 2 \cdot \sqrt{\frac{1 + \cos(\alpha + \beta)} 2 \cdot
+                             \frac{1 + \cos(\alpha - \beta)} 2} \\\\\equiv
+        \sqrt{(1 + \cos(\alpha + \beta))(1 + \cos(\alpha - \beta))} \\\\\equiv
+        \sqrt{1 + \cos(\alpha + \beta) + \cos(\alpha - \beta) +
+              \cos(\alpha + \beta)\cos(\alpha - \beta)} \\\\\equiv
+        \sqrt{1 + \cos \alpha \cos \beta - \sin \alpha \sin \beta +
+              \cos \alpha \cos \beta + \sin \alpha \sin \beta +
+              (\cos \alpha \cos \beta - \sin \alpha \sin \beta)
+              (\cos \alpha \cos \beta + \sin \alpha \sin \beta)} \\\\\equiv
+        \sqrt{1 + 2 \cos \alpha \cos \beta + \cos^2 \alpha \cos^2 \beta -
+              \sin^2 \alpha \sin^2 \beta} \\\\\equiv
+        \sqrt{1 + 2 \cos \alpha \cos \beta + \cos^2 \alpha \cos^2 \beta -
+              (1 - \cos^2 \alpha)(1 - \cos^2 \beta)} \\\\\equiv
+        \sqrt{1 + 2 \cos \alpha \cos \beta + \cos^2 \alpha \cos^2 \beta +
+              }$
+
+    \section{Probability}
+
+    \section{Statistics}
+
+    \subsection{Random Variables}
+
+    \subsection{Binomial Distribution}
+
+    %FIXME add diagram
+
+    The PDF of $X \sim \mathcal B(\nu, \pi)$ is
+    $\displaystyle f(k) = P(X = k) = {\nu \choose k} \pi^k (1 - \pi)^{\nu - k}$
+
+    The validity of this distribution is subject to these constraints:
+    \begin{enumerate}
+    \item Each event must be independent.
+    \end{enumerate}
+
+    \subsection{Normal Distribution}
+
+    %FIXME add diagram
+
+    The PDF of $X \sim \mathcal N(\mu, \sigma^2)$ is
+    $\displaystyle f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}
+                            e^{\frac{(x - \mu)^2}{2\sigma^2}}$
+
+    \subsubsection{Dimensional Verification/Mnemonic}
+
+    NB $\displaystyle\left[f(x)\right] =
+        \left[\frac 1{\sqrt{\sigma^2}}\right]
+        e^{\left[\frac{x^2}{\sigma^2}\right]}
+      = \left[\frac 1\sigma\right]$, as
+    $\left[\sigma\right] = \left[\mu\right] = \left[x\right]$. Therefore, the
+    evaluation of the probability $P(a < x < b)$ by the integral
+    $\displaystyle\int_a^bf(x)\dif x$ has dimension
+    $\left[\frac{\dif x}{\sigma}\right] = 1$, as expected for a probability.
+
+    \subsection{Poisson Distribution}
+
+    \subsection{Hypothesis Testing}
+
+    %FIXME Types of Error
+
+    \section{Calculus}
+
+    %FIXME: derivations from first principles
+
+    \subsection{Definition of the derivative}
+
+    The derivative of $f(x)$,
+    $\displaystyle f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}$.
+
+    Other notations include, if $y = f(x)$, then
+    $y' = \dod yx = f'(x)$.
+
+    \subsection{Fundamental Theorem of Calculus} \label{sec:calc_FTC}
+
+    \subsection{Chain Rule} \label{sec:calc_chain}
+
+    \subsection{Product Rule (Quotient Rule)} \label{sec:calc_product}
+
+    \subsection{Integration by Substitution} \label{sec:calc_substitution}
+
+    \subsubsection{Trig Substitution} \label{sec:calc_trig_substitution}
+
+    \subsection{Integration by Parts}
+
+    \subsection{Common derivatives} \label{calc:common}
+
+    %FIXME: add x^x
+
+    By FTC (\ref{sec:calc_FTC}), these also give common integrations.
+
+    \begin{center}
+    \begin{longtable}{rrl}
+    \toprule
+    \boldmath$f(x)$ & \boldmath$f'(x)$ &
+    \bfseries Comments/Derivation/Corollaries \\
+    \midrule
+    \endhead
+    $x^n$ & $nx^{n-1}$
+        & $\int x^n \dif x = \frac{1}{n + 1}x^{n + 1}$ when
+          $n \neq -1$ (see $\od{}{x}\ln x$).\\
+    $\ln x$ & $\frac{1}{x}$
+        & $\od{}{x}\log_a x = \od{}{x} \frac{\ln x}{\ln a}$, and also
+          $\int \frac{g'(x)}{g(x)} \dif x = \ln g(x)$,
+            from \ref{sec:calc_chain}.\\
+    $e^x$ & $e^x$ & $\od{}{x}a^x = \od{}{x}e^{x \ln a}$. \\
+    $\sin x$ & $\cos x$
+        & eg $\int \sin^2 x \dif x = \int \frac 12 (1 - \cos 2x) \dif x$
+          by \ref{sec:comp_angle}. \\
+    $\tan x$ & $\sec^2 x$ \\
+    $\sec x$ & $\sec x \tan x$ \\
+    $\cos x$ & $-\sin x$ \\
+    $\cot x$ & $-\csc^2 x$ \\
+    $\csc x$ & $-\csc x \cot x$ \\
+    $\arcsin x$ & $\frac{1}{\sqrt{1 - x^2}}$
+        & $\sin y = x \Rightarrow \od yx \cdot \cos y = 1 \Rightarrow
+           \od yx = \frac{1}{\cos y}
+         = \frac{1}{\sqrt{1 - \sin^2 y}} = \frac{1}{\sqrt{1 - x^2}}$. \\
+    $\arccos x$ & $-\frac{1}{\sqrt{1 - x^2}}$
+        & $\cos y = x \Rightarrow \od yx \cdot -\sin y = 1 \Rightarrow
+           \od yx = -\frac{1}{\sin y}
+         = -\frac{1}{\sqrt{1 - \cos^2 y}} = -\frac{1}{\sqrt{1 - x^2}}$. \\
+    $\arctan x$ & $\frac{1}{x^2 + 1}$
+        & $\tan y = x \Rightarrow \od yx \cdot \sec^2 y = 1 \Rightarrow
+           \od yx = \frac{1}{\sec^2 y} = \frac{1}{1 + \tan^2 y}
+         = \frac{1}{1 + x^2}$. \\
+    \bottomrule
+    \end{longtable}
+    \end{center}
+
+    \subsection{Volume of Revolution}
+
+    \subsection{Area under Parametric Curve} \label{sec:calc_parametric_area}
+
+    To find the area between a curve and the x-axis from $x_1$ to $x_2$ when the
+    curve is given in parametric form, $x = f(t)$ and $y = g(t)$, we rewrite the
+    integral
+
+    $\displaystyle \int_{x_1}^{x_2} y \dif x =
+     \int_{x_1}^{x_2} y \dod xt \dif t = \int_{x_1}^{x_2} g(t)f'(t) \dif t$.
+
+    Similarly, the area between the curve and the y-axis from $y_1$ to $y_2$ is:
+
+    $\displaystyle \int_{y_1}^{y_2} x \dif y =
+     \int_{y_1}^{y_2} x \dod yt \dif t = \int_{y_1}^{y_2} f(t)g'(t) \dif t$.
+
+    \subsection{Implicit differentiation}
+
+    Where a curve is given by some implicit equation which is a sum of functions
+    of $x$ and/or $y$, we can use the chain rule (\ref{sec:calc_chain}).
+    Generally, where we know how to differentiate all $f_i$, $g_i$, $h_i$ then
+    if we have the equation
+
+    $\displaystyle \sum h_i(f_i(x)g_i(y)) = 0$, we can differentiate each term
+    to show that
+
+    $\displaystyle\dod{}{x} \sum h_i(f_i(x)g_i(y)) =
+     \sum \left[\left(f_i'(x)g_i(y) +
+                      f_i(x)g_i'(y)\dod yx\right)
+                h_i'(f_i(x)g_i(y))\right] = 0$ (by \ref{sec:calc_product},
+    \ref{sec:calc_chain})
+
+    so $\displaystyle \dod yx = -\frac{\sum f_i'(x)g_i(y)h_i'(f_i(x)g_i(x))}
+                                      {\sum f_i(x)g_i'(y)h_i'(f_i(x)g_i(x))}$.
+
+    Really this is an unnecessary formulation and probably an incomplete one, as
+    we could just as well take a product of any two such terms as another term,
+    although that makes it laborious. Generally, I think that any differentiable
+    expression will work. The idea is to differentiate with respect to $x$ on
+    both sides, where we use that $\od{}{x}f(y) = f'(y)\od yx$, and then make
+    $\od yx$ the subject.
+
+    %FIXME: add x^y for fun
+
+    An example may help to clarify.
+    \begin{align*}
+    0 &= y^2 + x^3 + \sin x^2 y + \ln \frac{\sqrt y} x - 5 \\
+    \Rightarrow 0 &=
+                2y \dod yx + 3x^2 +
+                (2x \cdot y + \dod yx \cdot x^2) \cdot \cos x^2 y +
+                \left(\frac{x \cdot \frac 12 y^{-\frac 12} \cdot \dod yx -
+                            \sqrt y \cdot 1}
+                           {x^2}\right) \cdot \frac{x}{\sqrt y} \\
+    \end{align*}
+
+    %FIXME finish this
+
+    \subsection{Arc Length}
+
+    \subsection{Improper Integrals}
+
+    %FIXME add types of improper integral
+
+    \subsection{Fake Calculus, AKA numerical approximations}
+
+    \section{Power series} %FIXME is this analysis?
+
+    \subsection{Taylor Series}
+
+    The Maclaurin series is the Taylor series around $0$.
+
+    $\displaystyle
+     f(x) = f(0) + f'(0) x + \frac{f''(0)} 2 x^2 + \frac{f'''(0)}{6}x^3 \ldots
+     = \sum_{k=0}^\infty \frac{f^{(k)}(0)}{k!}x^k$
+
+    \subsection{Common series}
+
+\end{document}
