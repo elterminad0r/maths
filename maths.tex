@@ -303,9 +303,9 @@ top=2pt
 
     $\displaystyle\tan \theta = \frac OA = \frac{\sin \theta}{\cos \theta}$
 
-    \subsubsection[Relation between $\sin \theta$ and $\cos \theta$]
-                  {Relation between \boldmath$\sin \theta$ and $\cos \theta$}
-    \label{sec:trig_sin_cos_relation}
+    \subsubsection{Angular relationships} \label{sec:trig_periodic}
+
+    %FIXME add more identities, diagrams (or refer to previous diagrams).
 
     Because they are in the same right triangle, and the sum of angles in a
     triangle is $\pi$ ($\ang{180}$) (\ref{sec:polygon_angles}), the angle other
@@ -313,11 +313,30 @@ top=2pt
     \\$\sin \theta \equiv \cos(\frac 12 \pi - \theta)$ and
     $\cos \theta \equiv \sin(\frac 12 \pi - \theta)$.
 
+    We also have that
+    \\$\sin(\theta + \pi) \equiv \cos \theta$, and
+    $\cos(\theta + \pi) \equiv \sin \theta$.
+
+    From this, one might see that therefore
+    \\$\sin(\theta + 2\pi) \equiv \sin \theta$,
+    $\cos(\theta + 2\pi) \equiv \cos \theta$, and in fact,
+    \\$\sin(\theta + 2\pi n) \equiv \sin \theta \iff n \in \mathbb{Z}$,
+    and similarly
+    \\$\cos(\theta + 2\pi n) \equiv \cos \theta \iff n \in \mathbb{Z}$.
+
+    However, $\tan(\theta + \pi) \equiv \tan \theta$, so
+    \\$\tan(\theta + \pi n) \equiv \tan \theta \iff n \in \mathbb{Z}$
+
+    Therefore, the \textit{period} of $\sin \theta$ and $\cos \theta$ is $2\pi$,
+    whereas the period of $\tan \theta$ is $\pi$.
+
     \subsubsection{Parity} \label{sec:trig_parity}
 
     From \ref{sec:trig_definitions}, we see that $\sin \theta$ and $\tan \theta$
-    are \textit{odd} functions: $\sin -x = -\sin x$ and $\tan -x = -\tan x$,
-    whereas $\cos \theta$ is an \textit{even} function: $\cos -x = \cos x$.
+    are \textit{odd} functions:
+    \\$\sin -x = -\sin x$ and $\tan -x = -\tan x$,
+    whereas $\cos \theta$ is an \textit{even} function:
+    \\$\cos -x = \cos x$.
 
     \subsubsection{Reciprocal functions} \label{sec:trig_reciprocal}
 
@@ -368,7 +387,7 @@ top=2pt
         \sin(\frac 12 \pi - \alpha)\cos \beta +
         \sin \beta \cos(\frac 12 \pi - \alpha) \equiv
         \cos \alpha \cos \beta + \sin \beta \sin \alpha$
-    (using section \ref{sec:trig_sin_cos_relation}). This may also be shown
+    (using section \ref{sec:trig_periodic}). This may also be shown
     with a similar geometrical argument.
 
     We can now deduce that
@@ -442,7 +461,14 @@ top=2pt
         \equiv \frac{\sin \theta}{1 + \cos \theta}
         \equiv \frac{1 - \cos \theta}{\sin \theta}$)
 
+    \subsection{Sum-Product Identities}
+
+    $\displaystyle \sin \alpha \cos \alpha \equiv
+        \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)} 2$
+
     \subsection{Product-Sum Identities}
+
+    %FIXME: annotate sections used
 
     The sum of sines, $\displaystyle \boxed{\sin \alpha + \sin \beta \equiv
         2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta}2}$.
@@ -450,29 +476,26 @@ top=2pt
     We derive by considering the RHS:
 
     $\displaystyle
-        2 \sin \frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2 \equiv
-        2 \cdot \sqrt{\frac{1 - \cos(\alpha + \beta)} 2 \cdot
-            \frac{1 + \cos(\alpha - \beta)} 2}\ 
-                \text{(by \ref{sec:trig_double_angle})} \\\\\equiv
-        \sqrt{(1 - \cos(\alpha + \beta))(1 + \cos(\alpha - \beta))} \equiv
-        \sqrt{1 + \cos(\alpha - \beta) - \cos(\alpha + \beta) -
-              \cos(\alpha - \beta)\cos(\alpha + \beta)} \\\\\equiv
-        \sqrt{1 + \cos \alpha \cos \beta + \sin \alpha \sin \beta -
-              \cos \alpha \cos \beta + \sin \alpha \sin \beta -
-              (\cos \alpha \cos \beta - \sin \alpha \sin \beta)(
-               \cos \alpha \cos \beta + \sin \alpha \sin \beta)} \\\\\equiv
-        \sqrt{1 + 2 \sin \alpha \sin \beta -
-              \cos^2 \alpha \cos^2 \beta + \sin^2 \alpha \sin^2 \beta}
-                  \\\\\equiv
-        \sqrt{1 + 2 \sin \alpha \sin \beta + \sin^2 \alpha \sin^2 \beta -
-              (1 - \sin^2 \alpha)(1 - \sin^2 \beta)} \\\\\equiv
-        \sqrt{1 + 2 \sin \alpha \sin \beta + \sin^2 \alpha \sin^2 \beta -
-              1 + \sin^2 \alpha + \sin^2 \beta - \sin^2 \alpha \sin^2 \beta}
-                \\\\\equiv
-        \sqrt{2 \sin \alpha \sin \beta + \sin^2 \alpha + \sin^2 \beta}
-                \equiv
-        \sqrt{(\sin \alpha + \sin \beta)^2} \equiv \sin \alpha + \sin \beta$,
-    as required.
+     2 \sin \frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2 \equiv
+     2 \left(\sin \frac \alpha 2 \cos \frac \beta 2 +
+             \sin \frac \beta 2 \cos \frac \alpha 2\right)
+       \left(\cos \frac \alpha 2 \cos \frac \beta 2 +
+             \sin \frac \alpha 2 \sin \frac \beta 2\right) \\\\\equiv
+     2 \left(\sin \frac \alpha 2 \cos \frac \alpha 2 \cos^2 \frac \beta 2 +
+             \sin^2 \frac \alpha 2 \sin \frac \beta 2 \cos \frac \beta 2 +
+             \sin \frac \beta 2 \cos^2 \frac \alpha 2 \cos \frac \beta 2 +
+             \sin \frac \alpha 2 \sin^2 \frac \beta 2 \cos \frac \alpha 2
+             \right) \\\\\equiv
+     2 \left(\frac 12 \sin \alpha \cdot \frac{1 + \cos \beta} 2 +
+             \frac 12 \sin \beta \cdot \frac{1 - \cos \alpha} 2 +
+             \frac 12 \sin \beta \cdot \frac{1 + \cos \alpha} 2 +
+             \frac 12 \sin \alpha \cdot \frac{1 - \cos \beta} 2
+             \right) \\\\\equiv
+     \frac 12 \left(\sin \alpha (1 + \cos \beta + 1 - \cos \beta) +
+                    \sin \beta (1 + \cos \alpha + 1 - \cos \alpha)
+                   \right) \\\\\equiv
+     \frac 12 (2 \sin \alpha + 2 \sin \beta) \equiv
+     \sin \alpha + \sin \beta$, as required.
 
     Now, it becomes fairly trivial to show that
 
@@ -487,21 +510,33 @@ top=2pt
     We again derive from the RHS:
 
     $\displaystyle 2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2
-        \equiv 2 \cdot \sqrt{\frac{1 + \cos(\alpha + \beta)} 2 \cdot
-                             \frac{1 + \cos(\alpha - \beta)} 2} \\\\\equiv
-        \sqrt{(1 + \cos(\alpha + \beta))(1 + \cos(\alpha - \beta))} \\\\\equiv
-        \sqrt{1 + \cos(\alpha + \beta) + \cos(\alpha - \beta) +
-              \cos(\alpha + \beta)\cos(\alpha - \beta)} \\\\\equiv
-        \sqrt{1 + \cos \alpha \cos \beta - \sin \alpha \sin \beta +
-              \cos \alpha \cos \beta + \sin \alpha \sin \beta +
-              (\cos \alpha \cos \beta - \sin \alpha \sin \beta)
-              (\cos \alpha \cos \beta + \sin \alpha \sin \beta)} \\\\\equiv
-        \sqrt{1 + 2 \cos \alpha \cos \beta + \cos^2 \alpha \cos^2 \beta -
-              \sin^2 \alpha \sin^2 \beta} \\\\\equiv
-        \sqrt{1 + 2 \cos \alpha \cos \beta + \cos^2 \alpha \cos^2 \beta -
-              (1 - \cos^2 \alpha)(1 - \cos^2 \beta)} \\\\\equiv
-        \sqrt{1 + 2 \cos \alpha \cos \beta + \cos^2 \alpha \cos^2 \beta +
-              }$
+        \equiv 2 \left(\cos \frac \alpha 2 \cos \frac \beta 2 -
+                       \sin \frac \alpha 2 \sin \frac \beta 2 \right)
+                 \left(\cos \frac \alpha 2 \cos \frac \beta 2 +
+                       \sin \frac \alpha 2 \sin \frac \beta 2 \right)
+                \\\\\equiv
+     2 \left(\cos^2 \frac \alpha 2 \cos^2 \frac \beta 2 -
+             \sin^2 \frac \alpha 2 \sin^2 \frac \beta 2 \right) \\\\\equiv
+     2 \left(\frac{1 + \cos \alpha} 2 \cdot \frac{1 + \cos \beta} 2 -
+             \frac{1 - \cos \alpha} 2 \cdot \frac{1 - \cos \beta} 2 \right)
+             \\\\\equiv
+     \frac 12 \left((1 + \cos \alpha)(1 + \cos \beta) -
+                    (1 - \cos \alpha)(1 - \cos \beta)\right) \\\\\equiv
+     \frac 12 (1 + \cos \alpha + \cos \beta + \cos \alpha \cos \beta -
+               1 + \cos \alpha + \cos \beta - \cos \alpha \cos \beta) \\\\\equiv
+     \frac 12 (2 \cos \alpha + 2 \cos \beta) \equiv
+     \cos \alpha + \cos \beta$, as required.
+
+    We can now show that
+
+    $\displaystyle \cos \alpha - \cos \beta \equiv
+     \cos \alpha + \cos (\beta + \pi)  \equiv
+     2 \cos \frac{\alpha + \beta + \pi} 2 \cos \frac {\alpha - \beta - \pi} 2
+     \\\equiv
+     2 \cos \left(\frac \pi 2 - \left(-\frac{\alpha + \beta} 2\right)\right)
+       \cos \left(\frac \pi 2 - \frac{\alpha - \beta} 2 \right) \equiv
+     2 \sin -\frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2 \\\\\equiv
+     \boxed{-2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2}$.
 
     \section{Probability}
 
@@ -512,6 +547,10 @@ top=2pt
     \subsection{Binomial Distribution}
 
     %FIXME add diagram
+
+    The binomial distribution $\mathcal B(\nu, \pi)$ measures the probability of
+    getting a certain number of successful ``events'', where there are $\nu$
+    events each with probability $\pi$ of being successful.
 
     The PDF of $X \sim \mathcal B(\nu, \pi)$ is
     $\displaystyle f(k) = P(X = k) = {\nu \choose k} \pi^k (1 - \pi)^{\nu - k}$
