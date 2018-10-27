@@ -8,17 +8,6 @@
 \let\thetitle\@title
 \makeatother
 
-%% fonts
-%\usepackage[p,osf]{cochineal}
-%\usepackage[scale=.95,type1]{cabin}
-%\usepackage[cochineal,bigdelims,cmintegrals,vvarbb]{newtxmath}
-%% fixed width font with 80 chars per listing line
-%\usepackage[scaled=.94]{newtxtt}
-%\usepackage[cal=boondoxo]{mathalfa}
-
-% provides mathbb
-\usepackage{amsfonts}
-
 % make the document take up more of the page
 \usepackage[margin=1in,headheight=13.6pt]{geometry}
 
@@ -50,11 +39,18 @@
 % maths symbols and other stuff (supersedes the ams* packages)
 \usepackage{mathtools}
 
-% provides typesetting of derivatives
+% provides typesetting of derivatives with \od and \dod, and also \set and \abs
+% ie generally useful stuff.
 \usepackage{commath}
 
+% provides mathbb
+\usepackage{amsfonts}
+
+% provides \varnothing
+\usepackage{amssymb}
+
 % typesetting units
-\usepackage{siunitx}
+\usepackage[separate-uncertainty]{siunitx}
 
 % For framing definitions
 \usepackage[framemethod=tikz]{mdframed}
@@ -84,6 +80,11 @@ top=2pt
 % for better table of contents stuff, providing the \listof* commands and not
 % listing the tables in the table of contents
 \usepackage[nottoc,notlof,notlot]{tocbibind}
+
+% increase spacing of section numbers from headings
+\usepackage{tocloft}
+\setlength{\cftsubsecnumwidth}{2.9em}
+\setlength{\cftsubsubsecindent}{4.4em}
 
 % more advanced handling of utf8 and fonts or something. apparently good to have
 \usepackage[utf8]{inputenc}
@@ -129,7 +130,27 @@ top=2pt
     \maketitle\thispagestyle{empty} % no page number under title
     \tableofcontents
 
-    %FIXME generally: add links to everything.
+    %FIXME
+    % - generally: add links to everything.
+    % - modular arithmetic, congruence classes
+    % - fourier transforms
+    % - fractals, fractal dimension, l-systems, weierstrass functions
+    % - happy number, primes, etc (autobiographical integer)
+    % - inverse trig and hyperbolic trig, more on
+    % - leibniz integral rule/feynmen integration/differentiation under the
+    %   integral
+    % - integral of interesting functions (see blackpenredpen)
+    %   sec x, x^x, sqrt(tan x)
+    % - mathematical fields, rings, groups
+    % - frullani theorem
+    % - functions: continuity, differentiability, monoticity, elementaryness
+    % - central limit theorem, sum of normally distributed random variables
+    % - generating functions
+    % - characteristic functions
+    % - statistics: expectation, variance, covariance
+    % - add a wee bit of physics
+    % - factorisation of x^4 + 1
+    % - binomial expansion, pascal's triangle, properties thereof.
 
     \section{Miscellaneous}
 
@@ -137,17 +158,67 @@ top=2pt
 
     \subsection{Fundamental Theorem of Arithmetic}
 
+    \subsection{Prime Number Theorem}
+
     \subsection{Fundamental Theorem of Algebra}
+
+    \subsection{Totient Function} \label{sec:totient}
 
     \subsection{Dimensional Analysis}
 
     \subsection{Difference of two Squares}
 
+    $a^2 - b^2 \equiv (a + b)(a - b)$. This can be verified with fairly simple
+    algebra.
+
+    \subsubsection{Difference of Higher Powers}
+
+    Similar results can be found in higher powers of $a$ and $b$:
+
+    $a^3 - b^3 \equiv (a - b)(a^2 + ab + b^2)$
+    \\$a^4 - b^4 \equiv (a - b)(a^3 + a^2b + b^2a + b^3)$
+    \\\ldots
+
+    In general, you take out a factor of $(a - b)$ and then start with the term
+    $a^{n - 1}$, and for each subsequent term decrease the power in $a$ and
+    increase the power in $b$:
+
+    $a^n - b^n \equiv (a - b)(a^{n - 1} + a^{n - 2}b + a^{n - 3}b^2 + \ldots +
+                              ab^{n - 2} + b^{n - 1})$.
+
+    Note that for odd $n$, $a^n + b^n$ can also be easily factorised as
+    $a^n + b^n \equiv a^n - (-b)^n$, so you get the same expansion but with
+    alternating positive and negative terms.
+
+    % FIXME: arguments from totient function and with different powers? number
+    % of common factors?
+
+    \subsubsection{Difference of Composite Powers}
+
+    In fact, in the last section, $a^4 - b^4$ may be more fully factorised by
+    using:
+
+    $a^4 - b^4 \equiv (a^2)^2 - (b^2)^2 \equiv (a^2 - b^2)(a^2 + b^2) \equiv
+        (a - b)(a + b)(a^2 + b^2)$.
+
+    This happens as $4$ is composite. Any composite $n$ will in fact result in
+    the cototient (\ref{sec:totient}) of $n = n - \phi(n)$ factors. This also
+    holds for prime $n$, but for prime
+    $n$, $\phi(n) = n - 2 \Rightarrow n - \phi(n) = 2$, as the only divisors of
+    a prime $n$ are $1$ and $n$.
+
+    We may derive this from the fact that any $n = pq: p, q \in \mathbb{P}$,
+    $a^n - b^n$ will factorise as
+    \\$a^{pq} - b^{pq} \equiv
+     (a^p - b^p)(a^{p(q - 1)} + a^{p(q - 2)}b^{p(1)} + \ldots +
+                 a^{p(1)}b^{p(q - 2)} + b^{p(q - 1)})$
+
     \subsection{Infinitude of Primes}
 
     \subsection[Irrationality of $\sqrt 2$]{Irrationality of \boldmath$\sqrt 2$}
 
-    Assume $\sqrt 2 = \frac ab : a, b \in \mathbb{Z}$.
+    Assume $\sqrt 2 = \frac ab : a, b \in \mathbb{Z} \land \gcd(a, b) = 1$, ie
+    $a$ and $b$ are coprime.
 
     \subsection{Pythagoras' Theorem} \label{sec:pythagoras}
 
@@ -195,7 +266,7 @@ top=2pt
 
     \subsection{Square Triangular numbers}
 
-    %FIXME: add link annotations
+    %FIXME: add link annotations, explanations
 
     The sequence of perfect squares $\text{ST}_n = a_n^2$
     such that $a_n^2 = \frac 12 b_n(b_n + 1)$, where
@@ -242,7 +313,89 @@ top=2pt
     This follows from the fact that
     $x^{2y'} = (x^2)^{y'}$ and $x^{2y' + 1} = x(x^2)^{y'}$.
 
+    \section{Functions}
+
+    \subsection{Jections}
+
+    %FIXME mnemonic or diagram
+
+    \begin{itemize}
+    \item An injection maps each element of its domain to a unique element of
+          its codomain.
+    \item A surjection maps an element of its domain to each element of its
+          codomain.
+    \item A bijection is an injection and a surjection.
+    \end{itemize}
+
     \section{Set Theory}
+
+    \subsection{Set Operations}
+
+    \subsection{Common sets}
+
+    %FIXME: sets of congruence classes
+
+    \begin{center}
+    \begin{longtable}{ll}
+    \toprule
+    \bfseries Set & \bfseries Description \\
+    \midrule
+    \endhead
+    $\emptyset$, $\varnothing$ & The empty set $\set{}$. \\
+    $\mathbb{N}$ & The set of natural numbers, $\set{1, 2, 3, \ldots}$.
+                   May or may not include $0$. \\
+    $\mathbb{Z}$ & The set of integers $\set{\ldots, -2, 1, 0, 1, 2, \ldots}$ \\
+    $\mathbb{Z}^+, \mathbb{Z}_{> 0}$ & The set of strictly positive integers
+                   $\set{1, 2, 3, \ldots}$. \\
+    $\mathbb{Z}^+_0, \mathbb{Z}_{\ge 0}$ &
+                   The set of strictly nonnegative integers
+                   $\set{0, 1, 2, \ldots}$. \\
+    $\mathbb{Z}^-, \mathbb{Z}_{< 0}$ & The set of strictly negative integers
+                   $\set{-1, -2, -3, \ldots}$. \\
+    $\mathbb{Z}^-_0, \mathbb{Z}_{\le 0}$ &
+                   The set of strictly nonpositive integers
+                   $\set{0, -1, -2, \ldots}$. \\
+    $\mathbb{Q}$ & The set of rational numbers
+                   $\set{\frac ab \mid a, b \in \mathbb{Z} \land b \neq 0}$.\\
+    $\mathbb{A}$ & The set of algebraic numbers, roots of all the polynomials in
+                   $\set{\sum_i a_i x^i \mid \forall a_i \in \mathbb{Z} \land
+                         \exists a_i \neq 0}$ \\
+    $\mathbb{R}$ & The set of real numbers, which may be constructed as
+                   ``slices'' of $\mathbb{Q}$. \\
+    $\mathbb{C}$ & The set of complex numbers
+                   $\set{a + bi \mid a, b \in \mathbb{R}}$, where $i^2 = 1$.\\
+    $(a, b)$ & The open interval $\set{x \in \mathbb{R} \mid a < x < b}$.\\
+    $[a, b]$ & The closed interval
+               $\set{x \in \mathbb{R} \mid a \le x \le b}$.\\
+    $[a, b)$ & The half-open interval
+               $\set{x \in \mathbb{R} \mid a \le x < b}$.\\
+    $(a, b]$ & The half-open interval
+               $\set{x \in \mathbb{R} \mid a < x \le b}$.\\
+    \bottomrule
+    \end{longtable}
+    \end{center}
+
+    \subsection{Closed, Open, Clopen}
+
+    \subsection{Axiom of Choice}
+
+    \subsection{ZFC}
+
+    \subsection{Peano Arithmetic}
+
+    \subsection{Cardinality}
+
+    Cardinality is a way to think about the ``size'' of sets. Cardinality is
+    really a kind of equivalence relation on the class of sets, where two sets
+    have the same cardinality iff there exists a bijection between them - ie
+    there is a way to produce a one-to-one mapping between the two sets.
+
+    Any two finite sets obviously have the same cardinality iff they have the
+    same number of elements. The cardinality of a finite set is usually just
+    given as the number of elements it has. For example, $\abs \emptyset = 0$
+    and $\set{1, 3, 2} = 3$, etc.
+
+    We let the cardinality of the natural numbers $\abs{\mathbb{N}} = \aleph_0$.
 
     \section{Linear Algebra}
 
@@ -313,11 +466,13 @@ top=2pt
     \\$\sin \theta \equiv \cos(\frac 12 \pi - \theta)$ and
     $\cos \theta \equiv \sin(\frac 12 \pi - \theta)$.
 
-    We also have that
-    \\$\sin(\theta + \pi) \equiv \cos \theta$, and
-    $\cos(\theta + \pi) \equiv \sin \theta$.
+    From their parity \ref{sec:trig_parity} we may deduce
+    \\$\sin(\theta - \frac 12 \pi) \equiv -\cos \theta$, and
+    $\cos(\theta - \frac 12 \pi) \equiv \sin \theta$, implying
+    \\$\sin(\theta + \pi) \equiv -\sin \theta$, and
+    $\cos(\theta + \pi) \equiv -\cos \theta$.
 
-    From this, one might see that therefore
+    From this, we see that
     \\$\sin(\theta + 2\pi) \equiv \sin \theta$,
     $\cos(\theta + 2\pi) \equiv \cos \theta$, and in fact,
     \\$\sin(\theta + 2\pi n) \equiv \sin \theta \iff n \in \mathbb{Z}$,
@@ -461,10 +616,42 @@ top=2pt
         \equiv \frac{\sin \theta}{1 + \cos \theta}
         \equiv \frac{1 - \cos \theta}{\sin \theta}$)
 
-    \subsection{Sum-Product Identities}
+    \subsubsection{Triple Angles and Beyond}
 
-    $\displaystyle \sin \alpha \cos \alpha \equiv
-        \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)} 2$
+    \subsection{Sum-Product Identities} \label{sec:trig_sum_product}
+
+    $\displaystyle \boxed{\sin \alpha \cos \beta \equiv
+        \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)} 2}$
+
+    Derive from RHS:
+
+    $\displaystyle \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)} 2 \equiv
+     \frac{\sin \alpha \cos \beta + \sin \beta \cos \alpha +
+           \sin \alpha \cos \beta - \sin \beta \cos \alpha} 2 \\\\\equiv
+     \frac{2 \sin \alpha \cos \beta} 2 \equiv \sin \alpha \cos \beta$,
+    as required.
+
+    $\displaystyle \boxed{\cos \alpha \cos \beta \equiv
+     \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)} 2}$
+
+    Derive from RHS:
+
+    $\displaystyle \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)} 2 \equiv
+     \frac{\cos \alpha \cos \beta - \sin \alpha \sin \beta +
+           \cos \alpha \cos \beta + \sin \alpha \sin \beta} 2 \\\\\equiv
+     \frac{2 \cos \alpha \cos \beta} 2 \equiv \cos \alpha \cos \beta$,
+    as required.
+
+    $\displaystyle \boxed{\sin \alpha \sin \beta \equiv
+     \frac{\cos(\alpha - \beta) - \cos(\alpha + \beta)} 2}$
+
+    Derive from RHS:
+
+    $\displaystyle \frac{\cos(\alpha - \beta) - \cos(\alpha + \beta)} 2 \equiv
+     \frac{\cos \alpha \cos \beta + \sin \alpha \sin \beta -
+           \cos \alpha \cos \beta + \sin \alpha \sin \beta} 2 \\\\\equiv
+     \frac{2 \sin \alpha \sin \beta} 2 \equiv \sin \alpha \sin \beta$,
+    as required.
 
     \subsection{Product-Sum Identities}
 
@@ -473,31 +660,17 @@ top=2pt
     The sum of sines, $\displaystyle \boxed{\sin \alpha + \sin \beta \equiv
         2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta}2}$.
 
-    We derive by considering the RHS:
+    We derive by considering $\alpha' = \frac 12 (\alpha + \beta)$ and
+    $\beta' = \frac 12 (\alpha - \beta)$. Then,
 
-    $\displaystyle
-     2 \sin \frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2 \equiv
-     2 \left(\sin \frac \alpha 2 \cos \frac \beta 2 +
-             \sin \frac \beta 2 \cos \frac \alpha 2\right)
-       \left(\cos \frac \alpha 2 \cos \frac \beta 2 +
-             \sin \frac \alpha 2 \sin \frac \beta 2\right) \\\\\equiv
-     2 \left(\sin \frac \alpha 2 \cos \frac \alpha 2 \cos^2 \frac \beta 2 +
-             \sin^2 \frac \alpha 2 \sin \frac \beta 2 \cos \frac \beta 2 +
-             \sin \frac \beta 2 \cos^2 \frac \alpha 2 \cos \frac \beta 2 +
-             \sin \frac \alpha 2 \sin^2 \frac \beta 2 \cos \frac \alpha 2
-             \right) \\\\\equiv
-     2 \left(\frac 12 \sin \alpha \cdot \frac{1 + \cos \beta} 2 +
-             \frac 12 \sin \beta \cdot \frac{1 - \cos \alpha} 2 +
-             \frac 12 \sin \beta \cdot \frac{1 + \cos \alpha} 2 +
-             \frac 12 \sin \alpha \cdot \frac{1 - \cos \beta} 2
-             \right) \\\\\equiv
-     \frac 12 \left(\sin \alpha (1 + \cos \beta + 1 - \cos \beta) +
-                    \sin \beta (1 + \cos \alpha + 1 - \cos \alpha)
-                   \right) \\\\\equiv
-     \frac 12 (2 \sin \alpha + 2 \sin \beta) \equiv
-     \sin \alpha + \sin \beta$, as required.
+    $\sin \alpha + \sin \beta \equiv
+     \sin(\alpha' + \beta') + \sin(\alpha' - \beta') \equiv
+     2\sin \alpha' \cos \beta'\ \text{(from \ref{sec:trig_sum_product})}
+     \\\\\equiv
+    \displaystyle
+        2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta}2$, as required.
 
-    Now, it becomes fairly trivial to show that
+    Now, it we show that
 
     $\displaystyle \boxed{\sin \alpha - \sin \beta =
         \sin \alpha + \sin -\beta =
@@ -507,25 +680,16 @@ top=2pt
     $\displaystyle \boxed{\cos \alpha + \cos \beta \equiv
         2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2}$.
 
-    We again derive from the RHS:
+    Again, let $\alpha' = \frac 12 (\alpha + \beta)$ and
+    $\beta' = \frac 12 (\alpha - \beta)$. Then,
 
-    $\displaystyle 2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2
-        \equiv 2 \left(\cos \frac \alpha 2 \cos \frac \beta 2 -
-                       \sin \frac \alpha 2 \sin \frac \beta 2 \right)
-                 \left(\cos \frac \alpha 2 \cos \frac \beta 2 +
-                       \sin \frac \alpha 2 \sin \frac \beta 2 \right)
-                \\\\\equiv
-     2 \left(\cos^2 \frac \alpha 2 \cos^2 \frac \beta 2 -
-             \sin^2 \frac \alpha 2 \sin^2 \frac \beta 2 \right) \\\\\equiv
-     2 \left(\frac{1 + \cos \alpha} 2 \cdot \frac{1 + \cos \beta} 2 -
-             \frac{1 - \cos \alpha} 2 \cdot \frac{1 - \cos \beta} 2 \right)
-             \\\\\equiv
-     \frac 12 \left((1 + \cos \alpha)(1 + \cos \beta) -
-                    (1 - \cos \alpha)(1 - \cos \beta)\right) \\\\\equiv
-     \frac 12 (1 + \cos \alpha + \cos \beta + \cos \alpha \cos \beta -
-               1 + \cos \alpha + \cos \beta - \cos \alpha \cos \beta) \\\\\equiv
-     \frac 12 (2 \cos \alpha + 2 \cos \beta) \equiv
-     \cos \alpha + \cos \beta$, as required.
+    $\cos \alpha + \cos \beta \equiv
+     \cos(\alpha' + \beta') + \cos(\alpha' - \beta') \equiv
+     2\cos \alpha' \cos \beta'\ \text{(from \ref{sec:trig_sum_product})}
+     \\\\\equiv
+     \displaystyle
+        2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2$,
+    as required.
 
     We can now show that
 
@@ -575,7 +739,7 @@ top=2pt
         e^{\left[\frac{x^2}{\sigma^2}\right]}
       = \left[\frac 1\sigma\right]$, as
     $\left[\sigma\right] = \left[\mu\right] = \left[x\right]$. Therefore, the
-    evaluation of the probability $P(a < x < b)$ by the integral
+    evaluation of the probability $P(a < X < b)$ by the integral
     $\displaystyle\int_a^bf(x)\dif x$ has dimension
     $\left[\frac{\dif x}{\sigma}\right] = 1$, as expected for a probability.
 
@@ -611,7 +775,7 @@ top=2pt
 
     \subsection{Common derivatives} \label{calc:common}
 
-    %FIXME: add x^x
+    %FIXME: add x^x. maybe more intricate proofs.
 
     By FTC (\ref{sec:calc_FTC}), these also give common integrations.
 
