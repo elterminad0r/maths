@@ -8,6 +8,9 @@
 \let\thetitle\@title
 \makeatother
 
+% better fonts, apparently
+\usepackage{lmodern}
+
 % make the document take up more of the page
 \usepackage[margin=1in,headheight=13.6pt]{geometry}
 
@@ -45,6 +48,9 @@
 
 % provides mathbb
 \usepackage{amsfonts}
+
+% provides uptau
+\usepackage{upgreek}
 
 % provides \varnothing
 \usepackage{amssymb}
@@ -126,14 +132,19 @@ top=2pt
 % allow maths to break across pages
 \allowdisplaybreaks
 
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}
+
 \begin{document}
     \maketitle\thispagestyle{empty} % no page number under title
     \tableofcontents
 
     %FIXME
+    % - integral _a^b of f(x) / (f(x) + f(a + b - x) dx
+    % - shortlist of things
     % - generally: add links to everything.
     % - modular arithmetic, congruence classes
-    % - fourier transforms
+    % - fourier, laplace transforms
     % - fractals, fractal dimension, l-systems, weierstrass functions
     % - happy number, primes, etc (autobiographical integer)
     % - inverse trig and hyperbolic trig, more on
@@ -151,8 +162,28 @@ top=2pt
     % - add a wee bit of physics
     % - factorisation of x^4 + 1
     % - binomial expansion, pascal's triangle, properties thereof.
+    % - rational root theorem
+    % - multiple angle formulae
+    % - exponential representation of trig functions
+    % - matrices, homeogenous coordinates, affine spaces
+    % - add list of constants that are interesting.
+    % - vectors, vector products, convex combination trick, decompose into new
+    %   components, product spaces
+    % - catenary, parabola, brachistochrone etc
+    % - gamma, beta, zeta functions
+    % - sets of polynomial rings
+    % - gaussian integers, rationals
+    % - other notation for algebraic numbers.
+    % - failure of power and logarithm identities
+    % - quaternions, octonions, sedenions, prime numbers
+    % - euler, de moivre
+    % - work out how to use theorems & proofs from amsthm.
 
     \section{Miscellaneous}
+
+%\begin{thm}Here is a new theorem.\end{thm}
+%
+%\begin{thm}Here is a new theorem.\end{thm}
 
     \subsection{Numerical solutions to equations}
 
@@ -183,7 +214,7 @@ top=2pt
     $a^{n - 1}$, and for each subsequent term decrease the power in $a$ and
     increase the power in $b$:
 
-    $a^n - b^n \equiv (a - b)(a^{n - 1} + a^{n - 2}b + a^{n - 3}b^2 + \ldots +
+    $a^n - b^n \equiv (a - b)(a^{n - 1} + a^{n - 2}b + a^{n - 3}b^2 + \cdots +
                               ab^{n - 2} + b^{n - 1})$.
 
     Note that for odd $n$, $a^n + b^n$ can also be easily factorised as
@@ -210,7 +241,7 @@ top=2pt
     We may derive this from the fact that any $n = pq: p, q \in \mathbb{P}$,
     $a^n - b^n$ will factorise as
     \\$a^{pq} - b^{pq} \equiv
-     (a^p - b^p)(a^{p(q - 1)} + a^{p(q - 2)}b^{p(1)} + \ldots +
+     (a^p - b^p)(a^{p(q - 1)} + a^{p(q - 2)}b^{p(1)} + \cdots +
                  a^{p(1)}b^{p(q - 2)} + b^{p(q - 1)})$
 
     \subsection{Infinitude of Primes}
@@ -261,19 +292,76 @@ top=2pt
 
     \subsection{AM-GM inequality}
 
-    For a sequence $u_i \in \mathbb{R}$, for $1 \le i \le k$ and $u_i \ge 0$,
-    $(\prod u_i)^\frac{1}{k} \le \frac{1}{k}\sum u_i$.
+    For a sequence $u_i \in \mathbb{R}$, for $1 \le i \le k$ (ie, the sequence
+    is of length $k$) and $u_i \ge 0$,
+    \\$(\prod u_i)^\frac{1}{k} \le \frac{1}{k}\sum u_i$.
 
     \subsection{Square Triangular numbers}
 
-    %FIXME: add link annotations, explanations
+    %FIXME: add link annotations, explanations, oeis
+    %FIXME: format table
 
-    The sequence of perfect squares $\text{ST}_n = a_n^2$
-    such that $a_n^2 = \frac 12 b_n(b_n + 1)$, where
-    $a, b \in \mathbb{Z}_0^+$.
+    \begin{longlisting}
+    \begin{minted}{python}
+def get_sqr_tris(n):
+    nums = [0, 1]
+    for _ in range(n):
+        nums.append(34 * nums[-1] - nums[-2] + 2)
+    return nums
 
-    Where $\frac{b}{c}$ is the $n$th convergent of $\sqrt 2$,
-    $\text{ST}_n = b^2 c^2$.
+def itrirt(n):
+    res = int(sqrt(n // 2))
+    while res * (res + 1) // 2 < n:
+        res += 1
+    while res * (res - 1) // 2 > n:
+        res -= 1
+    return res
+
+def isqrt(n):
+    res = int(sqrt(n))
+    while res ** 2 < n:
+        res += 1
+    while res ** 2 > n:
+        res -= 1
+    return res
+
+
+for n, i in enumerate(get_sqr_tris(10)):
+    print(" & ".join(map(str, [n, i, isqrt(i), itrirt(i)])) + " \\\\")
+
+    \end{minted}
+    \end{longlisting}
+
+    The sequence of perfect squares $\text{ST}_n$ such that
+    $\text{ST}_n= a_n^2 = \frac 12 b_n(b_n + 1)$, where
+    $a, b \in \mathbb{Z}_0^+$. The first few are:
+
+    \begin{longtable}{rrrr}
+    \toprule
+    \boldmath$n$ & \boldmath$\text{\bfseries ST}_n$ & \boldmath$a_n$ &
+                   \boldmath$b_n$ \\
+    \midrule
+    \endhead
+    0 & 0 & 0 & 0 \\
+    1 & 1 & 1 & 1 \\
+    2 & 36 & 6 & 8 \\
+    3 & 1225 & 35 & 49 \\
+    4 & 41616 & 204 & 288 \\
+    5 & 1413721 & 1189 & 1681 \\
+    6 & 48024900 & 6930 & 9800 \\
+    7 & 1631432881 & 40391 & 57121 \\
+    8 & 55420693056 & 235416 & 332928 \\
+    9 & 1882672131025 & 1372105 & 1940449 \\
+    10 & 63955431761796 & 7997214 & 11309768 \\
+    11 & 2172602007770041 & 46611179 & 65918161 \\
+    \multicolumn{4}{c}{\ldots} \\
+    \bottomrule
+    \end{longtable}
+
+    %FIXME Pell's equation here
+
+    Where $\frac{p}{q}$ is the $n$th convergent of $\sqrt 2$,
+    $\text{ST}_n = p^2 q^2$.
 
     $\text{ST}_n$ also satisfies the recurrence relations where
     $\text{ST}_0 = 0$ and $\text{ST}_1 = 1$
@@ -297,6 +385,8 @@ top=2pt
 
     \subsection{de Moivre's Theorem}
 
+    $(\cos \theta + i \sin \theta)^n \equiv \cos n\theta + i \sin n\theta$
+
     \section{Discrete Maths (Computer Science)}
 
     \subsection{Exponentiation by Squaring} \label{sec:exp_by_squaring}
@@ -311,13 +401,23 @@ top=2pt
         \end{cases}$
 
     This follows from the fact that
-    $x^{2y'} = (x^2)^{y'}$ and $x^{2y' + 1} = x(x^2)^{y'}$.
+    $x^{2y'} = (x^2)^{y}$ and $x^{2y' + 1} = x(x^2)^{y'}$.
 
     \section{Functions}
 
     \subsection{Jections}
 
     %FIXME mnemonic or diagram
+
+    $different \ne          % symbols
+     \mathit{different} \ne % italic
+     \mathrm{different} \ne % roman
+     \mathsf{different} \ne % sans-serif
+     \mathtt{different} \ne % typewriter text
+     \mathbf{different} \ne % bold font
+     \operatorname{differen}(t) \ne % operator
+  \\ \mathcal{DIFFERENT} \ne % calligraphic
+     \mathbb{DIFFERENT} $    % blackboard bold
 
     \begin{itemize}
     \item An injection maps each element of its domain to a unique element of
@@ -334,8 +434,8 @@ top=2pt
     \subsection{Common sets}
 
     %FIXME: sets of congruence classes
+    %       sets of polynomial rings: apply set mathbb{A}
 
-    \begin{center}
     \begin{longtable}{ll}
     \toprule
     \bfseries Set & \bfseries Description \\
@@ -373,7 +473,6 @@ top=2pt
                $\set{x \in \mathbb{R} \mid a < x \le b}$.\\
     \bottomrule
     \end{longtable}
-    \end{center}
 
     \subsection{Closed, Open, Clopen}
 
@@ -670,7 +769,7 @@ top=2pt
     \displaystyle
         2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta}2$, as required.
 
-    Now, it we show that
+    Now, we show that
 
     $\displaystyle \boxed{\sin \alpha - \sin \beta =
         \sin \alpha + \sin -\beta =
@@ -779,7 +878,6 @@ top=2pt
 
     By FTC (\ref{sec:calc_FTC}), these also give common integrations.
 
-    \begin{center}
     \begin{longtable}{rrl}
     \toprule
     \boldmath$f(x)$ & \boldmath$f'(x)$ &
@@ -816,7 +914,6 @@ top=2pt
          = \frac{1}{1 + x^2}$. \\
     \bottomrule
     \end{longtable}
-    \end{center}
 
     \subsection{Volume of Revolution}
 
