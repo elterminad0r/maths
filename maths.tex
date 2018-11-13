@@ -10,6 +10,11 @@
 
 % better fonts, apparently
 \usepackage{lmodern}
+% fixes some small caps things
+\usepackage{slantsc}
+
+% needed for colouring and stuff (xcolor supersedes color). provides LightSalmon
+\usepackage[svgnames]{xcolor}
 
 % make the document take up more of the page
 \usepackage[margin=1in,headheight=13.6pt]{geometry}
@@ -41,19 +46,31 @@
 
 % maths symbols and other stuff (supersedes the ams* packages)
 \usepackage{mathtools}
-
 % provides typesetting of derivatives with \od and \dod, and also \set and \abs
 % ie generally useful stuff.
 \usepackage{commath}
-
 % provides mathbb
 \usepackage{amsfonts}
-
 % provides uptau
 \usepackage{upgreek}
-
 % provides \varnothing
 \usepackage{amssymb}
+% mathscr
+\usepackage{mathrsfs}
+% text(frak|swab|goth)
+\usepackage{yfonts}
+\def\initdefault{yinit} % fix weird font thing
+% mathfrak
+\usepackage{eufrak}
+% witches
+\usepackage{halloweenmath}
+
+% define starting paragraph letter stuff
+\usepackage{lettrine}
+\setcounter{DefaultLines}{4}
+\setlength{\DefaultFindent}{0.5em}
+\setlength{\DefaultNindent}{0em}
+\renewcommand{\LettrineFontHook}{\usefont{U}{yinit}{m}{n}}
 
 % typesetting units
 \usepackage[separate-uncertainty]{siunitx}
@@ -108,8 +125,8 @@ top=2pt
 % used for figures
 \usepackage{float}
 
-% needed for colouring and stuff (xcolor supersedes color)
-\usepackage{xcolor}
+% lorem ipsum generator
+\usepackage{lipsum}
 
 \definecolor{codegreen}{rgb}{ 0,0.6,0}
 
@@ -174,10 +191,13 @@ top=2pt
     % - sets of polynomial rings
     % - gaussian integers, rationals
     % - other notation for algebraic numbers.
-    % - failure of power and logarithm identities
+    % - failure of power and logarithm identities (also put these in)
     % - quaternions, octonions, sedenions, prime numbers
     % - euler, de moivre
     % - work out how to use theorems & proofs from amsthm.
+    % - more math - fraktur, gothic, scr
+    % - prove d/dx x^alpha holds for alpha not in Z
+    % - prime number wheel erat atkin sieves, tests, li(x), pi(x), sympy prime
 
     \section{Miscellaneous}
 
@@ -332,8 +352,8 @@ for n, i in enumerate(get_sqr_tris(10)):
     \end{minted}
     \end{longlisting}
 
-    The sequence of perfect squares $\text{ST}_n$ such that
-    $\text{ST}_n= a_n^2 = \frac 12 b_n(b_n + 1)$, where
+    The sequence of perfect squares $\mathrm{ST}_n$ such that
+    $\mathrm{ST}_n= a_n^2 = \frac 12 b_n(b_n + 1)$, where
     $a, b \in \mathbb{Z}_0^+$. The first few are:
 
     \begin{longtable}{rrrr}
@@ -361,11 +381,11 @@ for n, i in enumerate(get_sqr_tris(10)):
     %FIXME Pell's equation here
 
     Where $\frac{p}{q}$ is the $n$th convergent of $\sqrt 2$,
-    $\text{ST}_n = p^2 q^2$.
+    $\mathrm{ST}_n = p^2 q^2$.
 
-    $\text{ST}_n$ also satisfies the recurrence relations where
-    $\text{ST}_0 = 0$ and $\text{ST}_1 = 1$
-    \\$\text{ST}_n = 34\text{ST}_{n - 1} - \text{ST}_{n - 2} + 2$ and
+    $\mathrm{ST}_n$ also satisfies the recurrence relations where
+    $\mathrm{ST}_0 = 0$ and $\mathrm{ST}_1 = 1$
+    \\$\mathrm{ST}_n = 34\mathrm{ST}_{n - 1} - \mathrm{ST}_{n - 2} + 2$ and
     \\$a_n = 6a_{n - 1} - a_{n - 2}$.
 
     \subsection{Fibonacci Sequence}
@@ -405,19 +425,50 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     \section{Functions}
 
+    \lettrine{\color{NavyBlue}I}{zaak van Dongen}. \lipsum[2]
+
+    $DIFferent \ne          % symbols
+     \mathit{DIFferent} \ne % italic
+     \mathrm{DIFferent} \ne % roman
+     \mathsf{DIFferent} \ne % sans-serif
+     \mathtt{DIFferent} \ne % typewriter text
+     \mathbf{DIFferent} \ne % bold font
+     \operatorname{DIFferen}(t) \ne % operator
+     \mathcal{DIFFERENT} \ne % calligraphic
+     \mathbb{DIFFERENT} \ne % blackboard bold
+     \mathfrak{DIFferent} \ne
+     \textfrak{DIFferent} \ne
+     \textswab{DIFferent} \ne
+     \textgoth{DIFferent} \ne
+     \\\mathscr{DIFFERENT} \ne
+     \overrightwitchonbroom{\mathit{DIFferent}}$
+
+    \textsc{I am Death}
+
+    and \textmd{text} % = small caps
+  \\and \textbf{text} % = small caps
+  \\and \textrm{text} % = small caps
+  \\and \textsf{text} % = small caps
+  \\and \texttt{text} % = small caps
+  \\and \textup{text} % = normal
+  \\and \textit{text} % = italic
+  \\and \emph{some \emph{really} emphasised text} % = emphasised
+  \\and \textsl{text} % = slanted/oblique
+  \\and \textsc{text} % = small caps
+ {\\and \tiny         % smalles size
+        \scriptsize   text % size of (first level) super and supscripts
+        \footnotesize text % size of footnotes
+        \small        text
+        \normalsize   text % size of regular text
+        \large        text
+        \Large        text
+        \LARGE        text
+        \huge         text
+        \Huge         text}
+
     \subsection{Jections}
 
     %FIXME mnemonic or diagram
-
-    $different \ne          % symbols
-     \mathit{different} \ne % italic
-     \mathrm{different} \ne % roman
-     \mathsf{different} \ne % sans-serif
-     \mathtt{different} \ne % typewriter text
-     \mathbf{different} \ne % bold font
-     \operatorname{differen}(t) \ne % operator
-  \\ \mathcal{DIFFERENT} \ne % calligraphic
-     \mathbb{DIFFERENT} $    % blackboard bold
 
     \begin{itemize}
     \item An injection maps each element of its domain to a unique element of
