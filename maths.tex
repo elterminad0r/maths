@@ -13,6 +13,9 @@
 % fixes some small caps things
 \usepackage{slantsc}
 
+% package for drawing tex-related logos - eg \hologo(bibtex)
+\usepackage{hologo}
+
 % needed for colouring and stuff (xcolor supersedes color). provides LightSalmon
 \usepackage[svgnames]{xcolor}
 
@@ -46,9 +49,14 @@
 
 % maths symbols and other stuff (supersedes the ams* packages)
 \usepackage{mathtools}
-% provides typesetting of derivatives with \od and \dod, and also \set and \abs
-% ie generally useful stuff.
+
+% provides \set, /\int[oc][oc]/, but is mostly overwritten by physics
 \usepackage{commath}
+
+% provides typesetting of derivatives with \dv and \dd, and also \abs and \norm
+% and automatic delimeter pairing with pqty, bqty, vqty, Bqty
+\usepackage{physics}
+
 % provides mathbb
 \usepackage{amsfonts}
 % provides uptau
@@ -64,6 +72,9 @@
 \usepackage{eufrak}
 % witches
 \usepackage{halloweenmath}
+
+\DeclareMathOperator{\Normal}{\mathcal{N}}
+\DeclareMathOperator{\Binomial}{\mathcal{B}}
 
 % define starting paragraph letter stuff
 \usepackage{lettrine}
@@ -157,6 +168,54 @@ top=2pt
     \tableofcontents
 
     %FIXME
+
+    % olympiad:
+    % http://people.bath.ac.uk/masgcs/advice.html
+    % https://bmos.ukmt.org.uk/home/bmo.shtml
+    % qm-am-gm-hm, generalised power mean
+    % cauchy-shwarz in full , sum of squares positive,
+    % rearrangement inequality,
+
+    % factor theorem
+
+    % circle theorems - AST, cyclic quadrilateral, centres of triangle + heron's
+    % formula
+
+    % cosine rule, "full sine rule", trig identities
+
+    % fermat's little theorem, pell's equation
+
+    % binomial coefficients, pigeonhole principle
+
+    % more difficult stuff:
+
+    % Chinese Remainder, Pell's equation and maybe Quadratic Reciprocity
+
+    % Simson's Theorem, Ceva's theorem, excircles, Menelaus's theorem, power of
+    % a point and the radical axis theorem
+
+    % Jensen's inequality and Holder's inequality. Finally, international
+    % competitors must keep a grip on Muirhead and Schur's inequalities
+
+    % areal coordinate methods: https://bmos.ukmt.org.uk/home/areals.pdf
+
+
+    % multiple angle formulas using de moivre
+    % exponential representation of trig functions from euler's identity
+    % (quasi-arithmetic mean)
+    % limits, indeterminate forms
+    % more about e as limit + exponential
+    % transitive, commutative, symmetric, reflexive, etc
+    % e, pi irrational
+    % e^pi vs pi^e
+    % nowhere continuous function (dirichlet)
+    % notes on classical cryptanalysis in statistics
+    % recursively enumerable sets, generally turing machines/computability
+    % faulty proofs,
+    %   definite integral must be 0
+    %   0 == 1
+    % generator for pythagorean triple, (3b1b & bprp)
+    % pyth-n tuples https://www.researchgate.net/publication/250890871_A_method_of_generating_Pythagorean_n-tuples
     % - integral _a^b of f(x) / (f(x) + f(a + b - x) dx
     % - shortlist of things
     % - generally: add links to everything.
@@ -173,6 +232,7 @@ top=2pt
     % - frullani theorem
     % - functions: continuity, differentiability, monoticity, elementaryness
     % - central limit theorem, sum of normally distributed random variables
+    % - generating functions, moment generating functions (proof)
     % - generating functions
     % - characteristic functions
     % - statistics: expectation, variance, covariance
@@ -198,6 +258,10 @@ top=2pt
     % - more math - fraktur, gothic, scr
     % - prove d/dx x^alpha holds for alpha not in Z
     % - prime number wheel erat atkin sieves, tests, li(x), pi(x), sympy prime
+    % - stirling's approximation
+    % - generating functions
+    % - list of symbols
+    % - equipotence of real interval and reals, similarly for rationals
 
     \section{Miscellaneous}
 
@@ -255,7 +319,7 @@ top=2pt
     This happens as $4$ is composite. Any composite $n$ will in fact result in
     the cototient (\ref{sec:totient}) of $n = n - \phi(n)$ factors. This also
     holds for prime $n$, but for prime
-    $n$, $\phi(n) = n - 2 \Rightarrow n - \phi(n) = 2$, as the only divisors of
+    $n$, $\phi(n) = n - 2 \implies n - \phi(n) = 2$, as the only divisors of
     a prime $n$ are $1$ and $n$.
 
     We may derive this from the fact that any $n = pq: p, q \in \mathbb{P}$,
@@ -293,9 +357,9 @@ top=2pt
 
     Corollaries are that the number of real roots is determined by the
     discriminant \\$\Delta = b^2 - 4ac$.
-    \\$\Delta = 0 \Rightarrow P(x)$ has one real root with multiplicity.
-    \\$\Delta < 0 \Rightarrow P(x)$ has no real roots.
-    \\$\Delta > 0 \Rightarrow P(x)$ has two real roots.
+    \\$\Delta = 0 \implies P(x)$ has one real root with multiplicity.
+    \\$\Delta < 0 \implies P(x)$ has no real roots.
+    \\$\Delta > 0 \implies P(x)$ has two real roots.
 
     \subsection{Cauchy-Shwarz inequality for $\mathbb{R}^n$}
 
@@ -307,7 +371,7 @@ top=2pt
     \\$(\sum u_i^2) x^2 + (\sum 2 u_i v_i) x + \sum v_i^2 = 0$, so has
     at most one real root. Therefore, the discriminant
     \\$\Delta = b^2 - 4ac \le 0$ (by \ref{sec:quad_formula}), so
-    $(\sum 2 u_i v_i)^2 - 4(\sum u_i^2)(\sum v_i^2) \le 0 \Rightarrow
+    $(\sum 2 u_i v_i)^2 - 4(\sum u_i^2)(\sum v_i^2) \le 0 \implies
      (\sum u_i v_i)^2 \le (\sum u_i^2) (\sum v_i^2)$, as required.
 
     \subsection{AM-GM inequality}
@@ -320,6 +384,7 @@ top=2pt
 
     %FIXME: add link annotations, explanations, oeis
     %FIXME: format table
+    %fixme: improve this disgusting code
 
     \begin{longlisting}
     \begin{minted}{python}
@@ -421,11 +486,18 @@ for n, i in enumerate(get_sqr_tris(10)):
         \end{cases}$
 
     This follows from the fact that
-    $x^{2y'} = (x^2)^{y}$ and $x^{2y' + 1} = x(x^2)^{y'}$.
+    $x^{2y'} = (x^2)^{y'}$ and $x^{2y' + 1} = x(x^2)^{y'}$.
 
     \section{Functions}
 
     \lettrine{\color{NavyBlue}I}{zaak van Dongen}. \lipsum[2]
+
+    $\alpha\beta\gamma\delta\zeta\nu\phi\pi\tau\epsilon\lambda\nu\eta\omega
+         \sigma\psi
+     \varepsilon\varphi\varpi
+     \Omega\Delta\Pi\Sigma\Phi\Psi$
+
+     $\tanh x \sin x \arcsin x$
 
     $DIFferent \ne          % symbols
      \mathit{DIFferent} \ne % italic
@@ -436,35 +508,49 @@ for n, i in enumerate(get_sqr_tris(10)):
      \operatorname{DIFferen}(t) \ne % operator
      \mathcal{DIFFERENT} \ne % calligraphic
      \mathbb{DIFFERENT} \ne % blackboard bold
-     \mathfrak{DIFferent} \ne
-     \textfrak{DIFferent} \ne
-     \textswab{DIFferent} \ne
-     \textgoth{DIFferent} \ne
-     \\\mathscr{DIFFERENT} \ne
-     \overrightwitchonbroom{\mathit{DIFferent}}$
+     \mathfrak{DIFferent} \ne % fraktur
+     \textfrak{DIFferent} \ne % also fraktur
+     \textswab{DIFferent} \ne % swabacher
+     \textgoth{DIFferent} \ne % gothic font
+     \\\mathscr{DIFFERENT} \ne % script font
+     \overrightwitchonbroom{\mathit{DIFferent}} % a witch on a broom
+    $
 
     \textsc{I am Death}
 
-    and \textmd{text} % = small caps
-  \\and \textbf{text} % = small caps
-  \\and \textrm{text} % = small caps
-  \\and \textsf{text} % = small caps
-  \\and \texttt{text} % = small caps
-  \\and \textup{text} % = normal
-  \\and \textit{text} % = italic
+    and \textmd{text} {\mdseries text} % = medium weight
+  \\and \textrm{text} {\rmfamily text} % = roman font
+  \\and \textup{text} {\upshape text}  % = upright
+  \\and \textbf{text} {\bfseries text} % = bold font
+  \\and \textsf{text} {\sffamily text} % = sans-serif
+  \\and \texttt{text} {\ttfamily text} % = typewriter font
+  \\and \textit{text} {\itshape text}  % = italic
+  \\and \textsl{text} {\slshape text}  % = slanted/oblique
   \\and \emph{some \emph{really} emphasised text} % = emphasised
-  \\and \textsl{text} % = slanted/oblique
-  \\and \textsc{text} % = small caps
- {\\and \tiny         % smalles size
-        \scriptsize   text % size of (first level) super and supscripts
-        \footnotesize text % size of footnotes
-        \small        text
-        \normalsize   text % size of regular text
-        \large        text
-        \Large        text
-        \LARGE        text
-        \huge         text
-        \Huge         text}
+    and {\em some {\em really} emphasised text} % = emphasised
+  \\and \textsc{text} {\scshape text}  % = small caps
+  \\and {\tiny         text} % smallest size
+        {\scriptsize   text} % size of (first level) super and supscripts
+        {\footnotesize text} % size of footnotes
+        {\small        text}
+        {\normalsize   text} % size of regular text
+        {\large        text}
+        {\Large        text}
+        {\LARGE        text}
+        {\huge         text}
+        {\Huge         text}
+  \\and \begin{tiny}        text\end{tiny}
+        \begin{scriptsize}  text\end{scriptsize}
+        \begin{footnotesize}text\end{footnotesize}
+        \begin{small}       text\end{small}
+        \begin{normalsize}  text\end{normalsize}
+        \begin{large}       text\end{large}
+        \begin{Large}       text\end{Large}
+        \begin{LARGE}       text\end{LARGE}
+        \begin{huge}        text\end{huge}
+        \begin{Huge}        text\end{Huge}
+
+    % add involution
 
     \subsection{Jections}
 
@@ -515,13 +601,14 @@ for n, i in enumerate(get_sqr_tris(10)):
                    ``slices'' of $\mathbb{Q}$. \\
     $\mathbb{C}$ & The set of complex numbers
                    $\set{a + bi \mid a, b \in \mathbb{R}}$, where $i^2 = 1$.\\
-    $(a, b)$ & The open interval $\set{x \in \mathbb{R} \mid a < x < b}$.\\
-    $[a, b]$ & The closed interval
-               $\set{x \in \mathbb{R} \mid a \le x \le b}$.\\
-    $[a, b)$ & The half-open interval
-               $\set{x \in \mathbb{R} \mid a \le x < b}$.\\
-    $(a, b]$ & The half-open interval
-               $\set{x \in \mathbb{R} \mid a < x \le b}$.\\
+    $\intoo{a, b}$ & The open interval
+                     $\set{x \in \mathbb{R} \mid a < x < b}$.\\
+    $\intcc{a, b}$ & The closed interval
+                     $\set{x \in \mathbb{R} \mid a \le x \le b}$.\\
+    $\intco{a, b}$ & The half-open interval
+                     $\set{x \in \mathbb{R} \mid a \le x < b}$.\\
+    $\intoc{a, b}$ & The half-open interval
+                     $\set{x \in \mathbb{R} \mid a < x \le b}$.\\
     \bottomrule
     \end{longtable}
 
@@ -535,6 +622,9 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     \subsection{Cardinality}
 
+    % powerset of integers, diagonal argument, schroeder-bernstein, interval
+    % cardinality
+
     Cardinality is a way to think about the ``size'' of sets. Cardinality is
     really a kind of equivalence relation on the class of sets, where two sets
     have the same cardinality iff there exists a bijection between them - ie
@@ -542,8 +632,8 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     Any two finite sets obviously have the same cardinality iff they have the
     same number of elements. The cardinality of a finite set is usually just
-    given as the number of elements it has. For example, $\abs \emptyset = 0$
-    and $\set{1, 3, 2} = 3$, etc.
+    given as the number of elements it has. For example, $\abs{\emptyset} = 0$
+    and $\abs{\set{1, 3, 2}} = 3$, etc.
 
     We let the cardinality of the natural numbers $\abs{\mathbb{N}} = \aleph_0$.
 
@@ -561,21 +651,21 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     We can find half the area enclosed by the curve by integrating:
 
-    $\displaystyle \frac 12 A = \int_{-r}^r \sqrt{r^2 - x^2} \dif x$. We use the
+    $\displaystyle \frac 12 A = \int_{-r}^r \sqrt{r^2 - x^2} \dd{x}$. We use the
     substitution (\ref{sec:calc_trig_substitution})
-    $x = r \cos \theta \iff \dod x\theta = -r \sin \theta$ so that
+    $x = r \cos \theta \implies \dv{x}{\theta} = -r \sin \theta$ so
 
     $\displaystyle \frac 12 A = \int_{\arccos -1}^{\arccos 1}
-        r\sqrt{1 - \cos^2 \theta} \cdot -r \sin \theta \dif \theta
-      = -\int_\pi^0 r^2 \sin^2 \theta \dif \theta$, by \ref{sec:trig_pythag}. We
-      use \ref{sec:trig_double_angle} to derive that
+        r\sqrt{1 - \cos^2 \theta} \cdot -r \sin \theta \dd{\theta}
+      = -\int_\pi^0 r^2 \sin^2 \theta \dd{\theta}$, by \ref{sec:trig_pythag}. We
+      use \ref{sec:trig_double_angle} to derive
 
     $\displaystyle \frac 12 A = -\int_\pi^0
-        r^2 \frac 12 (1 - \cos 2 \theta) \dif \theta \Rightarrow
-     A = r^2 \int_0^\pi (1 - \cos 2 \theta) \dif \theta =
-     r^2\left[\theta - \frac 12 \sin 2 \theta \right]_0^\pi
-     \\= r^2 \left(\pi - \frac 12 \sin 2 \pi -
-                   \left(0 - \frac 12 \sin 0\right)\right) \boxed{= \pi r^2}$
+        r^2 \frac 12 (1 - \cos 2 \theta) \dd{\theta} \implies
+     A = r^2 \int_0^\pi (1 - \cos 2 \theta) \dd{\theta} =
+     r^2\bqty{\theta - \frac 12 \sin 2 \theta}_0^\pi
+     \\= r^2 \pqty{\pi - \frac 12 \sin 2 \pi -
+                   \pqty{0 - \frac 12 \sin 0}} \boxed{= \pi r^2}$
 
     One might alternatively use the parametric form of a circle,
     $y = r \sin \theta$ and $x = r \cos \theta$
@@ -584,11 +674,11 @@ for n, i in enumerate(get_sqr_tris(10)):
     \ref{sec:calc_parametric_area}:
 
     $\displaystyle A = \int_0^{2\pi}
-        r \sin \theta \cdot -r \sin \theta \dif \theta =
-     \frac 12 r^2 \int_0^{2\pi} (1 - \cos 2 \theta) \dif \theta =
-     \frac 12 r^2 \left[\theta - \frac 12 \sin 2 \theta\right]_0^{2\pi}
-     \\= \frac 12 r^2 \left(2\pi - \frac 12 \sin 4 \pi -
-                      \left(0 - \sin 0\right)\right) = \pi r^2$
+        r \sin \theta \cdot -r \sin \theta \dd{\theta} =
+     \frac 12 r^2 \int_0^{2\pi} (1 - \cos 2 \theta) \dd{\theta} =
+     \frac 12 r^2 \bqty{\theta - \frac 12 \sin 2 \theta}_0^{2\pi}
+     \\= \frac 12 r^2 \pqty{2\pi - \frac 12 \sin 4 \pi -
+                      \pqty{0 - \sin 0}} = \pi r^2$
 
     \subsection{Volume of a sphere}
 
@@ -743,28 +833,29 @@ for n, i in enumerate(get_sqr_tris(10)):
     $\displaystyle \tan^2 \theta \equiv \frac{\sin^2 \theta}{\cos^2 \theta}
         \equiv \frac{1 - \cos 2 \theta}{1 + \cos 2 \theta}
         \equiv \frac{1 - \cos^2 2 \theta}{(1 + \cos 2 \theta)^2}
-        \equiv \left(\frac{\sin 2 \theta}{1 + \cos 2 \theta}\right)^2
+        \equiv \pqty{\frac{\sin 2 \theta}{1 + \cos 2 \theta}}^2
         \equiv \frac{(1 - \cos 2 \theta)^2}{1 - \cos^2 2 \theta}
-        \equiv \left(\frac{1 - \cos 2 \theta}{\sin 2 \theta}\right)^2$
+        \equiv \pqty{\frac{1 - \cos 2 \theta}{\sin 2 \theta}}^2$
 
     It follows that
 
     $\displaystyle \sin \theta \equiv
-        \pm\sqrt{\frac{1 - \cos 2 \theta} 2}$, ($\pm$ depends on the quadrant)
-    (so $\displaystyle \sin \frac \theta 2 \equiv
-        \pm\sqrt{\frac{1 - \cos \theta} 2}$) and
+        \pm\sqrt{\frac{1 - \cos 2 \theta} 2}
+     \ \pqty{\text{$\pm$ depends on the quadrant}}
+     \ \pqty{\text{so $\displaystyle \sin \frac \theta 2 \equiv
+        \pm\sqrt{\frac{1 - \cos \theta} 2}$}}$ and
 
     $\displaystyle \cos \theta \equiv
-        \pm\sqrt{\frac{1 + \cos 2 \theta} 2}$, (so
-    $\displaystyle \cos \frac \theta 2 \equiv
-        \pm\sqrt{\frac{1 + \cos \theta} 2}$).
+        \pm\sqrt{\frac{1 + \cos 2 \theta} 2}\ \pqty{\text{so
+    $\cos \frac \theta 2 \equiv
+        \pm\sqrt{\frac{1 + \cos \theta} 2}$}}$.
 
     $\displaystyle \tan \theta
         \equiv \frac{\sin 2 \theta}{1 + \cos 2 \theta}
-        \equiv \frac{1 - \cos 2 \theta}{\sin 2 \theta}$
-    (so $\displaystyle \tan \frac \theta 2
+        \equiv \frac{1 - \cos 2 \theta}{\sin 2 \theta}
+     \ \pqty{\text{so $\tan \frac \theta 2
         \equiv \frac{\sin \theta}{1 + \cos \theta}
-        \equiv \frac{1 - \cos \theta}{\sin \theta}$)
+        \equiv \frac{1 - \cos \theta}{\sin \theta}$}}$.
 
     \subsubsection{Triple Angles and Beyond}
 
@@ -847,8 +938,8 @@ for n, i in enumerate(get_sqr_tris(10)):
      \cos \alpha + \cos (\beta + \pi)  \equiv
      2 \cos \frac{\alpha + \beta + \pi} 2 \cos \frac {\alpha - \beta - \pi} 2
      \\\equiv
-     2 \cos \left(\frac \pi 2 - \left(-\frac{\alpha + \beta} 2\right)\right)
-       \cos \left(\frac \pi 2 - \frac{\alpha - \beta} 2 \right) \equiv
+     2 \cos \pqty{\frac \pi 2 - \pqty{-\frac{\alpha + \beta} 2}}
+       \cos \pqty{\frac \pi 2 - \frac{\alpha - \beta} 2} \equiv
      2 \sin -\frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2 \\\\\equiv
      \boxed{-2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2}$.
 
@@ -862,11 +953,11 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME add diagram
 
-    The binomial distribution $\mathcal B(\nu, \pi)$ measures the probability of
+    The binomial distribution $\Binomial(\nu, \pi)$ measures the probability of
     getting a certain number of successful ``events'', where there are $\nu$
     events each with probability $\pi$ of being successful.
 
-    The PDF of $X \sim \mathcal B(\nu, \pi)$ is
+    The PDF of $X \sim \Binomial(\nu, \pi)$ is
     $\displaystyle f(k) = P(X = k) = {\nu \choose k} \pi^k (1 - \pi)^{\nu - k}$
 
     The validity of this distribution is subject to these constraints:
@@ -878,22 +969,24 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME add diagram
 
-    The PDF of $X \sim \mathcal N(\mu, \sigma^2)$ is
+    The PDF of $X \sim \Normal(\mu, \sigma^2)$ is
     $\displaystyle f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}
-                            e^{\frac{(x - \mu)^2}{2\sigma^2}}$
+                            \exp(\frac{(x - \mu)^2}{2\sigma^2})$
 
     \subsubsection{Dimensional Verification/Mnemonic}
 
-    NB $\displaystyle\left[f(x)\right] =
-        \left[\frac 1{\sqrt{\sigma^2}}\right]
-        e^{\left[\frac{x^2}{\sigma^2}\right]}
-      = \left[\frac 1\sigma\right]$, as
-    $\left[\sigma\right] = \left[\mu\right] = \left[x\right]$. Therefore, the
+    NB $\displaystyle\bqty{f(x)} =
+        \bqty{\frac 1{\sqrt{\sigma^2}}}
+        e^{\bqty{\frac{x^2}{\sigma^2}}}
+      = \bqty{\frac 1\sigma}$, as
+    $\bqty{\sigma} = \bqty{\mu} = \bqty{x}$. Therefore, the
     evaluation of the probability $P(a < X < b)$ by the integral
-    $\displaystyle\int_a^bf(x)\dif x$ has dimension
-    $\left[\frac{\dif x}{\sigma}\right] = 1$, as expected for a probability.
+    $\displaystyle\int_a^bf(x) \dd{x}$ has dimension
+    $\bqty{\frac{\dd{x}}{\sigma}} = 1$, as expected for a probability.
 
     \subsection{Poisson Distribution}
+
+    %FIXME derivation as limit of binomial, see generating functions
 
     \subsection{Hypothesis Testing}
 
@@ -909,7 +1002,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     $\displaystyle f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}$.
 
     Other notations include, if $y = f(x)$, then
-    $y' = \dod yx = f'(x)$.
+    $y' = \dv{y}{x} = f'(x)$.
 
     \subsection{Fundamental Theorem of Calculus} \label{sec:calc_FTC}
 
@@ -936,15 +1029,15 @@ for n, i in enumerate(get_sqr_tris(10)):
     \midrule
     \endhead
     $x^n$ & $nx^{n-1}$
-        & $\int x^n \dif x = \frac{1}{n + 1}x^{n + 1}$ when
-          $n \neq -1$ (see $\od{}{x}\ln x$).\\
+        & $\int x^n \dd{x} = \frac{1}{n + 1}x^{n + 1}$ when
+          $n \neq -1$ (see $\dv{}{x}\ln x$).\\
     $\ln x$ & $\frac{1}{x}$
-        & $\od{}{x}\log_a x = \od{}{x} \frac{\ln x}{\ln a}$, and also
-          $\int \frac{g'(x)}{g(x)} \dif x = \ln g(x)$,
+        & $\dv{}{x}\log_a x = \dv{}{x} \frac{\ln x}{\ln a}$, and also
+          $\int \frac{g'(x)}{g(x)} \dd{x} = \ln g(x)$,
             from \ref{sec:calc_chain}.\\
-    $e^x$ & $e^x$ & $\od{}{x}a^x = \od{}{x}e^{x \ln a}$. \\
+    $e^x$ & $e^x$ & $\dv{}{x}a^x = \dv{}{x}e^{x \ln a}$. \\
     $\sin x$ & $\cos x$
-        & eg $\int \sin^2 x \dif x = \int \frac 12 (1 - \cos 2x) \dif x$
+        & eg $\int \sin^2 x \dd{x} = \int \frac 12 (1 - \cos 2x) \dd{x}$
           by \ref{sec:comp_angle}. \\
     $\tan x$ & $\sec^2 x$ \\
     $\sec x$ & $\sec x \tan x$ \\
@@ -952,16 +1045,16 @@ for n, i in enumerate(get_sqr_tris(10)):
     $\cot x$ & $-\csc^2 x$ \\
     $\csc x$ & $-\csc x \cot x$ \\
     $\arcsin x$ & $\frac{1}{\sqrt{1 - x^2}}$
-        & $\sin y = x \Rightarrow \od yx \cdot \cos y = 1 \Rightarrow
-           \od yx = \frac{1}{\cos y}
+        & $\sin y = x \implies \dv{y}{x} \cdot \cos y = 1 \implies
+           \dv{y}{x} = \frac{1}{\cos y}
          = \frac{1}{\sqrt{1 - \sin^2 y}} = \frac{1}{\sqrt{1 - x^2}}$. \\
     $\arccos x$ & $-\frac{1}{\sqrt{1 - x^2}}$
-        & $\cos y = x \Rightarrow \od yx \cdot -\sin y = 1 \Rightarrow
-           \od yx = -\frac{1}{\sin y}
+        & $\cos y = x \implies \dv{y}{x} \cdot -\sin y = 1 \implies
+           \dv{y}{x} = -\frac{1}{\sin y}
          = -\frac{1}{\sqrt{1 - \cos^2 y}} = -\frac{1}{\sqrt{1 - x^2}}$. \\
     $\arctan x$ & $\frac{1}{x^2 + 1}$
-        & $\tan y = x \Rightarrow \od yx \cdot \sec^2 y = 1 \Rightarrow
-           \od yx = \frac{1}{\sec^2 y} = \frac{1}{1 + \tan^2 y}
+        & $\tan y = x \implies \dv{y}{x} \cdot \sec^2 y = 1 \implies
+           \dv{y}{x} = \frac{1}{\sec^2 y} = \frac{1}{1 + \tan^2 y}
          = \frac{1}{1 + x^2}$. \\
     \bottomrule
     \end{longtable}
@@ -974,51 +1067,29 @@ for n, i in enumerate(get_sqr_tris(10)):
     curve is given in parametric form, $x = f(t)$ and $y = g(t)$, we rewrite the
     integral
 
-    $\displaystyle \int_{x_1}^{x_2} y \dif x =
-     \int_{x_1}^{x_2} y \dod xt \dif t = \int_{x_1}^{x_2} g(t)f'(t) \dif t$.
+    $\displaystyle \int_{x_1}^{x_2} y \dd{x} =
+     \int_{x_1}^{x_2} y \dv{x}{t} \dd{t} = \int_{x_1}^{x_2} g(t)f'(t) \dd{t}$.
 
     Similarly, the area between the curve and the y-axis from $y_1$ to $y_2$ is:
 
-    $\displaystyle \int_{y_1}^{y_2} x \dif y =
-     \int_{y_1}^{y_2} x \dod yt \dif t = \int_{y_1}^{y_2} f(t)g'(t) \dif t$.
+    $\displaystyle \int_{y_1}^{y_2} x \dd{y} =
+     \int_{y_1}^{y_2} x \dv{y}{t} \dd{t} = \int_{y_1}^{y_2} f(t)g'(t) \dd{t}$.
 
     \subsection{Implicit differentiation}
 
-    Where a curve is given by some implicit equation which is a sum of functions
-    of $x$ and/or $y$, we can use the chain rule (\ref{sec:calc_chain}).
-    Generally, where we know how to differentiate all $f_i$, $g_i$, $h_i$ then
-    if we have the equation
-
-    $\displaystyle \sum h_i(f_i(x)g_i(y)) = 0$, we can differentiate each term
-    to show that
-
-    $\displaystyle\dod{}{x} \sum h_i(f_i(x)g_i(y)) =
-     \sum \left[\left(f_i'(x)g_i(y) +
-                      f_i(x)g_i'(y)\dod yx\right)
-                h_i'(f_i(x)g_i(y))\right] = 0$ (by \ref{sec:calc_product},
-    \ref{sec:calc_chain})
-
-    so $\displaystyle \dod yx = -\frac{\sum f_i'(x)g_i(y)h_i'(f_i(x)g_i(x))}
-                                      {\sum f_i(x)g_i'(y)h_i'(f_i(x)g_i(x))}$.
-
-    Really this is an unnecessary formulation and probably an incomplete one, as
-    we could just as well take a product of any two such terms as another term,
-    although that makes it laborious. Generally, I think that any differentiable
-    expression will work. The idea is to differentiate with respect to $x$ on
-    both sides, where we use that $\od{}{x}f(y) = f'(y)\od yx$, and then make
-    $\od yx$ the subject.
+    % fix this
 
     %FIXME: add x^y for fun
 
     An example may help to clarify.
     \begin{align*}
     0 &= y^2 + x^3 + \sin x^2 y + \ln \frac{\sqrt y} x - 5 \\
-    \Rightarrow 0 &=
-                2y \dod yx + 3x^2 +
-                (2x \cdot y + \dod yx \cdot x^2) \cdot \cos x^2 y +
-                \left(\frac{x \cdot \frac 12 y^{-\frac 12} \cdot \dod yx -
+    \implies 0 &=
+                2y \dv{y}{x} + 3x^2 +
+                \pqty{2x \cdot y + \dv{y}{x} \cdot x^2} \cdot \cos x^2 y +
+                \pqty{\frac{x \cdot \frac 12 y^{-\frac 12} \cdot \dv{y}{x} -
                             \sqrt y \cdot 1}
-                           {x^2}\right) \cdot \frac{x}{\sqrt y} \\
+                           {x^2}} \cdot \frac{x}{\sqrt y} \\
     \end{align*}
 
     %FIXME finish this
