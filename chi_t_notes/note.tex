@@ -128,10 +128,14 @@ We can then use geometrical methods to derive the pdf for \(t\).
           angle eccentricity=1.6, angle radius=1cm]
          {angle=a--b--e};
 \draw[densely dashed] (b)--(d);
-\draw pic["\(\theta\)", draw=black, -,
+\draw pic[draw=black, -,
           pic text options={right=0.05cm},
           angle eccentricity=1, angle radius=0.8cm]
-         {angle=d--b--e};
+         {angle=a--b--e};
+\draw pic["\(\theta\)", draw=black, -,
+          pic text options={right=0.05cm},
+          angle eccentricity=0.9, angle radius=0.8cm]
+         {angle=d--b--a};
 \end{tikzpicture}
 \end{center}
 \caption{Geometry to find the cdf of \(t\)}
