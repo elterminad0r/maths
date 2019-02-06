@@ -15,6 +15,7 @@
 \DeclareMathOperator{\prob}{\mathrm P}
 \newcommand{\defeq}{\vcentcolon=}
 \newcommand*\mean[1]{\overline{#1}}
+\newcommand*\lseg[1]{\mathit{#1}}
 
 \begin{document}
 \maketitle
@@ -59,8 +60,8 @@ So the sample \((X_1, X_2, X_3)\) is point \(P\), the point M is
 \((\mean X, \mean X, \mean X)\), the point C is
 \((\mu, \mu, \mu)\).
 
-Now \((CM)^2 = 3(\mean X - \mu)^2\) and \\
-\((MP)^2 =
+Now \((\lseg{CM})^2 = 3(\mean X - \mu)^2\) and \\
+\((\lseg{MP})^2 =
   (X_1 - \mean X)^2 + (X_2 - \mean X)^2 + (X_3 - \mean X)^2 =
   2S^2\)
 
@@ -69,8 +70,8 @@ This is because \(S\) is defined as
 
 So
 \begin{align*}
-CM &= (\mean X - \mu)\sqrt 3 \\
-MP &= S \sqrt 2
+\lseg{CM} &= (\mean X - \mu)\sqrt 3 \\
+\lseg{MP} &= S \sqrt 2
 \end{align*}
 Note that \(\mean X\) and \(S^2\) occupy mutually perpendicular subspaces
 and this corresponds to independence in the probability sense. Note also that
@@ -83,10 +84,10 @@ Now
 \begin{equation*}
 t = \frac{\mean X - \mu}{\pqty{\frac{S}{\sqrt 3}}}
   = \frac{(\mean X - \mu) \sqrt 3}{S}
-  = \frac{CM}{\pqty{\frac{MP}{\sqrt 2}}}
+  = \frac{\lseg{CM}}{\pqty{\frac{\lseg{MP}}{\sqrt 2}}}
   = \sqrt 2 \cot \theta
 \end{equation*}
-where \(\theta = \widehat{PCM}\).
+where \(\theta = \widehat{\lseg{PCM}}\).
 
 \section*{General Results}
 Generalising the above in \(n\)-dimensional space:
@@ -98,10 +99,10 @@ t &= \sqrt{n - 1}\cot \theta
 \end{align*}
 where \(\theta\) is the angle between the \(n\)-dimensional vectors
 \begin{align*}
-\overrightarrow{CM} &= (\mean X - \mu,
+\overrightarrow{\lseg{CM}} &= (\mean X - \mu,
                         \mean X - \mu,\dotsc,
                         \mean X - \mu) \\
-\overrightarrow{CP} &= (X_1 - \mu, X_2 - \mu, \dotsc, X_n - \mu)
+\overrightarrow{\lseg{CP}} &= (X_1 - \mu, X_2 - \mu, \dotsc, X_n - \mu)
 \end{align*}
 We can then use geometrical methods to derive the pdf for \(t\).
 
