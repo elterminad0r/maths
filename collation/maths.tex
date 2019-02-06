@@ -1,0 +1,1766 @@
+% fleqn aligns equations to the left, a4 paper size, 11pt font, article class
+\documentclass[fleqn,a4paper,11pt]{article}
+\title{Maths}
+\author{Izaak van Dongen}
+
+% so the title can be accessed by fancyhdr (and is automatically correctly
+% spelled etc)
+\makeatletter
+\let\thetitle\@title
+\makeatother
+
+% better fonts, apparently
+\usepackage{lmodern}
+% fixes some small caps things
+\usepackage{slantsc}
+
+% for references
+\usepackage[square,numbers]{natbib}
+
+% package for drawing tex-related logos - eg \hologo(bibtex)
+\usepackage{hologo}
+
+% needed for colouring and stuff (xcolor supersedes color). provides LightSalmon
+\usepackage[x11names]{xcolor}
+
+% make the document take up more of the page
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
+
+% no paragraph indent
+\usepackage[parfill]{parskip}
+
+% custom document header/footer
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\thetitle}
+\rhead{Izaak van Dongen}
+\rfoot{Page \thepage\ of \pageref{LastPage}}
+
+% pretty table rules and multirow entries. Also page-breaking tables
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+
+\usepackage{enumitem}
+
+% plotting mathematical functions (needs version request)
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+
+% \url function and clickable table of contents. no ugly red boxes though
+\usepackage[hidelinks]{hyperref}
+
+% maths symbols and other stuff (supersedes the ams* packages)
+\usepackage{mathtools}
+
+% provides \set, /\int[oc][oc]/, but is mostly overwritten by physics
+\usepackage{commath}
+
+% provides typesetting of derivatives with \dv and \dd, and also \abs and \norm
+% and automatic delimeter pairing with pqty, bqty, vqty, Bqty
+\usepackage{physics}
+
+% provides mathbb
+\usepackage{amsfonts}
+% provides uptau
+\usepackage{upgreek}
+% provides \varnothing
+\usepackage{amssymb}
+% why not
+\newcommand\omicron{o}
+% mathscr
+\usepackage{mathrsfs}
+% text(frak|swab|goth)
+\usepackage{yfonts}
+\def\initdefault{yinit} % fix weird font thing
+% mathfrak
+\usepackage{eufrak}
+% witches
+\usepackage{halloweenmath}
+% some stackrel things
+\usepackage{stackrel}
+
+\DeclareMathOperator{\Normal}{\mathcal{N}}
+\DeclareMathOperator{\Binomial}{\mathcal{B}}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+% define starting paragraph letter stuff
+\usepackage{lettrine}
+\setcounter{DefaultLines}{4}
+\setlength{\DefaultFindent}{0.5em}
+\setlength{\DefaultNindent}{0em}
+\renewcommand{\LettrineFontHook}{\usefont{U}{yinit}{m}{n}}
+
+% typesetting units
+\usepackage[separate-uncertainty]{siunitx}
+
+% For framing definitions
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{definition}{
+freelance,
+before=\par\vspace{2\bigskipamount}\noindent,
+after=\par\bigskip,
+frame code={
+  \node[
+  anchor=south west,
+  inner xsep=8pt,
+  xshift=8pt,
+  rounded corners=5pt,
+  font=\bfseries\color{white},
+  fill=gray] at (frame.north west) (tit) {\strut Definition:};
+  \draw[
+  line width=3pt,
+  rounded corners=5pt,gray
+  ] (tit.west) -| (frame.south west) -- ([xshift=15pt]frame.south west);
+},
+interior code={},
+top=2pt
+}
+
+% for better table of contents stuff, providing the \listof* commands and not
+% listing the tables in the table of contents
+\usepackage[nottoc,notlof,notlot]{tocbibind}
+
+% increase spacing of section numbers from headings
+\usepackage{tocloft}
+\setlength{\cftsubsecnumwidth}{2.9em}
+\setlength{\cftsubsubsecindent}{4.4em}
+
+% more advanced handling of utf8 and fonts or something. apparently good to have
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% bibliography management with square braces for citations
+\usepackage[square,numbers]{natbib}
+
+% graphics, like eps files and stuff (supersedes graphics)
+\usepackage{graphicx}
+
+% used to horizontally align floats
+\usepackage{subfig}
+
+% used for figures
+\usepackage{float}
+
+% lorem ipsum generator
+\usepackage{lipsum}
+
+\definecolor{codegreen}{rgb}{ 0,0.6,0}
+
+% listings of code
+\usepackage{minted}
+\setminted{breaklines,
+           breakbytokenanywhere,
+           linenos
+}
+\usemintedstyle{friendly}
+% bigger line numbers
+\renewcommand\theFancyVerbLine{\footnotesize\arabic{FancyVerbLine}}
+
+% that can break across pages while being captioned figures
+\usepackage{caption}
+\newenvironment{longlisting}
+{\addvspace{\baselineskip}\captionsetup{type=listing}}
+{\addvspace{\baselineskip}}
+
+% allow maths to break across pages
+\allowdisplaybreaks
+
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}
+
+\begin{document}
+    \maketitle\thispagestyle{empty} % no page number under title
+    \tableofcontents
+
+    %FIXME
+
+    % substitution tan (x / 2)
+    % step 2007ii4
+    % proof of ceva's theorem: 2007ii8
+    % proof of AM-GM: Jensen's inequality
+
+    % https://en.wikipedia.org/wiki/Mathematical_fallacy
+    % all integrals are equal to 0 - by manipulating limits
+    % http://www.cut-the-knot.org/proofs/index.shtml
+
+    % pi approximations, featuring 3b1b
+
+    % roots of polynomials, vieta's formulas
+
+    % sin theta tan theta = sec theta - cos thetat
+
+    % integration reduction formulae:
+    %   _0^1 cos^n x
+    %   _0^1 x^n / sqrt(3 + x)
+
+    % lambert W function - solving equations, derivative, power series
+
+    % diophantine equations and bezout's identity
+
+    % proof of COM of segments (using integration)
+
+    % formal systems/proofs (with coq)
+
+    % formula for prime numbers????
+    % https://en.wikipedia.org/wiki/Formula_for_primes
+
+    % does nonexistence of surjection imply surjection going the other way?
+    % integral step I 2002 q7
+    % further determinants
+
+    % dijkstra's
+    % quicksort
+
+
+    % identity with (sin + cos) ^ 2 and 1 + sin(2)
+    % trig harmonic form
+
+    % olympiad:
+    % http://people.bath.ac.uk/masgcs/advice.html
+    % https://bmos.ukmt.org.uk/home/bmo.shtml
+    % qm-am-gm-hm, generalised power mean
+    % cauchy-shwarz in full , sum of squares positive,
+    % rearrangement inequality,
+
+    % factor theorem
+
+    % circle theorems - AST, cyclic quadrilateral, centres of triangle + heron's
+    % formula
+
+    % cosine rule, "full sine rule", trig identities
+
+    % fermat's little theorem, pell's equation
+
+    % binomial coefficients, pigeonhole principle
+
+    % more difficult stuff:
+
+    % Chinese Remainder, Pell's equation and maybe Quadratic Reciprocity
+
+    % Simson's Theorem, Ceva's theorem, excircles, Menelaus's theorem, power of
+    % a point and the radical axis theorem
+
+    % Jensen's inequality and Holder's inequality. Finally, international
+    % competitors must keep a grip on Muirhead and Schur's inequalities
+
+    % areal coordinate methods: https://bmos.ukmt.org.uk/home/areals.pdf
+
+
+    % multiple angle formulas using de moivre
+    % exponential representation of trig functions from euler's identity
+    % (quasi-arithmetic mean)
+    % limits, indeterminate forms
+    % more about e as limit + exponential
+    % transitive, commutative, symmetric, reflexive, etc
+    % e, pi irrational
+    % e^pi vs pi^e
+    % nowhere continuous function (dirichlet)
+    % notes on classical cryptanalysis in statistics
+    % recursively enumerable sets, generally turing machines/computability
+    % faulty proofs,
+    %   definite integral must be 0
+    %   0 == 1
+    % generator for pythagorean triple, (3b1b & bprp)
+    % pyth-n tuples https://www.researchgate.net/publication/250890871_A_method_of_generating_Pythagorean_n-tuples
+    % - integral _a^b of f(x) / (f(x) + f(a + b - x) dx
+    % - shortlist of things
+    % - generally: add links to everything.
+    % - modular arithmetic, congruence classes
+    % - fourier, laplace transforms
+    % - fractals, fractal dimension, l-systems, weierstrass functions
+    % - happy number, primes, etc (autobiographical integer)
+    % - inverse trig and hyperbolic trig, more on
+    % - leibniz integral rule/feynmen integration/differentiation under the
+    %   integral
+    % - integral of interesting functions (see blackpenredpen)
+    %   sec x, x^x, sqrt(tan x)
+    % - mathematical fields, rings, groups
+    % - frullani theorem
+    % - functions: continuity, differentiability, monoticity, elementaryness
+    % - central limit theorem, sum of normally distributed random variables
+    % - generating functions, moment generating functions (proof)
+    % - generating functions
+    % - characteristic functions
+    % - statistics: expectation, variance, covariance
+    % - add a wee bit of physics
+    % - factorisation of x^4 + 1
+    % - binomial expansion, pascal's triangle, properties thereof.
+    % - rational root theorem
+    % - multiple angle formulae
+    % - exponential representation of trig functions
+    % - matrices, homeogenous coordinates, affine spaces
+    % - add list of constants that are interesting.
+    % - vectors, vector products, convex combination trick, decompose into new
+    %   components, product spaces
+    % - catenary, parabola, brachistochrone etc
+    % - gamma, beta, zeta functions
+    % - sets of polynomial rings
+    % - gaussian integers, rationals
+    % - other notation for algebraic numbers.
+    % - failure of power and logarithm identities (also put these in)
+    % - quaternions, octonions, sedenions, prime numbers
+    % - euler, de moivre
+    % - work out how to use theorems & proofs from amsthm.
+    % - more math - fraktur, gothic, scr
+    % - prove d/dx x^alpha holds for alpha not in Z
+    % - prime number wheel erat atkin sieves, tests, li(x), pi(x), sympy prime
+    % - stirling's approximation
+    % - generating functions
+    % - list of symbols
+    % - equipotence of real interval and reals, similarly for rationals
+
+    \section{Miscellaneous}
+
+%\begin{thm}Here is a new theorem.\end{thm}
+%
+%\begin{thm}Here is a new theorem.\end{thm}
+
+    \subsection{Numerical solutions to equations}
+
+    \subsection{Fundamental Theorem of Arithmetic}
+
+    \subsection{Prime Number Theorem}
+
+    \subsection{Fundamental Theorem of Algebra}
+
+    \subsection{Totient Function} \label{sec_totient}
+
+    \subsection{Dimensional Analysis}
+
+    \subsection{Difference of two Squares}
+
+    A difference of squares can be factorised
+    \begin{equation}
+    a^2 - b^2 \equiv (a + b)(a - b)
+    \end{equation}
+    This can be verified with fairly simple
+    algebra.
+
+    \subsubsection{Difference of Higher Powers}
+
+    %FIXME: justification from partial sum of GP
+
+    Similar results can be found in higher powers of \(a\) and \(b\):
+    \begin{align*}
+    a^3 - b^3 &\equiv (a - b)(a^2 + ab + b^2) \\
+    a^4 - b^4 &\equiv (a - b)(a^3 + a^2b + b^2a + b^3) \\
+    \dots
+    \end{align*}
+    In general, you take out a factor of \((a - b)\) and then start with the
+    term \(a^{n - 1}\), and for each subsequent term decrease the power in \(a\)
+    and increase the power in \(b\):
+    \begin{equation}
+    a^n - b^n \equiv (a - b)(a^{n - 1} + a^{n - 2}b + a^{n - 3}b^2 + \dotsb +
+                             ab^{n - 2} + b^{n - 1})
+    \end{equation}
+
+    Note that for odd \(n\), \(a^n + b^n\) can also be easily factorised as
+    \(a^n + b^n \equiv a^n - (-b)^n\), so you get the same expansion but with
+    alternating positive and negative terms.
+
+    % FIXME: arguments from totient function and with different powers? number
+    % of common factors?
+
+    \subsubsection{Difference of Composite Powers}
+
+    In fact, in the last section, \(a^4 - b^4\) may be more fully factorised by
+    using:
+    \begin{equation*}
+    a^4 - b^4 \equiv (a^2)^2 - (b^2)^2 \equiv (a^2 - b^2)(a^2 + b^2) \equiv
+        (a - b)(a + b)(a^2 + b^2)
+    \end{equation*}
+    This happens as \(4\) is composite. Any composite \(n\) will in fact result
+    in the cototient (\ref{sec_totient}) of \(n = n - \phi(n)\) factors (at
+    least as far as I can see, but probably can't prove). This
+    also holds for prime \(n\), but for prime \(n\),
+    \(\phi(n) = n - 2 \implies n - \phi(n) = 2\), as the only divisors of
+    a prime \(n\) are \(1\) and \(n\).
+
+    We may derive this from the fact that any \(n = pq: p, q \in \mathbb{P}\),
+    \(a^n - b^n\) will factorise as
+    \begin{equation}
+    a^{pq} - b^{pq} \equiv
+     (a^p - b^p)(a^{p(q - 1)} + a^{p(q - 2)}b^{p(1)} + \dotsb +
+                 a^{p(1)}b^{p(q - 2)} + b^{p(q - 1)}
+    \end{equation}
+
+    \subsection{Infinitude of Primes}
+
+    \subsection[Irrationality of \(\sqrt 2\)]
+               {Irrationality of \boldmath\(\sqrt 2\)}
+
+    Assume \(\sqrt 2 = \frac ab : a, b \in \mathbb{Z} \land \gcd(a, b) = 1\), ie
+    \(a\) and \(b\) are coprime.
+
+    \subsection{Pythagoras' Theorem} \label{sec_pythagoras}
+
+    %FIXME add diagram
+
+    If a triangle has sides \(a\), \(b\), \(c\) opposed by angles \(A\), \(B\),
+    \(C\), then
+    \begin{equation}
+    C = \frac 12 \pi \iff a^2 + b^2 = c^2
+    \end{equation}
+
+    \subsection{Quadratic formula} \label{sec_quad_formula}
+
+    We aim to find a general expression for the roots of a quadratic, ie show
+    that
+    \begin{equation}
+    \begin{split}
+    ax^2 + bx + c &= 0\ \text{where}\ a \neq 0 \\
+    \implies x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+    \end{split}
+    \end{equation}
+    We can complete the square to do this.
+    \begin{alignat*}{2}
+    &&ax^2 + bx + c &= 0 \\
+    &\implies& x^2 + \frac{b}{a}x + \frac{c}{a} &= 0 \\
+    &\implies& \pqty{x + \frac{b}{2a}x}^2 &= \pqty{\frac{b}{2a}}^2 - \frac{c}{a}
+        = \frac{b^2 - 4ac}{4a^2} \\
+    &\implies& x + \frac{b}{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
+        = \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\
+    &\implies& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \qed
+    \end{alignat*}
+
+    Corollaries are that the number of real roots is determined by the
+    discriminant \({\Delta = b^2 - 4ac}\).
+    \begin{align}
+    \Delta &= 0 \implies P(x)\ \text{has one real root with multiplicity} \\
+    \Delta &< 0 \implies P(x)\ \text{has no real roots} \\
+    \Delta &> 0 \implies P(x)\ \text{has two real roots}
+    \end{align}
+
+    \subsection[Cauchy-Shwarz inequality for \(\mathbb{R}^n\)]
+               {Cauchy-Shwarz inequality for \boldmath\(\mathbb{R}^n\)}
+
+    For two equally long, finite sequences \(u_i, v_i \in \mathbb{R}\),
+    \begin{equation}
+    \pqty{\sum u_i v_i}^2 \le \pqty{\sum u_i^2} \pqty{\sum v_i^2}
+        \quad \text{with equality iff all \(\frac{u_i}{v_i}\) are equal}
+    \end{equation}
+    We derive by considering
+    \begin{equation*}
+    P(x) = \sum (u_i x + v_i)^2 = 0
+    \end{equation*}
+    Note that \(P(x) \ge 0\) as it is a sum of squares of real numbers. In fact,
+    it will only ever have intersection with the \(x\)-axis if each contributing
+    term has the same zero, ie the roots of each term \(-v_i/u_i\) are equal.
+    This leads to the condition for equality.
+
+    It is also quadratic in \(x\):
+    \begin{equation*}
+    \pqty{\sum u_i^2} x^2 + \pqty{\sum 2 u_i v_i} x + \sum v_i^2 = 0
+    \end{equation*}
+    so has at most one real root. Therefore, the discriminant
+    \begin{align*}
+    \Delta = b^2 - 4ac &\le 0 \\
+    \pqty{\sum 2 u_i v_i}^2 - 4\pqty{\sum u_i^2}\pqty{\sum v_i^2} &\le 0
+    \\\implies
+    \pqty{\sum u_i v_i}^2 &\le \pqty{\sum u_i^2} \pqty{\sum v_i^2} \qed
+    \end{align*}
+
+    \subsection{AM-GM inequality}
+
+    For a sequence \(u_i \in \mathbb{R}\), for \(1 \le i \le n\) (ie, the
+    sequence is of length \(n\)) and \(u_i \ge 0\),
+    \begin{equation*}
+    \sqrt[n]{u_1 u_2 \dotsm u_n} \le \frac{u_1 + u_2 + \dotsb + u_n}{n}
+        \quad \text{with equality iff all \(u_i\) are equal}
+    \end{equation*}
+    Or, using sigma and pi notation:
+    \begin{equation}
+    \pqty{\prod u_i}^\frac{1}{n} \le \frac{1}{n}\sum u_i
+    \end{equation}
+    This can be proved by a kind of wonky induction. First, we verify the base
+    case, \(n = 2\):
+    \begin{alignat*}{2}
+    &&\sqrt{ab} &\le \frac{a + b}{2} \\
+    &\iff& 4ab &\le a^2 + 2ab + b^2 \\
+    &\iff& 0 &\le a^2 - 2ab + b^2 \\
+    &\iff& 0 &\le (a - b)^2\quad \text{with equality iff \(a = b\)} \qed
+    \end{alignat*}
+    Then, supposing AM-GM holds for \(n\) and 2, we show that it holds for
+    \(2n\).  Taking
+    \begin{alignat*}{2}
+    &&a &= \sqrt[n]{u_1 u_2 \dotsm u_n} \\
+    &&b &= \sqrt[n]{u_{n+1} u_{n+2} \dotsm u_{2n}} \\
+    &\implies& a &\le \frac{u_1 + u_2 + \dotsb + u_n}{n}
+            \quad \text{with equality iff \(u_i: 1 \le i \le n\) are equal}\\
+    &&b &\le \frac{u_{n + 1} + u_{n + 2} + \dotsb + u_{2n}}{n}
+            \quad \text{with equality iff \(u_i: n < i \le 2n\) are equal}\\
+    &&\text{and}\ \sqrt{ab} &\le \frac{a + b}{2}
+        \quad \text{with equality iff \(a = b\)}\\
+    &\implies& \sqrt[2n]{u_1 u_2 \dotsm u_{2n}} &\le
+             \frac{u_1 + u_2 + \dotsb u_{2n}}{2n}
+                \quad \text{with equality iff all \(u_i\) are equal}\qed
+    \end{alignat*}
+    Now, supposing AM-GM holds for \(n\), we show that it holds for \(n - 1\).
+    Taking
+    \begin{alignat*}{2}
+    &&u_n &= \sqrt[n - 1]{u_1 u_2 \dotsm u_{n - 1}} \\
+    &\implies& \pqty{u_1 u_2 \dotsm u_{n - 1}
+                \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1 / (n - 1)}}^{1 / n}
+             &\le \frac 1n \pqty{u_1 + u_2 + \dotsb  + u_{n - 1} +
+                \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1/{n - 1}}} \\
+    &\implies& \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1 / (n - 1)} &\le
+             \frac 1n \pqty{u_1 + u_2 + \dotsb u_{n - 1}} +
+             \frac 1n \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1 / (n - 1)} \\
+    &\implies& \pqty{1 - \frac 1n}
+             \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1 / (n - 1)} &\le
+             \frac 1n \pqty{u_1 + u_2 + \dotsb + u_{n - 1}} \\
+    &\implies& \frac {n - 1}n
+             \pqty{u_1 u_2 \dotsb u_{n - 1}}^{1 / (n - 1)} &\le
+             \frac 1n \pqty{u_1 + u_2 + \dotsb + u_{n - 1}} \\
+    &\implies& \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1 / (n - 1)} &\le
+             \frac 1{n - 1} \pqty{u_1 + u_2 + \dotsb + u_{n - 1}} \qed
+    \end{alignat*}
+    As equality for \(n\) was iff all \(u_i\) were the same, this is still true.
+
+    Now, for any \(n \in \mathbb{Z}^+\), we can induct up to a power of 2 above
+    \(n\), and then descend from there.
+
+    \subsection{Square Triangular numbers}
+
+    %FIXME: add link annotations, explanations, oeis
+    %FIXME: format table
+    %fixme: improve this disgusting code
+
+    The sequence of perfect squares \(\mathrm{ST}_n\) such that
+    \(\mathrm{ST}_n= a_n^2 = \frac 12 b_n(b_n + 1)\), where
+    \(a, b \in \mathbb{Z}_0^+\). The first few are:
+
+    \begin{longtable}{rrrr}
+    \toprule
+    \boldmath\(n\) & \boldmath\(\text{\bfseries ST}_n\) & \boldmath\(a_n\) &
+                   \boldmath\(b_n\) \\
+    \midrule
+    \endhead
+    0 & 0 & 0 & 0 \\
+    1 & 1 & 1 & 1 \\
+    2 & 36 & 6 & 8 \\
+    3 & 1225 & 35 & 49 \\
+    4 & 41616 & 204 & 288 \\
+    5 & 1413721 & 1189 & 1681 \\
+    6 & 48024900 & 6930 & 9800 \\
+    7 & 1631432881 & 40391 & 57121 \\
+    8 & 55420693056 & 235416 & 332928 \\
+    9 & 1882672131025 & 1372105 & 1940449 \\
+    10 & 63955431761796 & 7997214 & 11309768 \\
+    11 & 2172602007770041 & 46611179 & 65918161 \\
+    \multicolumn{4}{c}{\dots} \\
+    \bottomrule
+    \end{longtable}
+
+    Generated by Listing \ref{lst_st_gen}.
+
+    \begin{longlisting}
+    \begin{minted}{python}
+def get_sqr_tris(n):
+    nums = [0, 1]
+    for _ in range(n):
+        nums.append(34 * nums[-1] - nums[-2] + 2)
+    return nums
+
+def itrirt(n):
+    return (isqrt(1 + 8 * n) - 1) // 2
+
+def isqrt(n):
+    if n < 2:
+        return n
+    else:
+        small = isqrt(n >> 2) << 1
+        big = small + 1
+        if big ** 2 > n:
+            return small
+        else:
+            return big
+
+for n, i in enumerate(get_sqr_tris(10)):
+    print(" & ".join(map(str, [n, i, isqrt(i), itrirt(i)])) + " \\\\")
+    \end{minted}
+    \caption{Generating ST numbers}\label{lst_st_gen}
+    \end{longlisting}
+
+    %FIXME Pell's equation here
+
+    Where \(p / q\) is the \(n\)th convergent of \(\sqrt 2\),
+    \begin{equation}
+    \mathrm{ST}_n = p^2 q^2
+    \end{equation}
+
+    \(\mathrm{ST}_n\) also satisfies the recurrence relations where
+    \(\mathrm{ST}_0 = 0\) and \(\mathrm{ST}_1 = 1\)
+    \begin{align}
+    \mathrm{ST}_n &= 34\mathrm{ST}_{n - 1} - \mathrm{ST}_{n - 2} + 2\\
+    a_n &= 6a_{n - 1} - a_{n - 2}
+    \end{align}
+
+    %fixme add b_n
+
+    \subsection{Fibonacci Sequence}
+
+    The Fibonacci numbers \(F_n: n \in \mathbb{N}\) are such that
+    \(F_1 = F_2 = 1\) and \(F_n = F_{n - 1} + F_{n - 2}\).  \(F_n\) can be given
+    by the closed form
+    \begin{equation}
+    F_n = \frac{\varphi^n - \psi^n}{\sqrt 5}
+    \ \text{where}\ \varphi = \frac{1 + \sqrt 5} 2
+    \ \text{and}\ \psi = \frac{1 - \sqrt 5} 2
+    \end{equation}
+    Combined with Exponentation by Squaring (\ref{sec_exp_by_squaring}), and
+    some simple surd arithmetic, this should be a particularly fast way to
+    calculate \(F_n\), as compared to utterly na\"ive recursion, or somewhat
+    faster iteration or memoized recursion.
+
+    \subsection{de Moivre's Theorem}
+
+    \((\cos \theta + i \sin \theta)^n \equiv \cos n\theta + i \sin n\theta\)
+
+    \section{Discrete Maths (Computer Science)}
+
+    \subsection{Exponentiation by Squaring} \label{sec_exp_by_squaring}
+
+    %FIXME add fast integer square root algorithm
+
+    For \(y \in \mathbb{Z}_0^+\), \(x^y\) is given by
+    \begin{equation}
+    x^y =
+        \begin{cases}
+        1 & y = 0 \\
+        x & y = 1 \\
+        (x ^ 2)^{\frac 12 y} & y \equiv 0 \pmod 2\\
+        x(x ^ 2)^{\frac 12 (y-1)} & y \equiv 1 \pmod 2\\
+        \end{cases}
+    \end{equation}
+
+    This follows from the fact that
+    \(x^{2y'} = (x^2)^{y'}\) and \(x^{2y' + 1} = x(x^2)^{y'}\).
+
+    \section{Functions}
+
+    % add involutions
+
+    \subsection{Jections}
+
+    %FIXME mnemonic or diagram
+
+    \begin{itemize}
+    \item An injection maps each element of its domain to a unique element of
+          its codomain.
+    \item A surjection maps an element of its domain to each element of its
+          codomain.
+    \item A bijection is an injection and a surjection.
+    \end{itemize}
+
+    \section{Set Theory}
+
+    \subsection{Set Operations}
+
+    \subsection{Common sets}
+
+    %FIXME: sets of congruence classes
+    %       sets of polynomial rings: apply set mathbb{A}
+
+    \begin{longtable}{ll}
+    \toprule
+    \bfseries Set & \bfseries Description \\
+    \midrule
+    \endhead
+    \(\emptyset\), \(\varnothing\) & The empty set \(\set{}\). \\
+    \(\mathbb{N}\) & The set of natural numbers, \(\set{1, 2, 3, \dotsc}\).
+                   May or may not include \(0\). \\
+    \(\mathbb{Z}\) & The set of integers
+                   \(\set{\dotsc, -2, 1, 0, 1, 2, \dotsc}\) \\
+    \(\mathbb{Z}^+, \mathbb{Z}_{> 0}\) & The set of strictly positive integers
+                   \(\set{1, 2, 3, \dotsc}\). \\
+    \(\mathbb{Z}^+_0, \mathbb{Z}_{\ge 0}\) &
+                   The set of strictly nonnegative integers
+                   \(\set{0, 1, 2, \dotsc}\). \\
+    \(\mathbb{Z}^-, \mathbb{Z}_{< 0}\) & The set of strictly negative integers
+                   \(\set{-1, -2, -3, \dotsc}\). \\
+    \(\mathbb{Z}^-_0, \mathbb{Z}_{\le 0}\) &
+                   The set of strictly nonpositive integers
+                   \(\set{0, -1, -2, \dotsc}\). \\
+    \(\mathbb{Q}\) & The set of rational numbers
+                   \(\set{\frac ab \mid a, b \in \mathbb{Z} \land b \neq 0}\).\\
+    \(\mathbb{A}\) & The set of algebraic numbers, ie numbers that are roots of
+                   polynomials in \(\mathbb Z[x]\). \\
+    \(\mathbb{R}\) & The set of real numbers, which may be constructed as
+                   ``slices'' of \(\mathbb{Q}\). \\
+    \(\mathbb{C}\) & The set of complex numbers
+                   \(\set{a + bi \mid a, b \in \mathbb{R}}\),
+                   where \(i^2 = 1\).\\
+    \(\intoo{a, b}\) & The open interval
+                     \(\set{x \in \mathbb{R} \mid a < x < b}\).\\
+    \(\intcc{a, b}\) & The closed interval
+                     \(\set{x \in \mathbb{R} \mid a \le x \le b}\).\\
+    \(\intco{a, b}\) & The half-open interval
+                     \(\set{x \in \mathbb{R} \mid a \le x < b}\).\\
+    \(\intoc{a, b}\) & The half-open interval
+                     \(\set{x \in \mathbb{R} \mid a < x \le b}\).\\
+    \bottomrule
+    \end{longtable}
+
+    \subsection{Closed, Open, Clopen}
+
+    \subsection{Axiom of Choice}
+
+    \subsection{ZFC}
+
+    \subsection{Peano Arithmetic}
+
+    \subsection{Cardinality}
+
+    % powerset of integers, diagonal argument, schroeder-bernstein, interval
+    % cardinality
+
+    Cardinality is a way to think about the ``size'' of sets. Cardinality is
+    really a kind of equivalence relation on the class of sets, where two sets
+    have the same cardinality iff there exists a bijection between them - ie
+    there is a way to produce a one-to-one mapping between the two sets.
+
+    Any two finite sets obviously have the same cardinality iff they have the
+    same number of elements. The cardinality of a finite set is usually just
+    given as the number of elements it has. For example, \(\abs{\emptyset} = 0\)
+    and \(\abs{\set{1, 3, 2}} = 3\), etc.
+
+    We also denote the cardinality of the natural numbers
+    \(\abs{\mathbb{N}} = \aleph_0\).
+
+    \section{Linear Algebra}
+
+    \section{Geometry}
+
+    \subsection{Angles in a Polygon} \label{sec_geom_polygon_angles}
+
+    \subsection{Area of a Circle}
+
+    %FIXME add diagram
+
+    Here we aim to show that the area of a circle of radius \(r\) is given by
+    \begin{equation}
+    A = \pi r^2
+    \end{equation}
+    From the definition of a circle as the set of points equidistant from a
+    centre point, we form the equation of a circle using \ref{sec_pythagoras}:
+    \(x^2 + y^2 = r^2\), where the centre is \((0, 0)\) and the radius is \(r\).
+
+    We can find half the area enclosed by the curve by integrating:
+    \begin{equation*}
+    \frac 12 A = \int_{-r}^r \sqrt{r^2 - x^2} \dd{x}
+    \end{equation*}
+    We use the substitution (\ref{sec_calc_trig_substitution})
+    \(x = r \cos \theta \implies \dv{x}{\theta} = -r \sin \theta\) so
+    \begin{equation*}
+    \frac 12 A = \int_{\arccos -1}^{\arccos 1}
+        r\sqrt{1 - \cos^2 \theta} \cdot -r \sin \theta \dd{\theta}
+      = -\int_\pi^0 r^2 \sin^2 \theta \dd{\theta}
+    \end{equation*}
+    by \ref{sec_trig_pythag}. We use \ref{sec_trig_double_angle} to derive
+    \begin{align*}
+    \frac 12 A &= -\int_\pi^0
+        r^2 \frac 12 (1 - \cos 2 \theta) \dd{\theta} \implies
+     A = r^2 \int_0^\pi (1 - \cos 2 \theta) \dd{\theta} =
+     r^2\bqty{\theta - \frac 12 \sin 2 \theta}_0^\pi \\
+     &= r^2 \pqty{\pi - \frac 12 \sin 2 \pi -
+                   \pqty{0 - \frac 12 \sin 0}} = \pi r^2 \qed
+    \end{align*}
+    One might alternatively use the parametric form of a circle,
+    \(y = r \sin \theta\) and \(x = r \cos \theta\)
+    (note that \(x^2 + y^2 = r^2(\sin^2 \theta + \cos^2 \theta) = r^2\)
+    (\ref{sec_trig_pythag})), and calculate the area using
+    \ref{sec_calc_parametric_area}:
+    \begin{align*}
+    A &= \int_0^{2\pi}
+        r \sin \theta \cdot -r \sin \theta \dd{\theta} =
+     \frac 12 r^2 \int_0^{2\pi} (1 - \cos 2 \theta) \dd{\theta} =
+     \frac 12 r^2 \bqty{\theta - \frac 12 \sin 2 \theta}_0^{2\pi} \\
+     &= \frac 12 r^2 \pqty{2\pi - \frac 12 \sin 4 \pi -
+                      \pqty{0 - \sin 0}} = \pi r^2 \qed
+    \end{align*}
+
+    \subsection{Volume of a sphere}
+
+    \subsection{Circle Theorems}
+
+    \section{Trigonometry}
+
+    \subsection{Definitions} \label{sec_trig_definitions}
+
+    %FIXME add diagram
+
+    \begin{align}
+    \sin \theta &= \frac OH \\
+    \cos \theta &= \frac AH \\
+    \tan \theta &= \frac OA = \frac{\sin \theta}{\cos \theta}
+    \end{align}
+
+    \subsubsection{Periodicity} \label{sec_trig_periodic}
+
+    %FIXME add more identities, diagrams (or refer to previous diagrams).
+
+    Because they are in the same right triangle, and the sum of angles in a
+    triangle is \(\pi\) (\(\ang{180}\)) (\ref{sec_geom_polygon_angles}), the
+    angle other than \(\theta\) must be \(\frac 12 \pi - \theta\). Therefore,
+    \begin{align}
+    \sin \theta &\equiv \cos(\frac 12 \pi - \theta) \\
+    \cos \theta &\equiv \sin(\frac 12 \pi - \theta)
+    \end{align}
+    From their parity \ref{sec_trig_parity} we may deduce
+    \begin{align}
+    \sin(\theta - \frac 12 \pi) &\equiv -\cos \theta \\
+    \cos(\theta - \frac 12 \pi) &\equiv \sin \theta
+    \end{align}
+    implying
+    \begin{align}
+    \sin(\theta + \pi) &\equiv -\sin \theta \\
+    \cos(\theta + \pi) &\equiv -\cos \theta
+    \end{align}
+    From this, we see that
+    \begin{alignat}{2}
+    \sin(\theta + 2\pi) &\equiv \sin(\theta + \pi + \pi) &&\equiv \sin \theta \\
+    \cos(\theta + 2\pi) &\equiv \cos(\theta + \pi + \pi) &&\equiv \cos \theta \\
+    \tan(\theta + \pi) &\equiv \frac{\sin(\theta + \pi)}{\cos(\theta + \pi)}
+        &&\equiv \frac{-\sin \theta}{-\cos \theta} \equiv \tan \theta
+    \end{alignat}
+    and in fact,
+    \begin{alignat}{2}
+    \sin(\theta + 2\pi n) &\equiv \sin \theta &&\iff n \in \mathbb Z \\
+    \cos(\theta + 2\pi n) &\equiv \cos \theta &&\iff n \in \mathbb Z \\
+    \tan(\theta + \pi n) &\equiv \tan \theta &&\iff n \in \mathbb Z
+    \end{alignat}
+    Therefore, the \emph{period} of \(\sin \theta\) and \(\cos \theta\) is
+    \(2\pi\), whereas the period of \(\tan \theta\) is \(\pi\).
+
+    \subsubsection{Parity} \label{sec_trig_parity}
+
+    From \ref{sec_trig_definitions}, we see that \(\sin \theta\) and
+    \(\tan \theta\) are \emph{odd} functions:
+    \(\sin -x = -\sin x\) and \(\tan -x = -\tan x\),
+    whereas \(\cos \theta\) is an \emph{even} function:
+    \(\cos -x = \cos x\).
+
+    \subsubsection{Reciprocal functions} \label{sec_trig_reciprocal}
+
+    %fixme some graphs
+
+    The reciprocals of sine, cosine and tangent are cosecant, secant and
+    cotangent respectively. These are written
+    \begin{align}
+    \sec \theta &= \frac{1}{\cos \theta} \\
+    \operatorname{cosec} \theta = \csc \theta
+        &= \frac{1}{\sin \theta} \\
+    \cot \theta &= \frac{1}{\tan \theta}
+        = \frac{\cos \theta}{\sin \theta}
+    \end{align}
+
+    \subsection{Special Angles}
+
+    %FIXME: diagrams
+    %FIXME: talk about deriving other special angles using formulae
+
+    \subsection{Cosine Rule}
+
+    \subsection{Sine Rule}
+
+    \subsection{Sine Area Rule}
+
+    \subsection{Pythagorean Identities} \label{sec_trig_pythag}
+
+    It follows from Pythagoras' Theorem (\ref{sec_pythagoras})
+    and subsequently from the definition of
+    \(\tan\), \(\cot\), \(\sec\), \(\csc\) (\ref{sec_trig_reciprocal}) that
+    \begin{align}
+    \cos^2 \theta + \sin^2 \theta &\equiv 1 \\
+    \implies \tan^2 \theta + 1 &\equiv \sec^2 \theta \\
+    \cot^2 \theta + 1 &\equiv \csc^2 \theta
+    \end{align}
+
+    \subsection{Compound Angle Identities} \label{sec_comp_angle}
+
+    %FIXME add diagram
+
+    It can be shown geometrically that
+    \begin{equation}
+    \sin(\alpha + \beta) \equiv
+       \sin \alpha \cos \beta +  \sin \beta \cos \alpha
+    \end{equation}
+    From this, it follows that
+    \begin{equation}
+    \cos(\alpha + \beta) \equiv
+       \cos \alpha \cos \beta - \sin \alpha \sin \beta
+    \end{equation}
+    because we can use section \ref{sec_trig_periodic} to show
+    \begin{align*}
+    \cos(\alpha + \beta) &\equiv
+        \sin(\frac 12 \pi - \alpha - \beta) \equiv
+        \sin(\frac 12 \pi - \alpha)\cos \beta +
+            \sin \beta \cos(\frac 12 \pi - \alpha) \\
+    &\equiv
+        \cos \alpha \cos \beta + \sin \beta \sin \alpha
+    \end{align*}
+    This may also be shown with a similar geometrical argument.
+
+    We can now deduce that
+    \begin{equation}
+    \tan(\alpha + \beta) \equiv
+        \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta}
+    \end{equation}
+    as
+    \begin{equation*}
+    \tan(\alpha + \beta) \equiv
+        \frac{\sin(\alpha + \beta)}{\cos(\alpha + \beta)} \equiv
+        \frac{\sin \alpha \cos \beta + \sin \beta \cos \alpha}
+             {\cos \alpha \cos \beta + \sin \alpha \sin \beta} \equiv
+        \frac{\frac{\sin \alpha \cos \beta}{\cos \alpha \cos \beta} +
+              \frac{\sin \alpha \sin \beta}{\cos \alpha \cos \beta}}
+             {\frac{\cos \alpha \cos \beta}{\cos \alpha \cos \beta} +
+              \frac{\sin \alpha \sin \beta}{\cos \alpha \cos \beta}}
+             \equiv
+        \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta} \qed
+    \end{equation*}
+    Results for a function of a difference are derived easily from the parity of
+    each function (\ref{sec_trig_parity}). One might also just assume it's
+    probably OK to flip signs. In either case, the full results are:
+    \begin{align}
+    \sin \alpha \pm \beta &\equiv
+       \sin \alpha \cos \beta \pm \sin \beta \cos \alpha \\
+    \cos \alpha \pm \beta &\equiv
+       \cos \alpha \cos \beta \mp \sin \alpha \sin \beta \\
+    \tan \alpha \pm \beta &\equiv
+        \frac{\tan \alpha \pm \tan \beta}{1 \mp \tan \alpha \tan \beta}
+    \end{align}
+
+    \subsubsection{Double Angle Formulae} \label{sec_trig_double_angle}
+    By using \(2\theta \equiv \theta + \theta\), we have the identities
+    \begin{align}
+    \sin 2\theta &\equiv
+       2\sin \theta \cos \theta \\
+    \cos 2\theta &\equiv
+       \cos^2 \theta - \sin^2 \theta \equiv
+       2\cos^2 \theta - 1 \equiv 1 - 2\sin^2 \theta
+       \ \text{(by \ref{sec_trig_pythag})} \\
+    \tan 2\theta &\equiv
+        \frac{2\tan \theta}{1 - \tan^2 \theta}
+    \end{align}
+    From these, it follows that
+    \begin{align}
+    \sin^2 \theta &\equiv
+        \frac{1 - \cos 2 \theta} 2 \\
+    \cos^2 \theta &\equiv
+        \frac{1 + \cos 2 \theta} 2
+    \end{align}
+    and
+    \begin{align}
+    \tan^2 \theta \equiv \frac{\sin^2 \theta}{\cos^2 \theta}
+        \equiv \frac{1 - \cos 2 \theta}{1 + \cos 2 \theta}
+        &\equiv \frac{1 - \cos^2 2 \theta}{(1 + \cos 2 \theta)^2}
+        \equiv \pqty{\frac{\sin 2 \theta}{1 + \cos 2 \theta}}^2 \\
+        &\equiv \frac{(1 - \cos 2 \theta)^2}{1 - \cos^2 2 \theta}
+        \equiv \pqty{\frac{1 - \cos 2 \theta}{\sin 2 \theta}}^2
+    \end{align}
+    It follows that
+    \begin{alignat}{2}
+    &&\sin \theta &\equiv
+        \pm\sqrt{\frac{1 - \cos 2 \theta} 2}
+     \ \pqty{\text{where \(\pm\) depends on the quadrant}} \\
+    &\iff& \sin \frac \theta 2 &\equiv
+        \pm\sqrt{\frac{1 - \cos \theta} 2} \nonumber \\
+    &&\cos \theta &\equiv
+        \pm\sqrt{\frac{1 + \cos 2 \theta} 2} \\
+    &\iff& \cos \frac \theta 2 &\equiv
+        \pm\sqrt{\frac{1 + \cos \theta} 2} \nonumber \\
+    &&\tan \theta &\equiv
+        \frac{\sin 2 \theta}{1 + \cos 2 \theta}
+        \equiv \frac{1 - \cos 2 \theta}{\sin 2 \theta} \\
+    &\iff& \tan \frac \theta 2 &\equiv
+        \frac{\sin \theta}{1 + \cos \theta}
+        \equiv \frac{1 - \cos \theta}{\sin \theta} \nonumber
+    \end{alignat}
+
+    \subsubsection{Triple Angles and Beyond}
+
+    \subsection{Sum-Product Identities} \label{sec_trig_sum_product}
+
+    The products of trig functions can be variously rewritten as sums.
+
+    When the functions are different the resulting sums must be of sines.
+    \begin{equation}
+    \sin \alpha \cos \beta \equiv
+        \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)} 2
+    \end{equation}
+    Derive from RHS:
+    \begin{align*}
+    \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)} 2 &\equiv
+     \frac{\sin \alpha \cos \beta + \sin \beta \cos \alpha +
+           \sin \alpha \cos \beta - \sin \beta \cos \alpha} 2 \\
+    &\equiv \frac{2 \sin \alpha \cos \beta} 2 \equiv \sin \alpha \cos \beta \qed
+    \end{align*}
+    When they are the same they must be of cosines
+    \begin{equation}
+    \cos \alpha \cos \beta \equiv
+     \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)} 2
+    \end{equation}
+    Derive from RHS:
+    \begin{align*}
+    \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)} 2 &\equiv
+     \frac{\cos \alpha \cos \beta - \sin \alpha \sin \beta +
+           \cos \alpha \cos \beta + \sin \alpha \sin \beta} 2 \\
+    &\equiv \frac{2 \cos \alpha \cos \beta} 2 \equiv \cos \alpha \cos \beta \qed
+    \end{align*}
+    And the \(\cos(\alpha - \beta)\) must come first as it has a positive
+    expansion
+    \begin{equation}
+    \sin \alpha \sin \beta \equiv
+     \frac{\cos(\alpha - \beta) - \cos(\alpha + \beta)} 2
+    \end{equation}
+    Derive from RHS:
+    \begin{align*}
+    \frac{\cos(\alpha - \beta) - \cos(\alpha + \beta)} 2 &\equiv
+     \frac{\cos \alpha \cos \beta + \sin \alpha \sin \beta -
+           \cos \alpha \cos \beta + \sin \alpha \sin \beta} 2 \\
+    &\equiv \frac{2 \sin \alpha \sin \beta} 2 \equiv \sin \alpha \sin \beta \qed
+    \end{align*}
+
+    \subsection{Product-Sum Identities}
+
+    %FIXME: annotate sections used
+
+    The sum of sines,
+    \begin{equation}
+    \sin \alpha + \sin \beta \equiv
+        2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta}2
+    \end{equation}
+    We derive by considering \(\alpha' = \frac 12 (\alpha + \beta)\) and
+    \(\beta' = \frac 12 (\alpha - \beta)\). Then,
+    \begin{align*}
+    \sin \alpha + \sin \beta &\equiv
+     \sin(\alpha' + \beta') + \sin(\alpha' - \beta') \equiv
+     2\sin \alpha' \cos \beta'\ \text{(from \ref{sec_trig_sum_product})}
+    \\&\equiv 2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta} 2 \qed
+    \end{align*}
+    Now, we can show that
+    \begin{equation}
+    \sin \alpha - \sin \beta =
+        \sin \alpha + \sin -\beta =
+        2 \sin \frac{\alpha - \beta} 2 \cos\frac{\alpha + \beta} 2
+    \end{equation}
+    We also aim to show that
+    \begin{equation}
+    \cos \alpha + \cos \beta \equiv
+        2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2
+    \end{equation}
+    Again, let \(\alpha' = \frac 12 (\alpha + \beta)\) and
+    \(\beta' = \frac 12 (\alpha - \beta)\). Then,
+    \begin{align*}
+     \cos \alpha + \cos \beta &\equiv
+     \cos(\alpha' + \beta') + \cos(\alpha' - \beta') \equiv
+     2\cos \alpha' \cos \beta'\ \text{(from \ref{sec_trig_sum_product})}
+     \\&\equiv 2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2 \qed
+    \end{align*}
+    Finally, we aim to show that
+    \begin{equation}
+    \cos \alpha - \cos \beta \equiv
+     -2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2
+    \end{equation}
+    We do this by using \ref{sec_trig_periodic}
+    \begin{align*}
+     \cos \alpha - \cos \beta &\equiv
+     \cos \alpha + \cos (\beta + \pi)  \equiv
+     2 \cos \frac{\alpha + \beta + \pi} 2 \cos \frac {\alpha - \beta - \pi} 2
+     \\&\equiv
+     2 \cos \pqty{\frac \pi 2 - \pqty{-\frac{\alpha + \beta} 2}}
+       \cos \pqty{\frac \pi 2 - \frac{\alpha - \beta} 2} \equiv
+     2 \sin -\frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2 \\&\equiv
+     -2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2 \qed
+    \end{align*}.
+
+    \section{Probability}
+
+    \section{Statistics}
+
+    \subsection{Random Variables}
+
+    \subsection{Binomial Distribution}
+
+    %FIXME add diagram
+
+    The binomial distribution \(\Binomial(\nu, \pi)\) measures the probability
+    of getting a certain number of successful ``events'', where there are
+    \(\nu\) events each with probability \(\pi\) of being successful.
+
+    The PDF of \(X \sim \Binomial(\nu, \pi)\) is
+    \begin{equation}
+    f(k) = P(X = k) = {\nu \choose k} \pi^k (1 - \pi)^{\nu - k}
+    \end{equation}
+    The validity of this distribution is subject to these constraints:
+    \begin{enumerate}
+    \item Each event must be independent.
+    \end{enumerate}
+
+    \subsection{Normal Distribution}
+
+    %FIXME add diagram
+
+    The PDF of \(X \sim \Normal(\mu, \sigma^2)\) is
+    \begin{equation}
+    f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \cdot
+           \exp(\frac{(x - \mu)^2}{2\sigma^2})
+    \end{equation}
+
+    \subsubsection{Dimensional Verification/Mnemonic}
+
+    NB \(\bqty{f(x)} =
+        \bqty{\frac 1{\sqrt{\sigma^2}}}
+        e^{\bqty{\frac{x^2}{\sigma^2}}}
+      = \bqty{\frac 1\sigma}\), as
+    \(\bqty{\sigma} = \bqty{\mu} = \bqty{x}\). Therefore, the
+    evaluation of the probability \(P(a < X < b)\) by the integral
+    \(\int_a^bf(x) \dd{x}\) has dimension
+    \(\bqty{\frac{\dd{x}}{\sigma}} = 1\), as expected for a probability.
+
+    \subsection{Poisson Distribution}
+
+    %FIXME derivation as limit of binomial, see generating functions
+
+    \subsection{Hypothesis Testing}
+
+    %FIXME Types of Error
+
+    \section{Calculus}
+
+    %FIXME: derivations from first principles
+
+    \subsection{Definition of the derivative}
+
+    The derivative of \(f(x)\),
+    \begin{equation}
+    f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+    \end{equation}
+    Other notations include, if \(y = f(x)\), then \(y' = \dv{y}{x} = f'(x)\).
+
+    \subsection{Fundamental Theorem of Calculus} \label{sec_calc_FTC}
+
+    \subsection{Chain Rule} \label{sec_calc_chain}
+
+    \subsection{Product Rule (Quotient Rule)} \label{sec_calc_product}
+
+    \subsection{Integration by Substitution} \label{sec_calc_substitution}
+
+    Integration by substitution is effectively the chain rule
+    (\ref{sec_calc_chain}). If we consider the function
+    \(f(x) = g(h(x)) \implies f'(x) = h'(x) \cdot g'(h(x))\), then the integral
+    \begin{equation}
+    \int h'(x) \cdot g'(h(x)) \dd{x} = \int f'(x) \dd{x} = f(x) + C
+    \end{equation}
+
+    \subsubsection{Trig Substitution} \label{sec_calc_trig_substitution}
+
+    \subsection{Integration by Parts}
+
+    \subsection{Common derivatives} \label{calc:common}
+
+    %FIXME: add x^x. maybe more intricate proofs.
+
+    By FTC (\ref{sec_calc_FTC}), these also give common integrations.
+
+    %FIXME: make this look less disgusting
+
+    \begin{longtable}{rrl}
+    \toprule
+    \boldmath\(f(x)\) & \boldmath\(f'(x)\) &
+    \bfseries Comments/Derivation/Corollaries \\
+    \midrule
+    \endhead
+    \(x^n\) & \(nx^{n-1}\)
+        & \(\int x^n \dd{x} = \frac{1}{n + 1}x^{n + 1}\) when
+          \(n \neq -1\) (see \(\dv{}{x}\ln x\)).\\
+    \(\ln x\) & \(\frac{1}{x}\)
+        & \(\dv{}{x}\log_a x = \dv{}{x} \frac{\ln x}{\ln a}\), and also
+          \(\int \frac{g'(x)}{g(x)} \dd{x} = \ln g(x)\),
+            from \ref{sec_calc_chain}.\\
+    \(e^x\) & \(e^x\) & \(\dv{}{x}a^x = \dv{}{x}e^{x \ln a}\). \\
+    \(\sin x\) & \(\cos x\)
+        & eg \(\int \sin^2 x \dd{x} = \int \frac 12 (1 - \cos 2x) \dd{x}\)
+          by \ref{sec_comp_angle}. \\
+    \(\tan x\) & \(\sec^2 x\) \\
+    \(\sec x\) & \(\sec x \tan x\) \\
+    \(\cos x\) & \(-\sin x\) \\
+    \(\cot x\) & \(-\csc^2 x\) \\
+    \(\csc x\) & \(-\csc x \cot x\) \\
+    \(\arcsin x\) & \(\frac{1}{\sqrt{1 - x^2}}\)
+        & \(\sin y = x \implies \dv{y}{x} \cdot \cos y = 1 \implies
+           \dv{y}{x} = \frac{1}{\cos y}
+         = \frac{1}{\sqrt{1 - \sin^2 y}} = \frac{1}{\sqrt{1 - x^2}}\). \\
+    \(\arccos x\) & \(-\frac{1}{\sqrt{1 - x^2}}\)
+        & \(\cos y = x \implies \dv{y}{x} \cdot -\sin y = 1 \implies
+           \dv{y}{x} = -\frac{1}{\sin y}
+         = -\frac{1}{\sqrt{1 - \cos^2 y}} = -\frac{1}{\sqrt{1 - x^2}}\). \\
+    \(\arctan x\) & \(\frac{1}{x^2 + 1}\)
+        & \(\tan y = x \implies \dv{y}{x} \cdot \sec^2 y = 1 \implies
+           \dv{y}{x} = \frac{1}{\sec^2 y} = \frac{1}{1 + \tan^2 y}
+         = \frac{1}{1 + x^2}\). \\
+    \bottomrule
+    \end{longtable}
+
+    \subsection{Volume of Revolution}
+
+    \subsection{Area under Parametric Curve} \label{sec_calc_parametric_area}
+
+    To find the area between a curve and the \(x\)-axis from \(x_1\) to \(x_2\)
+    when the curve is given in parametric form, \(x = f(t)\) and \(y = g(t)\),
+    we rewrite the integral
+    \begin{equation}
+    \int_{x_1}^{x_2} y \dd{x} =
+     \int_{x_1}^{x_2} y \dv{x}{t} \dd{t} = \int_{x_1}^{x_2} g(t)f'(t) \dd{t}
+    \end{equation}
+    Similarly, the area between the curve and the y-axis from \(y_1\) to \(y_2\)
+    is:
+    \begin{equation}
+    \int_{y_1}^{y_2} x \dd{y} =
+     \int_{y_1}^{y_2} x \dv{y}{t} \dd{t} = \int_{y_1}^{y_2} f(t)g'(t) \dd{t}
+    \end{equation}
+
+    \subsection{Implicit differentiation}
+
+    % fix this
+
+    %FIXME: add x^y for fun
+
+    An example may help to clarify.
+    \begin{align*}
+    0 &= y^2 + x^3 + \sin x^2 y + \ln \frac{\sqrt y} x - 5 \\
+    \implies 0 &=
+                2y \dv{y}{x} + 3x^2 +
+                \pqty{2x \cdot y + \dv{y}{x} \cdot x^2} \cdot \cos x^2 y +
+                \pqty{\frac{x \cdot \frac 12 y^{-\frac 12} \cdot \dv{y}{x} -
+                            \sqrt y \cdot 1}
+                           {x^2}} \cdot \frac{x}{\sqrt y} \\
+    \end{align*}
+
+    %FIXME finish this
+
+    \subsection{Arc Length}
+
+    \subsection{Improper Integrals}
+
+    %FIXME add types of improper integral
+
+    \subsection{Fake Calculus, AKA numerical approximations}
+
+    \section{Power series} %FIXME is this analysis?
+
+    \subsection{Taylor Series}
+
+    The Maclaurin series is the Taylor series around \(0\).
+    \begin{equation}
+    f(x) = f(0) + f'(0) x + \frac{f''(0)} 2 x^2 + \frac{f'''(0)}{6}x^3 +\dotsb
+      = \sum_{k=0}^\infty \frac{f^{(k)}(0)}{k!}x^k
+    \end{equation}
+
+    \subsection{Common series}
+
+    \section{Sandbox}
+
+    \lettrine{\color{RoyalBlue4}I}{zaak van Dongen}. \lipsum[1]
+
+    \begin{center}
+    \begin{longtable}{ccc}
+    \(
+    \begin{array}{cccccccc}
+    \alpha&\mathrm{A}&\beta&\mathrm{B}&\gamma&\Gamma&\delta&\Delta\\
+    \epsilon&\mathrm{E}&\zeta&\mathrm{Z}&\eta&\mathrm{H}&\theta&\Theta\\
+    \iota&\mathrm{I}&\kappa&\mathrm{K}&\lambda&\Lambda&\mu&\mathrm{M}\\
+    \nu&\mathrm{N}&\omicron&\mathrm{O}&\pi&\Pi&\rho&\mathrm{R}\\
+    \sigma&\Sigma&\tau&\mathrm{T}&\upsilon&\Upsilon&\phi&\Phi\\
+    \chi&\mathrm{X}&\psi&\Psi&\omega&\Omega&\xi&\Xi\\
+    \vartheta&\varpi&\varphi&\varrho&\varepsilon&\varsigma&\uptau&\ell\\
+    \end{array}\) &
+    \(\begin{array}{cccc}
+    \pm&\cap&\diamond&\oplus\\
+    \mp&\cup&\bigtriangleup&\ominus\\
+    \times&\uplus&\bigtriangledown&\otimes\\
+    \divisionsymbol&\sqcap&\triangleleft&\oslash\\
+    \ast&\sqcup&\triangleright&\odot\\
+    \star&\vee \land&\lhd&\bigcirc\\
+    \circ&\wedge \lor&\rhd&\dagger\\
+    \bullet&\setminus&\unlhd&\ddagger\\
+    \cdot&\wr&\unrhd&\amalg\\
+    +&-\\
+    \end{array}\) &
+    \(\begin{array}{cccc}
+    \leq&\geq&\equiv&\models\\
+    \prec&\succ&\sim&\perp\\
+    \preceq&\succeq&\simeq&\mid\\
+    \ll&\gg&\asymp&\parallel\\
+    \subset&\supset&\approx&\bowtie\\
+    \subseteq&\supseteq&\cong&\Join\\
+    \sqsubset&\sqsupset&\neq&\smile\\
+    \sqsubseteq&\sqsupseteq&\doteq&\frown\\
+    \in&\ni&\propto&=\\
+    \vdash&\dashv&<&>\\
+    \end{array}\) \\
+    \(\begin{array}{ccccc}
+    \arccos&\cos&\csc&\exp\\
+    \ker&\limsup&\min&\sinh\\
+    \arcsin&\cosh&\deg&\gcd\\
+    \lg&\ln&\Pr&\sup\\
+    \arctan&\cot&\det&\hom\\
+    \lim&\log&\sec&\tan\\
+    \arg&\coth&\dim&\inf\\
+    \liminf&\max&\sin&\tanh\\
+    \Re&\Im&\operatorname{Adj} A\\
+    \end{array}\) &
+    \(\begin{array}{ccc}
+    \leftarrow&\longleftarrow&\uparrow\\
+    \Leftarrow&\Longleftarrow&\Uparrow\\
+    \rightarrow&\longrightarrow&\downarrow\\
+    \Rightarrow&\Longrightarrow&\Downarrow\\
+    \leftrightarrow&\longleftrightarrow&\updownarrow\\
+    \Leftrightarrow&\Longleftrightarrow&\Updownarrow\\
+    \mapsto&\longmapsto&\nearrow\\
+    \hookleftarrow&\hookrightarrow&\searrow\\
+    \leftharpoonup&\rightharpoonup&\swarrow\\
+    \leftharpoondown&\rightharpoondown&\nwarrow\\
+    \rightleftharpoons&\leadsto\\
+    \end{array}\) &
+    \(\begin{array}{cccc}
+    \ldots&\cdots&\vdots&\ddots\\
+    \aleph&\prime&\forall&\infty\\
+    \hbar&\emptyset&\exists&\Box\\
+    \imath&\nabla&\neg&\Diamond\\
+    \jmath&\surd&\flat&\triangle\\
+    \ell&\top&\natural&\clubsuit\\
+    \wp&\bot&\sharp&\diamondsuit\\
+    \real&\|&\backslash&\heartsuit\\
+    \imaginary&\angle&\partial&\spadesuit\\
+    \end{array}\) \\
+    \(\begin{array}{cc}
+    DIFferent          & % symbols
+    \mathit{DIFferent} \\ % italic
+    \mathrm{DIFferent} & % roman
+    \mathsf{DIFferent} \\ % sans-serif
+    \mathtt{DIFferent} & % typewriter text
+    \mathbf{DIFferent} \\ % bold font
+    \operatorname{DIFferen}(t) & % operator
+    \mathcal{DIFFERENT} \\ % calligraphic
+    \mathbb{DIFFERENT} & % blackboard bold
+    \mathfrak{DIFferent} \\ % fraktur
+    \textfrak{DIFferent} & % also fraktur
+    \textswab{DIFferent} \\ % swabacher
+    \textgoth{DIFferent} & % gothic font
+    \mathscr{DIFFERENT} \\ % script font
+    \overrightwitchonbroom{\mathit{DIFferent}} & % a witch on a broom
+    (\vb{d} \cp \vb*{i}) \vdot \va{f} - \abs{\va*{f}} \norm{\vu{e}} + \vu*{r} \\
+    \end{array}\) &
+    \(\begin{array}{ccc}
+    \sum&\bigcap&\bigodot\\
+    \prod&\bigcup&\bigotimes\\
+    \coprod&\bigsqcup&\bigoplus\\
+    \int&\bigvee&\biguplus\\
+    \oint&\bigwedge\\
+    \floor*{} & \ceil*{} \\
+    \end{array}\) &
+    \(\begin{array}{ccc}
+    \widetilde{abc}&\widehat{abc}&\overleftarrow{abc}\\
+    \overrightarrow{abc}&\overline{abc}&\underline{abc}\\
+    \overbrace{abc}&\underbrace{abc}&\sqrt{abc}\\
+    \sqrt[n]{abc}&\hat{a}&\acute{a}\\
+    \bar{a}&\dot{a}&\breve{a}\\
+    \check{a}&\grave{a}&\vec{a}\\
+    \ddot{a}&\tilde{a}\\
+    \end{array}\) \\
+    \multicolumn{3}{c}{
+    \begin{tabular}{ccccccccccccccccccccc}
+{\color{AntiqueWhite1} t}\textcolor{AntiqueWhite1}{t} &
+{\color{AntiqueWhite2} t}\textcolor{AntiqueWhite2}{t} &
+{\color{AntiqueWhite3} t}\textcolor{AntiqueWhite3}{t} &
+{\color{AntiqueWhite4} t}\textcolor{AntiqueWhite4}{t} &
+{\color{Aquamarine1} t}\textcolor{Aquamarine1}{t} &
+{\color{Aquamarine2} t}\textcolor{Aquamarine2}{t} &
+{\color{Aquamarine3} t}\textcolor{Aquamarine3}{t} &
+{\color{Aquamarine4} t}\textcolor{Aquamarine4}{t} &
+{\color{Azure1} t}\textcolor{Azure1}{t} &
+{\color{Azure2} t}\textcolor{Azure2}{t} &
+{\color{Azure3} t}\textcolor{Azure3}{t} &
+{\color{Azure4} t}\textcolor{Azure4}{t} &
+{\color{Bisque1} t}\textcolor{Bisque1}{t} &
+{\color{Bisque2} t}\textcolor{Bisque2}{t} &
+{\color{Bisque3} t}\textcolor{Bisque3}{t} &
+{\color{Bisque4} t}\textcolor{Bisque4}{t} &
+{\color{Blue1} t}\textcolor{Blue1}{t} &
+{\color{Blue2} t}\textcolor{Blue2}{t} &
+{\color{Blue3} t}\textcolor{Blue3}{t} &
+{\color{Blue4} t}\textcolor{Blue4}{t} &
+{\color{Brown1} t}\textcolor{Brown1}{t} \\
+{\color{Brown2} t}\textcolor{Brown2}{t} &
+{\color{Brown3} t}\textcolor{Brown3}{t} &
+{\color{Brown4} t}\textcolor{Brown4}{t} &
+{\color{Burlywood1} t}\textcolor{Burlywood1}{t} &
+{\color{Burlywood2} t}\textcolor{Burlywood2}{t} &
+{\color{Burlywood3} t}\textcolor{Burlywood3}{t} &
+{\color{Burlywood4} t}\textcolor{Burlywood4}{t} &
+{\color{CadetBlue1} t}\textcolor{CadetBlue1}{t} &
+{\color{CadetBlue2} t}\textcolor{CadetBlue2}{t} &
+{\color{CadetBlue3} t}\textcolor{CadetBlue3}{t} &
+{\color{CadetBlue4} t}\textcolor{CadetBlue4}{t} &
+{\color{Chartreuse1} t}\textcolor{Chartreuse1}{t} &
+{\color{Chartreuse2} t}\textcolor{Chartreuse2}{t} &
+{\color{Chartreuse3} t}\textcolor{Chartreuse3}{t} &
+{\color{Chartreuse4} t}\textcolor{Chartreuse4}{t} &
+{\color{Chocolate1} t}\textcolor{Chocolate1}{t} &
+{\color{Chocolate2} t}\textcolor{Chocolate2}{t} &
+{\color{Chocolate3} t}\textcolor{Chocolate3}{t} &
+{\color{Chocolate4} t}\textcolor{Chocolate4}{t} &
+{\color{Coral1} t}\textcolor{Coral1}{t} &
+{\color{Coral2} t}\textcolor{Coral2}{t} \\
+{\color{Coral3} t}\textcolor{Coral3}{t} &
+{\color{Coral4} t}\textcolor{Coral4}{t} &
+{\color{Cornsilk1} t}\textcolor{Cornsilk1}{t} &
+{\color{Cornsilk2} t}\textcolor{Cornsilk2}{t} &
+{\color{Cornsilk3} t}\textcolor{Cornsilk3}{t} &
+{\color{Cornsilk4} t}\textcolor{Cornsilk4}{t} &
+{\color{Cyan1} t}\textcolor{Cyan1}{t} &
+{\color{Cyan2} t}\textcolor{Cyan2}{t} &
+{\color{Cyan3} t}\textcolor{Cyan3}{t} &
+{\color{Cyan4} t}\textcolor{Cyan4}{t} &
+{\color{DarkGoldenrod1} t}\textcolor{DarkGoldenrod1}{t} &
+{\color{DarkGoldenrod2} t}\textcolor{DarkGoldenrod2}{t} &
+{\color{DarkGoldenrod3} t}\textcolor{DarkGoldenrod3}{t} &
+{\color{DarkGoldenrod4} t}\textcolor{DarkGoldenrod4}{t} &
+{\color{DarkOliveGreen1} t}\textcolor{DarkOliveGreen1}{t} &
+{\color{DarkOliveGreen2} t}\textcolor{DarkOliveGreen2}{t} &
+{\color{DarkOliveGreen3} t}\textcolor{DarkOliveGreen3}{t} &
+{\color{DarkOliveGreen4} t}\textcolor{DarkOliveGreen4}{t} &
+{\color{DarkOrange1} t}\textcolor{DarkOrange1}{t} &
+{\color{DarkOrange2} t}\textcolor{DarkOrange2}{t} &
+{\color{DarkOrange3} t}\textcolor{DarkOrange3}{t} \\
+{\color{DarkOrange4} t}\textcolor{DarkOrange4}{t} &
+{\color{DarkOrchid1} t}\textcolor{DarkOrchid1}{t} &
+{\color{DarkOrchid2} t}\textcolor{DarkOrchid2}{t} &
+{\color{DarkOrchid3} t}\textcolor{DarkOrchid3}{t} &
+{\color{DarkOrchid4} t}\textcolor{DarkOrchid4}{t} &
+{\color{DarkSeaGreen1} t}\textcolor{DarkSeaGreen1}{t} &
+{\color{DarkSeaGreen2} t}\textcolor{DarkSeaGreen2}{t} &
+{\color{DarkSeaGreen3} t}\textcolor{DarkSeaGreen3}{t} &
+{\color{DarkSeaGreen4} t}\textcolor{DarkSeaGreen4}{t} &
+{\color{DarkSlateGray1} t}\textcolor{DarkSlateGray1}{t} &
+{\color{DarkSlateGray2} t}\textcolor{DarkSlateGray2}{t} &
+{\color{DarkSlateGray3} t}\textcolor{DarkSlateGray3}{t} &
+{\color{DarkSlateGray4} t}\textcolor{DarkSlateGray4}{t} &
+{\color{DeepPink1} t}\textcolor{DeepPink1}{t} &
+{\color{DeepPink2} t}\textcolor{DeepPink2}{t} &
+{\color{DeepPink3} t}\textcolor{DeepPink3}{t} &
+{\color{DeepPink4} t}\textcolor{DeepPink4}{t} &
+{\color{DeepSkyBlue1} t}\textcolor{DeepSkyBlue1}{t} &
+{\color{DeepSkyBlue2} t}\textcolor{DeepSkyBlue2}{t} &
+{\color{DeepSkyBlue3} t}\textcolor{DeepSkyBlue3}{t} &
+{\color{DeepSkyBlue4} t}\textcolor{DeepSkyBlue4}{t} \\
+{\color{DodgerBlue1} t}\textcolor{DodgerBlue1}{t} &
+{\color{DodgerBlue2} t}\textcolor{DodgerBlue2}{t} &
+{\color{DodgerBlue3} t}\textcolor{DodgerBlue3}{t} &
+{\color{DodgerBlue4} t}\textcolor{DodgerBlue4}{t} &
+{\color{Firebrick1} t}\textcolor{Firebrick1}{t} &
+{\color{Firebrick2} t}\textcolor{Firebrick2}{t} &
+{\color{Firebrick3} t}\textcolor{Firebrick3}{t} &
+{\color{Firebrick4} t}\textcolor{Firebrick4}{t} &
+{\color{Gold1} t}\textcolor{Gold1}{t} &
+{\color{Gold2} t}\textcolor{Gold2}{t} &
+{\color{Gold3} t}\textcolor{Gold3}{t} &
+{\color{Gold4} t}\textcolor{Gold4}{t} &
+{\color{Goldenrod1} t}\textcolor{Goldenrod1}{t} &
+{\color{Goldenrod2} t}\textcolor{Goldenrod2}{t} &
+{\color{Goldenrod3} t}\textcolor{Goldenrod3}{t} &
+{\color{Goldenrod4} t}\textcolor{Goldenrod4}{t} &
+{\color{Green1} t}\textcolor{Green1}{t} &
+{\color{Green2} t}\textcolor{Green2}{t} &
+{\color{Green3} t}\textcolor{Green3}{t} &
+{\color{Green4} t}\textcolor{Green4}{t} &
+{\color{Honeydew1} t}\textcolor{Honeydew1}{t} \\
+{\color{Honeydew2} t}\textcolor{Honeydew2}{t} &
+{\color{Honeydew3} t}\textcolor{Honeydew3}{t} &
+{\color{Honeydew4} t}\textcolor{Honeydew4}{t} &
+{\color{HotPink1} t}\textcolor{HotPink1}{t} &
+{\color{HotPink2} t}\textcolor{HotPink2}{t} &
+{\color{HotPink3} t}\textcolor{HotPink3}{t} &
+{\color{HotPink4} t}\textcolor{HotPink4}{t} &
+{\color{IndianRed1} t}\textcolor{IndianRed1}{t} &
+{\color{IndianRed2} t}\textcolor{IndianRed2}{t} &
+{\color{IndianRed3} t}\textcolor{IndianRed3}{t} &
+{\color{IndianRed4} t}\textcolor{IndianRed4}{t} &
+{\color{Ivory1} t}\textcolor{Ivory1}{t} &
+{\color{Ivory2} t}\textcolor{Ivory2}{t} &
+{\color{Ivory3} t}\textcolor{Ivory3}{t} &
+{\color{Ivory4} t}\textcolor{Ivory4}{t} &
+{\color{Khaki1} t}\textcolor{Khaki1}{t} &
+{\color{Khaki2} t}\textcolor{Khaki2}{t} &
+{\color{Khaki3} t}\textcolor{Khaki3}{t} &
+{\color{Khaki4} t}\textcolor{Khaki4}{t} &
+{\color{LavenderBlush1} t}\textcolor{LavenderBlush1}{t} &
+{\color{LavenderBlush2} t}\textcolor{LavenderBlush2}{t} \\
+{\color{LavenderBlush3} t}\textcolor{LavenderBlush3}{t} &
+{\color{LavenderBlush4} t}\textcolor{LavenderBlush4}{t} &
+{\color{LemonChiffon1} t}\textcolor{LemonChiffon1}{t} &
+{\color{LemonChiffon2} t}\textcolor{LemonChiffon2}{t} &
+{\color{LemonChiffon3} t}\textcolor{LemonChiffon3}{t} &
+{\color{LemonChiffon4} t}\textcolor{LemonChiffon4}{t} &
+{\color{LightBlue1} t}\textcolor{LightBlue1}{t} &
+{\color{LightBlue2} t}\textcolor{LightBlue2}{t} &
+{\color{LightBlue3} t}\textcolor{LightBlue3}{t} &
+{\color{LightBlue4} t}\textcolor{LightBlue4}{t} &
+{\color{LightCyan1} t}\textcolor{LightCyan1}{t} &
+{\color{LightCyan2} t}\textcolor{LightCyan2}{t} &
+{\color{LightCyan3} t}\textcolor{LightCyan3}{t} &
+{\color{LightCyan4} t}\textcolor{LightCyan4}{t} &
+{\color{LightGoldenrod1} t}\textcolor{LightGoldenrod1}{t} &
+{\color{LightGoldenrod2} t}\textcolor{LightGoldenrod2}{t} &
+{\color{LightGoldenrod3} t}\textcolor{LightGoldenrod3}{t} &
+{\color{LightGoldenrod4} t}\textcolor{LightGoldenrod4}{t} &
+{\color{LightPink1} t}\textcolor{LightPink1}{t} &
+{\color{LightPink2} t}\textcolor{LightPink2}{t} &
+{\color{LightPink3} t}\textcolor{LightPink3}{t} \\
+{\color{LightPink4} t}\textcolor{LightPink4}{t} &
+{\color{LightSalmon1} t}\textcolor{LightSalmon1}{t} &
+{\color{LightSalmon2} t}\textcolor{LightSalmon2}{t} &
+{\color{LightSalmon3} t}\textcolor{LightSalmon3}{t} &
+{\color{LightSalmon4} t}\textcolor{LightSalmon4}{t} &
+{\color{LightSkyBlue1} t}\textcolor{LightSkyBlue1}{t} &
+{\color{LightSkyBlue2} t}\textcolor{LightSkyBlue2}{t} &
+{\color{LightSkyBlue3} t}\textcolor{LightSkyBlue3}{t} &
+{\color{LightSkyBlue4} t}\textcolor{LightSkyBlue4}{t} &
+{\color{LightSteelBlue1} t}\textcolor{LightSteelBlue1}{t} &
+{\color{LightSteelBlue2} t}\textcolor{LightSteelBlue2}{t} &
+{\color{LightSteelBlue3} t}\textcolor{LightSteelBlue3}{t} &
+{\color{LightSteelBlue4} t}\textcolor{LightSteelBlue4}{t} &
+{\color{LightYellow1} t}\textcolor{LightYellow1}{t} &
+{\color{LightYellow2} t}\textcolor{LightYellow2}{t} &
+{\color{LightYellow3} t}\textcolor{LightYellow3}{t} &
+{\color{LightYellow4} t}\textcolor{LightYellow4}{t} &
+{\color{Magenta1} t}\textcolor{Magenta1}{t} &
+{\color{Magenta2} t}\textcolor{Magenta2}{t} &
+{\color{Magenta3} t}\textcolor{Magenta3}{t} &
+{\color{Magenta4} t}\textcolor{Magenta4}{t} \\
+{\color{Maroon1} t}\textcolor{Maroon1}{t} &
+{\color{Maroon2} t}\textcolor{Maroon2}{t} &
+{\color{Maroon3} t}\textcolor{Maroon3}{t} &
+{\color{Maroon4} t}\textcolor{Maroon4}{t} &
+{\color{MediumOrchid1} t}\textcolor{MediumOrchid1}{t} &
+{\color{MediumOrchid2} t}\textcolor{MediumOrchid2}{t} &
+{\color{MediumOrchid3} t}\textcolor{MediumOrchid3}{t} &
+{\color{MediumOrchid4} t}\textcolor{MediumOrchid4}{t} &
+{\color{MediumPurple1} t}\textcolor{MediumPurple1}{t} &
+{\color{MediumPurple2} t}\textcolor{MediumPurple2}{t} &
+{\color{MediumPurple3} t}\textcolor{MediumPurple3}{t} &
+{\color{MediumPurple4} t}\textcolor{MediumPurple4}{t} &
+{\color{MistyRose1} t}\textcolor{MistyRose1}{t} &
+{\color{MistyRose2} t}\textcolor{MistyRose2}{t} &
+{\color{MistyRose3} t}\textcolor{MistyRose3}{t} &
+{\color{MistyRose4} t}\textcolor{MistyRose4}{t} &
+{\color{NavajoWhite1} t}\textcolor{NavajoWhite1}{t} &
+{\color{NavajoWhite2} t}\textcolor{NavajoWhite2}{t} &
+{\color{NavajoWhite3} t}\textcolor{NavajoWhite3}{t} &
+{\color{NavajoWhite4} t}\textcolor{NavajoWhite4}{t} &
+{\color{OliveDrab1} t}\textcolor{OliveDrab1}{t} \\
+{\color{OliveDrab2} t}\textcolor{OliveDrab2}{t} &
+{\color{OliveDrab3} t}\textcolor{OliveDrab3}{t} &
+{\color{OliveDrab4} t}\textcolor{OliveDrab4}{t} &
+{\color{Orange1} t}\textcolor{Orange1}{t} &
+{\color{Orange2} t}\textcolor{Orange2}{t} &
+{\color{Orange3} t}\textcolor{Orange3}{t} &
+{\color{Orange4} t}\textcolor{Orange4}{t} &
+{\color{OrangeRed1} t}\textcolor{OrangeRed1}{t} &
+{\color{OrangeRed2} t}\textcolor{OrangeRed2}{t} &
+{\color{OrangeRed3} t}\textcolor{OrangeRed3}{t} &
+{\color{OrangeRed4} t}\textcolor{OrangeRed4}{t} &
+{\color{Orchid1} t}\textcolor{Orchid1}{t} &
+{\color{Orchid2} t}\textcolor{Orchid2}{t} &
+{\color{Orchid3} t}\textcolor{Orchid3}{t} &
+{\color{Orchid4} t}\textcolor{Orchid4}{t} &
+{\color{PaleGreen1} t}\textcolor{PaleGreen1}{t} &
+{\color{PaleGreen2} t}\textcolor{PaleGreen2}{t} &
+{\color{PaleGreen3} t}\textcolor{PaleGreen3}{t} &
+{\color{PaleGreen4} t}\textcolor{PaleGreen4}{t} &
+{\color{PaleTurquoise1} t}\textcolor{PaleTurquoise1}{t} &
+{\color{PaleTurquoise2} t}\textcolor{PaleTurquoise2}{t} \\
+{\color{PaleTurquoise3} t}\textcolor{PaleTurquoise3}{t} &
+{\color{PaleTurquoise4} t}\textcolor{PaleTurquoise4}{t} &
+{\color{PaleVioletRed1} t}\textcolor{PaleVioletRed1}{t} &
+{\color{PaleVioletRed2} t}\textcolor{PaleVioletRed2}{t} &
+{\color{PaleVioletRed3} t}\textcolor{PaleVioletRed3}{t} &
+{\color{PaleVioletRed4} t}\textcolor{PaleVioletRed4}{t} &
+{\color{PeachPuff1} t}\textcolor{PeachPuff1}{t} &
+{\color{PeachPuff2} t}\textcolor{PeachPuff2}{t} &
+{\color{PeachPuff3} t}\textcolor{PeachPuff3}{t} &
+{\color{PeachPuff4} t}\textcolor{PeachPuff4}{t} &
+{\color{Pink1} t}\textcolor{Pink1}{t} &
+{\color{Pink2} t}\textcolor{Pink2}{t} &
+{\color{Pink3} t}\textcolor{Pink3}{t} &
+{\color{Pink4} t}\textcolor{Pink4}{t} &
+{\color{Plum1} t}\textcolor{Plum1}{t} &
+{\color{Plum2} t}\textcolor{Plum2}{t} &
+{\color{Plum3} t}\textcolor{Plum3}{t} &
+{\color{Plum4} t}\textcolor{Plum4}{t} &
+{\color{Purple1} t}\textcolor{Purple1}{t} &
+{\color{Purple2} t}\textcolor{Purple2}{t} &
+{\color{Purple3} t}\textcolor{Purple3}{t} \\
+{\color{Purple4} t}\textcolor{Purple4}{t} &
+{\color{Red1} t}\textcolor{Red1}{t} &
+{\color{Red2} t}\textcolor{Red2}{t} &
+{\color{Red3} t}\textcolor{Red3}{t} &
+{\color{Red4} t}\textcolor{Red4}{t} &
+{\color{RosyBrown1} t}\textcolor{RosyBrown1}{t} &
+{\color{RosyBrown2} t}\textcolor{RosyBrown2}{t} &
+{\color{RosyBrown3} t}\textcolor{RosyBrown3}{t} &
+{\color{RosyBrown4} t}\textcolor{RosyBrown4}{t} &
+{\color{RoyalBlue1} t}\textcolor{RoyalBlue1}{t} &
+{\color{RoyalBlue2} t}\textcolor{RoyalBlue2}{t} &
+{\color{RoyalBlue3} t}\textcolor{RoyalBlue3}{t} &
+{\color{RoyalBlue4} t}\textcolor{RoyalBlue4}{t} &
+{\color{Salmon1} t}\textcolor{Salmon1}{t} &
+{\color{Salmon2} t}\textcolor{Salmon2}{t} &
+{\color{Salmon3} t}\textcolor{Salmon3}{t} &
+{\color{Salmon4} t}\textcolor{Salmon4}{t} &
+{\color{SeaGreen1} t}\textcolor{SeaGreen1}{t} &
+{\color{SeaGreen2} t}\textcolor{SeaGreen2}{t} &
+{\color{SeaGreen3} t}\textcolor{SeaGreen3}{t} &
+{\color{SeaGreen4} t}\textcolor{SeaGreen4}{t} \\
+{\color{Seashell1} t}\textcolor{Seashell1}{t} &
+{\color{Seashell2} t}\textcolor{Seashell2}{t} &
+{\color{Seashell3} t}\textcolor{Seashell3}{t} &
+{\color{Seashell4} t}\textcolor{Seashell4}{t} &
+{\color{Sienna1} t}\textcolor{Sienna1}{t} &
+{\color{Sienna2} t}\textcolor{Sienna2}{t} &
+{\color{Sienna3} t}\textcolor{Sienna3}{t} &
+{\color{Sienna4} t}\textcolor{Sienna4}{t} &
+{\color{SkyBlue1} t}\textcolor{SkyBlue1}{t} &
+{\color{SkyBlue2} t}\textcolor{SkyBlue2}{t} &
+{\color{SkyBlue3} t}\textcolor{SkyBlue3}{t} &
+{\color{SkyBlue4} t}\textcolor{SkyBlue4}{t} &
+{\color{SlateBlue1} t}\textcolor{SlateBlue1}{t} &
+{\color{SlateBlue2} t}\textcolor{SlateBlue2}{t} &
+{\color{SlateBlue3} t}\textcolor{SlateBlue3}{t} &
+{\color{SlateBlue4} t}\textcolor{SlateBlue4}{t} &
+{\color{SlateGray1} t}\textcolor{SlateGray1}{t} &
+{\color{SlateGray2} t}\textcolor{SlateGray2}{t} &
+{\color{SlateGray3} t}\textcolor{SlateGray3}{t} &
+{\color{SlateGray4} t}\textcolor{SlateGray4}{t} &
+{\color{Snow1} t}\textcolor{Snow1}{t} \\
+{\color{Snow2} t}\textcolor{Snow2}{t} &
+{\color{Snow3} t}\textcolor{Snow3}{t} &
+{\color{Snow4} t}\textcolor{Snow4}{t} &
+{\color{SpringGreen1} t}\textcolor{SpringGreen1}{t} &
+{\color{SpringGreen2} t}\textcolor{SpringGreen2}{t} &
+{\color{SpringGreen3} t}\textcolor{SpringGreen3}{t} &
+{\color{SpringGreen4} t}\textcolor{SpringGreen4}{t} &
+{\color{SteelBlue1} t}\textcolor{SteelBlue1}{t} &
+{\color{SteelBlue2} t}\textcolor{SteelBlue2}{t} &
+{\color{SteelBlue3} t}\textcolor{SteelBlue3}{t} &
+{\color{SteelBlue4} t}\textcolor{SteelBlue4}{t} &
+{\color{Tan1} t}\textcolor{Tan1}{t} &
+{\color{Tan2} t}\textcolor{Tan2}{t} &
+{\color{Tan3} t}\textcolor{Tan3}{t} &
+{\color{Tan4} t}\textcolor{Tan4}{t} &
+{\color{Thistle1} t}\textcolor{Thistle1}{t} &
+{\color{Thistle2} t}\textcolor{Thistle2}{t} &
+{\color{Thistle3} t}\textcolor{Thistle3}{t} &
+{\color{Thistle4} t}\textcolor{Thistle4}{t} &
+{\color{Tomato1} t}\textcolor{Tomato1}{t} &
+{\color{Tomato2} t}\textcolor{Tomato2}{t} \\
+{\color{Tomato3} t}\textcolor{Tomato3}{t} &
+{\color{Tomato4} t}\textcolor{Tomato4}{t} &
+{\color{Turquoise1} t}\textcolor{Turquoise1}{t} &
+{\color{Turquoise2} t}\textcolor{Turquoise2}{t} &
+{\color{Turquoise3} t}\textcolor{Turquoise3}{t} &
+{\color{Turquoise4} t}\textcolor{Turquoise4}{t} &
+{\color{VioletRed1} t}\textcolor{VioletRed1}{t} &
+{\color{VioletRed2} t}\textcolor{VioletRed2}{t} &
+{\color{VioletRed3} t}\textcolor{VioletRed3}{t} &
+{\color{VioletRed4} t}\textcolor{VioletRed4}{t} &
+{\color{Wheat1} t}\textcolor{Wheat1}{t} &
+{\color{Wheat2} t}\textcolor{Wheat2}{t} &
+{\color{Wheat3} t}\textcolor{Wheat3}{t} &
+{\color{Wheat4} t}\textcolor{Wheat4}{t} &
+{\color{Yellow1} t}\textcolor{Yellow1}{t} &
+{\color{Yellow2} t}\textcolor{Yellow2}{t} &
+{\color{Yellow3} t}\textcolor{Yellow3}{t} &
+{\color{Yellow4} t}\textcolor{Yellow4}{t} &
+{\color{Gray0} t}\textcolor{Gray0}{t} &
+{\color{Green0} t}\textcolor{Green0}{t} &
+{\color{Grey0} t}\textcolor{Grey0}{t} \\
+{\color{Maroon0} t}\textcolor{Maroon0}{t} &
+{\color{Purple0} t}\textcolor{Purple0}{t} &
+{\color{black} t}\textcolor{black}{t} &
+{\color{blue} t}\textcolor{blue}{t} &
+{\color{brown} t}\textcolor{brown}{t} &
+{\color{cyan} t}\textcolor{cyan}{t} &
+{\color{darkgray} t}\textcolor{darkgray}{t} &
+{\color{gray} t}\textcolor{gray}{t} &
+{\color{green} t}\textcolor{green}{t} &
+{\color{lightgray} t}\textcolor{lightgray}{t} &
+{\color{lime} t}\textcolor{lime}{t} &
+{\color{magenta} t}\textcolor{magenta}{t} &
+{\color{olive} t}\textcolor{olive}{t} &
+{\color{orange} t}\textcolor{orange}{t} &
+{\color{pink} t}\textcolor{pink}{t} &
+{\color{purple} t}\textcolor{purple}{t} &
+{\color{red} t}\textcolor{red}{t} &
+{\color{teal} t}\textcolor{teal}{t} &
+{\color{violet} t}\textcolor{violet}{t} &
+{\color{white} t}\textcolor{white}{t} &
+{\color{yellow} t}\textcolor{yellow}{t} \\
+\end{tabular}} \\
+    \begin{tabular}{cc}
+    \textmd{text} {\mdseries text} & % = medium weight
+    \textrm{text} {\rmfamily text} \\ % = roman font
+    \textup{text} {\upshape text} & % = upright
+    \textbf{text} {\bfseries text} \\ % = bold font
+    \textsf{text} {\sffamily text} & % = sans-serif
+    \texttt{text} {\ttfamily text} \\ % = typewriter font
+    \textit{text} {\itshape text} & % = italic
+    \textsl{text} {\slshape text} \\ % = slanted/oblique
+    \multicolumn{2}{c}{\emph{some \emph{really} emphasised}} \\ % = emphasised
+    \multicolumn{2}{c}{\em some {\em really} emphasised} \\ % = emphasised
+    \textsc{I am} & {\scshape Death} \\ % = small caps
+    \end{tabular} &
+    \begin{tabular}{cc}
+    \begin{tiny}text\end{tiny} &
+    {\tiny text} \\ % smallest size
+    \begin{scriptsize}text\end{scriptsize} &
+    {\scriptsize text} \\ % size of (first level) super and supscripts
+    \begin{footnotesize}text\end{footnotesize} &
+    {\footnotesize text} \\ % size of footnotes
+    \begin{small}text\end{small} &
+    {\small text} \\
+    \begin{normalsize}text\end{normalsize} &
+    {\normalsize text} \\ % size of regular text
+    \begin{large}text\end{large} &
+    {\large text} \\
+    \begin{Large}text\end{Large} &
+    {\Large text} \\
+    \begin{LARGE}text\end{LARGE} &
+    {\LARGE text} \\
+    \begin{huge}text\end{huge} &
+    {\huge text} \\
+    \begin{Huge}text\end{Huge} &
+    {\Huge text} \\
+    \end{tabular} \\
+    \end{longtable}
+    \end{center}
+
+    re: L, \(\log_2 255 \ne 8\)
+
+%\nocite{*}
+%
+%\bibliographystyle{agsm}
+%\bibliography{sources}
+\end{document}
