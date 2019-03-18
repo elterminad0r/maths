@@ -175,7 +175,9 @@ top=2pt
 \allowdisplaybreaks
 
 \usepackage{amsthm}
-\newtheorem{thm}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
 
 \begin{document}
     \maketitle\thispagestyle{empty} % no page number under title
@@ -347,8 +349,6 @@ top=2pt
 
     \subsubsection{Difference of Higher Powers}
 
-    %FIXME: justification from partial sum of GP
-
     Similar results can be found in higher powers of \(a\) and \(b\):
     \begin{align*}
     a^3 - b^3 &\equiv (a - b)(a^2 + ab + b^2) \\
@@ -362,8 +362,19 @@ top=2pt
     a^n - b^n \equiv (a - b)(a^{n - 1} + a^{n - 2}b + a^{n - 3}b^2 + \dotsb +
                              ab^{n - 2} + b^{n - 1})
     \end{equation}
+    This can in fact be derived from the partial sum of a geometric progression
+    \ref{}. The sum \(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n\) is
+    a geometric progression of \(n + 1\) terms with first term \(a^n\) and
+    common ratio \(b/a\).  Therefore,
+    \begin{alignat*}{2}
+    &&a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n &=
+            a^n \cdot \frac{\pqty{\frac ba}^{n + 1} - 1}{\frac ba - 1} \\
+    &&    &= \frac{a^{n + 1} - b^{n + 1}}{a - b} \\
+    &\implies& (a - b)(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n) &=
+            a^{n + 1} - b^{n + 1}
+    \end{alignat*}
 
-    Note that for odd \(n\), \(a^n + b^n\) can also be easily factorised as
+    Note that for odd \(n\), \(a^n + b^n\) can also be factorised as
     \(a^n + b^n \equiv a^n - (-b)^n\), so you get the same expansion but with
     alternating positive and negative terms.
 
@@ -385,7 +396,7 @@ top=2pt
     \(\phi(n) = n - 2 \implies n - \phi(n) = 2\), as the only divisors of
     a prime \(n\) are \(1\) and \(n\).
 
-    We may derive this from the fact that any \(n = pq: p, q \in \mathbb{P}\),
+    We may derive this from the fact that any \(n = pq: p, q \in \mathbb P\),
     \(a^n - b^n\) will factorise as
     \begin{equation}
     a^{pq} - b^{pq} \equiv
@@ -398,7 +409,7 @@ top=2pt
     \subsection[Irrationality of \(\sqrt 2\)]
                {Irrationality of \boldmath\(\sqrt 2\)}
 
-    Assume \(\sqrt 2 = \frac ab : a, b \in \mathbb{Z} \land \gcd(a, b) = 1\), ie
+    Assume \(\sqrt 2 = \frac ab : a, b \in \mathbb Z \land \gcd(a, b) = 1\), ie
     \(a\) and \(b\) are coprime.
 
     \subsection{Pythagoras' Theorem} \label{sec_pythagoras}
@@ -440,10 +451,10 @@ top=2pt
     \Delta &> 0 \implies P(x)\ \text{has two real roots}
     \end{align}
 
-    \subsection[Cauchy-Shwarz inequality for \(\mathbb{R}^n\)]
-               {Cauchy-Shwarz inequality for \boldmath\(\mathbb{R}^n\)}
+    \subsection[Cauchy-Shwarz inequality for \(\mathbb R^n\)]
+               {Cauchy-Shwarz inequality for \boldmath\(\mathbb R^n\)}
 
-    For two equally long, finite sequences \(u_i, v_i \in \mathbb{R}\),
+    For two equally long, finite sequences \(u_i, v_i \in \mathbb R\),
     \begin{equation}
     \pqty{\sum u_i v_i}^2 \le \pqty{\sum u_i^2} \pqty{\sum v_i^2}
         \quad \text{with equality iff all \(\frac{u_i}{v_i}\) are equal}
@@ -471,7 +482,7 @@ top=2pt
 
     \subsection{AM-GM inequality}
 
-    For a sequence \(u_i \in \mathbb{R}\), for \(1 \le i \le n\) (ie, the
+    For a sequence \(u_i \in \mathbb R\), for \(1 \le i \le n\) (ie, the
     sequence is of length \(n\)) and \(u_i \ge 0\),
     \begin{equation*}
     \sqrt[n]{u_1 u_2 \dotsm u_n} \le \frac{u_1 + u_2 + \dotsb + u_n}{n}
@@ -526,7 +537,7 @@ top=2pt
     \end{alignat*}
     As equality for \(n\) was iff all \(u_i\) were the same, this is still true.
 
-    Now, for any \(n \in \mathbb{Z}^+\), we can induct up to a power of 2 above
+    Now, for any \(n \in \mathbb Z^+\), we can induct up to a power of 2 above
     \(n\), and then descend from there.
 
     \subsection{Square Triangular numbers}
@@ -537,7 +548,7 @@ top=2pt
 
     The sequence of perfect squares \(\mathrm{ST}_n\) such that
     \(\mathrm{ST}_n= a_n^2 = \frac 12 b_n(b_n + 1)\), where
-    \(a, b \in \mathbb{Z}_0^+\). The first few are:
+    \(a, b \in \mathbb Z_0^+\). The first few are:
 
     \begin{longtable}{rrrr}
     \toprule
@@ -609,7 +620,7 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     \subsection{Fibonacci Sequence}
 
-    The Fibonacci numbers \(F_n: n \in \mathbb{N}\) are such that
+    The Fibonacci numbers \(F_n: n \in \mathbb N\) are such that
     \(F_1 = F_2 = 1\) and \(F_n = F_{n - 1} + F_{n - 2}\).  \(F_n\) can be given
     by the closed form
     \begin{equation}
@@ -624,7 +635,36 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     \subsection{de Moivre's Theorem}
 
-    \((\cos \theta + i \sin \theta)^n \equiv \cos n\theta + i \sin n\theta\)
+    \begin{equation}
+    (\cos \theta + i \sin \theta)^n \equiv \cos n\theta + i \sin n\theta
+    \end{equation}
+
+    \subsection[The \(\Gamma\) function]{The \boldmath\(\Gamma\) function}
+
+    The ``gamma'' or \(\Gamma\) function is defined for
+    \(z \in \mathbb C, \Re(z) > 0\) as
+    \begin{equation}
+    \Gamma(z) = \int_0^{\infty} x^{z - 1}e^{-x} \dd{x}
+    \end{equation}
+    By integrating by parts, we show the following:
+    \begin{align*}
+    \Gamma(z + 1) &= \int_0^\infty x^{z}e^{-x} \dd{x} \\
+                  &= \bqty{-x^{z} e^{-x}}_0^\infty
+                     + \int_0^\infty zx^{z - 1}e^{-x} \dd{x} \\
+                  &= z\Gamma(z)
+    \end{align*}
+    Noting also that
+    \begin{align*}
+    \Gamma(1) &= \int_0^\infty e^{-x} \dd{x} \\
+              &= \bqty{-e^{-x}}_0^\infty \\
+              &= 1
+    \end{align*}
+    it can be seen from this recurrence that where \(n \in \mathbb Z^+\),
+    \begin{equation}
+    \Gamma(n) = (n - 1)!
+    \end{equation}
+    In fact, the gamma function is used as an extension of the idea of
+    factorials to the real and complex numbers other than the negative integers.
 
     \section{Discrete Maths (Computer Science)}
 
@@ -632,7 +672,7 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME add fast integer square root algorithm
 
-    For \(y \in \mathbb{Z}_0^+\), \(x^y\) is given by
+    For \(y \in \mathbb Z_0^+\), \(x^y\) is given by
     \begin{equation}
     x^y =
         \begin{cases}
@@ -669,7 +709,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     \subsection{Common sets}
 
     %FIXME: sets of congruence classes
-    %       sets of polynomial rings: apply set mathbb{A}
+    %       sets of polynomial rings: apply set mathbb A
 
     \begin{longtable}{ll}
     \toprule
@@ -677,37 +717,37 @@ for n, i in enumerate(get_sqr_tris(10)):
     \midrule
     \endhead
     \(\emptyset\), \(\varnothing\) & The empty set \(\set{}\). \\
-    \(\mathbb{N}\) & The set of natural numbers, \(\set{1, 2, 3, \dotsc}\).
+    \(\mathbb N\) & The set of natural numbers, \(\set{1, 2, 3, \dotsc}\).
                    May or may not include \(0\). \\
-    \(\mathbb{Z}\) & The set of integers
+    \(\mathbb Z\) & The set of integers
                    \(\set{\dotsc, -2, 1, 0, 1, 2, \dotsc}\) \\
-    \(\mathbb{Z}^+, \mathbb{Z}_{> 0}\) & The set of strictly positive integers
+    \(\mathbb Z^+, \mathbb Z_{> 0}\) & The set of strictly positive integers
                    \(\set{1, 2, 3, \dotsc}\). \\
-    \(\mathbb{Z}^+_0, \mathbb{Z}_{\ge 0}\) &
+    \(\mathbb Z^+_0, \mathbb Z_{\ge 0}\) &
                    The set of strictly nonnegative integers
                    \(\set{0, 1, 2, \dotsc}\). \\
-    \(\mathbb{Z}^-, \mathbb{Z}_{< 0}\) & The set of strictly negative integers
+    \(\mathbb Z^-, \mathbb Z_{< 0}\) & The set of strictly negative integers
                    \(\set{-1, -2, -3, \dotsc}\). \\
-    \(\mathbb{Z}^-_0, \mathbb{Z}_{\le 0}\) &
+    \(\mathbb Z^-_0, \mathbb Z_{\le 0}\) &
                    The set of strictly nonpositive integers
                    \(\set{0, -1, -2, \dotsc}\). \\
-    \(\mathbb{Q}\) & The set of rational numbers
-                   \(\set{\frac ab \mid a, b \in \mathbb{Z} \land b \neq 0}\).\\
-    \(\mathbb{A}\) & The set of algebraic numbers, ie numbers that are roots of
+    \(\mathbb Q\) & The set of rational numbers
+                   \(\set{\frac ab \mid a, b \in \mathbb Z \land b \neq 0}\).\\
+    \(\mathbb A\) & The set of algebraic numbers, ie numbers that are roots of
                    polynomials in \(\mathbb Z[x]\). \\
-    \(\mathbb{R}\) & The set of real numbers, which may be constructed as
-                   ``slices'' of \(\mathbb{Q}\). \\
-    \(\mathbb{C}\) & The set of complex numbers
-                   \(\set{a + bi \mid a, b \in \mathbb{R}}\),
+    \(\mathbb R\) & The set of real numbers, which may be constructed as
+                   ``slices'' of \(\mathbb Q\). \\
+    \(\mathbb C\) & The set of complex numbers
+                   \(\set{a + bi \mid a, b \in \mathbb R}\),
                    where \(i^2 = 1\).\\
     \(\intoo{a, b}\) & The open interval
-                     \(\set{x \in \mathbb{R} \mid a < x < b}\).\\
+                     \(\set{x \in \mathbb R \mid a < x < b}\).\\
     \(\intcc{a, b}\) & The closed interval
-                     \(\set{x \in \mathbb{R} \mid a \le x \le b}\).\\
+                     \(\set{x \in \mathbb R \mid a \le x \le b}\).\\
     \(\intco{a, b}\) & The half-open interval
-                     \(\set{x \in \mathbb{R} \mid a \le x < b}\).\\
+                     \(\set{x \in \mathbb R \mid a \le x < b}\).\\
     \(\intoc{a, b}\) & The half-open interval
-                     \(\set{x \in \mathbb{R} \mid a < x \le b}\).\\
+                     \(\set{x \in \mathbb R \mid a < x \le b}\).\\
     \bottomrule
     \end{longtable}
 
@@ -735,7 +775,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     and \(\abs{\set{1, 3, 2}} = 3\), etc.
 
     We also denote the cardinality of the natural numbers
-    \(\abs{\mathbb{N}} = \aleph_0\).
+    \(\abs{\mathbb N} = \aleph_0\).
 
     \section{Linear Algebra}
 
@@ -866,8 +906,37 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     \subsection{Special Angles}
 
-    %FIXME: diagrams
-    %FIXME: talk about deriving other special angles using formulae
+    %FIXME add diagrams, derive other angles
+
+    From geometric construction of triangles in addition to Pythagoras' Theorem
+    (\ref{sec_pythagoras}), we can determine that the following values of
+    trigonometric functions at certain angles hold.
+
+    %FIXME automatic math mode
+
+    \begin{longtable}{rrrr}
+    \toprule
+    \(\theta\) & \(\sin \theta\) & \(\cos \theta\) &
+                   \(\tan \theta\) \\
+    \midrule
+    \endhead
+    \(0\) & \(0\) & \(1\) & \(0\) \\
+    \(\dfrac \pi 6\) & \(\dfrac 12\) & \(\dfrac{\sqrt 3} 2\) &
+        \(\dfrac {\sqrt 3} 3\) \\
+    \(\dfrac \pi 4\) & \(\dfrac {\sqrt 2} 2\) & \(\dfrac {\sqrt 2} 2\) &
+        \(1\) \\
+    \(\dfrac \pi 3\) & \(\dfrac{\sqrt 3} 2\) & \(\dfrac 12\) &
+        \(\sqrt 3\) \\
+    \(\dfrac \pi 2\) & \(1\) & \(0\) & \(\infty\)\\
+    \bottomrule
+    \end{longtable}
+
+    We need only discuss special angles in \(\intcc{0, \frac \pi 2}\) because
+    the corresponding angles in the other quadrants can be found from symmetries
+    and periodicities.
+
+    We can always calculate half-angles in the first quadrant using the
+    half-angle formulae (\ref{sec_trig_double_angle}). For example, 
 
     \subsection{Cosine Rule}
 
@@ -929,7 +998,7 @@ for n, i in enumerate(get_sqr_tris(10)):
              \equiv
         \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta} \qed
     \end{equation*}
-    Results for a function of a difference are derived easily from the parity of
+    Results for a function of a difference are derived from the parity of
     each function (\ref{sec_trig_parity}). One might also just assume it's
     probably OK to flip signs. In either case, the full results are:
     \begin{align}
@@ -1172,44 +1241,30 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME: add x^x. maybe more intricate proofs.
 
-    By FTC (\ref{sec_calc_FTC}), these also give common integrations.
+    Here follows a table of common differentiations. More explanation/derivation
+    is found in the subsubsections following the table.
+
+    Note that by FTC (\ref{sec_calc_FTC}), these also give common integrations.
 
     %FIXME: make this look less disgusting
 
-    \begin{longtable}{rrl}
+    \begin{longtable}{rr}
     \toprule
-    \boldmath\(f(x)\) & \boldmath\(f'(x)\) &
-    \bfseries Comments/Derivation/Corollaries \\
+    \boldmath\(f(x)\) & \boldmath\(f'(x)\) \\
     \midrule
     \endhead
-    \(x^n\) & \(nx^{n-1}\)
-        & \(\int x^n \dd{x} = \frac{1}{n + 1}x^{n + 1}\) when
-          \(n \neq -1\) (see \(\dv{}{x}\ln x\)).\\
-    \(\ln x\) & \(\frac{1}{x}\)
-        & \(\dv{}{x}\log_a x = \dv{}{x} \frac{\ln x}{\ln a}\), and also
-          \(\int \frac{g'(x)}{g(x)} \dd{x} = \ln g(x)\),
-            from \ref{sec_calc_chain}.\\
-    \(e^x\) & \(e^x\) & \(\dv{}{x}a^x = \dv{}{x}e^{x \ln a}\). \\
-    \(\sin x\) & \(\cos x\)
-        & eg \(\int \sin^2 x \dd{x} = \int \frac 12 (1 - \cos 2x) \dd{x}\)
-          by \ref{sec_comp_angle}. \\
+    \(x^n\) & \(nx^{n-1}\) \\
+    \(\ln x\) & \(\frac{1}{x}\) \\
+    \(e^x\) & \(e^x\) \\
+    \(\sin x\) & \(\cos x\) \\
     \(\tan x\) & \(\sec^2 x\) \\
     \(\sec x\) & \(\sec x \tan x\) \\
     \(\cos x\) & \(-\sin x\) \\
     \(\cot x\) & \(-\csc^2 x\) \\
     \(\csc x\) & \(-\csc x \cot x\) \\
-    \(\arcsin x\) & \(\frac{1}{\sqrt{1 - x^2}}\)
-        & \(\sin y = x \implies \dv{y}{x} \cdot \cos y = 1 \implies
-           \dv{y}{x} = \frac{1}{\cos y}
-         = \frac{1}{\sqrt{1 - \sin^2 y}} = \frac{1}{\sqrt{1 - x^2}}\). \\
-    \(\arccos x\) & \(-\frac{1}{\sqrt{1 - x^2}}\)
-        & \(\cos y = x \implies \dv{y}{x} \cdot -\sin y = 1 \implies
-           \dv{y}{x} = -\frac{1}{\sin y}
-         = -\frac{1}{\sqrt{1 - \cos^2 y}} = -\frac{1}{\sqrt{1 - x^2}}\). \\
-    \(\arctan x\) & \(\frac{1}{x^2 + 1}\)
-        & \(\tan y = x \implies \dv{y}{x} \cdot \sec^2 y = 1 \implies
-           \dv{y}{x} = \frac{1}{\sec^2 y} = \frac{1}{1 + \tan^2 y}
-         = \frac{1}{1 + x^2}\). \\
+    \(\arcsin x\) & \(\frac{1}{\sqrt{1 - x^2}}\) \\
+    \(\arccos x\) & \(-\frac{1}{\sqrt{1 - x^2}}\) \\
+    \(\arctan x\) & \(\frac{1}{x^2 + 1}\) \\
     \bottomrule
     \end{longtable}
 
@@ -1218,18 +1273,25 @@ for n, i in enumerate(get_sqr_tris(10)):
     \subsection{Area under Parametric Curve} \label{sec_calc_parametric_area}
 
     To find the area between a curve and the \(x\)-axis from \(x_1\) to \(x_2\)
-    when the curve is given in parametric form, \(x = f(t)\) and \(y = g(t)\),
-    we rewrite the integral
+    when the curve is given in parametric form, \((x, y) = (f(t), g(t))\),
+    we rewrite the integral, effectively using a substition
+    (\ref{sec_calc_substitution}) \(x = f(t)\) in order to express the integrand
+    in \(t\).
     \begin{equation}
-    \int_{x_1}^{x_2} y \dd{x} =
-     \int_{x_1}^{x_2} y \dv{x}{t} \dd{t} = \int_{x_1}^{x_2} g(t)f'(t) \dd{t}
+    \int_{x=x_1}^{x=x_2} y \dd{x} =
+     \int_{x=x_1}^{x=x_2} y \dv{x}{t} \dd{t} =
+     \int_{t=t_1}^{t=t_2} g(t)f'(t) \dd{t}
     \end{equation}
+    where \(f(t_1) = x_1\) and \(f(t_2) = x_2\).
+
     Similarly, the area between the curve and the y-axis from \(y_1\) to \(y_2\)
     is:
     \begin{equation}
-    \int_{y_1}^{y_2} x \dd{y} =
-     \int_{y_1}^{y_2} x \dv{y}{t} \dd{t} = \int_{y_1}^{y_2} f(t)g'(t) \dd{t}
+    \int_{y=y_1}^{y=y_2} x \dd{y} =
+     \int_{y=y_1}^{y=y_2} x \dv{y}{t} \dd{t} =
+     \int_{t=t_1}^{t=t_2} f(t)g'(t) \dd{t}
     \end{equation}
+    where \(g(t_1) = y_1\) and \(g(t_2) = y_2\).
 
     \subsection{Implicit differentiation}
 
@@ -1758,6 +1820,30 @@ for n, i in enumerate(get_sqr_tris(10)):
     \end{center}
 
     re: L, \(\log_2 255 \ne 8\)
+
+\begin{lemma}
+\begin{equation}
+\forall k \in \mathbb R: \frac 42 = 2
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+    Suppose that
+    \begin{equation*}
+    \frac 42 = x = \frac{1 + x}{1 + x^{-1}}
+    \end{equation*}
+    for some \(x > 0\) (hence \(x^{-1} \neq -1\) and the expression is defined).
+
+    Now,
+    \begin{alignat*}{2}
+    &&\frac 42 &= \frac{1 + x}{1 + x^{-1}} \\
+    &\iff& 4(1 + x^{-1}) &= 2(1 + x) \\
+    &\iff& 2x^2 + 2x - 4x - 4 &= 0 \\
+    &\iff& 2(x - 2)(x + 1) &= 0 \\
+    &\iff& x &\in \set{2, -1} \\
+    \end{alignat*}
+    But \(x > 0\) and therefore \(\frac 42 = x = 2\).
+\end{proof}
 
 %\nocite{*}
 %
