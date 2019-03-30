@@ -185,6 +185,10 @@ top=2pt
 
     %FIXME
 
+    % proof of fibonacci from power series
+
+    % STEP: area in edge of convex curve
+
     % substitution tan (x / 2)
     % step 2007ii4
     % proof of ceva's theorem: 2007ii8
@@ -1278,18 +1282,18 @@ for n, i in enumerate(get_sqr_tris(10)):
     (\ref{sec_calc_substitution}) \(x = f(t)\) in order to express the integrand
     in \(t\).
     \begin{equation}
-    \int_{x=x_1}^{x=x_2} y \dd{x} =
-     \int_{x=x_1}^{x=x_2} y \dv{x}{t} \dd{t} =
-     \int_{t=t_1}^{t=t_2} g(t)f'(t) \dd{t}
+    \int_{x_1}^{x_2} y \dd{x} =
+     \int_{t_1}^{t_2} y \dv{x}{t} \dd{t} =
+     \int_{t_1}^{t_2} g(t)f'(t) \dd{t}
     \end{equation}
     where \(f(t_1) = x_1\) and \(f(t_2) = x_2\).
 
     Similarly, the area between the curve and the y-axis from \(y_1\) to \(y_2\)
     is:
     \begin{equation}
-    \int_{y=y_1}^{y=y_2} x \dd{y} =
-     \int_{y=y_1}^{y=y_2} x \dv{y}{t} \dd{t} =
-     \int_{t=t_1}^{t=t_2} f(t)g'(t) \dd{t}
+    \int_{y_1}^{y_2} x \dd{y} =
+     \int_{t_1}^{t_2} x \dv{y}{t} \dd{t} =
+     \int_{t_1}^{t_2} f(t)g'(t) \dd{t}
     \end{equation}
     where \(g(t_1) = y_1\) and \(g(t_2) = y_2\).
 
