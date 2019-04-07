@@ -1323,25 +1323,37 @@ for n, i in enumerate(get_sqr_tris(10)):
     considering \(\tan(2 \cdot \frac 12 \theta)\).
 
     The identity for the sine can be derived by considering the double angle
-    formula for sine, and using a smattering of identities from
-    (\ref{sec_trig_definitions}, \ref{sec_trig_pythag}):
+    formula for sine, and using a smattering of identities from sections
+    \ref{sec_trig_definitions}, \ref{sec_trig_pythag}:
     \begin{align*}
-    \sin \theta &\equiv 2\sin(\tfrac \theta 2)\cos(\tfrac \theta 2)
-        \equiv 2\tan(\tfrac \theta 2)\cos^2\pqty{\tfrac \theta 2} \\
-        &\equiv \frac{2\tan(\frac \theta 2)}{\sec^2\pqty{\frac \theta 2}}
+    \sin \theta &\equiv 2\sin \tfrac \theta 2 \cos\tfrac \theta 2
+        \equiv 2\tan \tfrac \theta 2 \cos^2 \tfrac \theta 2 \\
+        &\equiv \frac{2\tan \frac \theta 2}{\sec^2 \frac \theta 2}
         \equiv \frac{2t}{1 + t^2}
     \end{align*}
     Similarly for the cosine:
     \begin{align*}
     \cos \theta
-        &\equiv \cos^2\pqty{\frac \theta 2} - \sin^2 \pqty{\frac \theta 2}
-        \equiv \cos^2\pqty{\frac \theta 2}
-            \pqty{1 - \tan^2\pqty{\frac \theta 2}} \\
-        &\equiv \frac{1 - \tan^2\pqty{\frac \theta 2}}
-                     {\sec^2\pqty{\frac \theta 2}}
+        &\equiv \cos^2 \tfrac \theta 2 - \sin^2 \tfrac \theta 2
+        \equiv \cos^2 \tfrac \theta 2
+            \pqty{1 - \tan^2 \tfrac \theta 2} \\
+        &\equiv \frac{1 - \tan^2 \tfrac \theta 2}
+                     {\sec^2 \tfrac \theta 2}
         \equiv \frac{1 - t^2}{1 + t^2}
     \end{align*}
     \end{proof}
+
+    This fact is useful for a number of reasons. Firstly, when integrating a
+    rational function of trig functions, we can apply this trick to transform
+    the integral into a rational function of \(t\), as all trig functions and
+    also \(\dd{\theta}\) become rational functions of \(t\).
+
+    It can also be used as an alternative parametrisation of a circle: instead
+    of \((\cos\theta, \sin\theta)\), \(\theta \in \intco{0, 2\pi}\) we can use
+    \(\pqty{\dfrac{1 - t^2}{1 + t^2}, \dfrac{2t}{1 + t^2}}\), \(t \in \Reals\).
+    This is useful as it is a rational function, so for rational \(t\) it gives
+    a rational point on the unit circle, which can be used, for example, to find
+    Pythagorean triples.
 
     \subsubsection{Heuristic for sine and cosine}
 
@@ -1355,7 +1367,9 @@ for n, i in enumerate(get_sqr_tris(10)):
     \begin{equation*}
     \sqrt{(2t)^2 + (1 - t^2)^2} = \sqrt{1 + 2t^2 + t^4} = 1 + t^2
     \end{equation*}
-    and then deduce the value of sine and cosine from their definitions.
+    and then deduce the magnitudes of sine and cosine from their definitions.
+    Fortuitously, it turns out we can immediately drop any absolute value
+    signs, making this trick quite useful.
 
     \section{Probability}
 
@@ -1368,18 +1382,32 @@ for n, i in enumerate(get_sqr_tris(10)):
     %FIXME add diagram
 
     The binomial distribution \(\Binomial(\nu, \pi)\) measures the probability
-    of getting a certain number of successful ``events'', where there are
-    \(\nu\) events each with probability \(\pi\) of being successful.
-
-    The PMF of \(X \sim \Binomial(\nu, \pi)\) is given by
-    \begin{equation*}
-    f_X(k) = \Prob(X = k) = {\nu \choose k} \pi^k (1 - \pi)^{\nu - k}
-        \quad \text{where \(k \in \set{0, 1, \dotsc, n}\)}
-    \end{equation*}
+    of having a certain number of outcomes in a set of trials,  where there are
+    \(\nu\) trials each with probability \(\pi\) of having that outcome.
     The validity of this distribution is subject to these constraints:
     \begin{enumerate}
     \item Each event must be independent.
+    \item Each event must either have that outcome or not have it.
+    \item The probability of having this outcome must be identically the same in
+          each trial.
     \end{enumerate}
+    This means that the binomial distribution can be used to model the expected
+    number of occurrences of some attribute in a random sample of a population
+    with replacement. However, in a sample without replacement, each trial is
+    not strictly independent, so the binomial distribution can't be used. For
+    large population sizes, however, it remains a good approximation.
+
+    In this case, ``large'' can be taken to mean more than about 30-100.
+
+    The PMF of \(X \sim \Binomial(\nu, \pi)\) is given by
+    \begin{equation*}
+    f_X(k) = \Prob(X = k) = \binom \nu k \pi^k (1 - \pi)^{\nu - k}
+        \quad \text{where \(k \in \set{0, 1, \dotsc, \nu}\)}
+    \end{equation*}
+
+    \subsubsection{Normal approximation}
+
+    A binomial distribution can be approximated by a normal distribution.
 
     \subsection{Normal Distribution}
 
@@ -1498,6 +1526,13 @@ for n, i in enumerate(get_sqr_tris(10)):
     g(h(x)) & h'(x) \cdot g'(h(x)) && \ref{sec_calc_chain} \\[1ex]
     \dfrac{g(x)}{h(x)} & \dfrac{h(x) \cdot g'(x) - g(x) \cdot h'(x)}{(h(x))^2}
         && \ref{sec_calc_quotient} \\[3ex]
+    g(x)^{h(x)}
+        & \pqty{\dfrac{h(x)g'(x)}{g(x)} + h'(x)\ln(g(x))}g(x)^{h(x)}
+        & g(x) > 0 \\[3ex]
+    \sqrt{g(x)} & \dfrac{g'(x)}{2\sqrt{g(x)}} & g(x) \ge 0 \\[3ex]
+    \ln(g(x)) & \dfrac{g'(x)}{g(x)} & g(x) > 0 \\[3ex]
+    g(ax + b) & a \cdot g'(ax + b) \\[3ex]
+    a & 0 & \text{\(a\) is constant.} \\[1ex]
     x^n & nx^{n-1} & \text{\(n\) is constant} \\[1ex]
     e^x & e^x & \text{\(e\) is Euler's number} & \ref{sec_e} \\[1ex]
     a^x & \ln a \cdot a^x & \text{\(a\) is constant} \\[1ex]
@@ -1508,12 +1543,14 @@ for n, i in enumerate(get_sqr_tris(10)):
     \sec x & \sec x \tan x && \ref{sec_calc_trig_basic} \\[1ex]
     \csc x & -\csc x \cot x && \ref{sec_calc_trig_basic} \\[1ex]
     \cot x & -\csc^2 x & -(\cot^2 x + 1) & \ref{sec_calc_trig_basic} \\[1ex]
-    \arcsin x & \dfrac 1{\sqrt{1 - x^2}} \\[3ex]
-    \arccos x & -\dfrac 1{\sqrt{1 - x^2}} \\[3ex]
-    \arctan x & \dfrac 1{x^2 + 1} \\[3ex]
-    \arcsec x & \dfrac 1{\abs{x} \sqrt{x^2 - 1}} \\[3ex]
-    \arccsc x & -\dfrac 1{\abs{x} \sqrt{x^2 - 1}} \\[3ex]
-    \arccot x & -\dfrac 1{x^2 + 1} \\[3ex]
+    \arcsin x & \dfrac 1{\sqrt{1 - x^2}} && \ref{sec_calc_trig_inv} \\[3ex]
+    \arccos x & \dfrac{-1}{\sqrt{1 - x^2}} && \ref{sec_calc_trig_inv} \\[3ex]
+    \arctan x & \dfrac 1{x^2 + 1} && \ref{sec_calc_trig_inv} \\[3ex]
+    \arcsec x & \dfrac 1{\abs{x} \sqrt{x^2 - 1}}
+        & \dfrac 1{x^2 \sqrt{1 - x^{-2}}} & \ref{sec_calc_trig_inv} \\[3ex]
+    \arccsc x & \dfrac{-1}{\abs{x} \sqrt{x^2 - 1}}
+        & \dfrac{-1}{x^2 \sqrt{1 - x^{-2}}} & \ref{sec_calc_trig_inv} \\[3ex]
+    \arccot x & -\dfrac 1{x^2 + 1} && \ref{sec_calc_trig_inv} \\[3ex]
     \sinh x & \cosh x \\[1ex]
     \cosh x & \sinh x \\[1ex]
     \tanh x & \sech^2 x & -\tanh^2 x + 1 \\[1ex]
@@ -1523,12 +1560,53 @@ for n, i in enumerate(get_sqr_tris(10)):
     \arcsinh x & \dfrac 1{\sqrt{x^2 + 1}} \\[3ex]
     \arccosh x & \dfrac 1{\sqrt{x^2 - 1}} \\[3ex]
     \arctanh x & \dfrac 1{1 - x^2} \\[3ex]
-    \arcsech x & -\dfrac 1{x\sqrt{1 - x^2}} \\[3ex]
-    \arccsch x & -\dfrac 1{\abs{x}\sqrt{1 + x^2}} \\[3ex]
+    \arcsech x & \dfrac{-1}{x\sqrt{1 - x^2}} \\[3ex]
+    \arccsch x & \dfrac{-1}{\abs{x}\sqrt{1 + x^2}} \\[3ex]
     \arccoth x & \dfrac 1{1 - x^2} \\[3ex]
     \bottomrule
     \caption{Common derivatives} \\
     \end{longtable}
+
+    \subsubsection{Derivatives with powers}
+    Often when being introduced to differentiation, derivatives like that of
+    \(x^2\) are demonstrated from first principles, as follows:
+    \begin{align*}
+    \dv{x}(x^2) &= \lim_{h \to 0} \frac{(x + h)^2 - x^2} h \\
+        &= \lim_{h \to 0} \frac{2hx + h^2} h \\
+        &= \lim_{h \to 0} (2x + h) \\
+        &= 2x
+    \end{align*}
+    We can do this for a general positive integer power of \(x\) by using the
+    binomial theorem:
+    \begin{align*}
+    \dv{x}(x^n) &= \lim_{h \to 0} \frac{(x + h)^n - x^n} h \\
+        &= \lim_{h \to 0} \bqty{\frac 1h \pqty{-x^n
+                              + \sum_{r = 0}^n \binom nr x^r h^{n - r}}} \\
+        &= \lim_{h \to 0} \bqty{\frac 1h \pqty{
+                                -x^n + \binom n0 x^n + \binom n1 hx^{n - 1}
+                              + \sum_{r = 0}^{n - 2}
+                                    \binom nr x^r h^{n - r}}} \\
+        &= \lim_{h \to 0} \bqty{\frac 1h \pqty{-x^n + x^n + hnx^{n - 1}
+                              + h^2 \sum_{r = 0}^{n - 2}
+                                    \binom nr x^r h^{n - (r + 2)}}} \\
+        &= \lim_{h \to 0} \bqty{nx^{n - 1} + h \sum_{r = 0}^{n - 2}
+                                    \binom nr x^r h^{n - (r + 2)}} \\
+        &= nx^{n-1} \qquad
+            \text{as the smallest power of \(h\) inside the sum is 0.}
+    \end{align*}
+    We can show that this power rule generalizes to any positive real exponent
+    \(k > 0\) using the chain rule and the derivative of \(e^x\).
+    \begin{equation*}
+    \dv{x}(x^k) = \dv{x}(\exp(k(\ln x))) = \frac kx \exp(k(\ln x))
+        = \frac kx x^k = k x^{k - 1}
+    \end{equation*}
+    For negative real exponents, \(k < 0\) we can make use of the fact that
+    \(-k > 0\):
+    \begin{equation*}
+    \dv{x}(x^k) = \dv{x}((x^{-k})^{-1}) = -kx^{-k-1} \cdot (-(x^{-k})^{-2})
+        = kx^{-k-1}x^{2k} = kx^{k - 1}
+    \end{equation*}
+    To differentiate an exponential function of a constant, we can 
 
     \subsubsection{Basic trigonometric functions} \label{sec_calc_trig_basic}
 
@@ -1576,7 +1654,8 @@ for n, i in enumerate(get_sqr_tris(10)):
     \end{equation*}
     This is allowed because the domain of \(\arcsin x\) is restricted to
     \(\intcc{-1, 1}\), meaning that the range of \(y\) is
-    \(\intcc{-\frac 12 \pi, \frac 12 \pi}\) and \(\cos y > 0\).
+    \(\intcc{-\frac 12 \pi, \frac 12 \pi}\) and \(\cos y > 0\)
+    (so \(\cos y = \abs{\cos y} = \sqrt{1 - \sin^2 y}\)).
 
     Now, for the inverse cosine, rather than repeating this whole song and
     dance, we can use the fact that
@@ -1594,9 +1673,48 @@ for n, i in enumerate(get_sqr_tris(10)):
     \end{equation*}
     For the inverse secant, we let \(y = \arcsec x\), so that
     \begin{equation*}
-    \sec y = x \implies \dv{y}{x} \sec x \tan x = 1
-        \implies \dv{x}(\arcsec x) = \frac 1{x \tan x}
-            = \frac 1{x \sqrt{x^2 - 1}}
+    \sec y = x \implies \dv{y}{x} \sec y \tan y = 1
+        \implies \dv{x}(\arcsec x) = \frac 1{x \tan y}
+    \end{equation*}
+    Unfortunately, we can't just take \(\tan y = \sqrt{x^2 - 1}\) as
+    \(x \in \Reals \setminus \intoo{-1, 1}\), and
+    \(y \in \intcc{0, \pi} \setminus \set{\frac 12 \pi}\). This means that
+    \(\tan y > 0\) for
+    \(y \in \intco{0, \frac 12 \pi} \iff x \in \intco{1, \infty}\), but also
+    that \(\tan y < 0\) for
+    \(y \in \intoc{\frac 12 \pi, \pi} \iff x \in \intoc{-\infty, -1}\).
+    Therefore, \(\tan y\) has the same sign as \(x\), so we can rewrite
+    \begin{equation*}
+    \dv{x}(\arcsec x) = \frac 1{x \tan y} = \frac 1{\abs{x \tan y}}
+        = \frac 1{\abs{x}\abs{\tan y}} = \frac 1{\abs{x}\sqrt{x^2 - 1}}
+    \end{equation*}
+    This is perhaps a little tricky, and it is in some cases more obvious to
+    just go about it piecewise:
+    \begin{equation*}
+    \dv{x}(\arcsec x) = \begin{cases}
+        \dfrac 1{x\sqrt{x^2 - 1}} & x \ge 0 \\
+        \dfrac {-1}{x\sqrt{x^2 - 1}} & x < 0
+    \end{cases}
+    \end{equation*}
+    The other equivalent can be found by taking out a factor of \(\abs{x}^2\)
+    from the square root, to cancel the absolute sign by squaring it. This can
+    be useful sometimes.
+    \begin{equation*}
+    \dv{x}(\arcsec x) = \frac 1{\abs{x}\sqrt{x^2 - 1}}
+        = \frac 1{\abs{x}\sqrt{x^2}\sqrt{1 - x^{-2}}}
+        = \frac 1{x^2\sqrt{1 - x^{-2}}}
+    \end{equation*}
+    To attack the inverse cosecant, it will be order of magnitude easier to just
+    make use of the fact that \(\arccsc x = \frac 12 \pi - \arcsec x\),
+    so that
+    \begin{equation*}
+    \dv{x}(\arccsc x) = \dv{x}(\frac \pi 2 - \arcsec x) = -\dv{x}(\arcsec x)
+    \end{equation*}
+    and then taking your pick of your favourite inverse secant derivative.
+
+    Similarly, \(\arccot x = \frac 12 \pi - \arctan x\), so
+    \begin{equation*}
+    \dv{x}(\arccot x) = \dv{x}(\frac \pi 2 - \arctan x) = -\frac{1}{1 + x^2}
     \end{equation*}
 
     \subsection{Common integrals}
