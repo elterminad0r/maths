@@ -99,6 +99,8 @@
 \newcommand{\defeq}{\vcentcolon=}
 \newcommand*\mean[1]{\overline{#1}}
 \newcommand*\lseg[1]{\mathit{#1}}
+\newcommand*\nPr[2]{\prescript{#1\mkern-2.5mu}{}P_{#2}}
+\newcommand*\nCr[2]{\prescript{#1\mkern-0.5mu}{}C_{#2}}
 
 \newcommand{\setstyle}{\mathbb}
 \newcommand{\Naturals}{\setstyle N}
@@ -209,19 +211,12 @@ top=2pt
 
     % mechanics: restitution etc
 
-    % integral f(x + sqrt(1 + x^2)) dx = integral 1 / 2 (1 - 1 / t ^ 2) f(t) dt
-
-    % frullani integral
-
     % x(x + 1)(x + 2)(x + 3) + 1 == (x ^ 2 + 3x + 1) ^ 2
 
     % can't rationalise denominator with 5 terms
 
-    % proof of fibonacci from power series
-
     % STEP: area in edge of convex curve
 
-    % substitution tan (x / 2)
     % step 2007ii4
     % proof of ceva's theorem: 2007ii8
     % proof of AM-GM: Jensen's inequality
@@ -358,9 +353,58 @@ top=2pt
 
     \section{Miscellaneous}
 
-%\begin{thm}Here is a new theorem.\end{thm}
-%
-%\begin{thm}Here is a new theorem.\end{thm}
+    \subsection{Binomial Theorem}
+
+    \begin{theorem}[Binomial theorem] Where \(n \in \Naturals\),
+    \begin{equation*}
+    (a + b)^n \equiv \sum_{r = 0}^n \binom nr a^r b^{n - r}
+    \end{equation*}
+    where the binomial coefficients are given by
+    \begin{equation*}
+    \binom nr = \nCr nr \defeq \frac{n!}{r!\cdot(n - r)!}
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
+    We can prove that this is the case by induction. If \(P(n)\) denotes the
+    binomial theorem for exponent \(n, \forall n \in \Integers^+\), then we
+    consider \(P(1)\):
+    \begin{equation*}
+    (a + b)^1 \equiv a + b
+        \equiv \frac{0!}{0!\cdot 1!} a^0b^1 + \frac{1!}{1!\cdot 0!} a^1b^0
+    \end{equation*}
+    so \(P(1)\) is true. We now consider \(P(n + 1)\), supposing that \(P(n)\)
+    is true.
+    \begin{align*}
+    (a + b)^{n + 1} &\equiv (a + b)(a + b)^n \\
+        &\equiv (a + b)\sum_{r = 0}^n \binom nr a^r b^{n - r}
+            \impliedby P(n) \\
+        &\equiv a\sum_{r = 0}^n \binom nr a^r b^{n - r}
+              + b\sum_{r = 0}^n \binom nr a^r b^{n - r} \\
+        &\equiv \sum_{r = 0}^n \binom nr a^{r + 1} b^{n - r}
+              + \sum_{r = 0}^n \binom nr a^r b^{n - r + 1} \\
+        &\equiv \sum_{r = 1}^{n + 1} \binom n{r - 1} a^{r} b^{n - r + 1}
+              + \sum_{r = 0}^n \binom nr a^r b^{n - r + 1} \\
+        &\equiv a^{n + 1} + b^{n + 1}
+              + \sum_{r = 1}^n \bqty{\binom n{r - 1} + \binom nr}
+                a^r b^{n - r + 1} \\
+        &\equiv a^{n + 1} + b^{n + 1}
+              + \sum_{r = 1}^n \binom{n + 1}r a^r b^{n - r + 1} \\
+        &\equiv \sum_{r = 0}^{n + 1} \binom{n + 1}r a^r b^{(n + 1) - r} \\
+    \end{align*}
+    because
+    \begin{align*}
+    \binom n{r - 1} + \binom nr &\equiv \frac{n!}{(r - 1)! \cdot (n - r + 1)!}
+                                     + \frac{n!}{r! \cdot (n - r)!}
+                                        \qquad \text{by definition} \\
+        &\equiv \frac{n!\cdot(r + (n - r + 1))}{r! \cdot (n - r + 1)!} \\
+        &\equiv \frac{n! \cdot (n + 1)}{r! \cdot ((n + 1) - r)!} \\
+        &\equiv \frac{(n + 1)!}{r! \cdot ((n + 1) - r)!} \\
+        &\equiv \binom{n + 1} r \qquad \text{by definition}
+    \end{align*}
+    so \(P(n + 1)\) is true if \(P(n)\) is true, and therefore \(P(n)\) is true
+    for \(\forall n \in \Integers^+\) by the principle of mathematical
+    induction.
+    \end{proof}
 
     \subsection{Numerical solutions to equations}
 
@@ -466,7 +510,7 @@ top=2pt
         = \frac{b^2 - 4ac}{4a^2} \\
     &\iff& x + \frac{b}{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
         = \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\
-    &\iff& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+    &\iff& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \qedhere
     \end{alignat*}
     \end{proof}
 
@@ -514,6 +558,7 @@ top=2pt
     &\iff&
     \pqty{\sum 2 u_i v_i}^2 - 4\pqty{\sum u_i^2}\pqty{\sum v_i^2} &\le 0 \\
     &\iff& \pqty{\sum u_i v_i}^2 &\le \pqty{\sum u_i^2} \pqty{\sum v_i^2}
+        \qedhere
     \end{alignat*}
     \end{proof}
 
@@ -612,7 +657,7 @@ top=2pt
     9 & 1882672131025 & 1372105 & 1940449 \\
     10 & 63955431761796 & 7997214 & 11309768 \\
     11 & 2172602007770041 & 46611179 & 65918161 \\
-    \multicolumn{4}{c}{\dots} \\
+    \multicolumn 4c\dots \\
     \bottomrule
     \caption{Square triangular numbers}
     \end{longtable}
@@ -681,14 +726,14 @@ for n, i in enumerate(get_sqr_tris(10)):
     By integrating by parts, we show the following:
     \begin{align*}
     \Gamma(z + 1) &= \int_0^\infty x^{z}e^{-x} \dd{x} \\
-                  &= \bqty{-x^{z} e^{-x}}_0^\infty
+                  &= -x^{z} e^{-x}\eval_0^\infty
                      + \int_0^\infty zx^{z - 1}e^{-x} \dd{x} \\
                   &= z\Gamma(z)
     \end{align*}
     Noting also that
     \begin{align*}
     \Gamma(1) &= \int_0^\infty e^{-x} \dd{x} \\
-              &= \bqty{-e^{-x}}_0^\infty \\
+              &= -e^{-x}\eval_0^\infty \\
               &= 1
     \end{align*}
     it can be seen from this recurrence that where \(n \in \Integers^+\),
@@ -697,6 +742,39 @@ for n, i in enumerate(get_sqr_tris(10)):
     \end{equation}
     In fact, the gamma function is used as an extension of the idea of
     factorials to the real and complex numbers other than the negative integers.
+
+    An interesting value that the gamma function takes is for \(z = \frac 12\).
+    \begin{equation*}
+    \Gamma(\tfrac 12) = \int_0^\infty x^{-\frac 12} e^{-x} \dd{x}
+    \end{equation*}
+    Letting \(x = u^2\)
+    \begin{alignat*}{2}
+    &\implies& \dv{x}{u} &= 2u \\
+    &\implies& \Gamma(\tfrac 12) &= \int_0^\infty \frac{2u}u e^{-u^2} \dd{u} \\
+    &&  &= 2\int_0^\infty e^{-u^2} \dd{u} \\
+    &&  &= \sqrt \pi
+    \end{alignat*}
+    from Theorem \ref{thm_gauss_integral}. From this we can derive the value of
+    any \(\Gamma(n + \frac 12)\) where \(n \in \Integers\) from the recurrence
+    relation on \(\Gamma\), and in some very informal sense, we can find that
+    the ``factorials'' of the half-integers are rational multiples of the square
+    root of pi. The first few are shown in Table \ref{tab_gamma_halves}.
+    \begin{longtable}{*{2}{>{\(\displaystyle}c<{\)}}}
+    \toprule
+    \text{\boldmath\(z\)}
+        & \text{\bfseries\boldmath\(\Gamma(z)\), or ``\boldmath\((z-1)!\)''} \\
+    \midrule
+    \endhead
+    \frac 12 & \sqrt{\pi} \\[3ex]
+    \frac 32 & \frac{\sqrt{\pi}}{2} \\[3ex]
+    \frac 52 & \frac{3 \sqrt{\pi}}{4} \\[3ex]
+    \frac 72 & \frac{15 \sqrt{\pi}}{8} \\[3ex]
+    \frac 92 & \frac{105 \sqrt{\pi}}{16} \\[3ex]
+    \multicolumn 2c\dots \\
+    \bottomrule
+    \caption{Half-integer values of the gamma function}
+    \label{tab_gamma_halves}
+    \end{longtable}
 
     \section{Discrete Maths (Computer Science)}
 
@@ -856,10 +934,12 @@ for n, i in enumerate(get_sqr_tris(10)):
     \frac 12 A &= -\int_\pi^0
         r^2 \frac 12 (1 - \cos 2 \theta) \dd{\theta} \implies
      A = r^2 \int_0^\pi (1 - \cos 2 \theta) \dd{\theta} =
-     r^2\bqty{\theta - \frac 12 \sin 2 \theta}_0^\pi \\
+     r^2\pqty{\theta - \frac 12 \sin 2 \theta}\eval_0^\pi \\
      &= r^2 \pqty{\pi - \frac 12 \sin 2 \pi -
-                   \pqty{0 - \frac 12 \sin 0}} = \pi r^2
+                   \pqty{0 - \frac 12 \sin 0}} = \pi r^2 \qedhere
     \end{align*}
+    \end{proof}
+    \begin{proof}[Alternative proof]
     One might alternatively use the parametric form of a circle,
     \(y = r \sin \theta\) and \(x = r \cos \theta\)
     (note that \(x^2 + y^2 = r^2(\sin^2 \theta + \cos^2 \theta) = r^2\)
@@ -869,9 +949,9 @@ for n, i in enumerate(get_sqr_tris(10)):
     A &= \int_0^{2\pi}
         r \sin \theta \cdot -r \sin \theta \dd{\theta} =
      \frac 12 r^2 \int_0^{2\pi} (1 - \cos 2 \theta) \dd{\theta} =
-     \frac 12 r^2 \bqty{\theta - \frac 12 \sin 2 \theta}_0^{2\pi} \\
+     \frac 12 r^2 \pqty{\theta - \frac 12 \sin 2 \theta}\eval_0^{2\pi} \\
      &= \frac 12 r^2 \pqty{2\pi - \frac 12 \sin 4 \pi -
-                      \pqty{0 - \sin 0}} = \pi r^2
+                      \pqty{0 - \sin 0}} = \pi r^2 \qedhere
     \end{align*}
     \end{proof}
 
@@ -960,17 +1040,17 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME automatic math mode
 
-    \begin{longtable}{*{4}{>{\(}c<{\)}}}
+    \begin{longtable}{*{4}{>{\(\displaystyle}c<{\)}}}
     \toprule
     \text{\boldmath\(\theta\)} & \text{\boldmath\(\sin \theta\)}
         & \text{\boldmath\(\cos \theta\)} & \text{\boldmath\(\tan \theta\)} \\
     \midrule
     \endhead
     0 & 0 & 1 & 0 \\[1ex]
-    \dfrac \pi 6 & \dfrac 12 & \dfrac{\sqrt 3} 2 & \dfrac {\sqrt 3} 3 \\[3ex]
-    \dfrac \pi 4 & \dfrac {\sqrt 2} 2 & \dfrac {\sqrt 2} 2 & 1 \\[3ex]
-    \dfrac \pi 3 & \dfrac{\sqrt 3} 2 & \dfrac 12 & \sqrt 3 \\[3ex]
-    \dfrac \pi 2 & 1 & 0 & \infty\\[2ex]
+    \frac \pi 6 & \frac 12 & \frac{\sqrt 3} 2 & \frac {\sqrt 3} 3 \\[3ex]
+    \frac \pi 4 & \frac {\sqrt 2} 2 & \frac {\sqrt 2} 2 & 1 \\[3ex]
+    \frac \pi 3 & \frac{\sqrt 3} 2 & \frac 12 & \sqrt 3 \\[3ex]
+    \frac \pi 2 & 1 & 0 & \infty\\[2ex]
     \bottomrule
     \caption{The basic trigonometric constants} \\
     \end{longtable}
@@ -994,23 +1074,23 @@ for n, i in enumerate(get_sqr_tris(10)):
     A small number of more esoteric angles are presented below. Many more can be
     found \cite{WikiTrigConstants}.
 
-    \begin{longtable}{*{4}{>{\(}c<{\)}}}
+    \begin{longtable}{*{4}{>{\(\displaystyle}c<{\)}}}
     \toprule
     \text{\boldmath\(\theta\)} & \text{\boldmath\(\sin \theta\)}
         & \text{\boldmath\(\cos \theta\)} & \text{\boldmath\(\tan \theta\)} \\
     \midrule
     \endhead
-    \dfrac \pi {12} & \dfrac{\sqrt 6 - \sqrt 2} 4 & \dfrac{\sqrt 6 + \sqrt 2} 4
+    \frac \pi {12} & \frac{\sqrt 6 - \sqrt 2} 4 & \frac{\sqrt 6 + \sqrt 2} 4
         & 2 - \sqrt 3 \\[3ex]
-    \dfrac \pi 8 & \dfrac 12 \sqrt{2 - \sqrt 2} & \dfrac 12 \sqrt{2 + \sqrt 2}
+    \frac \pi 8 & \frac 12 \sqrt{2 - \sqrt 2} & \frac 12 \sqrt{2 + \sqrt 2}
         & \sqrt 2 - 1 \\[3ex]
-    \dfrac \pi 5 & \dfrac 14 \sqrt{10 - 2\sqrt 5} & \dfrac{\sqrt 5 + 1} 4
+    \frac \pi 5 & \frac 14 \sqrt{10 - 2\sqrt 5} & \frac{\sqrt 5 + 1} 4
         & \sqrt{5 - 2\sqrt 5} \\[3ex]
-    \dfrac{3\pi}{10} & \dfrac{\sqrt 5 + 1} 4 & \dfrac 14 \sqrt{10 - 2\sqrt 5}
+    \frac{3\pi}{10} & \frac{\sqrt 5 + 1} 4 & \frac 14 \sqrt{10 - 2\sqrt 5}
         & \frac 15 \sqrt{25 + 10\sqrt 5} \\[3ex]
-    \dfrac{3\pi} 8 & \dfrac 12 \sqrt{2 + \sqrt 2} & \dfrac 12 \sqrt{2 - \sqrt 2}
+    \frac{3\pi} 8 & \frac 12 \sqrt{2 + \sqrt 2} & \frac 12 \sqrt{2 - \sqrt 2}
         & \sqrt 2 + 1 \\[3ex]
-    \dfrac{5\pi}{12} & \dfrac{\sqrt 6 + \sqrt 2} 4 & \dfrac{\sqrt 6 - \sqrt 2} 4
+    \frac{5\pi}{12} & \frac{\sqrt 6 + \sqrt 2} 4 & \frac{\sqrt 6 - \sqrt 2} 4
         & 2 + \sqrt 3  \\[2ex]
     \bottomrule
     \caption{More advanced trigonometric constants} \\
@@ -1088,7 +1168,7 @@ for n, i in enumerate(get_sqr_tris(10)):
         \sin(\frac 12 \pi - \alpha)\cos \beta +
             \sin \beta \cos(\frac 12 \pi - \alpha) \\
     &\equiv
-        \cos \alpha \cos \beta + \sin \beta \sin \alpha
+        \cos \alpha \cos \beta + \sin \beta \sin \alpha \qedhere
     \end{align*}
     \end{proof}
     We can now deduce
@@ -1099,18 +1179,19 @@ for n, i in enumerate(get_sqr_tris(10)):
     \end{equation*}
     \end{theorem}
     \begin{proof}
-    \begin{equation*}
-    \tan(\alpha + \beta) \equiv
+    \begin{align*}
+    \tan(\alpha + \beta) &\equiv
         \frac{\sin(\alpha + \beta)}{\cos(\alpha + \beta)} \equiv
         \frac{\sin \alpha \cos \beta + \sin \beta \cos \alpha}
-             {\cos \alpha \cos \beta + \sin \alpha \sin \beta} \equiv
-        \frac{\frac{\sin \alpha \cos \beta}{\cos \alpha \cos \beta} +
+             {\cos \alpha \cos \beta + \sin \alpha \sin \beta} \\
+        &\equiv \frac{
+              \frac{\sin \alpha \cos \beta}{\cos \alpha \cos \beta} +
               \frac{\sin \alpha \sin \beta}{\cos \alpha \cos \beta}}
              {\frac{\cos \alpha \cos \beta}{\cos \alpha \cos \beta} +
               \frac{\sin \alpha \sin \beta}{\cos \alpha \cos \beta}}
              \equiv
-        \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta}
-    \end{equation*}
+        \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta} \qedhere
+    \end{align*}
     \end{proof}
     There is a corresponding set of results also allowing for differences.
     \begin{theorem}[Compound angle formulae] \label{thm_trig_compound}
@@ -1124,8 +1205,9 @@ for n, i in enumerate(get_sqr_tris(10)):
     \end{align*}
     \end{theorem}
     \begin{proof}
-    Results for a function of a difference are derived from the parity of
-    each function (\ref{sec_trig_parity}).
+    Results for a function of a difference can be derived from the parity of
+    each function (\ref{sec_trig_parity}), and rewriting \(\alpha - \beta\) as
+    \(\alpha + (-\beta)\).
     \end{proof}
     One might also just assume it's probably OK to flip signs.
 
@@ -1146,9 +1228,9 @@ for n, i in enumerate(get_sqr_tris(10)):
     These follow from \(2\theta \equiv \theta + \theta\) in combination with
     Theorem \ref{thm_trig_compound}.
     \end{proof}
-    \begin{theorem}[Squared half-angle identities]
     It follows, by rearrangement of identities in Theorem
     \ref{thm_trig_double_angle}, that
+    \begin{theorem}[Squared half-angle identities]
     \begin{align*}
     \sin^2 \theta &\equiv
         \frac{1 - \cos 2 \theta} 2 \\
@@ -1204,6 +1286,7 @@ for n, i in enumerate(get_sqr_tris(10)):
      \frac{\sin \alpha \cos \beta + \sin \beta \cos \alpha +
            \sin \alpha \cos \beta - \sin \beta \cos \alpha} 2 \\
     &\equiv \frac{2 \sin \alpha \cos \beta} 2 \equiv \sin \alpha \cos \beta
+        \qedhere
     \end{align*}
     \end{proof}
     \begin{theorem}[Product of cosines]
@@ -1219,6 +1302,7 @@ for n, i in enumerate(get_sqr_tris(10)):
      \frac{\cos \alpha \cos \beta - \sin \alpha \sin \beta +
            \cos \alpha \cos \beta + \sin \alpha \sin \beta} 2 \\
     &\equiv \frac{2 \cos \alpha \cos \beta} 2 \equiv \cos \alpha \cos \beta
+        \qedhere
     \end{align*}
     \end{proof}
     \begin{theorem}[Product of sines]
@@ -1234,6 +1318,7 @@ for n, i in enumerate(get_sqr_tris(10)):
      \frac{\cos \alpha \cos \beta + \sin \alpha \sin \beta -
            \cos \alpha \cos \beta + \sin \alpha \sin \beta} 2 \\
     &\equiv \frac{2 \sin \alpha \sin \beta} 2 \equiv \sin \alpha \sin \beta
+        \qedhere
     \end{align*}
     \end{proof}
 
@@ -1255,6 +1340,7 @@ for n, i in enumerate(get_sqr_tris(10)):
      \sin(\alpha' + \beta') + \sin(\alpha' - \beta') \equiv
      2\sin \alpha' \cos \beta'\ \text{(from \ref{sec_trig_sum_product})}
     \\&\equiv 2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta} 2
+        \qedhere
     \end{align*}
     \end{proof}
     As a direct corollary of this due to the oddness of the sine
@@ -1281,6 +1367,7 @@ for n, i in enumerate(get_sqr_tris(10)):
      \cos(\alpha' + \beta') + \cos(\alpha' - \beta') \equiv
      2\cos \alpha' \cos \beta'\ \text{(from \ref{sec_trig_sum_product})}
      \\&\equiv 2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2
+        \qedhere
     \end{align*}
     \end{proof}
     Finally, we show
@@ -1300,7 +1387,7 @@ for n, i in enumerate(get_sqr_tris(10)):
      2 \cos \pqty{\frac \pi 2 - \pqty{-\frac{\alpha + \beta} 2}}
        \cos \pqty{\frac \pi 2 - \frac{\alpha - \beta} 2} \equiv
      2 \sin -\frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2 \\&\equiv
-     -2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2
+     -2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2 \qedhere
     \end{align*}
     \end{proof}
 
@@ -1339,7 +1426,7 @@ for n, i in enumerate(get_sqr_tris(10)):
             \pqty{1 - \tan^2 \tfrac \theta 2} \\
         &\equiv \frac{1 - \tan^2 \tfrac \theta 2}
                      {\sec^2 \tfrac \theta 2}
-        \equiv \frac{1 - t^2}{1 + t^2}
+        \equiv \frac{1 - t^2}{1 + t^2} \qedhere
     \end{align*}
     \end{proof}
 
@@ -1403,6 +1490,10 @@ for n, i in enumerate(get_sqr_tris(10)):
     \begin{equation*}
     f_X(k) = \Prob(X = k) = \binom \nu k \pi^k (1 - \pi)^{\nu - k}
         \quad \text{where \(k \in \set{0, 1, \dotsc, \nu}\)}
+    \end{equation*}
+    where
+    \begin{equation*}
+    \binom \nu k = \nCr \nu k = \frac{\nu!}{k!\cdot (\nu - k)!}
     \end{equation*}
 
     \subsubsection{Normal approximation}
@@ -1513,7 +1604,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     Note that by FTC (\ref{sec_calc_FTC}), these also give a number of common
     integrations.
 
-    \begin{longtable}{*{3}{>{\(}c<{\)}}c}
+    \begin{longtable}{*{3}{>{\(\displaystyle}c<{\)}}c}
     \toprule
     \text{\boldmath\(f(x)\)} & \text{\boldmath\(f'(x)\)}
         & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
@@ -1524,50 +1615,52 @@ for n, i in enumerate(get_sqr_tris(10)):
     g(x) \cdot h(x) & g'(x) \cdot h(x) + g(x) \cdot h'(x)
         && \ref{sec_calc_product} \\[1ex]
     g(h(x)) & h'(x) \cdot g'(h(x)) && \ref{sec_calc_chain} \\[1ex]
-    \dfrac{g(x)}{h(x)} & \dfrac{h(x) \cdot g'(x) - g(x) \cdot h'(x)}{(h(x))^2}
+    \frac{g(x)}{h(x)} & \frac{h(x) \cdot g'(x) - g(x) \cdot h'(x)}{(h(x))^2}
         && \ref{sec_calc_quotient} \\[3ex]
     g(x)^{h(x)}
-        & \pqty{\dfrac{h(x)g'(x)}{g(x)} + h'(x)\ln(g(x))}g(x)^{h(x)}
-        & g(x) > 0 \\[3ex]
-    \sqrt{g(x)} & \dfrac{g'(x)}{2\sqrt{g(x)}} & g(x) \ge 0 \\[3ex]
-    \ln(g(x)) & \dfrac{g'(x)}{g(x)} & g(x) > 0 \\[3ex]
+        & \pqty{\frac{h(x)g'(x)}{g(x)} + h'(x)\ln(g(x))}g(x)^{h(x)}
+        & g(x) > 0 & \ref{sec_calc_powers} \\[3ex]
+    \sqrt{g(x)} & \frac{g'(x)}{2\sqrt{g(x)}} & g(x) \ge 0 \\[3ex]
+    \ln(g(x)) & \frac{g'(x)}{g(x)} & g(x) > 0 \\[3ex]
     g(ax + b) & a \cdot g'(ax + b) \\[3ex]
     a & 0 & \text{\(a\) is constant.} \\[1ex]
-    x^n & nx^{n-1} & \text{\(n\) is constant} \\[1ex]
+    x^n & nx^{n-1} & \text{\(n\) is constant} & \ref{sec_calc_powers} \\[1ex]
     e^x & e^x & \text{\(e\) is Euler's number} & \ref{sec_e} \\[1ex]
-    a^x & \ln a \cdot a^x & \text{\(a\) is constant} \\[1ex]
-    \ln x & \dfrac 1{x} \\[3ex]
+    a^x & \ln a \cdot a^x & \text{\(a\) is constant}
+        & \ref{sec_calc_powers}\\[1ex]
+    \ln x & \frac 1{x} \\[3ex]
     \sin x & \cos x \\[1ex]
     \cos x & -\sin x && \ref{sec_calc_trig_basic} \\[1ex]
     \tan x & \sec^2 x & \tan^2 x + 1 & \ref{sec_calc_trig_basic} \\[1ex]
     \sec x & \sec x \tan x && \ref{sec_calc_trig_basic} \\[1ex]
     \csc x & -\csc x \cot x && \ref{sec_calc_trig_basic} \\[1ex]
     \cot x & -\csc^2 x & -(\cot^2 x + 1) & \ref{sec_calc_trig_basic} \\[1ex]
-    \arcsin x & \dfrac 1{\sqrt{1 - x^2}} && \ref{sec_calc_trig_inv} \\[3ex]
-    \arccos x & \dfrac{-1}{\sqrt{1 - x^2}} && \ref{sec_calc_trig_inv} \\[3ex]
-    \arctan x & \dfrac 1{x^2 + 1} && \ref{sec_calc_trig_inv} \\[3ex]
-    \arcsec x & \dfrac 1{\abs{x} \sqrt{x^2 - 1}}
-        & \dfrac 1{x^2 \sqrt{1 - x^{-2}}} & \ref{sec_calc_trig_inv} \\[3ex]
-    \arccsc x & \dfrac{-1}{\abs{x} \sqrt{x^2 - 1}}
-        & \dfrac{-1}{x^2 \sqrt{1 - x^{-2}}} & \ref{sec_calc_trig_inv} \\[3ex]
-    \arccot x & -\dfrac 1{x^2 + 1} && \ref{sec_calc_trig_inv} \\[3ex]
+    \arcsin x & \frac 1{\sqrt{1 - x^2}} && \ref{sec_calc_trig_inv} \\[3ex]
+    \arccos x & \frac{-1}{\sqrt{1 - x^2}} && \ref{sec_calc_trig_inv} \\[3ex]
+    \arctan x & \frac 1{x^2 + 1} && \ref{sec_calc_trig_inv} \\[3ex]
+    \arcsec x & \frac 1{\abs{x} \sqrt{x^2 - 1}}
+        & \frac 1{x^2 \sqrt{1 - x^{-2}}} & \ref{sec_calc_trig_inv} \\[3ex]
+    \arccsc x & \frac{-1}{\abs{x} \sqrt{x^2 - 1}}
+        & \frac{-1}{x^2 \sqrt{1 - x^{-2}}} & \ref{sec_calc_trig_inv} \\[3ex]
+    \arccot x & -\frac 1{x^2 + 1} && \ref{sec_calc_trig_inv} \\[3ex]
     \sinh x & \cosh x \\[1ex]
     \cosh x & \sinh x \\[1ex]
     \tanh x & \sech^2 x & -\tanh^2 x + 1 \\[1ex]
     \sech x & -\tanh x \sech x \\[1ex]
     \csch x & -\coth x \csch x \\[1ex]
     \coth x & -\csch^2 x & -(\coth^2 x + 1) \\[1ex]
-    \arcsinh x & \dfrac 1{\sqrt{x^2 + 1}} \\[3ex]
-    \arccosh x & \dfrac 1{\sqrt{x^2 - 1}} \\[3ex]
-    \arctanh x & \dfrac 1{1 - x^2} \\[3ex]
-    \arcsech x & \dfrac{-1}{x\sqrt{1 - x^2}} \\[3ex]
-    \arccsch x & \dfrac{-1}{\abs{x}\sqrt{1 + x^2}} \\[3ex]
-    \arccoth x & \dfrac 1{1 - x^2} \\[3ex]
+    \arcsinh x & \frac 1{\sqrt{x^2 + 1}} \\[3ex]
+    \arccosh x & \frac 1{\sqrt{x^2 - 1}} \\[3ex]
+    \arctanh x & \frac 1{1 - x^2} \\[3ex]
+    \arcsech x & \frac{-1}{x\sqrt{1 - x^2}} \\[3ex]
+    \arccsch x & \frac{-1}{\abs{x}\sqrt{1 + x^2}} \\[3ex]
+    \arccoth x & \frac 1{1 - x^2} \\[3ex]
     \bottomrule
     \caption{Common derivatives} \\
     \end{longtable}
 
-    \subsubsection{Derivatives with powers}
+    \subsubsection{Derivatives with powers} \label{sec_calc_powers}
+
     Often when being introduced to differentiation, derivatives like that of
     \(x^2\) are demonstrated from first principles, as follows:
     \begin{align*}
@@ -1576,8 +1669,8 @@ for n, i in enumerate(get_sqr_tris(10)):
         &= \lim_{h \to 0} (2x + h) \\
         &= 2x
     \end{align*}
-    We can do this for a general positive integer power of \(x\) by using the
-    binomial theorem:
+    We can do this for a general positive integer power of \(x\),
+    \(n \in \Integers^+\) by using the binomial theorem:
     \begin{align*}
     \dv{x}(x^n) &= \lim_{h \to 0} \frac{(x + h)^n - x^n} h \\
         &= \lim_{h \to 0} \bqty{\frac 1h \pqty{-x^n
@@ -1594,19 +1687,50 @@ for n, i in enumerate(get_sqr_tris(10)):
         &= nx^{n-1} \qquad
             \text{as the smallest power of \(h\) inside the sum is 0.}
     \end{align*}
-    We can show that this power rule generalizes to any positive real exponent
-    \(k > 0\) using the chain rule and the derivative of \(e^x\).
+    Now if we have some negative integer exponent \(-n\) where
+    \(n \in \Integers^+\), we can use implicit differentiation to show the rule
+    still holds. Letting \(y = x^{-n}\),
+    \begin{alignat*}{2}
+    &\implies& yx^n &= 1 \\
+    &\implies& nx^{n - 1}y + x^n \dv{y}{x} &= 0 \\
+    &\implies& \dv{y}{x} &= -nx^{n - 1}yx^{-n}
+        = -nx^{-1}x^{-n} = -nx^{-n - 1}
+    \end{alignat*}
+    We can then use a little implicit differentiation to carry this onto any
+    rational exponent \(p / q \in \Rationals\). We let \(y = x^{p / q}\)
+    \begin{alignat*}{2}
+    &\implies& y^q &= x^p \\
+    &\implies& qy^{q - 1}\dv{y}{x} &= px^{p - 1} \\
+    &\implies& \dv{y}{x} &= \frac pq x^{p - 1}y^{1 - q}
+        = \frac pq x^{p - 1}x^{(p / q)(1 - q)} \\
+    &&  &= \frac pq x^{p - 1 + p / q - p}
+        = \frac pq x^{p / q - 1}
+    \end{alignat*}
+
+    We can show that this power rule generalizes to any real exponent \(k \in
+    \Reals\), for \(x > 0\), using the chain rule and the derivative of \(e^x\).
     \begin{equation*}
     \dv{x}(x^k) = \dv{x}(\exp(k(\ln x))) = \frac kx \exp(k(\ln x))
         = \frac kx x^k = k x^{k - 1}
     \end{equation*}
-    For negative real exponents, \(k < 0\) we can make use of the fact that
-    \(-k > 0\):
+    Unfortunately there's no straightforward way to even define exponentiation
+    with a negative base for a general real exponent.
+
+    To differentiate an exponential function of a positive constant
+    \(a \in \Reals^+\), we can rewrite it as a power of \(e\), and use the chain
+    rule.
     \begin{equation*}
-    \dv{x}(x^k) = \dv{x}((x^{-k})^{-1}) = -kx^{-k-1} \cdot (-(x^{-k})^{-2})
-        = kx^{-k-1}x^{2k} = kx^{k - 1}
+    \dv{x}(a^x) = \dv{x}(e^{(\ln a)x}) = \ln a \cdot e^{(\ln a)x}
+        = \ln a \cdot a^x
     \end{equation*}
-    To differentiate an exponential function of a constant, we can 
+    Lastly, if we have a positive function to the power of another function,
+    \(g(x)^{h(x)}\) where \(g(x) > 0\), we do a similar rewrite in terms of
+    \(e\).
+    \begin{align*}
+    \dv{x}(g(x)^{h(x)}) &= \dv{x}(e^{(\ln(g(x)))h(x)}) \\
+        &= \pqty{\frac{h(x)g'(x)}{g(x)} + h'(x)\ln(g(x))}e^{(\ln(g(x)))h(x)} \\
+        &= \pqty{\frac{h(x)g'(x)}{g(x)} + h'(x)\ln(g(x))}g(x)^{h(x)}
+    \end{align*}
 
     \subsubsection{Basic trigonometric functions} \label{sec_calc_trig_basic}
 
@@ -1692,7 +1816,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     just go about it piecewise:
     \begin{equation*}
     \dv{x}(\arcsec x) = \begin{cases}
-        \dfrac 1{x\sqrt{x^2 - 1}} & x \ge 0 \\
+        \dfrac 1{x\sqrt{x^2 - 1}} & x \ge 0 \\[3ex]
         \dfrac {-1}{x\sqrt{x^2 - 1}} & x < 0
     \end{cases}
     \end{equation*}
@@ -1718,6 +1842,184 @@ for n, i in enumerate(get_sqr_tris(10)):
     \end{equation*}
 
     \subsection{Common integrals}
+
+    \begin{longtable}{*{3}{>{\(\displaystyle}c<{\)}}c}
+    \toprule
+    \text{\boldmath\(f(x)\)}
+        & \text{\boldmath\(\int f(x) \dd{x}\ (+ C)\)}
+        & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
+    \midrule
+    \endhead
+    g'(x) & g(x) \\[1ex]
+    g(x) + h(x) & \int g(x) \dd{x} + \int h(x) \dd{x} \\[2ex]
+    a \cdot g(x) & a\int g(x) \dd{x} & \text{\(a\) is a constant} \\[2ex]
+    g'(h(x)) \cdot h'(x) & g(h(x)) \\[1ex]
+    g'(x) \cdot h(x) & g(x) \cdot h(x) - \int g(x) \cdot h'(x) \dd{x} \\[2ex]
+    \frac{g'(x)}{g(x)} & \ln \abs{g(x)} \\[3ex]
+    x^n & \frac 1{n + 1}x^{n + 1} & n \ne -1 \\[3ex]
+    \frac 1x & \ln \abs{x} \\[3ex]
+    e^x & e^x & \text{\(e\) is Euler's constant} \\[1ex]
+    a^x & \frac 1{\ln a}a^x & \text{\(a\) is a constant} \\[3ex]
+    \sin x & -\cos x \\[1ex]
+    \cos x & \sin x \\[1ex]
+    \tan x & \ln \abs{\sec x} \\[1ex]
+    \sec x & \ln \abs{\sec x + \tan x}
+        & \ln \abs{\tan(\tfrac 12 x + \tfrac 14 \pi)} \\[2ex]
+    \csc x & \ln \abs{\csc x - \cot x} & \ln \abs{\tan(\tfrac 12 x)} \\[2ex]
+    \cot x & \ln \abs{\sin x} \\[1ex]
+    \bottomrule
+    \caption{Common integrals}
+    \end{longtable}
+
+    \subsection{Frullani Integral}
+
+    \begin{theorem}[Frullani's Integral]
+    Where the limit of \(f(x)\) exists at both 0 and \(\infty\), and \(f'(x)\)
+    exists and is continuous on \(\intoo{0, \infty}\),
+    \begin{equation*}
+    \int_0^\infty \frac{f(ax) - f(bx)} x \dd{x}
+        = (f(\infty) - f(0))\ln \frac ab
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
+    This can be shown by using differentiation under the integral sign. We note
+    that the integrand is itself the definite integral of \(f'(tx)\) with
+    respect to \(t\), from \(b\) to \(a\). We can then exchange the integrals.
+    %FIXME justify
+    \begin{align*}
+    \int_0^\infty \frac{f(ax) - f(bx)} x \dd{x} &=
+        \int_0^\infty \int_b^a f'(tx) \dd{t} \dd{x} \\
+        &= \int_b^a \int_0^\infty f'(tx) \dd{x} \dd{t} \\
+        &= \int_b^a \frac{f(tx)}{t}\eval_{x=0}^\infty \dd{t} \\
+        &= \int_b^a \frac 1t(f(\infty) - f(0)) \dd{t} \\
+        &= (f(\infty) - f(0))\int_b^a \frac 1t \dd{t} \\
+        &= (f(\infty) - f(0))\ln \frac ab \qedhere
+    \end{align*}
+    \end{proof}
+
+    \subsection{Archyperbolic \textit t-substitutions.}
+
+    \begin{theorem}[Archyperbolic t substitution]
+    \begin{equation*}
+    \int f(x + \sqrt{x^2 + 1}) \dd{x}
+        = \frac 12 \int \pqty{1 + \frac 1{t^2}}f(t) \dd{t}
+    \end{equation*}
+    where \(t = x + \sqrt{x^2 + 1}\).
+    \begin{equation*}
+    \int f(x + \sqrt{x^2 - 1}) \dd{x}
+        = \frac 12 \int \pqty{1 - \frac 1{t^2}}f(t) \dd{t}
+    \end{equation*}
+    where \(t = x + \sqrt{x^2 - 1}\).
+    \end{theorem}
+    \begin{proof}
+    To find the integral of some function \(f(x + \sqrt{x^2 + 1})\), we can make
+    the substitution \(t = x + \sqrt{x^2 + 1}\). Noting that
+    \(t^{-1} = \sqrt{x^2 + 1} - x\), we have \(\frac 12(t - t^{-1}) = x\)
+    and also \(\frac 12(t + t^{-1}) = \sqrt{x^2 + 1}\), so in fact the form of
+    \(f(x)\) can involve both \(x\) and \(\sqrt{x^2 + 1}\) as these can be
+    written in terms of \(t\). From the former equation, we have also
+    \begin{alignat*}{2}
+    && \dv{x}{t} &= \frac 12\pqty{1 + \frac 1{t^2}} \\
+    &\implies& \int f(x + \sqrt{x^2 + 1}) \dd{x}
+        &= \frac 12 \int \pqty{1 + \frac 1{t^2}}f(t) \dd{t}
+    \end{alignat*}
+    Similarly for the second one, we let \(t = x + \sqrt{x^2 - 1}\) so that
+    \(t^{-1} = x - \sqrt{x^2 - 1}\), and we have \(\frac 12(t + t^{-1}) = x\)
+    and also \(\frac 12(t - t^{-1}) = \sqrt{x^2 - 1}\). Therefore,
+    \begin{alignat*}{2}
+    && \dv{x}{t} &= \frac 12\pqty{1 - \frac 1{t^2}} \\
+    &\implies& \int f(x + \sqrt{x^2 - 1}) \dd{x}
+        &= \frac 12 \int \pqty{1 - \frac 1{t^2}}f(t) \dd{t} \qedhere
+    \end{alignat*}
+    \end{proof}
+
+    \subsection{Supersymmetric involution substitution}
+
+    \begin{theorem}[Additive involution substitution]
+    \begin{equation*}
+    \int_a^b \frac{f(x)}{f(x) + f(a + b - x)} \dd{x} = \frac{b - a} 2
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
+    Let \(I\) denote the integral, and make the substitution \(u = a + b - x\),
+    \begin{alignat*}{2}
+    &\implies& \dv{u}{x} &= -1, \quad x = a + b - u \\
+    &\implies& I &= \int_{a + b - a}^{a + b - b}
+                        \frac{-f(a + b - u)}{f(a + b - u) + f(u)} \dd{u} \\
+    &&  &= \int_a^b \frac{f(a + b - u)}{f(a + b - u) + f(u)} \dd{u} \\
+    &\implies& I + I &= \int_a^b
+                        \frac{f(a + b - x) + f(x)}
+                             {f(a + b - x) + f(x)} \dd{x} \\
+    &&  &= \int_a^b 1 \dd{x} = b - a \\
+    &\implies& I &= \frac{b - a} 2 \qedhere
+    \end{alignat*}
+    \end{proof}
+    \begin{theorem}[Divisive involution substitution]
+    \begin{equation*}
+    \int_a^b \frac{f(x)}{x(f(x) + f(ab / x))} \dd{x}
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
+    Again let \(I\) denote the integral. Make the substitution \(u = ab / x\),
+    \begin{alignat*}{2}
+    &\implies& \dv{u}{x} &= -\frac{ab}{x^2} = -\frac ux, \quad x = \frac{ab}u \\
+    &\implies& I &= \int_{ab/a}^{ab/b} \frac{-f(ab / u)}{u(f(ab / u) + f(u))}
+        \dd{u} \\
+    && &= \int_a^b \frac{f(ab / u)}{u(f(ab / u) + f(u))} \dd{u} \\
+    &\implies& I + I &= \int_a^b \frac{f(ab / x) + f(x)}
+                                      {x(f(ab / x) + f(x))} \dd{x} \\
+    && &= \int_a^b \frac 1x \dd{x} = \ln \frac ba \\
+    &\implies& I &= \frac 12 \ln \frac ba \qedhere
+    \end{alignat*}
+    \end{proof}
+
+    \subsection{Gaussian Integral}
+
+    \begin{theorem}[Gaussian Integral] \label{thm_gauss_integral}
+    \begin{equation*}
+    \int_{-\infty}^\infty e^{-x^2} \dd{x} = \sqrt \pi
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
+    We can consider first the square of the integral.
+    \begin{align*}
+    \pqty{\int_{-\infty}^\infty e^{-x^2} \dd{x}}^2
+        &= \pqty{\int_{-\infty}^\infty e^{-x^2} \dd{x}}
+           \pqty{\int_{-\infty}^\infty e^{-y^2} \dd{y}} \\
+        &= \int_{-\infty}^\infty
+                       \pqty{\int_{-\infty}^\infty e^{-y^2} \dd{y}}
+                   e^{-x^2} \dd{x} \\
+        &= \int_{-\infty}^\infty
+               \pqty{\int_{-\infty}^\infty e^{-y^2} e^{-x^2} \dd{y}} \dd{x} \\
+        &= \int_{-\infty}^\infty
+               \int_{-\infty}^\infty e^{-x^2-y^2} \dd{y} \dd{x}
+    \end{align*}
+    %FIXME diagram of this
+    This is effectively integrating some function of \((x, y)\) over
+    \(\Reals^2\), giving the volume between an infinite solid and the \((x, y)\)
+    plane. By noting that the function only depends on the distance of
+    \((x, y)\) from \((0, 0)\) (ie \(x^2 + y^2\)), we see that this volume is
+    equivalent to the volume obtained by fully rotating the curve in the
+    \(y = e^{-x^2}\) where
+    \(x \in \intco{0, \infty} \implies y \in \intoc{0, 1}\) around the y axis.
+    This means
+    \begin{alignat*}{2}
+    && \pqty{\int_{-\infty}^\infty e^{-x^2} \dd{x}}^2
+        &= \int_0^1 \pi x^2 \dd{y} \\
+    &&  &= -\pi \int_0^1 \ln y \dd{y} \\
+    &&  &= -\pi (y\ln y - y)\eval_0^1 \\
+    &&  &= -\pi \pqty{0 - 1 - 0 + 0} \\
+    &&  &= \pi \\
+    &\implies& \int_{-\infty}^\infty e^{-x^2} \dd{x}
+        &= \sqrt \pi \qedhere
+    \end{alignat*}
+    \end{proof}
+    This integral is used as the normalising constant of the normal
+    distribution. It also pops up in the evaluation of \(\Gamma(\frac 12)\).
+
+    It's a quite famous example of an integral of an elementary integrand that
+    has no elementary antiderivative, but when taken as a definite integral can
+    be solved analytically.
 
     \subsection{Volume of Revolution}
 
@@ -1849,7 +2151,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     &\implies& A(\sqrt 5) &= 1 \\
     &\implies& A &= \frac 1{\sqrt 5}, B = -\frac 1{\sqrt 5}
     \end{alignat*}
-    Now we can use a binomial expansion to obtain an equivalent series.
+    Now we can use a binomial series expansion to obtain an equivalent series.
     \begin{align*}
     f(x) &= \frac 1{\sqrt 5}\pqty{\frac 1{1 - \varphi x}
                                 - \frac 1{1 - \psi x}} \\
@@ -1976,7 +2278,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     \check{a}&\grave{a}&\vec{a}\\
     \ddot{a}&\tilde{a}\\
     \end{array}\) \\
-    \multicolumn{3}{c}{
+    \multicolumn 3c{
     \begin{tabular}{ccccccccccccccccccccc}
 {\color{AntiqueWhite1} t}\textcolor{AntiqueWhite1}{t} &
 {\color{AntiqueWhite2} t}\textcolor{AntiqueWhite2}{t} &
@@ -2324,8 +2626,8 @@ for n, i in enumerate(get_sqr_tris(10)):
     \texttt{text} {\ttfamily text} \\ % = typewriter font
     \textit{text} {\itshape text} & % = italic
     \textsl{text} {\slshape text} \\ % = slanted/oblique
-    \multicolumn{2}{c}{\emph{some \emph{really} emphasised}} \\ % = emphasised
-    \multicolumn{2}{c}{\em some {\em really} emphasised} \\ % = emphasised
+    \multicolumn 2c{\emph{some \emph{really} emphasised}} \\ % = emphasised
+    \multicolumn 2c{\em some {\em really} emphasised} \\ % = emphasised
     \textsc{I am} & {\scshape Death} \\ % = small caps
     \end{tabular} &
     \begin{tabular}{cc}
