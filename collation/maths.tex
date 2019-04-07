@@ -53,7 +53,7 @@
 \pgfplotsset{compat=1.15}
 
 % \url function and clickable table of contents. no ugly red boxes though
-\usepackage[hidelinks]{hyperref}
+\usepackage[hidelinks,pdfencoding=auto,psdextra]{hyperref}
 
 % maths symbols and other stuff (supersedes the ams* packages)
 \usepackage{mathtools}
@@ -87,8 +87,25 @@
 
 \DeclareMathOperator{\Normal}{\mathcal{N}}
 \DeclareMathOperator{\Binomial}{\mathcal{B}}
+\DeclareMathOperator{\Prob}{\mathrm P}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand*\mean[1]{\overline{#1}}
+\newcommand*\lseg[1]{\mathit{#1}}
+
+\newcommand{\setstyle}{\mathbb}
+\newcommand{\Naturals}{\setstyle N}
+\newcommand{\Integers}{\setstyle Z}
+\newcommand{\Rationals}{\setstyle Q}
+\newcommand{\Reals}{\setstyle R}
+\newcommand{\Complex}{\setstyle C}
 
 % define starting paragraph letter stuff
 \usepackage{lettrine}
@@ -175,6 +192,7 @@ top=2pt
 \allowdisplaybreaks
 
 \usepackage{amsthm}
+\usepackage{thmtools}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -182,8 +200,22 @@ top=2pt
 \begin{document}
     \maketitle\thispagestyle{empty} % no page number under title
     \tableofcontents
+    \listoftables
+    \listoffigures
+    \listoflistings
+    \listoftheorems
 
     %FIXME
+
+    % mechanics: restitution etc
+
+    % integral f(x + sqrt(1 + x^2)) dx = integral 1 / 2 (1 - 1 / t ^ 2) f(t) dt
+
+    % frullani integral
+
+    % x(x + 1)(x + 2)(x + 3) + 1 == (x ^ 2 + 3x + 1) ^ 2
+
+    % can't rationalise denominator with 5 terms
 
     % proof of fibonacci from power series
 
@@ -367,7 +399,7 @@ top=2pt
                              ab^{n - 2} + b^{n - 1})
     \end{equation}
     This can in fact be derived from the partial sum of a geometric progression
-    \ref{}. The sum \(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n\) is
+    \ref{sec_GP}. The sum \(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n\) is
     a geometric progression of \(n + 1\) terms with first term \(a^n\) and
     common ratio \(b/a\).  Therefore,
     \begin{alignat*}{2}
@@ -413,96 +445,101 @@ top=2pt
     \subsection[Irrationality of \(\sqrt 2\)]
                {Irrationality of \boldmath\(\sqrt 2\)}
 
-    Assume \(\sqrt 2 = \frac ab : a, b \in \mathbb Z \land \gcd(a, b) = 1\), ie
+    Assume \(\sqrt 2 = \frac ab : a, b \in \Integers \land \gcd(a, b) = 1\), ie
     \(a\) and \(b\) are coprime.
-
-    \subsection{Pythagoras' Theorem} \label{sec_pythagoras}
-
-    %FIXME add diagram
-
-    If a triangle has sides \(a\), \(b\), \(c\) opposed by angles \(A\), \(B\),
-    \(C\), then
-    \begin{equation}
-    C = \frac 12 \pi \iff a^2 + b^2 = c^2
-    \end{equation}
 
     \subsection{Quadratic formula} \label{sec_quad_formula}
 
-    We aim to find a general expression for the roots of a quadratic, ie show
-    that
-    \begin{equation}
-    \begin{split}
+    There is a formula to give the roots of a general quadratic.
+    \begin{theorem}[Quadratic formula]
+    \begin{align*}
     ax^2 + bx + c &= 0\ \text{where}\ a \neq 0 \\
-    \implies x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-    \end{split}
-    \end{equation}
-    We can complete the square to do this.
+    \iff x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+    \end{align*}
+    \end{theorem}
+    \begin{proof}
+    We can complete the square to solve a general quadratic equation.
     \begin{alignat*}{2}
     &&ax^2 + bx + c &= 0 \\
-    &\implies& x^2 + \frac{b}{a}x + \frac{c}{a} &= 0 \\
-    &\implies& \pqty{x + \frac{b}{2a}x}^2 &= \pqty{\frac{b}{2a}}^2 - \frac{c}{a}
+    &\iff& x^2 + \frac{b}{a}x + \frac{c}{a} &= 0 \\
+    &\iff& \pqty{x + \frac{b}{2a}x}^2 &= \pqty{\frac{b}{2a}}^2 - \frac{c}{a}
         = \frac{b^2 - 4ac}{4a^2} \\
-    &\implies& x + \frac{b}{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
+    &\iff& x + \frac{b}{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
         = \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\
-    &\implies& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \qed
+    &\iff& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
     \end{alignat*}
+    \end{proof}
 
     Corollaries are that the number of real roots is determined by the
     discriminant \({\Delta = b^2 - 4ac}\).
-    \begin{align}
-    \Delta &= 0 \implies P(x)\ \text{has one real root with multiplicity} \\
-    \Delta &< 0 \implies P(x)\ \text{has no real roots} \\
-    \Delta &> 0 \implies P(x)\ \text{has two real roots}
-    \end{align}
+    \begin{theorem}[Quadratic real roots]
+    Where \(P(x) \defeq ax^2 + bx + c\) and \(\Delta \defeq b^2 - 4ac\)
+    \begin{align*}
+    \Delta &= 0 \iff \text{\(P(x) = 0\) has one repeated real root} \\
+    \Delta &< 0 \iff \text{\(P(x) = 0\) has no real roots} \\
+    \Delta &> 0 \iff \text{\(P(x) = 0\) has two real roots}
+    \end{align*}
+    \end{theorem}
 
-    \subsection[Cauchy-Shwarz inequality for \(\mathbb R^n\)]
-               {Cauchy-Shwarz inequality for \boldmath\(\mathbb R^n\)}
+    \subsection[Cauchy-Shwarz inequality for \(\Reals^n\)]
+               {Cauchy-Shwarz inequality for \boldmath\(\Reals^n\)}
 
-    For two equally long, finite sequences \(u_i, v_i \in \mathbb R\),
-    \begin{equation}
+    \begin{theorem}[Cauchy-Shwarz inequality]
+    For two equally long, finite sequences \(u_i, v_i \in \Reals\),
+    \begin{equation*}
     \pqty{\sum u_i v_i}^2 \le \pqty{\sum u_i^2} \pqty{\sum v_i^2}
-        \quad \text{with equality iff all \(\frac{u_i}{v_i}\) are equal}
-    \end{equation}
-    We derive by considering
+    \end{equation*}
+    with equality iff there exists some \(k \in \Reals\) such that
+    \(u_i = k v_i\) for all \(i\).
+    \end{theorem}
+    \begin{proof}
+    We consider the polynomial
     \begin{equation*}
     P(x) = \sum (u_i x + v_i)^2 = 0
     \end{equation*}
-    Note that \(P(x) \ge 0\) as it is a sum of squares of real numbers. In fact,
-    it will only ever have intersection with the \(x\)-axis if each contributing
-    term has the same zero, ie the roots of each term \(-v_i/u_i\) are equal.
-    This leads to the condition for equality.
-
-    It is also quadratic in \(x\):
+    If there is any \(u_i\) term which is nonzero, this is a quadratic in \(x\)
+    (if this condition is not met, the inequality becomes obviously true with
+    equality).
     \begin{equation*}
     \pqty{\sum u_i^2} x^2 + \pqty{\sum 2 u_i v_i} x + \sum v_i^2 = 0
     \end{equation*}
-    so has at most one real root. Therefore, the discriminant
-    \begin{align*}
-    \Delta = b^2 - 4ac &\le 0 \\
-    \pqty{\sum 2 u_i v_i}^2 - 4\pqty{\sum u_i^2}\pqty{\sum v_i^2} &\le 0
-    \\\implies
-    \pqty{\sum u_i v_i}^2 &\le \pqty{\sum u_i^2} \pqty{\sum v_i^2} \qed
-    \end{align*}
+    As it is a sum of squares of real terms, it must be nonnegative. In fact, it
+    can only be zero if each contributing term has precisely the same zero,
+    which happens only if all \(-v_i/u_i\) are equal, which leads to the
+    condition for equality.
+
+    As it has no zeroes or one zero (in the case of the condition for equality)
+    \begin{alignat*}{2}
+    &&\Delta = b^2 - 4ac &\le 0 \\
+    &\iff&
+    \pqty{\sum 2 u_i v_i}^2 - 4\pqty{\sum u_i^2}\pqty{\sum v_i^2} &\le 0 \\
+    &\iff& \pqty{\sum u_i v_i}^2 &\le \pqty{\sum u_i^2} \pqty{\sum v_i^2}
+    \end{alignat*}
+    \end{proof}
 
     \subsection{AM-GM inequality}
 
-    For a sequence \(u_i \in \mathbb R\), for \(1 \le i \le n\) (ie, the
+    \begin{theorem}[AM-GM inequality]
+    For a sequence \(u_i \in \Reals\), for \(1 \le i \le n\) (ie, the
     sequence is of length \(n\)) and \(u_i \ge 0\),
     \begin{equation*}
     \sqrt[n]{u_1 u_2 \dotsm u_n} \le \frac{u_1 + u_2 + \dotsb + u_n}{n}
-        \quad \text{with equality iff all \(u_i\) are equal}
     \end{equation*}
-    Or, using sigma and pi notation:
-    \begin{equation}
+    with equality iff all \(u_i\) are equal.
+
+    Equivalently, using sigma and pi notation:
+    \begin{equation*}
     \pqty{\prod u_i}^\frac{1}{n} \le \frac{1}{n}\sum u_i
-    \end{equation}
-    This can be proved by a kind of wonky induction. First, we verify the base
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
+    We can use a kind of wonky induction. First, we verify the base
     case, \(n = 2\):
     \begin{alignat*}{2}
     &&\sqrt{ab} &\le \frac{a + b}{2} \\
     &\iff& 4ab &\le a^2 + 2ab + b^2 \\
     &\iff& 0 &\le a^2 - 2ab + b^2 \\
-    &\iff& 0 &\le (a - b)^2\quad \text{with equality iff \(a = b\)} \qed
+    &\iff& 0 &\le (a - b)^2\quad \text{with equality iff \(a = b\)}
     \end{alignat*}
     Then, supposing AM-GM holds for \(n\) and 2, we show that it holds for
     \(2n\).  Taking
@@ -517,7 +554,7 @@ top=2pt
         \quad \text{with equality iff \(a = b\)}\\
     &\implies& \sqrt[2n]{u_1 u_2 \dotsm u_{2n}} &\le
              \frac{u_1 + u_2 + \dotsb u_{2n}}{2n}
-                \quad \text{with equality iff all \(u_i\) are equal}\qed
+                \quad \text{with equality iff all \(u_i\) are equal}
     \end{alignat*}
     Now, supposing AM-GM holds for \(n\), we show that it holds for \(n - 1\).
     Taking
@@ -537,14 +574,17 @@ top=2pt
              \pqty{u_1 u_2 \dotsb u_{n - 1}}^{1 / (n - 1)} &\le
              \frac 1n \pqty{u_1 + u_2 + \dotsb + u_{n - 1}} \\
     &\implies& \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1 / (n - 1)} &\le
-             \frac 1{n - 1} \pqty{u_1 + u_2 + \dotsb + u_{n - 1}} \qed
+             \frac 1{n - 1} \pqty{u_1 + u_2 + \dotsb + u_{n - 1}}
     \end{alignat*}
     As equality for \(n\) was iff all \(u_i\) were the same, this is still true.
 
-    Now, for any \(n \in \mathbb Z^+\), we can induct up to a power of 2 above
+    Now, for any \(n \in \Integers^+\), we can induct up to a power of 2 above
     \(n\), and then descend from there.
+    \end{proof}
 
-    \subsection{Square Triangular numbers}
+    \subsubsection{Generalized Power Means}
+
+    \subsection{Square Triangular Numbers}
 
     %FIXME: add link annotations, explanations, oeis
     %FIXME: format table
@@ -552,7 +592,7 @@ top=2pt
 
     The sequence of perfect squares \(\mathrm{ST}_n\) such that
     \(\mathrm{ST}_n= a_n^2 = \frac 12 b_n(b_n + 1)\), where
-    \(a, b \in \mathbb Z_0^+\). The first few are:
+    \(a, b \in \Integers_0^+\). The first few are:
 
     \begin{longtable}{rrrr}
     \toprule
@@ -574,6 +614,7 @@ top=2pt
     11 & 2172602007770041 & 46611179 & 65918161 \\
     \multicolumn{4}{c}{\dots} \\
     \bottomrule
+    \caption{Square triangular numbers}
     \end{longtable}
 
     Generated by Listing \ref{lst_st_gen}.
@@ -613,29 +654,15 @@ for n, i in enumerate(get_sqr_tris(10)):
     \mathrm{ST}_n = p^2 q^2
     \end{equation}
 
-    \(\mathrm{ST}_n\) also satisfies the recurrence relations where
+    \(\mathrm{ST}_n, a_n, b_n\) also satisfy the recurrence relations where
     \(\mathrm{ST}_0 = 0\) and \(\mathrm{ST}_1 = 1\)
     \begin{align}
     \mathrm{ST}_n &= 34\mathrm{ST}_{n - 1} - \mathrm{ST}_{n - 2} + 2\\
-    a_n &= 6a_{n - 1} - a_{n - 2}
+    a_n &= 6a_{n - 1} - a_{n - 2} \\
+    b_n &= 6b_{n - 1} - b_{n - 2} + 2
     \end{align}
 
-    %fixme add b_n
-
-    \subsection{Fibonacci Sequence}
-
-    The Fibonacci numbers \(F_n: n \in \mathbb N\) are such that
-    \(F_1 = F_2 = 1\) and \(F_n = F_{n - 1} + F_{n - 2}\).  \(F_n\) can be given
-    by the closed form
-    \begin{equation}
-    F_n = \frac{\varphi^n - \psi^n}{\sqrt 5}
-    \ \text{where}\ \varphi = \frac{1 + \sqrt 5} 2
-    \ \text{and}\ \psi = \frac{1 - \sqrt 5} 2
-    \end{equation}
-    Combined with Exponentation by Squaring (\ref{sec_exp_by_squaring}), and
-    some simple surd arithmetic, this should be a particularly fast way to
-    calculate \(F_n\), as compared to utterly na\"ive recursion, or somewhat
-    faster iteration or memoized recursion.
+    See \cite{WikiSTNumbers,WolframSTNumbers} for more information.
 
     \subsection{de Moivre's Theorem}
 
@@ -643,10 +670,11 @@ for n, i in enumerate(get_sqr_tris(10)):
     (\cos \theta + i \sin \theta)^n \equiv \cos n\theta + i \sin n\theta
     \end{equation}
 
-    \subsection[The \(\Gamma\) function]{The \boldmath\(\Gamma\) function}
+    \subsection[The \(\Gamma\) function]
+               {The \boldmath\(\Gamma\) function}
 
     The ``gamma'' or \(\Gamma\) function is defined for
-    \(z \in \mathbb C, \Re(z) > 0\) as
+    \(z \in \Complex, \Re(z) > 0\) as
     \begin{equation}
     \Gamma(z) = \int_0^{\infty} x^{z - 1}e^{-x} \dd{x}
     \end{equation}
@@ -663,7 +691,7 @@ for n, i in enumerate(get_sqr_tris(10)):
               &= \bqty{-e^{-x}}_0^\infty \\
               &= 1
     \end{align*}
-    it can be seen from this recurrence that where \(n \in \mathbb Z^+\),
+    it can be seen from this recurrence that where \(n \in \Integers^+\),
     \begin{equation}
     \Gamma(n) = (n - 1)!
     \end{equation}
@@ -676,7 +704,7 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME add fast integer square root algorithm
 
-    For \(y \in \mathbb Z_0^+\), \(x^y\) is given by
+    For \(y \in \Integers_0^+\), \(x^y\) is given by
     \begin{equation}
     x^y =
         \begin{cases}
@@ -715,43 +743,43 @@ for n, i in enumerate(get_sqr_tris(10)):
     %FIXME: sets of congruence classes
     %       sets of polynomial rings: apply set mathbb A
 
-    \begin{longtable}{ll}
+    \begin{longtable}{>{\(}c<{\)}l}
     \toprule
-    \bfseries Set & \bfseries Description \\
+    \text{\bfseries Set} & \bfseries Description \\
     \midrule
     \endhead
-    \(\emptyset\), \(\varnothing\) & The empty set \(\set{}\). \\
-    \(\mathbb N\) & The set of natural numbers, \(\set{1, 2, 3, \dotsc}\).
-                   May or may not include \(0\). \\
-    \(\mathbb Z\) & The set of integers
-                   \(\set{\dotsc, -2, 1, 0, 1, 2, \dotsc}\) \\
-    \(\mathbb Z^+, \mathbb Z_{> 0}\) & The set of strictly positive integers
-                   \(\set{1, 2, 3, \dotsc}\). \\
-    \(\mathbb Z^+_0, \mathbb Z_{\ge 0}\) &
+    \emptyset, \varnothing & The empty set \(\set{}\). \\
+    \Naturals & The set of natural numbers, \(\set{1, 2, 3, \dotsc}\).
+                   May or may not include 0. \\
+    \Integers & The set of integers
+                   \set{\dotsc, -2, 1, 0, 1, 2, \dotsc} \\
+    \Integers^+, \Integers_{> 0} & The set of strictly positive integers
+                   \set{1, 2, 3, \dotsc}. \\
+    \Integers^+_0, \Integers_{\ge 0} &
                    The set of strictly nonnegative integers
-                   \(\set{0, 1, 2, \dotsc}\). \\
-    \(\mathbb Z^-, \mathbb Z_{< 0}\) & The set of strictly negative integers
-                   \(\set{-1, -2, -3, \dotsc}\). \\
-    \(\mathbb Z^-_0, \mathbb Z_{\le 0}\) &
+                   \set{0, 1, 2, \dotsc}. \\
+    \Integers^-, \Integers_{< 0} & The set of strictly negative integers
+                   \set{-1, -2, -3, \dotsc}. \\
+    \Integers^-_0, \Integers_{\le 0} &
                    The set of strictly nonpositive integers
-                   \(\set{0, -1, -2, \dotsc}\). \\
-    \(\mathbb Q\) & The set of rational numbers
-                   \(\set{\frac ab \mid a, b \in \mathbb Z \land b \neq 0}\).\\
-    \(\mathbb A\) & The set of algebraic numbers, ie numbers that are roots of
-                   polynomials in \(\mathbb Z[x]\). \\
-    \(\mathbb R\) & The set of real numbers, which may be constructed as
-                   ``slices'' of \(\mathbb Q\). \\
-    \(\mathbb C\) & The set of complex numbers
-                   \(\set{a + bi \mid a, b \in \mathbb R}\),
+                   \set{0, -1, -2, \dotsc}. \\
+    \Rationals & The set of rational numbers
+                   \set{\frac ab \mid a, b \in \Integers \land b \neq 0}.\\
+    \mathbb A & The set of algebraic numbers, ie numbers that are roots of
+                   polynomials in \(\Integers[x]\). \\
+    \Reals & The set of real numbers, which may be constructed as
+                   ``slices'' of \(\Rationals\). \\
+    \Complex & The set of complex numbers
+                   \(\set{a + bi \mid a, b \in \Reals}\),
                    where \(i^2 = 1\).\\
-    \(\intoo{a, b}\) & The open interval
-                     \(\set{x \in \mathbb R \mid a < x < b}\).\\
-    \(\intcc{a, b}\) & The closed interval
-                     \(\set{x \in \mathbb R \mid a \le x \le b}\).\\
-    \(\intco{a, b}\) & The half-open interval
-                     \(\set{x \in \mathbb R \mid a \le x < b}\).\\
-    \(\intoc{a, b}\) & The half-open interval
-                     \(\set{x \in \mathbb R \mid a < x \le b}\).\\
+    \intoo{a, b} & The open interval
+                     \(\set{x \in \Reals \mid a < x < b}.\)\\
+    \intcc{a, b} & The closed interval
+                     \(\set{x \in \Reals \mid a \le x \le b}\).\\
+    \intco{a, b} & The half-open interval
+                     \(\set{x \in \Reals \mid a \le x < b}\).\\
+    \intoc{a, b} & The half-open interval
+                     \(\set{x \in \Reals \mid a < x \le b}\).\\
     \bottomrule
     \end{longtable}
 
@@ -779,11 +807,21 @@ for n, i in enumerate(get_sqr_tris(10)):
     and \(\abs{\set{1, 3, 2}} = 3\), etc.
 
     We also denote the cardinality of the natural numbers
-    \(\abs{\mathbb N} = \aleph_0\).
+    \(\abs{\Naturals} = \aleph_0\).
 
     \section{Linear Algebra}
 
     \section{Geometry}
+
+    \subsection{Pythagoras' Theorem} \label{sec_pythagoras}
+
+    %FIXME add diagram
+
+    If a triangle has sides \(a\), \(b\), \(c\) opposed by angles \(A\), \(B\),
+    \(C\), then
+    \begin{equation}
+    C = \frac 12 \pi \iff a^2 + b^2 = c^2
+    \end{equation}
 
     \subsection{Angles in a Polygon} \label{sec_geom_polygon_angles}
 
@@ -791,10 +829,13 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME add diagram
 
-    Here we aim to show that the area of a circle of radius \(r\) is given by
-    \begin{equation}
+    \begin{theorem}[Area of a circle]
+    The area of a circle of radius \(r\) is given by
+    \begin{equation*}
     A = \pi r^2
-    \end{equation}
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
     From the definition of a circle as the set of points equidistant from a
     centre point, we form the equation of a circle using \ref{sec_pythagoras}:
     \(x^2 + y^2 = r^2\), where the centre is \((0, 0)\) and the radius is \(r\).
@@ -817,7 +858,7 @@ for n, i in enumerate(get_sqr_tris(10)):
      A = r^2 \int_0^\pi (1 - \cos 2 \theta) \dd{\theta} =
      r^2\bqty{\theta - \frac 12 \sin 2 \theta}_0^\pi \\
      &= r^2 \pqty{\pi - \frac 12 \sin 2 \pi -
-                   \pqty{0 - \frac 12 \sin 0}} = \pi r^2 \qed
+                   \pqty{0 - \frac 12 \sin 0}} = \pi r^2
     \end{align*}
     One might alternatively use the parametric form of a circle,
     \(y = r \sin \theta\) and \(x = r \cos \theta\)
@@ -830,8 +871,9 @@ for n, i in enumerate(get_sqr_tris(10)):
      \frac 12 r^2 \int_0^{2\pi} (1 - \cos 2 \theta) \dd{\theta} =
      \frac 12 r^2 \bqty{\theta - \frac 12 \sin 2 \theta}_0^{2\pi} \\
      &= \frac 12 r^2 \pqty{2\pi - \frac 12 \sin 4 \pi -
-                      \pqty{0 - \sin 0}} = \pi r^2 \qed
+                      \pqty{0 - \sin 0}} = \pi r^2
     \end{align*}
+    \end{proof}
 
     \subsection{Volume of a sphere}
 
@@ -879,9 +921,9 @@ for n, i in enumerate(get_sqr_tris(10)):
     \end{alignat}
     and in fact,
     \begin{alignat}{2}
-    \sin(\theta + 2\pi n) &\equiv \sin \theta &&\iff n \in \mathbb Z \\
-    \cos(\theta + 2\pi n) &\equiv \cos \theta &&\iff n \in \mathbb Z \\
-    \tan(\theta + \pi n) &\equiv \tan \theta &&\iff n \in \mathbb Z
+    \sin(\theta + 2\pi n) &\equiv \sin \theta &&\iff n \in \Integers \\
+    \cos(\theta + 2\pi n) &\equiv \cos \theta &&\iff n \in \Integers \\
+    \tan(\theta + \pi n) &\equiv \tan \theta &&\iff n \in \Integers
     \end{alignat}
     Therefore, the \emph{period} of \(\sin \theta\) and \(\cos \theta\) is
     \(2\pi\), whereas the period of \(\tan \theta\) is \(\pi\).
@@ -918,29 +960,87 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME automatic math mode
 
-    \begin{longtable}{rrrr}
+    \begin{longtable}{*{4}{>{\(}c<{\)}}}
     \toprule
-    \(\theta\) & \(\sin \theta\) & \(\cos \theta\) &
-                   \(\tan \theta\) \\
+    \text{\boldmath\(\theta\)} & \text{\boldmath\(\sin \theta\)}
+        & \text{\boldmath\(\cos \theta\)} & \text{\boldmath\(\tan \theta\)} \\
     \midrule
     \endhead
-    \(0\) & \(0\) & \(1\) & \(0\) \\
-    \(\dfrac \pi 6\) & \(\dfrac 12\) & \(\dfrac{\sqrt 3} 2\) &
-        \(\dfrac {\sqrt 3} 3\) \\
-    \(\dfrac \pi 4\) & \(\dfrac {\sqrt 2} 2\) & \(\dfrac {\sqrt 2} 2\) &
-        \(1\) \\
-    \(\dfrac \pi 3\) & \(\dfrac{\sqrt 3} 2\) & \(\dfrac 12\) &
-        \(\sqrt 3\) \\
-    \(\dfrac \pi 2\) & \(1\) & \(0\) & \(\infty\)\\
+    0 & 0 & 1 & 0 \\[1ex]
+    \dfrac \pi 6 & \dfrac 12 & \dfrac{\sqrt 3} 2 & \dfrac {\sqrt 3} 3 \\[3ex]
+    \dfrac \pi 4 & \dfrac {\sqrt 2} 2 & \dfrac {\sqrt 2} 2 & 1 \\[3ex]
+    \dfrac \pi 3 & \dfrac{\sqrt 3} 2 & \dfrac 12 & \sqrt 3 \\[3ex]
+    \dfrac \pi 2 & 1 & 0 & \infty\\[2ex]
     \bottomrule
+    \caption{The basic trigonometric constants} \\
     \end{longtable}
 
-    We need only discuss special angles in \(\intcc{0, \frac \pi 2}\) because
+    Strictly, \(\tan \frac 12 \pi\) is undefined.
+
+    The symmetry of sine and cosine going opposite ways across this table is due
+    to the fact that \(\sin \theta \equiv \cos(\frac 12 \pi - \theta)\).
+
+    We need only discuss special angles in \(\intcc{0, \dfrac \pi 2}\) because
     the corresponding angles in the other quadrants can be found from symmetries
-    and periodicities.
+    and periodicities. This is convenient as it means all values of trig
+    functions that we discuss here are positive, so we can take positive square
+    roots without remorse.
 
     We can always calculate half-angles in the first quadrant using the
-    half-angle formulae (\ref{sec_trig_double_angle}). For example, 
+    half-angle formulae (Theorem \ref{thm_trig_half_angle}). We can also use
+    compound angle formulae to build some angles, such as
+    \(\frac \pi {12} = \frac \pi 3 - \frac \pi 4\).
+
+    A small number of more esoteric angles are presented below. Many more can be
+    found \cite{WikiTrigConstants}.
+
+    \begin{longtable}{*{4}{>{\(}c<{\)}}}
+    \toprule
+    \text{\boldmath\(\theta\)} & \text{\boldmath\(\sin \theta\)}
+        & \text{\boldmath\(\cos \theta\)} & \text{\boldmath\(\tan \theta\)} \\
+    \midrule
+    \endhead
+    \dfrac \pi {12} & \dfrac{\sqrt 6 - \sqrt 2} 4 & \dfrac{\sqrt 6 + \sqrt 2} 4
+        & 2 - \sqrt 3 \\[3ex]
+    \dfrac \pi 8 & \dfrac 12 \sqrt{2 - \sqrt 2} & \dfrac 12 \sqrt{2 + \sqrt 2}
+        & \sqrt 2 - 1 \\[3ex]
+    \dfrac \pi 5 & \dfrac 14 \sqrt{10 - 2\sqrt 5} & \dfrac{\sqrt 5 + 1} 4
+        & \sqrt{5 - 2\sqrt 5} \\[3ex]
+    \dfrac{3\pi}{10} & \dfrac{\sqrt 5 + 1} 4 & \dfrac 14 \sqrt{10 - 2\sqrt 5}
+        & \frac 15 \sqrt{25 + 10\sqrt 5} \\[3ex]
+    \dfrac{3\pi} 8 & \dfrac 12 \sqrt{2 + \sqrt 2} & \dfrac 12 \sqrt{2 - \sqrt 2}
+        & \sqrt 2 + 1 \\[3ex]
+    \dfrac{5\pi}{12} & \dfrac{\sqrt 6 + \sqrt 2} 4 & \dfrac{\sqrt 6 - \sqrt 2} 4
+        & 2 + \sqrt 3  \\[2ex]
+    \bottomrule
+    \caption{More advanced trigonometric constants} \\
+    \end{longtable}
+
+    The second half of the table can be derived from the first half.
+
+    The result for \(\frac 1{12} \pi\) can be derived by using
+    \(\frac 1{12} \pi = \frac 13 \pi - \frac 14 \pi\).
+
+    The result for \(\frac 18 \pi\) can be derived by using
+    \(\frac 18 \pi = \frac 12 \cdot \frac 14 \pi\).
+
+    To get the result for \(\frac 15 \pi\) we can let
+    \(\varphi = \frac 15 \pi\).  Noting that
+    \(\sin 2\varphi = \sin 3\varphi\), we have
+    \begin{alignat*}{2}
+    && 2\sin \varphi \cos \varphi
+        &= \sin \varphi (2\cos^2 \varphi - 1)
+         + \cos \varphi \cdot 2\sin \varphi \cos \varphi \\
+    &\iff& 0 &= \sin \varphi (2\cos^2 \varphi - 1
+                            + 2\cos^2 \varphi - 2\cos \varphi) \\
+    &\iff& 0 &= 4\cos^2 \varphi - 2\cos \varphi - 1
+        \qquad \text{as \(\sin \varphi \ne 0\)} \\
+    &\iff& \cos \varphi &= \frac{1 \pm \sqrt 5} 4 \\
+    &\iff& \cos \varphi &= \frac{1 + \sqrt 5} 4
+        \qquad \text{as \(\cos \varphi > 0\)}
+    \end{alignat*}
+    We can then proceed to derive sine, and therefore also tangent, by applying
+    the Pythagorean identity and simplifying.
 
     \subsection{Cosine Rule}
 
@@ -963,17 +1063,25 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME add diagram
 
-    It can be shown geometrically that
-    \begin{equation}
+    \begin{theorem}[Addition formula for sine]
+    \begin{equation*}
     \sin(\alpha + \beta) \equiv
        \sin \alpha \cos \beta +  \sin \beta \cos \alpha
-    \end{equation}
-    From this, it follows that
-    \begin{equation}
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
+    This can be shown geometrically.
+    \end{proof}
+    From this, it follows
+    \begin{theorem}[Addition formula for cosine]
+    \begin{equation*}
     \cos(\alpha + \beta) \equiv
        \cos \alpha \cos \beta - \sin \alpha \sin \beta
-    \end{equation}
-    because we can use section \ref{sec_trig_periodic} to show
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
+    This could also be shown with a similar geometrical argument, but we can
+    simply use section \ref{sec_trig_periodic} to show
     \begin{align*}
     \cos(\alpha + \beta) &\equiv
         \sin(\frac 12 \pi - \alpha - \beta) \equiv
@@ -982,14 +1090,15 @@ for n, i in enumerate(get_sqr_tris(10)):
     &\equiv
         \cos \alpha \cos \beta + \sin \beta \sin \alpha
     \end{align*}
-    This may also be shown with a similar geometrical argument.
-
-    We can now deduce that
-    \begin{equation}
+    \end{proof}
+    We can now deduce
+    \begin{theorem}[Addition formula for tangent]
+    \begin{equation*}
     \tan(\alpha + \beta) \equiv
         \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta}
-    \end{equation}
-    as
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
     \begin{equation*}
     \tan(\alpha + \beta) \equiv
         \frac{\sin(\alpha + \beta)}{\cos(\alpha + \beta)} \equiv
@@ -1000,23 +1109,29 @@ for n, i in enumerate(get_sqr_tris(10)):
              {\frac{\cos \alpha \cos \beta}{\cos \alpha \cos \beta} +
               \frac{\sin \alpha \sin \beta}{\cos \alpha \cos \beta}}
              \equiv
-        \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta} \qed
+        \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta}
     \end{equation*}
-    Results for a function of a difference are derived from the parity of
-    each function (\ref{sec_trig_parity}). One might also just assume it's
-    probably OK to flip signs. In either case, the full results are:
-    \begin{align}
+    \end{proof}
+    There is a corresponding set of results also allowing for differences.
+    \begin{theorem}[Compound angle formulae] \label{thm_trig_compound}
+    \begin{align*}
     \sin \alpha \pm \beta &\equiv
        \sin \alpha \cos \beta \pm \sin \beta \cos \alpha \\
     \cos \alpha \pm \beta &\equiv
        \cos \alpha \cos \beta \mp \sin \alpha \sin \beta \\
     \tan \alpha \pm \beta &\equiv
         \frac{\tan \alpha \pm \tan \beta}{1 \mp \tan \alpha \tan \beta}
-    \end{align}
+    \end{align*}
+    \end{theorem}
+    \begin{proof}
+    Results for a function of a difference are derived from the parity of
+    each function (\ref{sec_trig_parity}).
+    \end{proof}
+    One might also just assume it's probably OK to flip signs.
 
     \subsubsection{Double Angle Formulae} \label{sec_trig_double_angle}
-    By using \(2\theta \equiv \theta + \theta\), we have the identities
-    \begin{align}
+    \begin{theorem}[Double angle formulae] \label{thm_trig_double_angle}
+    \begin{align*}
     \sin 2\theta &\equiv
        2\sin \theta \cos \theta \\
     \cos 2\theta &\equiv
@@ -1025,41 +1140,50 @@ for n, i in enumerate(get_sqr_tris(10)):
        \ \text{(by \ref{sec_trig_pythag})} \\
     \tan 2\theta &\equiv
         \frac{2\tan \theta}{1 - \tan^2 \theta}
-    \end{align}
-    From these, it follows that
-    \begin{align}
+    \end{align*}
+    \end{theorem}
+    \begin{proof}
+    These follow from \(2\theta \equiv \theta + \theta\) in combination with
+    Theorem \ref{thm_trig_compound}.
+    \end{proof}
+    \begin{theorem}[Squared half-angle identities]
+    It follows, by rearrangement of identities in Theorem
+    \ref{thm_trig_double_angle}, that
+    \begin{align*}
     \sin^2 \theta &\equiv
         \frac{1 - \cos 2 \theta} 2 \\
     \cos^2 \theta &\equiv
         \frac{1 + \cos 2 \theta} 2
-    \end{align}
+    \end{align*}
     and
-    \begin{align}
+    \begin{align*}
     \tan^2 \theta \equiv \frac{\sin^2 \theta}{\cos^2 \theta}
         \equiv \frac{1 - \cos 2 \theta}{1 + \cos 2 \theta}
         &\equiv \frac{1 - \cos^2 2 \theta}{(1 + \cos 2 \theta)^2}
         \equiv \pqty{\frac{\sin 2 \theta}{1 + \cos 2 \theta}}^2 \\
         &\equiv \frac{(1 - \cos 2 \theta)^2}{1 - \cos^2 2 \theta}
         \equiv \pqty{\frac{1 - \cos 2 \theta}{\sin 2 \theta}}^2
-    \end{align}
-    It follows that
-    \begin{alignat}{2}
+    \end{align*}
+    \end{theorem}
+    \begin{theorem}[Half angle identities] \label{thm_trig_half_angle}
+    \begin{alignat*}{2}
     &&\sin \theta &\equiv
         \pm\sqrt{\frac{1 - \cos 2 \theta} 2}
      \ \pqty{\text{where \(\pm\) depends on the quadrant}} \\
     &\iff& \sin \frac \theta 2 &\equiv
-        \pm\sqrt{\frac{1 - \cos \theta} 2} \nonumber \\
+        \pm\sqrt{\frac{1 - \cos \theta} 2} \\
     &&\cos \theta &\equiv
         \pm\sqrt{\frac{1 + \cos 2 \theta} 2} \\
     &\iff& \cos \frac \theta 2 &\equiv
-        \pm\sqrt{\frac{1 + \cos \theta} 2} \nonumber \\
+        \pm\sqrt{\frac{1 + \cos \theta} 2} \\
     &&\tan \theta &\equiv
         \frac{\sin 2 \theta}{1 + \cos 2 \theta}
         \equiv \frac{1 - \cos 2 \theta}{\sin 2 \theta} \\
     &\iff& \tan \frac \theta 2 &\equiv
         \frac{\sin \theta}{1 + \cos \theta}
-        \equiv \frac{1 - \cos \theta}{\sin \theta} \nonumber
-    \end{alignat}
+        \equiv \frac{1 - \cos \theta}{\sin \theta}
+    \end{alignat*}
+    \end{theorem}
 
     \subsubsection{Triple Angles and Beyond}
 
@@ -1067,86 +1191,107 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     The products of trig functions can be variously rewritten as sums.
 
-    When the functions are different the resulting sums must be of sines.
-    \begin{equation}
+    \begin{theorem}[Product of sine and cosine]
+    \begin{equation*}
     \sin \alpha \cos \beta \equiv
         \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)} 2
-    \end{equation}
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
     Derive from RHS:
     \begin{align*}
     \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)} 2 &\equiv
      \frac{\sin \alpha \cos \beta + \sin \beta \cos \alpha +
            \sin \alpha \cos \beta - \sin \beta \cos \alpha} 2 \\
-    &\equiv \frac{2 \sin \alpha \cos \beta} 2 \equiv \sin \alpha \cos \beta \qed
+    &\equiv \frac{2 \sin \alpha \cos \beta} 2 \equiv \sin \alpha \cos \beta
     \end{align*}
-    When they are the same they must be of cosines
-    \begin{equation}
+    \end{proof}
+    \begin{theorem}[Product of cosines]
+    \begin{equation*}
     \cos \alpha \cos \beta \equiv
      \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)} 2
-    \end{equation}
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
     Derive from RHS:
     \begin{align*}
     \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)} 2 &\equiv
      \frac{\cos \alpha \cos \beta - \sin \alpha \sin \beta +
            \cos \alpha \cos \beta + \sin \alpha \sin \beta} 2 \\
-    &\equiv \frac{2 \cos \alpha \cos \beta} 2 \equiv \cos \alpha \cos \beta \qed
+    &\equiv \frac{2 \cos \alpha \cos \beta} 2 \equiv \cos \alpha \cos \beta
     \end{align*}
-    And the \(\cos(\alpha - \beta)\) must come first as it has a positive
-    expansion
-    \begin{equation}
+    \end{proof}
+    \begin{theorem}[Product of sines]
+    \begin{equation*}
     \sin \alpha \sin \beta \equiv
      \frac{\cos(\alpha - \beta) - \cos(\alpha + \beta)} 2
-    \end{equation}
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
     Derive from RHS:
     \begin{align*}
     \frac{\cos(\alpha - \beta) - \cos(\alpha + \beta)} 2 &\equiv
      \frac{\cos \alpha \cos \beta + \sin \alpha \sin \beta -
            \cos \alpha \cos \beta + \sin \alpha \sin \beta} 2 \\
-    &\equiv \frac{2 \sin \alpha \sin \beta} 2 \equiv \sin \alpha \sin \beta \qed
+    &\equiv \frac{2 \sin \alpha \sin \beta} 2 \equiv \sin \alpha \sin \beta
     \end{align*}
+    \end{proof}
 
-    \subsection{Product-Sum Identities}
+    \subsection{Product-Sum Identities} \label{sec_trig_product_sum}
 
     %FIXME: annotate sections used
 
-    The sum of sines,
-    \begin{equation}
+    \begin{theorem}[Relating the sum of sines to a product]
+    \begin{equation*}
     \sin \alpha + \sin \beta \equiv
         2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta}2
-    \end{equation}
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
     We derive by considering \(\alpha' = \frac 12 (\alpha + \beta)\) and
     \(\beta' = \frac 12 (\alpha - \beta)\). Then,
     \begin{align*}
     \sin \alpha + \sin \beta &\equiv
      \sin(\alpha' + \beta') + \sin(\alpha' - \beta') \equiv
      2\sin \alpha' \cos \beta'\ \text{(from \ref{sec_trig_sum_product})}
-    \\&\equiv 2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta} 2 \qed
+    \\&\equiv 2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta} 2
     \end{align*}
-    Now, we can show that
-    \begin{equation}
+    \end{proof}
+    As a direct corollary of this due to the oddness of the sine
+    (\ref{sec_trig_parity}), we have
+    \begin{theorem}[Relating the difference of sines to a product]
+    \begin{equation*}
     \sin \alpha - \sin \beta =
         \sin \alpha + \sin -\beta =
         2 \sin \frac{\alpha - \beta} 2 \cos\frac{\alpha + \beta} 2
-    \end{equation}
-    We also aim to show that
-    \begin{equation}
+    \end{equation*}
+    \end{theorem}
+    We also show
+    \begin{theorem}[Relating the sum of cosines to a product]
+    \begin{equation*}
     \cos \alpha + \cos \beta \equiv
         2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2
-    \end{equation}
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
     Again, let \(\alpha' = \frac 12 (\alpha + \beta)\) and
     \(\beta' = \frac 12 (\alpha - \beta)\). Then,
     \begin{align*}
      \cos \alpha + \cos \beta &\equiv
      \cos(\alpha' + \beta') + \cos(\alpha' - \beta') \equiv
      2\cos \alpha' \cos \beta'\ \text{(from \ref{sec_trig_sum_product})}
-     \\&\equiv 2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2 \qed
+     \\&\equiv 2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2
     \end{align*}
-    Finally, we aim to show that
-    \begin{equation}
+    \end{proof}
+    Finally, we show
+    \begin{theorem}[Relating the difference of cosines to a product]
+    \begin{equation*}
     \cos \alpha - \cos \beta \equiv
      -2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2
-    \end{equation}
-    We do this by using \ref{sec_trig_periodic}
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
+    We can exploit the periodicity of cosine (\ref{sec_trig_periodic}).
     \begin{align*}
      \cos \alpha - \cos \beta &\equiv
      \cos \alpha + \cos (\beta + \pi)  \equiv
@@ -1155,8 +1300,62 @@ for n, i in enumerate(get_sqr_tris(10)):
      2 \cos \pqty{\frac \pi 2 - \pqty{-\frac{\alpha + \beta} 2}}
        \cos \pqty{\frac \pi 2 - \frac{\alpha - \beta} 2} \equiv
      2 \sin -\frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2 \\&\equiv
-     -2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2 \qed
-    \end{align*}.
+     -2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2
+    \end{align*}
+    \end{proof}
+
+    \subsection[The Weierstrass substitution (\(\tan(\theta / 2)\))]
+       {The Weierstrass substitution \boldmath\(\pqty{\tan(\frac \theta 2)}\)}
+
+    \begin{theorem}[The Weierstrass substitution]
+    If we let \(t = \tan(\frac \theta 2)\), such that \(t\) is defined (ie
+    \(\theta \ne (2n + 1)\pi, n \in \Integers\)) then we have:
+    \begin{align*}
+    \sin \theta &\equiv \dfrac{2t}{1 + t^2} \\
+    \cos \theta &\equiv \dfrac{1 - t^2}{1 + t^2} \\
+    \tan \theta &\equiv \dfrac{2t}{1 - t^2} \\
+    \dv{\theta}{t} &\equiv \dfrac{2}{1 + t^2}
+    \end{align*}
+    \end{theorem}
+    \begin{proof}
+    The identity for the tangent is an immediate consequence of the double
+    angle formula for the tangent (\ref{sec_trig_double_angle}), where we're
+    considering \(\tan(2 \cdot \frac 12 \theta)\).
+
+    The identity for the sine can be derived by considering the double angle
+    formula for sine, and using a smattering of identities from
+    (\ref{sec_trig_definitions}, \ref{sec_trig_pythag}):
+    \begin{align*}
+    \sin \theta &\equiv 2\sin(\tfrac \theta 2)\cos(\tfrac \theta 2)
+        \equiv 2\tan(\tfrac \theta 2)\cos^2\pqty{\tfrac \theta 2} \\
+        &\equiv \frac{2\tan(\frac \theta 2)}{\sec^2\pqty{\frac \theta 2}}
+        \equiv \frac{2t}{1 + t^2}
+    \end{align*}
+    Similarly for the cosine:
+    \begin{align*}
+    \cos \theta
+        &\equiv \cos^2\pqty{\frac \theta 2} - \sin^2 \pqty{\frac \theta 2}
+        \equiv \cos^2\pqty{\frac \theta 2}
+            \pqty{1 - \tan^2\pqty{\frac \theta 2}} \\
+        &\equiv \frac{1 - \tan^2\pqty{\frac \theta 2}}
+                     {\sec^2\pqty{\frac \theta 2}}
+        \equiv \frac{1 - t^2}{1 + t^2}
+    \end{align*}
+    \end{proof}
+
+    \subsubsection{Heuristic for sine and cosine}
+
+    %FIXME add graphic.
+
+    The formula involving the tangent can be easily derived from the double
+    angle formula. Having this, we can draw a right triangle with angle
+    \(\theta\), opposite side \(2t\) and adjacent side \(1 - t^2\). We can
+    deduce from Pythagoras' theorem (\ref{sec_pythagoras}) that the length of
+    the hypotenuse is
+    \begin{equation*}
+    \sqrt{(2t)^2 + (1 - t^2)^2} = \sqrt{1 + 2t^2 + t^4} = 1 + t^2
+    \end{equation*}
+    and then deduce the value of sine and cosine from their definitions.
 
     \section{Probability}
 
@@ -1172,10 +1371,11 @@ for n, i in enumerate(get_sqr_tris(10)):
     of getting a certain number of successful ``events'', where there are
     \(\nu\) events each with probability \(\pi\) of being successful.
 
-    The PDF of \(X \sim \Binomial(\nu, \pi)\) is
-    \begin{equation}
-    f(k) = P(X = k) = {\nu \choose k} \pi^k (1 - \pi)^{\nu - k}
-    \end{equation}
+    The PMF of \(X \sim \Binomial(\nu, \pi)\) is given by
+    \begin{equation*}
+    f_X(k) = \Prob(X = k) = {\nu \choose k} \pi^k (1 - \pi)^{\nu - k}
+        \quad \text{where \(k \in \set{0, 1, \dotsc, n}\)}
+    \end{equation*}
     The validity of this distribution is subject to these constraints:
     \begin{enumerate}
     \item Each event must be independent.
@@ -1185,11 +1385,11 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME add diagram
 
-    The PDF of \(X \sim \Normal(\mu, \sigma^2)\) is
-    \begin{equation}
-    f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \cdot
-           \exp(\frac{(x - \mu)^2}{2\sigma^2})
-    \end{equation}
+    The PDF of \(X \sim \Normal(\mu, \sigma^2)\) is given by
+    \begin{equation*}
+    f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \cdot
+        \exp(\frac{(x - \mu)^2}{2\sigma^2})
+    \end{equation*}
 
     \subsubsection{Dimensional Verification/Mnemonic}
 
@@ -1198,7 +1398,7 @@ for n, i in enumerate(get_sqr_tris(10)):
         e^{\bqty{\frac{x^2}{\sigma^2}}}
       = \bqty{\frac 1\sigma}\), as
     \(\bqty{\sigma} = \bqty{\mu} = \bqty{x}\). Therefore, the
-    evaluation of the probability \(P(a < X < b)\) by the integral
+    evaluation of the probability \(\Prob(a < X < b)\) by the integral
     \(\int_a^bf(x) \dd{x}\) has dimension
     \(\bqty{\frac{\dd{x}}{\sigma}} = 1\), as expected for a probability.
 
@@ -1220,19 +1420,43 @@ for n, i in enumerate(get_sqr_tris(10)):
     \begin{equation}
     f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
     \end{equation}
-    Other notations include, if \(y = f(x)\), then \(y' = \dv{y}{x} = f'(x)\).
+    Other notations include, if \(y = f(x)\), then
+    \(\displaystyle f'(x) = \dv{x}(f(x)) = \dv{y}{x} = y'\).
+
+    There is also various notation for repeated differentiation. If
+    \(g(x) = f'(x)\), then \(g'(x) = f''(x)\).
+    \(\displaystyle f''(x) = \dv[2]{y}{x} = \dv[2]{x}(f(x))\). In general, the
+    \(n\)th derivative is
+    \(\displaystyle f^{(n)}(x) = \dv[n]{y}{x} = \dv[n]{x}(f(x))\).
+
+    \subsection{Basic properties of the derivative}
+    \label{sec_calc_derivative_properties}
+
+    Some basic properties of limits result in corresponding basic properties of
+    the derivative.
+    \begin{equation*}
+    \dv{x}(a \cdot f(x)) = af'(x) \quad \text{where \(a\) is a constant}
+    \end{equation*}
+    \begin{equation*}
+    \dv{x}(f(x) + g(x)) = f'(x) + g'(x)
+    \end{equation*}
 
     \subsection{Fundamental Theorem of Calculus} \label{sec_calc_FTC}
 
     \subsection{Chain Rule} \label{sec_calc_chain}
 
-    \subsection{Product Rule (Quotient Rule)} \label{sec_calc_product}
+    \subsection{Product Rule} \label{sec_calc_product}
+
+    \subsubsection{Quotient Rule} \label{sec_calc_quotient}
 
     \subsection{Integration by Substitution} \label{sec_calc_substitution}
 
     Integration by substitution is effectively the chain rule
-    (\ref{sec_calc_chain}). If we consider the function
-    \(f(x) = g(h(x)) \implies f'(x) = h'(x) \cdot g'(h(x))\), then the integral
+    (\ref{sec_calc_chain}) in reverse. If we consider the function
+    \begin{equation*}
+    f(x) = g(h(x)) \implies f'(x) = h'(x) \cdot g'(h(x))
+    \end{equation*}
+    then the integral
     \begin{equation}
     \int h'(x) \cdot g'(h(x)) \dd{x} = \int f'(x) \dd{x} = f(x) + C
     \end{equation}
@@ -1241,36 +1465,141 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     \subsection{Integration by Parts}
 
-    \subsection{Common derivatives} \label{calc:common}
+    Integration by parts is derived from the product rule
+    (\ref{sec_calc_product}).  Consider the function
+    \begin{equation*}
+    f(x) = g(x) \cdot h(x) \implies f'(x) = g'(x) \cdot h(x) + g(x) \cdot h'(x)
+    \end{equation*}
+    then the integral
+    \begin{equation}
+    \int g'(x) \cdot h(x) \dd{x} = f(x) - \int g(x) \cdot h'(x) \dd{x} + C
+    \end{equation}
+
+    \subsection{Common derivatives} \label{calc_common}
 
     %FIXME: add x^x. maybe more intricate proofs.
 
-    Here follows a table of common differentiations. More explanation/derivation
-    is found in the subsubsections following the table.
+    Here follows a table of common differentiations. A number of derivative
+    derivations are also given in the following subsubsections.
 
-    Note that by FTC (\ref{sec_calc_FTC}), these also give common integrations.
+    Note that by FTC (\ref{sec_calc_FTC}), these also give a number of common
+    integrations.
 
-    %FIXME: make this look less disgusting
-
-    \begin{longtable}{rr}
+    \begin{longtable}{*{3}{>{\(}c<{\)}}c}
     \toprule
-    \boldmath\(f(x)\) & \boldmath\(f'(x)\) \\
+    \text{\boldmath\(f(x)\)} & \text{\boldmath\(f'(x)\)}
+        & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
     \midrule
     \endhead
-    \(x^n\) & \(nx^{n-1}\) \\
-    \(\ln x\) & \(\frac{1}{x}\) \\
-    \(e^x\) & \(e^x\) \\
-    \(\sin x\) & \(\cos x\) \\
-    \(\tan x\) & \(\sec^2 x\) \\
-    \(\sec x\) & \(\sec x \tan x\) \\
-    \(\cos x\) & \(-\sin x\) \\
-    \(\cot x\) & \(-\csc^2 x\) \\
-    \(\csc x\) & \(-\csc x \cot x\) \\
-    \(\arcsin x\) & \(\frac{1}{\sqrt{1 - x^2}}\) \\
-    \(\arccos x\) & \(-\frac{1}{\sqrt{1 - x^2}}\) \\
-    \(\arctan x\) & \(\frac{1}{x^2 + 1}\) \\
+    g(x) + h(x) & g'(x) + h'(x) && \ref{sec_calc_derivative_properties} \\[1ex]
+    a \cdot g(x) & a \cdot g'(x) && \ref{sec_calc_derivative_properties} \\[1ex]
+    g(x) \cdot h(x) & g'(x) \cdot h(x) + g(x) \cdot h'(x)
+        && \ref{sec_calc_product} \\[1ex]
+    g(h(x)) & h'(x) \cdot g'(h(x)) && \ref{sec_calc_chain} \\[1ex]
+    \dfrac{g(x)}{h(x)} & \dfrac{h(x) \cdot g'(x) - g(x) \cdot h'(x)}{(h(x))^2}
+        && \ref{sec_calc_quotient} \\[3ex]
+    x^n & nx^{n-1} & \text{\(n\) is constant} \\[1ex]
+    e^x & e^x & \text{\(e\) is Euler's number} & \ref{sec_e} \\[1ex]
+    a^x & \ln a \cdot a^x & \text{\(a\) is constant} \\[1ex]
+    \ln x & \dfrac 1{x} \\[3ex]
+    \sin x & \cos x \\[1ex]
+    \cos x & -\sin x && \ref{sec_calc_trig_basic} \\[1ex]
+    \tan x & \sec^2 x & \tan^2 x + 1 & \ref{sec_calc_trig_basic} \\[1ex]
+    \sec x & \sec x \tan x && \ref{sec_calc_trig_basic} \\[1ex]
+    \csc x & -\csc x \cot x && \ref{sec_calc_trig_basic} \\[1ex]
+    \cot x & -\csc^2 x & -(\cot^2 x + 1) & \ref{sec_calc_trig_basic} \\[1ex]
+    \arcsin x & \dfrac 1{\sqrt{1 - x^2}} \\[3ex]
+    \arccos x & -\dfrac 1{\sqrt{1 - x^2}} \\[3ex]
+    \arctan x & \dfrac 1{x^2 + 1} \\[3ex]
+    \arcsec x & \dfrac 1{\abs{x} \sqrt{x^2 - 1}} \\[3ex]
+    \arccsc x & -\dfrac 1{\abs{x} \sqrt{x^2 - 1}} \\[3ex]
+    \arccot x & -\dfrac 1{x^2 + 1} \\[3ex]
+    \sinh x & \cosh x \\[1ex]
+    \cosh x & \sinh x \\[1ex]
+    \tanh x & \sech^2 x & -\tanh^2 x + 1 \\[1ex]
+    \sech x & -\tanh x \sech x \\[1ex]
+    \csch x & -\coth x \csch x \\[1ex]
+    \coth x & -\csch^2 x & -(\coth^2 x + 1) \\[1ex]
+    \arcsinh x & \dfrac 1{\sqrt{x^2 + 1}} \\[3ex]
+    \arccosh x & \dfrac 1{\sqrt{x^2 - 1}} \\[3ex]
+    \arctanh x & \dfrac 1{1 - x^2} \\[3ex]
+    \arcsech x & -\dfrac 1{x\sqrt{1 - x^2}} \\[3ex]
+    \arccsch x & -\dfrac 1{\abs{x}\sqrt{1 + x^2}} \\[3ex]
+    \arccoth x & \dfrac 1{1 - x^2} \\[3ex]
     \bottomrule
+    \caption{Common derivatives} \\
     \end{longtable}
+
+    \subsubsection{Basic trigonometric functions} \label{sec_calc_trig_basic}
+
+    %FIXME decide how to get around this
+
+    For now, we assume that \(\dv{x}(\sin x) = \cos x\). This can
+    be shown in a number of ways. There are geometric arguments, but we could
+    also appeal to the definition of sine and cosine in terms of complex
+    exponentials.
+
+    We can deduce from the chain rule that
+    \begin{equation*}
+    \dv{x}(\cos x) = \dv{x}(\sin(\tfrac 12 \pi - x))
+        = -\cos(\tfrac 12 \pi - x) = -\sin(x)
+    \end{equation*}
+    Now we can use the quotient rule for the tangent.
+    \begin{equation*}
+    \dv{x}(\tan x) = \dv{x}(\frac{\sin x}{\cos x})
+        = \frac{\cos x \cos x + \sin x \sin x}{\cos^2 x}
+        = \frac 1{\cos^2 x} = \sec^2 x
+    \end{equation*}
+    We can use the chain rule for the reciprocal functions.
+    \begin{equation*}
+    \dv{x}(\sec x) = \dv{x}(\frac 1{\cos x}) = -\frac{-\sin x}{\cos^2 x}
+        = \tan x \sec x
+    \end{equation*}
+    \begin{equation*}
+    \dv{x}(\csc x) = \dv{x}(\frac 1{\sin x}) = -\frac{\cos x}{\sin^2 x}
+        = -\cot x \csc x
+    \end{equation*}
+    The quotient rule can again be applied for the cotangent.
+    \begin{equation*}
+    \dv{x}(\cot x) = \dv{x}(\frac{\cos x}{\sin x})
+        = \frac{-\sin x \sin x - \cos x \cos x}{\sin^2 x}
+        = -\frac 1{\sin^2 x} = -\csc^2 x
+    \end{equation*}
+
+    \subsubsection{Inverse trigonometric functions} \label{sec_calc_trig_inv}
+
+    We can use implicit differentiation and some identities to tackle
+    derivatives of inverse trig functions. If we let \(y = \arcsin x\), then
+    \begin{equation*}
+    \sin y = x \implies \dv{y}{x} \cos y = 1
+        \implies \dv{x}(\arcsin x) = \frac{1}{\cos y} = \frac{1}{\sqrt{1 - x^2}}
+    \end{equation*}
+    This is allowed because the domain of \(\arcsin x\) is restricted to
+    \(\intcc{-1, 1}\), meaning that the range of \(y\) is
+    \(\intcc{-\frac 12 \pi, \frac 12 \pi}\) and \(\cos y > 0\).
+
+    Now, for the inverse cosine, rather than repeating this whole song and
+    dance, we can use the fact that
+    \(\arccos x \equiv \frac 12 \pi - \arcsin x\).
+    \begin{equation*}
+    \dv{x}(\arccos x) = \dv{x}(\frac \pi 2 - \arcsin x)
+        = -\frac 1{\sqrt{1 - x^2}}
+    \end{equation*}
+    For the inverse tangent, we again let \(y = \arctan x\), so that
+    \begin{equation*}
+    % for some reason, \dv clobbers parenthesised things after it.
+    \tan y = x \implies \dv{y}{x} {(\tan^2 y + 1)} = 1
+        \implies \dv{x}(\arctan x) = \frac 1{1 + \tan^2 y}
+            = \frac 1{1 + x^2}
+    \end{equation*}
+    For the inverse secant, we let \(y = \arcsec x\), so that
+    \begin{equation*}
+    \sec y = x \implies \dv{y}{x} \sec x \tan x = 1
+        \implies \dv{x}(\arcsec x) = \frac 1{x \tan x}
+            = \frac 1{x \sqrt{x^2 - 1}}
+    \end{equation*}
+
+    \subsection{Common integrals}
 
     \subsection{Volume of Revolution}
 
@@ -1322,10 +1651,6 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME add types of improper integral
 
-    \subsection{Fake Calculus, AKA numerical approximations}
-
-    \section{Power series} %FIXME is this analysis?
-
     \subsection{Taylor Series}
 
     The Maclaurin series is the Taylor series around \(0\).
@@ -1335,6 +1660,93 @@ for n, i in enumerate(get_sqr_tris(10)):
     \end{equation}
 
     \subsection{Common series}
+
+    \subsection{Fake Calculus, AKA numerical approximations}
+
+    \section{Sequences and Series}
+
+    \subsection{Fibonacci Sequence}
+
+    \begin{theorem}[Fibonacci \(n\)th term]
+    The Fibonacci numbers \(F_n: n \in \Naturals\) are such that
+    \(F_1 = F_2 = 1\) and \(F_n = F_{n - 1} + F_{n - 2}\).  \(F_n\) can be given
+    by the closed form
+    \begin{equation*}
+    F_n = \frac{\varphi^n - \psi^n}{\sqrt 5}
+    \ \text{where}\ \varphi = \frac{1 + \sqrt 5} 2
+    \ \text{and}\ \psi = \frac{1 - \sqrt 5} 2
+    \end{equation*}
+    \end{theorem}
+    \begin{proof}
+    Consider the power series
+    \begin{equation*}
+    f(x) \defeq \sum_{k=1}^\infty F_k x^k = x + x^2 + 2x^3 + 3x^4 + 5x^5
+        + \dotsb
+    \end{equation*}
+    Note that this series has a radius of convergence, as it is strictly less
+    than the series
+    \begin{equation*}
+    g(x) \defeq \sum_{k=1}^\infty 2^k x^k
+    \end{equation*}
+    This can be proven by induction. First we note that \(F_1 < 2^1\) and
+    \(F_2 < 2^2\), and that \\
+    \(F_{n + 2} = F_{n + 1} + F_n < 2^{n + 1} + 2^n < 2^{n + 1} + 2^{n + 1}
+        = 2^{n + 2}\). So \(F_n < 2^n\) for all \(n\). Therefore, for
+    \(\abs{x} < \frac 12\), \(f(x)\)  must be convergent, as \(g(x)\) is
+    convergent for \(\abs{x} < \frac 12\). This means \(f(x)\) is well defined
+    and we can manipulate it.
+
+    Consider now:
+    \begin{alignat*}{9}
+    && f(x) &= \sum_{k = 1}^\infty F_k x^k
+        &&=&\; x\, &+&\, x^2\, &+&\, 2x^3\, &+&\,
+            3x^4\, &+&\, 5x^5\, &+&\, 8x^6\, + \dotsb \\
+    && x f(x) &= \sum_{k = 2}^\infty F_{k - 1} x^k
+        &&=& &&x^2 &+& x^3 &+& 2x^4 &+& 3x^5 &+& 5x^6 + \dotsb \\
+    && x^2 f(x) &= \sum_{k = 3}^\infty F_{k - 2}x^k
+        &&=& &&&& x^3 &+& x^4 &+& 2x^5 &+& 3x^6 + \dotsb \\
+    &\implies& (1 - x - x^2) f(x) &= x \\
+    &\implies& f(x) &= \frac x{1 - x - x^2}
+    \end{alignat*}
+    Now we perform a partial fraction decomposition on \(f(x)\). We do this in a
+    somewhat tricky way in order to make our lives easier. Note that
+    \begin{equation*}
+    1 - x - x^2 = x^2 \pqty{\frac 1x^2 - \frac 1x - 1}
+        = x^2\pqty{\frac 1x - \varphi}\pqty{\frac 1x - \psi}
+        = (1 - \varphi x)(1 - \psi x)
+    \end{equation*}
+    where \(\varphi, \psi = \dfrac{1 \pm \sqrt 5}2\), ie the roots of
+    \(x^2 - x - 1\), ie the roots of the golden ratio. Now,
+    \begin{alignat*}{2}
+    && f(x) = \frac x{(1 - \varphi x)(1 - \psi x)}
+        &\equiv \frac A{1 - \varphi x} + \frac B{1 - \psi x} \\
+    &\implies& A(1 - \psi x) + B(1 - \varphi x) &\equiv x \\
+    &\implies& \left\{
+        \begin{aligned}
+            && A + B &= 0 \\
+            &\implies& B &= -A  \\
+            && -\psi A - \varphi B &= 1
+        \end{aligned} \right. \\
+    &\implies& A(\psi - \varphi) &= 1 \\
+    &\implies& A(\sqrt 5) &= 1 \\
+    &\implies& A &= \frac 1{\sqrt 5}, B = -\frac 1{\sqrt 5}
+    \end{alignat*}
+    Now we can use a binomial expansion to obtain an equivalent series.
+    \begin{align*}
+    f(x) &= \frac 1{\sqrt 5}\pqty{\frac 1{1 - \varphi x}
+                                - \frac 1{1 - \psi x}} \\
+    &= \frac 1{\sqrt 5}\pqty{\sum_{k = 0}^\infty (\varphi x)^k
+                           - \sum_{k = 0}^\infty (\psi x)^k} \\
+    &= \sum_{k = 0}^\infty \frac 1{\sqrt 5}(\varphi^k - \psi^k)x^k
+    = \sum_{k = 1}^\infty F_k x^k
+    \end{align*}
+    So we have \(F_n = \dfrac 1{\sqrt 5}(\varphi^n - \psi^n)\). Note that the
+    constant term is indeed zero, as \(\varphi^0 - \psi^0 = 0\).
+    \end{proof}
+    Combined with Exponentation by Squaring (\ref{sec_exp_by_squaring}), and
+    some simple surd arithmetic, this should be a particularly fast way to
+    calculate \(F_n\), as compared to utterly na\"ive recursion, or somewhat
+    faster iteration or memoized recursion.
 
     \section{Sandbox}
 
@@ -1825,9 +2237,10 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     re: L, \(\log_2 255 \ne 8\)
 
-\begin{lemma}
+\begin{lemma}[Four by two]
+Where \(4 \defeq 1 + 1 + 1 + 1\) and \(2 \defeq 1 + 1\)
 \begin{equation}
-\forall k \in \mathbb R: \frac 42 = 2
+\forall k \in \Reals: \frac 42 = 2
 \end{equation}
 \end{lemma}
 
@@ -1849,8 +2262,13 @@ for n, i in enumerate(get_sqr_tris(10)):
     But \(x > 0\) and therefore \(\frac 42 = x = 2\).
 \end{proof}
 
-%\nocite{*}
-%
-%\bibliographystyle{agsm}
-%\bibliography{sources}
+%    \begin{equation}
+%    \frac 1{\sqrt a + \sqrt b + \sqrt c + \sqrt d} =
+%    \frac{a^{\frac{7}{2}} + 2 a^{\frac{5}{2}} \sqrt{b} \sqrt{c} + 2 a^{\frac{5}{2}} \sqrt{b} \sqrt{d} - 3 a^{\frac{5}{2}} b + 2 a^{\frac{5}{2}} \sqrt{c} \sqrt{d} - 3 a^{\frac{5}{2}} c - 3 a^{\frac{5}{2}} d - 4 a^{\frac{3}{2}} b^{\frac{3}{2}} \sqrt{c} - 4 a^{\frac{3}{2}} b^{\frac{3}{2}} \sqrt{d} - 4 a^{\frac{3}{2}} \sqrt{b} c^{\frac{3}{2}} + 4 a^{\frac{3}{2}} \sqrt{b} \sqrt{c} d + 4 a^{\frac{3}{2}} \sqrt{b} c \sqrt{d} - 4 a^{\frac{3}{2}} \sqrt{b} d^{\frac{3}{2}} + 3 a^{\frac{3}{2}} b^{2} + 4 a^{\frac{3}{2}} b \sqrt{c} \sqrt{d} + 2 a^{\frac{3}{2}} b c + 2 a^{\frac{3}{2}} b d - 4 a^{\frac{3}{2}} c^{\frac{3}{2}} \sqrt{d} - 4 a^{\frac{3}{2}} \sqrt{c} d^{\frac{3}{2}} + 3 a^{\frac{3}{2}} c^{2} + 2 a^{\frac{3}{2}} c d + 3 a^{\frac{3}{2}} d^{2} + 2 \sqrt{a} b^{\frac{5}{2}} \sqrt{c} + 2 \sqrt{a} b^{\frac{5}{2}} \sqrt{d} - 4 \sqrt{a} b^{\frac{3}{2}} c^{\frac{3}{2}} + 4 \sqrt{a} b^{\frac{3}{2}} \sqrt{c} d + 4 \sqrt{a} b^{\frac{3}{2}} c \sqrt{d} - 4 \sqrt{a} b^{\frac{3}{2}} d^{\frac{3}{2}} + 2 \sqrt{a} \sqrt{b} c^{\frac{5}{2}} + 4 \sqrt{a} \sqrt{b} c^{\frac{3}{2}} d - 6 \sqrt{a} \sqrt{b} \sqrt{c} d^{2} - 6 \sqrt{a} \sqrt{b} c^{2} \sqrt{d} + 4 \sqrt{a} \sqrt{b} c d^{\frac{3}{2}} + 2 \sqrt{a} \sqrt{b} d^{\frac{5}{2}} - \sqrt{a} b^{3} - 6 \sqrt{a} b^{2} \sqrt{c} \sqrt{d} + \sqrt{a} b^{2} c + \sqrt{a} b^{2} d + 4 \sqrt{a} b c^{\frac{3}{2}} \sqrt{d} + 4 \sqrt{a} b \sqrt{c} d^{\frac{3}{2}} + \sqrt{a} b c^{2} - 10 \sqrt{a} b c d + \sqrt{a} b d^{2} + 2 \sqrt{a} c^{\frac{5}{2}} \sqrt{d} - 4 \sqrt{a} c^{\frac{3}{2}} d^{\frac{3}{2}} + 2 \sqrt{a} \sqrt{c} d^{\frac{5}{2}} - \sqrt{a} c^{3} + \sqrt{a} c^{2} d + \sqrt{a} c d^{2} - \sqrt{a} d^{3} - a^{3} \sqrt{b} - a^{3} \sqrt{c} - a^{3} \sqrt{d} + 3 a^{2} b^{\frac{3}{2}} - 6 a^{2} \sqrt{b} \sqrt{c} \sqrt{d} + a^{2} \sqrt{b} c + a^{2} \sqrt{b} d + a^{2} b \sqrt{c} + a^{2} b \sqrt{d} + 3 a^{2} c^{\frac{3}{2}} + a^{2} \sqrt{c} d + a^{2} c \sqrt{d} + 3 a^{2} d^{\frac{3}{2}} - 3 a b^{\frac{5}{2}} + 4 a b^{\frac{3}{2}} \sqrt{c} \sqrt{d} + 2 a b^{\frac{3}{2}} c + 2 a b^{\frac{3}{2}} d + 4 a \sqrt{b} c^{\frac{3}{2}} \sqrt{d} + 4 a \sqrt{b} \sqrt{c} d^{\frac{3}{2}} + a \sqrt{b} c^{2} - 10 a \sqrt{b} c d + a \sqrt{b} d^{2} + a b^{2} \sqrt{c} + a b^{2} \sqrt{d} + 2 a b c^{\frac{3}{2}} - 10 a b \sqrt{c} d - 10 a b c \sqrt{d} + 2 a b d^{\frac{3}{2}} - 3 a c^{\frac{5}{2}} + 2 a c^{\frac{3}{2}} d + a \sqrt{c} d^{2} + a c^{2} \sqrt{d} + 2 a c d^{\frac{3}{2}} - 3 a d^{\frac{5}{2}} + b^{\frac{7}{2}} + 2 b^{\frac{5}{2}} \sqrt{c} \sqrt{d} - 3 b^{\frac{5}{2}} c - 3 b^{\frac{5}{2}} d - 4 b^{\frac{3}{2}} c^{\frac{3}{2}} \sqrt{d} - 4 b^{\frac{3}{2}} \sqrt{c} d^{\frac{3}{2}} + 3 b^{\frac{3}{2}} c^{2} + 2 b^{\frac{3}{2}} c d + 3 b^{\frac{3}{2}} d^{2} + 2 \sqrt{b} c^{\frac{5}{2}} \sqrt{d} - 4 \sqrt{b} c^{\frac{3}{2}} d^{\frac{3}{2}} + 2 \sqrt{b} \sqrt{c} d^{\frac{5}{2}} - \sqrt{b} c^{3} + \sqrt{b} c^{2} d + \sqrt{b} c d^{2} - \sqrt{b} d^{3} - b^{3} \sqrt{c} - b^{3} \sqrt{d} + 3 b^{2} c^{\frac{3}{2}} + b^{2} \sqrt{c} d + b^{2} c \sqrt{d} + 3 b^{2} d^{\frac{3}{2}} - 3 b c^{\frac{5}{2}} + 2 b c^{\frac{3}{2}} d + b \sqrt{c} d^{2} + b c^{2} \sqrt{d} + 2 b c d^{\frac{3}{2}} - 3 b d^{\frac{5}{2}} + c^{\frac{7}{2}} - 3 c^{\frac{5}{2}} d + 3 c^{\frac{3}{2}} d^{2} - \sqrt{c} d^{3} - c^{3} \sqrt{d} + 3 c^{2} d^{\frac{3}{2}} - 3 c d^{\frac{5}{2}} + d^{\frac{7}{2}}}{a^{4} - 4 a^{3} b - 4 a^{3} c - 4 a^{3} d + 6 a^{2} b^{2} + 4 a^{2} b c + 4 a^{2} b d + 6 a^{2} c^{2} + 4 a^{2} c d + 6 a^{2} d^{2} - 4 a b^{3} + 4 a b^{2} c + 4 a b^{2} d + 4 a b c^{2} - 40 a b c d + 4 a b d^{2} - 4 a c^{3} + 4 a c^{2} d + 4 a c d^{2} - 4 a d^{3} + b^{4} - 4 b^{3} c - 4 b^{3} d + 6 b^{2} c^{2} + 4 b^{2} c d + 6 b^{2} d^{2} - 4 b c^{3} + 4 b c^{2} d + 4 b c d^{2} - 4 b d^{3} + c^{4} - 4 c^{3} d + 6 c^{2} d^{2} - 4 c d^{3} + d^{4}}
+%    \end{equation}
+
+\nocite{*}
+
+\bibliographystyle{agsm}
+\bibliography{sources}
 \end{document}
