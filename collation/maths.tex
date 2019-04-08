@@ -510,7 +510,7 @@ top=2pt
         = \frac{b^2 - 4ac}{4a^2} \\
     &\iff& x + \frac{b}{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
         = \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\
-    &\iff& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \qedhere
+    &\iff& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \tag*{\qedhere}
     \end{alignat*}
     \end{proof}
 
@@ -558,7 +558,7 @@ top=2pt
     &\iff&
     \pqty{\sum 2 u_i v_i}^2 - 4\pqty{\sum u_i^2}\pqty{\sum v_i^2} &\le 0 \\
     &\iff& \pqty{\sum u_i v_i}^2 &\le \pqty{\sum u_i^2} \pqty{\sum v_i^2}
-        \qedhere
+        \tag*{\qedhere}
     \end{alignat*}
     \end{proof}
 
@@ -1993,7 +1993,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     \begin{alignat*}{2}
     && \dv{x}{t} &= \frac 12\pqty{1 - \frac 1{t^2}} \\
     &\implies& \int f(x + \sqrt{x^2 - 1}) \dd{x}
-        &= \frac 12 \int \pqty{1 - \frac 1{t^2}}f(t) \dd{t} \qedhere
+        &= \frac 12 \int \pqty{1 - \frac 1{t^2}}f(t) \dd{t} \tag*{\qedhere}
     \end{alignat*}
     \end{proof}
 
@@ -2015,7 +2015,7 @@ for n, i in enumerate(get_sqr_tris(10)):
                         \frac{f(a + b - x) + f(x)}
                              {f(a + b - x) + f(x)} \dd{x} \\
     &&  &= \int_a^b 1 \dd{x} = b - a \\
-    &\implies& I &= \frac{b - a} 2 \qedhere
+    &\implies& I &= \frac{b - a} 2 \tag*{\qedhere}
     \end{alignat*}
     \end{proof}
     \begin{theorem}[Divisive involution substitution]
@@ -2033,7 +2033,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     &\implies& I + I &= \int_a^b \frac{f(ab / x) + f(x)}
                                       {x(f(ab / x) + f(x))} \dd{x} \\
     && &= \int_a^b \frac 1x \dd{x} = \ln \frac ba \\
-    &\implies& I &= \frac 12 \ln \frac ba \qedhere
+    &\implies& I &= \frac 12 \ln \frac ba \tag*{\qedhere}
     \end{alignat*}
     \end{proof}
 
@@ -2075,7 +2075,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     &&  &= -\pi \pqty{0 - 1 - 0 + 0} \\
     &&  &= \pi \\
     &\implies& \int_{-\infty}^\infty e^{-x^2} \dd{x}
-        &= \sqrt \pi \qedhere
+        &= \sqrt \pi \tag*{\qedhere}
     \end{alignat*}
     \end{proof}
     This integral is used as the normalising constant of the normal
