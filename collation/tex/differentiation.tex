@@ -51,29 +51,29 @@ subexpresions until they are exhausted.
 The most essential rules for taking the derivative of a composition of
 unspecified functions are shown in table
 \ref{tab_calc_functions_derivatives}. The most essential ones are marked
-with (\(\star\)). All the following ones can be derived using only these
+with (\(\note\)). All the following ones can be derived using only these
 rules, and the derivatives of some functions in table
 \ref{tab_calc_derivatives}
 
-\begin{longtable}{*{3}{>{\(\displaystyle}c<{\)}}c}
+\begin{longtable}{*{4}{>{\(\displaystyle}c<{\)}}c}
 \toprule
 \text{\boldmath\(f(x)\)} & \text{\boldmath\(f'(x)\)}
-    & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
+    & \text{\bfseries Alternatives/Notes} & \note & \bfseries ref \\
 \midrule
 \endhead
-g(x) + h(x) & g'(x) + h'(x) & (\star)
+g(x) + h(x) & g'(x) + h'(x) & & \note
     & \ref{sec_calc_derivative_properties} \\[1ex]
-a \cdot g(x) & a \cdot g'(x) & (\star)
+a \cdot g(x) & a \cdot g'(x) & & \note
     & \ref{sec_calc_derivative_properties} \\[1ex]
 g(x) \cdot h(x) & g'(x) \cdot h(x) + g(x) \cdot h'(x)
-    & (\star) & \ref{sec_calc_product} \\[1ex]
-g(h(x)) & h'(x) \cdot g'(h(x)) & (\star) & \ref{sec_calc_chain} \\[1ex]
+    & & \note & \ref{sec_calc_product} \\[1ex]
+g(h(x)) & h'(x) \cdot g'(h(x)) & & \note & \ref{sec_calc_chain} \\[1ex]
 \frac{g(x)}{h(x)} & \frac{h(x) \cdot g'(x) - g(x) \cdot h'(x)}{(h(x))^2}
-    && \ref{sec_calc_quotient} \\[3ex]
+    &&& \ref{sec_calc_quotient} \\[3ex]
 g(ax + b) & a \cdot g'(ax + b) \\[3ex]
 g(x)^{h(x)}
     & \pqty{\frac{h(x)g'(x)}{g(x)} + h'(x)\ln(g(x))}g(x)^{h(x)}
-    & g(x) > 0 & \ref{sec_calc_powers} \\[3ex]
+    & g(x) > 0 && \ref{sec_calc_powers} \\[3ex]
 \sqrt{g(x)} & \frac{g'(x)}{2\sqrt{g(x)}} & g(x) \ge 0 \\[3ex]
 \ln(g(x)) & \frac{g'(x)}{g(x)} & g(x) > 0 \\[3ex]
 \log_a(g(x)) & \frac{g'(x)}{g(x) \ln a} & g(x) > 0 \\[3ex]
@@ -93,38 +93,39 @@ of common integrations, although these are reiterated in table
 \ref{tab_calc_integrals}.
 
 A large number of these can be readily derived from preceding entries. The
-most essential ones are marked with a \(\star\). The further down the table
+most essential ones are marked with a \(\note\). The further down the table
 you get, the more obscure the functions get. For most, it can save time to
 know the derivatives, but people obviously have their priorities and often
 it's more worthwile to understand how to derive the derivative, anyway.
 
-\begin{longtable}{*{3}{>{\(\displaystyle}c<{\)}}c}
+\begin{longtable}{*{4}{>{\(\displaystyle}c<{\)}}c}
 \toprule
 \text{\boldmath\(f(x)\)} & \text{\boldmath\(f'(x)\)}
-    & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
+    & \text{\bfseries Alternatives/Notes} & \note & \bfseries ref \\
 \midrule
 \endhead
-a & 0 & \text{\(a\) is constant.} \\[1ex]
-x^n & nx^{n-1} & \text{\(n\) is constant} & \ref{sec_calc_powers} \\[1ex]
-e^x & e^x & \text{\(e\) is Euler's number} & \ref{sec_e} \\[1ex]
+a & 0 & \text{\(a\) is constant} & \note \\[1ex]
+x^n & nx^{n-1} & \text{\(n\) is constant} & \note
+    & \ref{sec_calc_powers} \\[1ex]
+e^x & e^x & \text{\(e\) is Euler's number} & \note & \ref{sec_e} \\[1ex]
 a^x & \ln a \cdot a^x & \text{\(a\) is constant}
-    & \ref{sec_calc_powers}\\[1ex]
-\ln x & \frac 1{x} \\[3ex]
+    && \ref{sec_calc_powers}\\[1ex]
+\ln x & \frac 1{x} && \note \\[3ex]
 \log_a x & \frac 1{x\ln a} & \text{\(a\) is a constant} \\[3ex]
-\sin x & \cos x \\[1ex]
-\cos x & -\sin x && \ref{sec_calc_trig_basic} \\[1ex]
-\tan x & \sec^2 x & \tan^2 x + 1 & \ref{sec_calc_trig_basic} \\[1ex]
-\sec x & \sec x \tan x && \ref{sec_calc_trig_basic} \\[1ex]
-\csc x & -\csc x \cot x && \ref{sec_calc_trig_basic} \\[1ex]
-\cot x & -\csc^2 x & -(\cot^2 x + 1) & \ref{sec_calc_trig_basic} \\[1ex]
-\arcsin x & \frac 1{\sqrt{1 - x^2}} && \ref{sec_calc_trig_inv} \\[3ex]
-\arccos x & \frac{-1}{\sqrt{1 - x^2}} && \ref{sec_calc_trig_inv} \\[3ex]
-\arctan x & \frac 1{x^2 + 1} && \ref{sec_calc_trig_inv} \\[3ex]
+\sin x & \cos x && \note \\[1ex]
+\cos x & -\sin x && \note & \ref{sec_calc_trig_basic} \\[1ex]
+\tan x & \sec^2 x & \tan^2 x + 1 && \ref{sec_calc_trig_basic} \\[1ex]
+\sec x & \sec x \tan x &&& \ref{sec_calc_trig_basic} \\[1ex]
+\csc x & -\csc x \cot x &&& \ref{sec_calc_trig_basic} \\[1ex]
+\cot x & -\csc^2 x & -(\cot^2 x + 1) && \ref{sec_calc_trig_basic} \\[1ex]
+\arcsin x & \frac 1{\sqrt{1 - x^2}} && \note & \ref{sec_calc_trig_inv} \\[3ex]
+\arccos x & \frac{-1}{\sqrt{1 - x^2}} && \note & \ref{sec_calc_trig_inv} \\[3ex]
+\arctan x & \frac 1{x^2 + 1} && \note & \ref{sec_calc_trig_inv} \\[3ex]
 \arcsec x & \frac 1{\abs{x} \sqrt{x^2 - 1}}
-    & \frac 1{x^2 \sqrt{1 - x^{-2}}} & \ref{sec_calc_trig_inv} \\[3ex]
+    & \frac 1{x^2 \sqrt{1 - x^{-2}}} && \ref{sec_calc_trig_inv} \\[3ex]
 \arccsc x & \frac{-1}{\abs{x} \sqrt{x^2 - 1}}
-    & \frac{-1}{x^2 \sqrt{1 - x^{-2}}} & \ref{sec_calc_trig_inv} \\[3ex]
-\arccot x & -\frac 1{x^2 + 1} && \ref{sec_calc_trig_inv} \\[3ex]
+    & \frac{-1}{x^2 \sqrt{1 - x^{-2}}} && \ref{sec_calc_trig_inv} \\[3ex]
+\arccot x & -\frac 1{x^2 + 1} &&& \ref{sec_calc_trig_inv} \\[3ex]
 \sinh x & \cosh x \\[1ex]
 \cosh x & \sinh x \\[1ex]
 \tanh x & \sech^2 x & -\tanh^2 x + 1 \\[1ex]
