@@ -1,0 +1,74 @@
+\section{Set Theory}
+
+\subsection{Set Operations}
+
+\subsection{Common sets}
+
+%FIXME: sets of congruence classes
+%       sets of polynomial rings: apply set mathbb A
+
+\begin{longtable}{>{\(}c<{\)}l}
+\toprule
+\text{\bfseries Set} & \bfseries Description \\
+\midrule
+\endhead
+\emptyset, \varnothing & The empty set \(\set{}\). \\
+\Naturals & The set of natural numbers, \(\set{1, 2, 3, \dotsc}\).
+               May or may not include 0. \\
+\Integers & The set of integers
+               \set{\dotsc, -2, 1, 0, 1, 2, \dotsc} \\
+\Integers^+, \Integers_{> 0} & The set of strictly positive integers
+               \set{1, 2, 3, \dotsc}. \\
+\Integers^+_0, \Integers_{\ge 0} &
+               The set of strictly nonnegative integers
+               \set{0, 1, 2, \dotsc}. \\
+\Integers^-, \Integers_{< 0} & The set of strictly negative integers
+               \set{-1, -2, -3, \dotsc}. \\
+\Integers^-_0, \Integers_{\le 0} &
+               The set of strictly nonpositive integers
+               \set{0, -1, -2, \dotsc}. \\
+\Rationals & The set of rational numbers
+               \set{\frac ab \mid a, b \in \Integers \land b \neq 0}.\\
+\mathbb A & The set of algebraic numbers, ie numbers that are roots of
+               polynomials in \(\Integers[x]\). \\
+\Reals & The set of real numbers, which may be constructed as
+               ``slices'' of \(\Rationals\). \\
+\Complex & The set of complex numbers
+               \(\set{a + bi \mid a, b \in \Reals}\),
+               where \(i^2 = 1\).\\
+\intoo{a, b} & The open interval
+                 \(\set{x \in \Reals \mid a < x < b}.\)\\
+\intcc{a, b} & The closed interval
+                 \(\set{x \in \Reals \mid a \le x \le b}\).\\
+\intco{a, b} & The half-open interval
+                 \(\set{x \in \Reals \mid a \le x < b}\).\\
+\intoc{a, b} & The half-open interval
+                 \(\set{x \in \Reals \mid a < x \le b}\).\\
+\bottomrule
+\end{longtable}
+
+\subsection{Closed, Open, Clopen}
+
+\subsection{Axiom of Choice}
+
+\subsection{ZFC}
+
+\subsection{Peano Arithmetic}
+
+\subsection{Cardinality}
+
+% powerset of integers, diagonal argument, schroeder-bernstein, interval
+% cardinality
+
+Cardinality is a way to think about the ``size'' of sets. Cardinality is
+really a kind of equivalence relation on the class of sets, where two sets
+have the same cardinality iff there exists a bijection between them - ie
+there is a way to produce a one-to-one mapping between the two sets.
+
+Any two finite sets obviously have the same cardinality iff they have the
+same number of elements. The cardinality of a finite set is usually just
+given as the number of elements it has. For example, \(\abs{\emptyset} = 0\)
+and \(\abs{\set{1, 3, 2}} = 3\), etc.
+
+We also denote the cardinality of the natural numbers
+\(\abs{\Naturals} = \aleph_0\).

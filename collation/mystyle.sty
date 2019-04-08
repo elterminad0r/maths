@@ -1,0 +1,197 @@
+\ProvidesPackage{mystyle}
+
+% so the title can be accessed by fancyhdr (and is automatically correctly
+% spelled etc)
+\makeatletter
+\let\thetitle\@title
+\makeatother
+
+% better fonts, apparently
+\usepackage{lmodern}
+% fixes some small caps things
+\usepackage{slantsc}
+
+% for references
+\usepackage[square,numbers]{natbib}
+
+% package for drawing tex-related logos - eg \hologo(bibtex)
+\usepackage{hologo}
+
+% needed for colouring and stuff (xcolor supersedes color). provides LightSalmon
+\usepackage[x11names]{xcolor}
+
+% make the document take up more of the page
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
+
+% no paragraph indent
+\usepackage[parfill]{parskip}
+
+% custom document header/footer
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\thetitle}
+\rhead{Izaak van Dongen}
+\rfoot{Page \thepage\ of \pageref{LastPage}}
+
+% pretty table rules and multirow entries. Also page-breaking tables
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+
+\usepackage{enumitem}
+
+% plotting mathematical functions (needs version request)
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+
+% \url function and clickable table of contents. no ugly red boxes though
+\usepackage[hidelinks,pdfencoding=auto,psdextra]{hyperref}
+
+% maths symbols and other stuff (supersedes the ams* packages)
+\usepackage{mathtools}
+
+% provides \set, /\int[oc][oc]/, but is mostly overwritten by physics
+\usepackage{commath}
+
+% provides typesetting of derivatives with \dv and \dd, and also \abs and \norm
+% and automatic delimeter pairing with pqty, bqty, vqty, Bqty
+\usepackage{physics}
+
+% provides mathbb
+\usepackage{amsfonts}
+% provides uptau
+\usepackage{upgreek}
+% provides \varnothing
+\usepackage{amssymb}
+% why not
+\newcommand\omicron{o}
+% mathscr
+\usepackage{mathrsfs}
+% text(frak|swab|goth)
+\usepackage{yfonts}
+\def\initdefault{yinit} % fix weird font thing
+% mathfrak
+\usepackage{eufrak}
+% witches
+\usepackage{halloweenmath}
+% some stackrel things
+\usepackage{stackrel}
+
+\DeclareMathOperator{\Normal}{\mathcal{N}}
+\DeclareMathOperator{\Binomial}{\mathcal{B}}
+\DeclareMathOperator{\Prob}{\mathrm P}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand*\mean[1]{\overline{#1}}
+\newcommand*\lseg[1]{\mathit{#1}}
+\newcommand*\nPr[2]{\prescript{#1\mkern-2.5mu}{}P_{#2}}
+\newcommand*\nCr[2]{\prescript{#1\mkern-0.5mu}{}C_{#2}}
+
+\newcommand{\setstyle}{\mathbb}
+\newcommand{\Naturals}{\setstyle N}
+\newcommand{\Integers}{\setstyle Z}
+\newcommand{\Rationals}{\setstyle Q}
+\newcommand{\Reals}{\setstyle R}
+\newcommand{\Complex}{\setstyle C}
+
+% define starting paragraph letter stuff
+\usepackage{lettrine}
+\setcounter{DefaultLines}{4}
+\setlength{\DefaultFindent}{0.5em}
+\setlength{\DefaultNindent}{0em}
+\renewcommand{\LettrineFontHook}{\usefont{U}{yinit}{m}{n}}
+
+% typesetting units
+\usepackage[separate-uncertainty]{siunitx}
+
+% For framing definitions
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{definition}{
+freelance,
+before=\par\vspace{2\bigskipamount}\noindent,
+after=\par\bigskip,
+frame code={
+  \node[
+  anchor=south west,
+  inner xsep=8pt,
+  xshift=8pt,
+  rounded corners=5pt,
+  font=\bfseries\color{white},
+  fill=gray] at (frame.north west) (tit) {\strut Definition:};
+  \draw[
+  line width=3pt,
+  rounded corners=5pt,gray
+  ] (tit.west) -| (frame.south west) -- ([xshift=15pt]frame.south west);
+},
+interior code={},
+top=2pt
+}
+
+% for better table of contents stuff, providing the \listof* commands and not
+% listing the tables in the table of contents
+\usepackage[nottoc,notlof,notlot]{tocbibind}
+
+% increase spacing of section numbers from headings
+\usepackage{tocloft}
+\setlength{\cftsubsecnumwidth}{2.9em}
+\setlength{\cftsubsubsecindent}{4.4em}
+
+% more advanced handling of utf8 and fonts or something. apparently good to have
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% bibliography management with square braces for citations
+\usepackage[square,numbers]{natbib}
+
+% graphics, like eps files and stuff (supersedes graphics)
+\usepackage{graphicx}
+
+% used to horizontally align floats
+\usepackage{subfig}
+
+% used for figures
+\usepackage{float}
+
+% lorem ipsum generator
+\usepackage{lipsum}
+
+\definecolor{codegreen}{rgb}{ 0,0.6,0}
+
+% listings of code
+\usepackage{minted}
+\setminted{breaklines,
+           breakbytokenanywhere,
+           linenos
+}
+\usemintedstyle{friendly}
+% bigger line numbers
+\renewcommand\theFancyVerbLine{\footnotesize\arabic{FancyVerbLine}}
+
+% that can break across pages while being captioned figures
+\usepackage{caption}
+\newenvironment{longlisting}
+{\addvspace{\baselineskip}\captionsetup{type=listing}}
+{\addvspace{\baselineskip}}
+
+% allow maths to break across pages
+\allowdisplaybreaks
+
+\usepackage{amsthm}
+\usepackage{thmtools}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}

@@ -1,0 +1,68 @@
+\section{Statistics}
+
+\subsection{Random Variables}
+
+\subsection{Binomial Distribution}
+
+%FIXME add diagram
+
+The binomial distribution \(\Binomial(\nu, \pi)\) measures the probability
+of having a certain number of outcomes in a set of trials,  where there are
+\(\nu\) trials each with probability \(\pi\) of having that outcome.
+The validity of this distribution is subject to these constraints:
+\begin{enumerate}
+\item Each event must be independent.
+\item Each event must either have that outcome or not have it.
+\item The probability of having this outcome must be identically the same in
+      each trial.
+\end{enumerate}
+This means that the binomial distribution can be used to model the expected
+number of occurrences of some attribute in a random sample of a population
+with replacement. However, in a sample without replacement, each trial is
+not strictly independent, so the binomial distribution can't be used. For
+large population sizes, however, it remains a good approximation.
+
+In this case, ``large'' can be taken to mean more than about 30-100.
+
+The PMF of \(X \sim \Binomial(\nu, \pi)\) is given by
+\begin{equation*}
+f_X(k) = \Prob(X = k) = \binom \nu k \pi^k (1 - \pi)^{\nu - k}
+    \quad \text{where \(k \in \set{0, 1, \dotsc, \nu}\)}
+\end{equation*}
+where
+\begin{equation*}
+\binom \nu k = \nCr \nu k = \frac{\nu!}{k!\cdot (\nu - k)!}
+\end{equation*}
+
+\subsubsection{Normal approximation}
+
+A binomial distribution can be approximated by a normal distribution.
+
+\subsection{Normal Distribution}
+
+%FIXME add diagram
+
+The PDF of \(X \sim \Normal(\mu, \sigma^2)\) is given by
+\begin{equation*}
+f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \cdot
+    \exp(\frac{(x - \mu)^2}{2\sigma^2})
+\end{equation*}
+
+\subsubsection{Dimensional Verification/Mnemonic}
+
+NB \(\bqty{f(x)} =
+    \bqty{\frac 1{\sqrt{\sigma^2}}}
+    e^{\bqty{\frac{x^2}{\sigma^2}}}
+  = \bqty{\frac 1\sigma}\), as
+\(\bqty{\sigma} = \bqty{\mu} = \bqty{x}\). Therefore, the
+evaluation of the probability \(\Prob(a < X < b)\) by the integral
+\(\int_a^bf(x) \dd{x}\) has dimension
+\(\bqty{\frac{\dd{x}}{\sigma}} = 1\), as expected for a probability.
+
+\subsection{Poisson Distribution}
+
+%FIXME derivation as limit of binomial, see generating functions
+
+\subsection{Hypothesis Testing}
+
+%FIXME Types of Error

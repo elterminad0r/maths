@@ -1,0 +1,297 @@
+\section{Integration}
+
+\subsection{Definition of a Riemann integral}
+
+\subsection{Fundamental Theorem of Calculus} \label{sec_calc_FTC}
+
+\subsection{Integration by Substitution} \label{sec_calc_substitution}
+
+Integration by substitution is effectively the chain rule
+(\ref{sec_calc_chain}) in reverse. If we consider the function
+\begin{equation*}
+f(x) = g(h(x)) \implies f'(x) = h'(x) \cdot g'(h(x))
+\end{equation*}
+then the integral
+\begin{equation}
+\int h'(x) \cdot g'(h(x)) \dd{x} = \int f'(x) \dd{x} = f(x) + C
+\end{equation}
+
+\subsubsection{Trig Substitution} \label{sec_calc_trig_substitution}
+
+\subsection{Integration by Parts}
+
+Integration by parts is derived from the product rule
+(\ref{sec_calc_product}).  Consider the function
+\begin{equation*}
+f(x) = g(x) \cdot h(x) \implies f'(x) = g'(x) \cdot h(x) + g(x) \cdot h'(x)
+\end{equation*}
+then the integral
+\begin{equation}
+\int g'(x) \cdot h(x) \dd{x} = f(x) - \int g(x) \cdot h'(x) \dd{x} + C
+\end{equation}
+
+
+\subsection{Common integrals}
+
+\begin{longtable}{*{3}{>{\(\displaystyle}c<{\)}}c}
+\toprule
+\text{\boldmath\(f(x)\)}
+    & \text{\boldmath\(\int f(x) \dd{x}\ (+ C)\)}
+    & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
+\midrule
+\endhead
+g'(x) & g(x) \\[1ex]
+g(x) + h(x) & \int g(x) \dd{x} + \int h(x) \dd{x} \\[2ex]
+a \cdot g(x) & a\int g(x) \dd{x} & \text{\(a\) is a constant} \\[2ex]
+g'(h(x)) \cdot h'(x) & g(h(x)) \\[1ex]
+g'(x) \cdot h(x) & g(x) \cdot h(x) - \int g(x) \cdot h'(x) \dd{x} \\[2ex]
+\frac{g'(x)}{g(x)} & \ln \abs{g(x)} \\[3ex]
+\frac{g'(x)}{\sqrt{g(x)}} & 2\sqrt{g(x)} \\[3ex]
+x^n & \frac 1{n + 1}x^{n + 1} & n \ne -1 \\[3ex]
+\frac 1x & \ln \abs{x} \\[3ex]
+e^x & e^x & \text{\(e\) is Euler's constant} \\[1ex]
+a^x & \frac 1{\ln a}a^x & \text{\(a\) is a constant} \\[3ex]
+\sin x & -\cos x \\[1ex]
+\cos x & \sin x \\[1ex]
+\tan x & \ln \abs{\sec x} \\[1ex]
+\sec x & \ln \abs{\sec x + \tan x}
+    & \ln \abs{\tan(\tfrac 12 x + \tfrac 14 \pi)} \\[2ex]
+\csc x & \ln \abs{\csc x - \cot x} & \ln \abs{\tan(\tfrac 12 x)} \\[2ex]
+\cot x & \ln \abs{\sin x} \\[1ex]
+\sin^2 x & \tfrac 12 x - \tfrac 14 \sin 2x \\[1ex]
+\cos^2 x & \tfrac 12 x + \tfrac 14 \sin 2x \\[1ex]
+\tan^2 x & \tan x - x \\[1ex]
+\sec^2 x & \tan x \\[1ex]
+\csc^2 x & -\cot x \\[1ex]
+\cot^2 x & -\cot x - x \\[1ex]
+\bottomrule
+\caption{Common integrals}
+\label{tab_calc_integrals}
+\end{longtable}
+
+\begin{longtable}{*{3}{>{\(\displaystyle}c<{\)}}c}
+\toprule
+\text{\boldmath\(f(x)\)}
+    & \text{\boldmath\(\int f(x) \dd{x}\ (+ C)\)}
+    & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
+\midrule
+\endhead
+\frac{\cos x}{\sin x + \cos x}
+    & \tfrac 12 x + \tfrac 12 \ln \abs{\sin x + \cos x} \\[3ex]
+\frac{\sin x}{\sin x + \cos x}
+    & \tfrac 12 x - \tfrac 12 \ln \abs{\sin x + \cos x} \\[3ex]
+\bottomrule
+\caption{Niche but interesting integrals}
+\end{longtable}
+
+\subsection{Frullani Integral}
+
+\begin{theorem}[Frullani's Integral]
+Where the limit of \(f(x)\) exists at both 0 and \(\infty\), and \(f'(x)\)
+exists and is continuous on \(\intoo{0, \infty}\),
+\begin{equation*}
+\int_0^\infty \frac{f(ax) - f(bx)} x \dd{x}
+    = (f(\infty) - f(0))\ln \frac ab
+\end{equation*}
+\end{theorem}
+\begin{proof}
+This can be shown by using differentiation under the integral sign. We note
+that the integrand is itself the definite integral of \(f'(tx)\) with
+respect to \(t\), from \(b\) to \(a\). We can then exchange the integrals.
+%FIXME justify
+\begin{align*}
+\int_0^\infty \frac{f(ax) - f(bx)} x \dd{x} &=
+    \int_0^\infty \int_b^a f'(tx) \dd{t} \dd{x} \\
+    &= \int_b^a \int_0^\infty f'(tx) \dd{x} \dd{t} \\
+    &= \int_b^a \frac{f(tx)}{t}\eval_{x=0}^\infty \dd{t} \\
+    &= \int_b^a \frac 1t(f(\infty) - f(0)) \dd{t} \\
+    &= (f(\infty) - f(0))\int_b^a \frac 1t \dd{t} \\
+    &= (f(\infty) - f(0))\ln \frac ab \qedhere
+\end{align*}
+\end{proof}
+
+\subsection{Archyperbolic \textit t-substitutions.}
+
+\begin{theorem}[Archyperbolic t substitution]
+\begin{equation*}
+\int f(x + \sqrt{x^2 + 1}) \dd{x}
+    = \frac 12 \int \pqty{1 + \frac 1{t^2}}f(t) \dd{t}
+\end{equation*}
+where \(t = x + \sqrt{x^2 + 1}\).
+\begin{equation*}
+\int f(x + \sqrt{x^2 - 1}) \dd{x}
+    = \frac 12 \int \pqty{1 - \frac 1{t^2}}f(t) \dd{t}
+\end{equation*}
+where \(t = x + \sqrt{x^2 - 1}\).
+\end{theorem}
+\begin{proof}
+To find the integral of some function \(f(x + \sqrt{x^2 + 1})\), we can make
+the substitution \(t = x + \sqrt{x^2 + 1}\). Noting that
+\(t^{-1} = \sqrt{x^2 + 1} - x\), we have \(\frac 12(t - t^{-1}) = x\)
+and also \(\frac 12(t + t^{-1}) = \sqrt{x^2 + 1}\), so in fact the form of
+\(f(x)\) can involve both \(x\) and \(\sqrt{x^2 + 1}\) as these can be
+written in terms of \(t\). From the former equation, we have also
+\begin{alignat*}{2}
+&& \dv{x}{t} &= \frac 12\pqty{1 + \frac 1{t^2}} \\
+&\implies& \int f(x + \sqrt{x^2 + 1}) \dd{x}
+    &= \frac 12 \int \pqty{1 + \frac 1{t^2}}f(t) \dd{t}
+\end{alignat*}
+Similarly for the second one, we let \(t = x + \sqrt{x^2 - 1}\) so that
+\(t^{-1} = x - \sqrt{x^2 - 1}\), and we have \(\frac 12(t + t^{-1}) = x\)
+and also \(\frac 12(t - t^{-1}) = \sqrt{x^2 - 1}\). Therefore,
+\begin{alignat*}{2}
+&& \dv{x}{t} &= \frac 12\pqty{1 - \frac 1{t^2}} \\
+&\implies& \int f(x + \sqrt{x^2 - 1}) \dd{x}
+    &= \frac 12 \int \pqty{1 - \frac 1{t^2}}f(t) \dd{t} \tag*{\qedhere}
+\end{alignat*}
+\end{proof}
+
+\subsection{Supersymmetric involution substitution}
+
+\begin{theorem}[Additive involution substitution]
+\begin{equation*}
+\int_a^b \frac{f(x)}{f(x) + f(a + b - x)} \dd{x} = \frac{b - a} 2
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let \(I\) denote the integral, and make the substitution \(u = a + b - x\),
+\begin{alignat*}{2}
+&\implies& \dv{u}{x} &= -1, \quad x = a + b - u \\
+&\implies& I &= \int_{a + b - a}^{a + b - b}
+                    \frac{-f(a + b - u)}{f(a + b - u) + f(u)} \dd{u} \\
+&&  &= \int_a^b \frac{f(a + b - u)}{f(a + b - u) + f(u)} \dd{u} \\
+&\implies& I + I &= \int_a^b
+                    \frac{f(a + b - x) + f(x)}
+                         {f(a + b - x) + f(x)} \dd{x} \\
+&&  &= \int_a^b 1 \dd{x} = b - a \\
+&\implies& I &= \frac{b - a} 2 \tag*{\qedhere}
+\end{alignat*}
+\end{proof}
+\begin{theorem}[Divisive involution substitution]
+\begin{equation*}
+\int_a^b \frac{f(x)}{x(f(x) + f(ab / x))} \dd{x}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Again let \(I\) denote the integral. Make the substitution \(u = ab / x\),
+\begin{alignat*}{2}
+&\implies& \dv{u}{x} &= -\frac{ab}{x^2} = -\frac ux, \quad x = \frac{ab}u \\
+&\implies& I &= \int_{ab/a}^{ab/b} \frac{-f(ab / u)}{u(f(ab / u) + f(u))}
+    \dd{u} \\
+&& &= \int_a^b \frac{f(ab / u)}{u(f(ab / u) + f(u))} \dd{u} \\
+&\implies& I + I &= \int_a^b \frac{f(ab / x) + f(x)}
+                                  {x(f(ab / x) + f(x))} \dd{x} \\
+&& &= \int_a^b \frac 1x \dd{x} = \ln \frac ba \\
+&\implies& I &= \frac 12 \ln \frac ba \tag*{\qedhere}
+\end{alignat*}
+\end{proof}
+
+\subsection{Gaussian Integral}
+
+\begin{theorem}[Gaussian Integral] \label{thm_gauss_integral}
+\begin{equation*}
+\int_{-\infty}^\infty e^{-x^2} \dd{x} = \sqrt \pi
+\end{equation*}
+\end{theorem}
+\begin{proof}
+We can consider first the square of the integral.
+\begin{align*}
+\pqty{\int_{-\infty}^\infty e^{-x^2} \dd{x}}^2
+    &= \pqty{\int_{-\infty}^\infty e^{-x^2} \dd{x}}
+       \pqty{\int_{-\infty}^\infty e^{-y^2} \dd{y}} \\
+    &= \int_{-\infty}^\infty
+                   \pqty{\int_{-\infty}^\infty e^{-y^2} \dd{y}}
+               e^{-x^2} \dd{x} \\
+    &= \int_{-\infty}^\infty
+           \pqty{\int_{-\infty}^\infty e^{-y^2} e^{-x^2} \dd{y}} \dd{x} \\
+    &= \int_{-\infty}^\infty
+           \int_{-\infty}^\infty e^{-x^2-y^2} \dd{y} \dd{x}
+\end{align*}
+%FIXME diagram of this
+This is effectively integrating some function of \((x, y)\) over
+\(\Reals^2\), giving the volume between an infinite solid and the \((x, y)\)
+plane. By noting that the function only depends on the distance of
+\((x, y)\) from \((0, 0)\) (ie \(x^2 + y^2\)), we see that this volume is
+equivalent to the volume obtained by fully rotating the curve in the
+\(y = e^{-x^2}\) where
+\(x \in \intco{0, \infty} \implies y \in \intoc{0, 1}\) around the y axis.
+This means
+\begin{alignat*}{2}
+&& \pqty{\int_{-\infty}^\infty e^{-x^2} \dd{x}}^2
+    &= \int_0^1 \pi x^2 \dd{y} \\
+&&  &= -\pi \int_0^1 \ln y \dd{y} \\
+&&  &= -\pi (y\ln y - y)\eval_0^1 \\
+&&  &= -\pi \pqty{0 - 1 - 0 + 0} \\
+&&  &= \pi \\
+&\implies& \int_{-\infty}^\infty e^{-x^2} \dd{x}
+    &= \sqrt \pi \tag*{\qedhere}
+\end{alignat*}
+\end{proof}
+This integral is used as the normalising constant of the normal
+distribution. It also pops up in the evaluation of \(\Gamma(\frac 12)\).
+
+It's a quite famous example of an integral of an elementary integrand that
+has no elementary antiderivative, but when taken as a definite integral can
+be solved analytically.
+
+\subsection{Volume of Revolution}
+
+\subsection{Area under Parametric Curve} \label{sec_calc_parametric_area}
+
+To find the area between a curve and the \(x\)-axis from \(x_1\) to \(x_2\)
+when the curve is given in parametric form, \((x, y) = (f(t), g(t))\),
+we rewrite the integral, effectively using a substition
+(\ref{sec_calc_substitution}) \(x = f(t)\) in order to express the integrand
+in \(t\).
+\begin{equation}
+\int_{x_1}^{x_2} y \dd{x} =
+ \int_{t_1}^{t_2} y \dv{x}{t} \dd{t} =
+ \int_{t_1}^{t_2} g(t)f'(t) \dd{t}
+\end{equation}
+where \(f(t_1) = x_1\) and \(f(t_2) = x_2\).
+
+Similarly, the area between the curve and the y-axis from \(y_1\) to \(y_2\)
+is:
+\begin{equation}
+\int_{y_1}^{y_2} x \dd{y} =
+ \int_{t_1}^{t_2} x \dv{y}{t} \dd{t} =
+ \int_{t_1}^{t_2} f(t)g'(t) \dd{t}
+\end{equation}
+where \(g(t_1) = y_1\) and \(g(t_2) = y_2\).
+
+\subsection{Implicit differentiation}
+
+% fix this
+
+%FIXME: add x^y for fun
+
+An example may help to clarify.
+\begin{align*}
+0 &= y^2 + x^3 + \sin x^2 y + \ln \frac{\sqrt y} x - 5 \\
+\implies 0 &=
+            2y \dv{y}{x} + 3x^2 +
+            \pqty{2x \cdot y + \dv{y}{x} \cdot x^2} \cdot \cos x^2 y +
+            \pqty{\frac{x \cdot \frac 12 y^{-\frac 12} \cdot \dv{y}{x} -
+                        \sqrt y \cdot 1}
+                       {x^2}} \cdot \frac{x}{\sqrt y} \\
+\end{align*}
+
+%FIXME finish this
+
+\subsection{Arc Length}
+
+\subsection{Improper Integrals}
+
+%FIXME add types of improper integral
+
+\subsection{Taylor Series}
+
+The Maclaurin series is the Taylor series around \(0\).
+\begin{equation}
+f(x) = f(0) + f'(0) x + \frac{f''(0)} 2 x^2 + \frac{f'''(0)}{6}x^3 +\dotsb
+  = \sum_{k=0}^\infty \frac{f^{(k)}(0)}{k!}x^k
+\end{equation}
+
+\subsection{Common series}
+
+\subsection{Fake Calculus, AKA numerical approximations}
