@@ -1598,11 +1598,21 @@ for n, i in enumerate(get_sqr_tris(10)):
 
     %FIXME: add x^x. maybe more intricate proofs.
 
-    Here follows a table of common differentiations. A number of derivative
-    derivations are also given in the following subsubsections.
+    Differentiation is, informally speaking, an easy problem. Any elementary
+    function, which is to say any of the functions in table
+    \ref{tab_calc_derivatives}, or any composition of elementary functions, is
+    differentiable to an elementary function, and basically the algorithm to do
+    so just consists of identifying the form of a function as some composition
+    of other subexpressions, finding the derivative in terms of these
+    subexpressions and their derivatives, and continuing to recurse down
+    subexpresions until they are exhausted.
 
-    Note that by FTC (\ref{sec_calc_FTC}), these also give a number of common
-    integrations.
+    The most essential rules for taking the derivative of a composition of
+    unspecified functions are shown in table
+    \ref{tab_calc_functions_derivatives}. The most essential ones are marked
+    with (\(\star\)). All the following ones can be derived using only these
+    rules, and the derivatives of some functions in table
+    \ref{tab_calc_derivatives}
 
     \begin{longtable}{*{3}{>{\(\displaystyle}c<{\)}}c}
     \toprule
@@ -1610,25 +1620,56 @@ for n, i in enumerate(get_sqr_tris(10)):
         & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
     \midrule
     \endhead
-    g(x) + h(x) & g'(x) + h'(x) && \ref{sec_calc_derivative_properties} \\[1ex]
-    a \cdot g(x) & a \cdot g'(x) && \ref{sec_calc_derivative_properties} \\[1ex]
+    g(x) + h(x) & g'(x) + h'(x) & (\star)
+        & \ref{sec_calc_derivative_properties} \\[1ex]
+    a \cdot g(x) & a \cdot g'(x) & (\star)
+        & \ref{sec_calc_derivative_properties} \\[1ex]
     g(x) \cdot h(x) & g'(x) \cdot h(x) + g(x) \cdot h'(x)
-        && \ref{sec_calc_product} \\[1ex]
-    g(h(x)) & h'(x) \cdot g'(h(x)) && \ref{sec_calc_chain} \\[1ex]
+        & (\star) & \ref{sec_calc_product} \\[1ex]
+    g(h(x)) & h'(x) \cdot g'(h(x)) & (\star) & \ref{sec_calc_chain} \\[1ex]
     \frac{g(x)}{h(x)} & \frac{h(x) \cdot g'(x) - g(x) \cdot h'(x)}{(h(x))^2}
         && \ref{sec_calc_quotient} \\[3ex]
+    g(ax + b) & a \cdot g'(ax + b) \\[3ex]
     g(x)^{h(x)}
         & \pqty{\frac{h(x)g'(x)}{g(x)} + h'(x)\ln(g(x))}g(x)^{h(x)}
         & g(x) > 0 & \ref{sec_calc_powers} \\[3ex]
     \sqrt{g(x)} & \frac{g'(x)}{2\sqrt{g(x)}} & g(x) \ge 0 \\[3ex]
     \ln(g(x)) & \frac{g'(x)}{g(x)} & g(x) > 0 \\[3ex]
-    g(ax + b) & a \cdot g'(ax + b) \\[3ex]
+    \log_a(g(x)) & \frac{g'(x)}{g(x) \ln a} & g(x) > 0 \\[3ex]
+    \log_{g(x)} a & \frac{-\ln a}{g(x) (\ln(g(x)))^2}
+        & \text{const \(a > 0\), \(g(x) > 0\)} \\[3ex]
+    \log_{g(x)} h(x) & \frac 1{(\ln(g(x)))^2}\pqty{\frac{\ln(g(x))}{h(x)}
+                                                 - \frac{\ln(h(x))}{g(x)}}
+        & g(x), h(x) > 0 \\[3ex]
+    \bottomrule
+    \caption{General derivatives of compositions of functions}
+    \label{tab_calc_functions_derivatives}
+    \end{longtable}
+
+    In table \ref{tab_calc_derivatives} is a set of common derivatives of
+    functions. Note that by FTC (\ref{sec_calc_FTC}), these also give a number
+    of common integrations, although these are reiterated in table
+    \ref{tab_calc_integrals}.
+
+    A large number of these can be readily derived from preceding entries. The
+    most essential ones are marked with a \(\star\). The further down the table
+    you get, the more obscure the functions get. For most, it can save time to
+    know the derivatives, but people obviously have their priorities and often
+    it's more worthwile to understand how to derive the derivative, anyway.
+
+    \begin{longtable}{*{3}{>{\(\displaystyle}c<{\)}}c}
+    \toprule
+    \text{\boldmath\(f(x)\)} & \text{\boldmath\(f'(x)\)}
+        & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
+    \midrule
+    \endhead
     a & 0 & \text{\(a\) is constant.} \\[1ex]
     x^n & nx^{n-1} & \text{\(n\) is constant} & \ref{sec_calc_powers} \\[1ex]
     e^x & e^x & \text{\(e\) is Euler's number} & \ref{sec_e} \\[1ex]
     a^x & \ln a \cdot a^x & \text{\(a\) is constant}
         & \ref{sec_calc_powers}\\[1ex]
     \ln x & \frac 1{x} \\[3ex]
+    \log_a x & \frac 1{x\ln a} & \text{\(a\) is a constant} \\[3ex]
     \sin x & \cos x \\[1ex]
     \cos x & -\sin x && \ref{sec_calc_trig_basic} \\[1ex]
     \tan x & \sec^2 x & \tan^2 x + 1 & \ref{sec_calc_trig_basic} \\[1ex]
@@ -1656,7 +1697,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     \arccsch x & \frac{-1}{\abs{x}\sqrt{1 + x^2}} \\[3ex]
     \arccoth x & \frac 1{1 - x^2} \\[3ex]
     \bottomrule
-    \caption{Common derivatives} \\
+    \caption{Common derivatives} \label{tab_calc_derivatives}
     \end{longtable}
 
     \subsubsection{Derivatives with powers} \label{sec_calc_powers}
@@ -1703,8 +1744,8 @@ for n, i in enumerate(get_sqr_tris(10)):
     &\implies& qy^{q - 1}\dv{y}{x} &= px^{p - 1} \\
     &\implies& \dv{y}{x} &= \frac pq x^{p - 1}y^{1 - q}
         = \frac pq x^{p - 1}x^{(p / q)(1 - q)} \\
-    &&  &= \frac pq x^{p - 1 + p / q - p}
-        = \frac pq x^{p / q - 1}
+    &&  &= \frac pq x^{p - 1 + (p / q) - p}
+        = \frac pq x^{(p / q) - 1}
     \end{alignat*}
 
     We can show that this power rule generalizes to any real exponent \(k \in
@@ -1856,6 +1897,7 @@ for n, i in enumerate(get_sqr_tris(10)):
     g'(h(x)) \cdot h'(x) & g(h(x)) \\[1ex]
     g'(x) \cdot h(x) & g(x) \cdot h(x) - \int g(x) \cdot h'(x) \dd{x} \\[2ex]
     \frac{g'(x)}{g(x)} & \ln \abs{g(x)} \\[3ex]
+    \frac{g'(x)}{\sqrt{g(x)}} & 2\sqrt{g(x)} \\[3ex]
     x^n & \frac 1{n + 1}x^{n + 1} & n \ne -1 \\[3ex]
     \frac 1x & \ln \abs{x} \\[3ex]
     e^x & e^x & \text{\(e\) is Euler's constant} \\[1ex]
@@ -1867,8 +1909,30 @@ for n, i in enumerate(get_sqr_tris(10)):
         & \ln \abs{\tan(\tfrac 12 x + \tfrac 14 \pi)} \\[2ex]
     \csc x & \ln \abs{\csc x - \cot x} & \ln \abs{\tan(\tfrac 12 x)} \\[2ex]
     \cot x & \ln \abs{\sin x} \\[1ex]
+    \sin^2 x & \tfrac 12 x - \tfrac 14 \sin 2x \\[1ex]
+    \cos^2 x & \tfrac 12 x + \tfrac 14 \sin 2x \\[1ex]
+    \tan^2 x & \tan x - x \\[1ex]
+    \sec^2 x & \tan x \\[1ex]
+    \csc^2 x & -\cot x \\[1ex]
+    \cot^2 x & -\cot x - x \\[1ex]
     \bottomrule
     \caption{Common integrals}
+    \label{tab_calc_integrals}
+    \end{longtable}
+
+    \begin{longtable}{*{3}{>{\(\displaystyle}c<{\)}}c}
+    \toprule
+    \text{\boldmath\(f(x)\)}
+        & \text{\boldmath\(\int f(x) \dd{x}\ (+ C)\)}
+        & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
+    \midrule
+    \endhead
+    \frac{\cos x}{\sin x + \cos x}
+        & \tfrac 12 x + \tfrac 12 \ln \abs{\sin x + \cos x} \\[3ex]
+    \frac{\sin x}{\sin x + \cos x}
+        & \tfrac 12 x - \tfrac 12 \ln \abs{\sin x + \cos x} \\[3ex]
+    \bottomrule
+    \caption{Niche but interesting integrals}
     \end{longtable}
 
     \subsection{Frullani Integral}
