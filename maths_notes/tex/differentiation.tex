@@ -4,18 +4,26 @@
 
 \subsection{Definition of the derivative}
 
-The derivative of \(f(x)\),
+The derivative of \(f(x)\) gives the gradient of the curve \(y = f(x)\) at
+\(x\). It is defined as
 \begin{equation}
 f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
 \end{equation}
 Other notations include, if \(y = f(x)\), then
-\(\displaystyle f'(x) = \dv{x}(f(x)) = \dv{y}{x} = y'\).
+\begin{equation}
+f'(x) = \dv{x}(f(x)) = \dv{y}{x} = y'
+\end{equation}
 
 There is also various notation for repeated differentiation. If
 \(g(x) = f'(x)\), then \(g'(x) = f''(x)\).
-\(\displaystyle f''(x) = \dv[2]{y}{x} = \dv[2]{x}(f(x))\). In general, the
-\(n\)th derivative is
-\(\displaystyle f^{(n)}(x) = \dv[n]{y}{x} = \dv[n]{x}(f(x))\).
+\begin{equation*}
+f''(x) = \dv[2]{y}{x} = \dv[2]{x}(f(x))
+\end{equation*}
+In general, differentiating \(y = f(x)\) \(n\) times, we have the \(n\)th
+derivative
+\begin{equation*}
+f'''^{\ \text{\(n\) times}} = f^{(n)}(x) = \dv[n]{y}{x} = \dv[n]{x}(f(x))
+\end{equation*}
 
 \subsection{Basic properties of the derivative}
 \label{sec_calc_derivative_properties}
@@ -51,7 +59,7 @@ subexpresions until they are exhausted.
 The most essential rules for taking the derivative of a composition of
 unspecified functions are shown in table
 \ref{tab_calc_functions_derivatives}. The most essential ones are marked
-with (\(\note\)). All the following ones can be derived using only these
+with \(\note\). All the following ones can be derived using only these
 rules, and the derivatives of some functions in table
 \ref{tab_calc_derivatives}
 
