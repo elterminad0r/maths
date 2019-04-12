@@ -1,69 +1,6 @@
-\section{Miscellaneous}
-
-\subsection{Binomial Theorem}
-
-\begin{theorem}[Binomial theorem] Where \(n \in \Naturals\),
-\begin{equation*}
-(a + b)^n \equiv \sum_{r = 0}^n \binom nr a^r b^{n - r}
-\end{equation*}
-where the binomial coefficients are given by
-\begin{equation*}
-\binom nr = \nCr nr \defeq \frac{n!}{r!\cdot(n - r)!}
-\end{equation*}
-\end{theorem}
-\begin{proof}
-We can prove that this is the case by induction. If \(P(n)\) denotes the
-binomial theorem for exponent \(n, \forall n \in \Integers^+\), then we
-consider \(P(1)\):
-\begin{equation*}
-(a + b)^1 \equiv a + b
-    \equiv \frac{0!}{0!\cdot 1!} a^0b^1 + \frac{1!}{1!\cdot 0!} a^1b^0
-\end{equation*}
-so \(P(1)\) is true. We now consider \(P(n + 1)\), supposing that \(P(n)\)
-is true.
-\begin{align*}
-(a + b)^{n + 1} &\equiv (a + b)(a + b)^n \\
-    &\equiv (a + b)\sum_{r = 0}^n \binom nr a^r b^{n - r}
-        \impliedby P(n) \\
-    &\equiv a\sum_{r = 0}^n \binom nr a^r b^{n - r}
-          + b\sum_{r = 0}^n \binom nr a^r b^{n - r} \\
-    &\equiv \sum_{r = 0}^n \binom nr a^{r + 1} b^{n - r}
-          + \sum_{r = 0}^n \binom nr a^r b^{n - r + 1} \\
-    &\equiv \sum_{r = 1}^{n + 1} \binom n{r - 1} a^{r} b^{n - r + 1}
-          + \sum_{r = 0}^n \binom nr a^r b^{n - r + 1} \\
-    &\equiv a^{n + 1} + b^{n + 1}
-          + \sum_{r = 1}^n \bqty{\binom n{r - 1} + \binom nr}
-            a^r b^{n - r + 1} \\
-    &\equiv a^{n + 1} + b^{n + 1}
-          + \sum_{r = 1}^n \binom{n + 1}r a^r b^{n - r + 1} \\
-    &\equiv \sum_{r = 0}^{n + 1} \binom{n + 1}r a^r b^{(n + 1) - r} \\
-\end{align*}
-because
-\begin{align*}
-\binom n{r - 1} + \binom nr &\equiv \frac{n!}{(r - 1)! \cdot (n - r + 1)!}
-                                 + \frac{n!}{r! \cdot (n - r)!}
-                                    \qquad \text{by definition} \\
-    &\equiv \frac{n!\cdot(r + (n - r + 1))}{r! \cdot (n - r + 1)!} \\
-    &\equiv \frac{n! \cdot (n + 1)}{r! \cdot ((n + 1) - r)!} \\
-    &\equiv \frac{(n + 1)!}{r! \cdot ((n + 1) - r)!} \\
-    &\equiv \binom{n + 1} r \qquad \text{by definition}
-\end{align*}
-so \(P(n + 1)\) is true if \(P(n)\) is true, and therefore \(P(n)\) is true
-for \(\forall n \in \Integers^+\) by the principle of mathematical
-induction.
-\end{proof}
-
-\subsection{Numerical solutions to equations}
-
-\subsection{Fundamental Theorem of Arithmetic}
-
-\subsection{Prime Number Theorem}
+\section{Algebra}
 
 \subsection{Fundamental Theorem of Algebra}
-
-\subsection{Totient Function} \label{sec_totient}
-
-\subsection{Dimensional Analysis}
 
 \subsection{Difference of two Squares}
 
@@ -90,12 +27,12 @@ a^n - b^n \equiv (a - b)(a^{n - 1} + a^{n - 2}b + a^{n - 3}b^2 + \dotsb +
                          ab^{n - 2} + b^{n - 1})
 \end{equation}
 This can in fact be derived from the partial sum of a geometric progression
-\ref{sec_GP}. The sum \(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n\) is
+(\ref{sec_seq_GP}). The sum \(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n\) is
 a geometric progression of \(n + 1\) terms with first term \(a^n\) and
 common ratio \(b/a\).  Therefore,
 \begin{alignat*}{2}
 &&a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n &=
-        a^n \cdot \frac{\pqty{\frac ba}^{n + 1} - 1}{\frac ba - 1} \\
+        a^n \cdot \frac{\pqty{b / a}^{n + 1} - 1}{(b / a) - 1} \\
 &&    &= \frac{a^{n + 1} - b^{n + 1}}{a - b} \\
 &\implies& (a - b)(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n) &=
         a^{n + 1} - b^{n + 1}
@@ -131,14 +68,6 @@ a^{pq} - b^{pq} \equiv
              a^{p(1)}b^{p(q - 2)} + b^{p(q - 1)}
 \end{equation}
 
-\subsection{Infinitude of Primes}
-
-\subsection[Irrationality of \(\sqrt 2\)]
-           {Irrationality of \boldmath\(\sqrt 2\)}
-
-Assume \(\sqrt 2 = \frac ab : a, b \in \Integers \land \gcd(a, b) = 1\), ie
-\(a\) and \(b\) are coprime.
-
 \subsection{Quadratic formula} \label{sec_quad_formula}
 
 There is a formula to give the roots of a general quadratic.
@@ -161,16 +90,16 @@ We can complete the square to solve a general quadratic equation.
 \end{alignat*}
 \end{proof}
 
-Corollaries are that the number of real roots is determined by the
+A corollary is that the number of real roots of a quadratic is determined by the
 discriminant \({\Delta = b^2 - 4ac}\).
-\begin{theorem}[Quadratic real roots]
+\begin{corollary}[Quadratic real roots]
 Where \(P(x) \defeq ax^2 + bx + c\) and \(\Delta \defeq b^2 - 4ac\)
 \begin{align*}
 \Delta &= 0 \iff \text{\(P(x) = 0\) has one repeated real root} \\
 \Delta &< 0 \iff \text{\(P(x) = 0\) has no real roots} \\
 \Delta &> 0 \iff \text{\(P(x) = 0\) has two real roots}
 \end{align*}
-\end{theorem}
+\end{corollary}
 
 \subsection[Cauchy-Shwarz inequality for \(\Reals^n\)]
            {Cauchy-Shwarz inequality for \boldmath\(\Reals^n\)}
@@ -276,86 +205,6 @@ Now, for any \(n \in \Integers^+\), we can induct up to a power of 2 above
 
 \subsubsection{Generalized Power Means}
 
-\subsection{Square Triangular Numbers}
-
-%FIXME: add link annotations, explanations, oeis
-%FIXME: format table
-%fixme: improve this disgusting code
-
-The sequence of perfect squares \(\mathrm{ST}_n\) such that
-\(\mathrm{ST}_n= a_n^2 = \frac 12 b_n(b_n + 1)\), where
-\(a, b \in \Integers_0^+\). The first few are:
-
-\begin{longtable}{rrrr}
-\toprule
-\boldmath\(n\) & \boldmath\(\text{\bfseries ST}_n\) & \boldmath\(a_n\) &
-               \boldmath\(b_n\) \\
-\midrule
-\endhead
-0 & 0 & 0 & 0 \\
-1 & 1 & 1 & 1 \\
-2 & 36 & 6 & 8 \\
-3 & 1225 & 35 & 49 \\
-4 & 41616 & 204 & 288 \\
-5 & 1413721 & 1189 & 1681 \\
-6 & 48024900 & 6930 & 9800 \\
-7 & 1631432881 & 40391 & 57121 \\
-8 & 55420693056 & 235416 & 332928 \\
-9 & 1882672131025 & 1372105 & 1940449 \\
-10 & 63955431761796 & 7997214 & 11309768 \\
-11 & 2172602007770041 & 46611179 & 65918161 \\
-\multicolumn 4c\dots \\
-\bottomrule
-\caption{Square triangular numbers}
-\end{longtable}
-
-Generated by Listing \ref{lst_st_gen}.
-
-\begin{longlisting}
-\begin{minted}{python}
-def get_sqr_tris(n):
-nums = [0, 1]
-for _ in range(n):
-    nums.append(34 * nums[-1] - nums[-2] + 2)
-return nums
-
-def itrirt(n):
-return (isqrt(1 + 8 * n) - 1) // 2
-
-def isqrt(n):
-if n < 2:
-    return n
-else:
-    small = isqrt(n >> 2) << 1
-    big = small + 1
-    if big ** 2 > n:
-        return small
-    else:
-        return big
-
-for n, i in enumerate(get_sqr_tris(10)):
-print(" & ".join(map(str, [n, i, isqrt(i), itrirt(i)])) + " \\\\")
-\end{minted}
-\caption{Generating ST numbers}\label{lst_st_gen}
-\end{longlisting}
-
-%FIXME Pell's equation here
-
-Where \(p / q\) is the \(n\)th convergent of \(\sqrt 2\),
-\begin{equation}
-\mathrm{ST}_n = p^2 q^2
-\end{equation}
-
-\(\mathrm{ST}_n, a_n, b_n\) also satisfy the recurrence relations where
-\(\mathrm{ST}_0 = 0\) and \(\mathrm{ST}_1 = 1\)
-\begin{align}
-\mathrm{ST}_n &= 34\mathrm{ST}_{n - 1} - \mathrm{ST}_{n - 2} + 2\\
-a_n &= 6a_{n - 1} - a_{n - 2} \\
-b_n &= 6b_{n - 1} - b_{n - 2} + 2
-\end{align}
-
-See \cite{WikiSTNumbers,WolframSTNumbers} for more information.
-
 \subsection{de Moivre's Theorem}
 
 \begin{equation}
@@ -409,7 +258,7 @@ root of pi. The first few are shown in Table \ref{tab_gamma_halves}.
 \begin{longtable}{*{2}{>{\(\displaystyle}c<{\)}}}
 \toprule
 \text{\boldmath\(z\)}
-    & \text{\bfseries\boldmath\(\Gamma(z)\), or ``\boldmath\((z-1)!\)''} \\
+    & \text{\bfseries\boldmath\(\Gamma(z)\), AKA ``\boldmath\((z - 1)!\)''} \\
 \midrule
 \endhead
 \frac 12 & \sqrt{\pi} \\[3ex]

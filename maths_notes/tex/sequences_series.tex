@@ -1,4 +1,76 @@
-\section{Sequences and Series}
+\section{Sums, Sequences and Series Galore}
+
+\subsection{Binomial Theorem}
+
+\begin{theorem}[Binomial theorem] Where \(n \in \Naturals\),
+\begin{equation*}
+(a + b)^n \equiv \sum_{r = 0}^n \binom nr a^r b^{n - r}
+\end{equation*}
+where the binomial coefficients are given by
+\begin{equation*}
+\binom nr = \nCr nr \defeq \frac{n!}{r!\cdot(n - r)!}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+We can prove that this is the case by induction. If \(P(n)\) denotes the
+binomial theorem for exponent \(n, \forall n \in \Integers^+\), then we
+consider \(P(1)\):
+\begin{equation*}
+(a + b)^1 \equiv a + b
+    \equiv \frac{0!}{0!\cdot 1!} a^0b^1 + \frac{1!}{1!\cdot 0!} a^1b^0
+\end{equation*}
+so \(P(1)\) is true. We now consider \(P(n + 1)\), supposing that \(P(n)\)
+is true.
+\begin{align*}
+(a + b)^{n + 1} &\equiv (a + b)(a + b)^n \\
+    &\equiv (a + b)\sum_{r = 0}^n \binom nr a^r b^{n - r}
+        \impliedby P(n) \\
+    &\equiv a\sum_{r = 0}^n \binom nr a^r b^{n - r}
+          + b\sum_{r = 0}^n \binom nr a^r b^{n - r} \\
+    &\equiv \sum_{r = 0}^n \binom nr a^{r + 1} b^{n - r}
+          + \sum_{r = 0}^n \binom nr a^r b^{n - r + 1} \\
+    &\equiv \sum_{r = 1}^{n + 1} \binom n{r - 1} a^{r} b^{n - r + 1}
+          + \sum_{r = 0}^n \binom nr a^r b^{n - r + 1} \\
+    &\equiv a^{n + 1} + b^{n + 1}
+          + \sum_{r = 1}^n \bqty{\binom n{r - 1} + \binom nr}
+            a^r b^{n - r + 1} \\
+    &\equiv a^{n + 1} + b^{n + 1}
+          + \sum_{r = 1}^n \binom{n + 1}r a^r b^{n - r + 1}
+            \qquad \text{due to Lemma \ref{lem_bin_coef_sum}} \\
+    &\equiv \sum_{r = 0}^{n + 1} \binom{n + 1}r a^r b^{(n + 1) - r} \\
+\end{align*}
+Therefore, \(P(n + 1)\) is true if \(P(n)\) is true, and therefore \(P(n)\) is
+true for \(\forall n \in \Integers^+\) by the principle of mathematical
+induction.
+\end{proof}
+
+\begin{lemma}[Sum of adjacent binomial coefficients] \label{lem_bin_coef_sum}
+\begin{equation*}
+\binom n{r - 1} + \binom nr \equiv \binom{n + 1} r
+\end{equation*}
+\end{lemma}
+\begin{proof}
+\begin{align*}
+\binom n{r - 1} + \binom nr &\equiv \frac{n!}{(r - 1)! \cdot (n - r + 1)!}
+                                 + \frac{n!}{r! \cdot (n - r)!}
+                                    \qquad \text{by definition} \\
+    &\equiv \frac{n!\cdot(r + (n - r + 1))}{r! \cdot (n - r + 1)!} \\
+    &\equiv \frac{n! \cdot (n + 1)}{r! \cdot ((n + 1) - r)!} \\
+    &\equiv \frac{(n + 1)!}{r! \cdot ((n + 1) - r)!} \\
+    &\equiv \binom{n + 1} r \qquad \text{by definition} \tag*{\qedhere}
+\end{align*}
+\end{proof}
+
+\subsection{Geometric Progressions} \label{sec_seq_GP}
+
+A geometric progression is a sequence \(U_i\) where each progressive term is
+given by the previous term multiplied by some constant \emph{common ratio},
+denoted \(r\). The first term is denoted \(a\), such that
+\begin{gather*}
+U_1 = a, \qquad U_2 = ar, \qquad U_3 = ar^2, \qquad \dots\\
+U_n = a\underbrace{r \cdot r \cdot \dotsb \cdot r}_{\text{\(n\) times}}
+    = ar^{n - 1}
+\end{gather*}
 
 \subsection{Fibonacci Sequence}
 
@@ -34,12 +106,13 @@ and we can manipulate it.
 Consider now:
 \begin{alignat*}{9}
 && f(x) &= \sum_{k = 1}^\infty F_k x^k
-    &&=&\; x\, &+&\, x^2\, &+&\, 2x^3\, &+&\,
-        3x^4\, &+&\, 5x^5\, &+&\, 8x^6\, + \dotsb \\
+    &&=&\; x\; &+&\; x^2\; &+&\; 2x^3\; &+&\;
+        3x^4\; &+&\; 5x^5\; &+&\; 8x^6\; + \dotsb \\
 && x f(x) &= \sum_{k = 2}^\infty F_{k - 1} x^k
-    &&=& &&x^2 &+& x^3 &+& 2x^4 &+& 3x^5 &+& 5x^6 + \dotsb \\
+    &&=&\; &&x^2\; &+&\; x^3\; &+&\; 2x^4\; &+&\;
+        3x^5\; &+&\; 5x^6\; + \dotsb \\
 && x^2 f(x) &= \sum_{k = 3}^\infty F_{k - 2}x^k
-    &&=& &&&& x^3 &+& x^4 &+& 2x^5 &+& 3x^6 + \dotsb \\
+    &&=&\; &&&& x^3\; &+&\; x^4\; &+&\; 2x^5\; &+&\; 3x^6\; + \dotsb \\
 &\implies& (1 - x - x^2) f(x) &= x \\
 &\implies& f(x) &= \frac x{1 - x - x^2}
 \end{alignat*}
@@ -82,3 +155,13 @@ Combined with Exponentation by Squaring (\ref{sec_exp_by_squaring}), and
 some simple surd arithmetic, this should be a particularly fast way to
 calculate \(F_n\), as compared to utterly na\"ive recursion, or somewhat
 faster iteration or memoized recursion.
+
+\subsection{Taylor Series}
+
+The Maclaurin series is the Taylor series around \(0\).
+\begin{equation}
+f(x) = f(0) + f'(0) x + \frac{f''(0)} 2 x^2 + \frac{f'''(0)}{6}x^3 +\dotsb
+  = \sum_{k=0}^\infty \frac{f^{(k)}(0)}{k!}x^k
+\end{equation}
+
+\subsection{Common series}

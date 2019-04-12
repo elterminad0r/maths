@@ -1,141 +1,143 @@
- mechanics: restitution etc
+cannonball polygonal numbers
 
- x(x + 1)(x + 2)(x + 3) + 1 == (x ^ 2 + 3x + 1) ^ 2
+mechanics: restitution etc
 
- can't rationalise denominator with 5 terms
+x(x + 1)(x + 2)(x + 3) + 1 == (x ^ 2 + 3x + 1) ^ 2
 
- STEP: area in edge of convex curve
+can't rationalise denominator with 5 terms
 
- step 2007ii4
- proof of ceva's theorem: 2007ii8
- proof of AM-GM: Jensen's inequality
+STEP: area in edge of convex curve
 
- https://en.wikipedia.org/wiki/Mathematical_fallacy
- all integrals are equal to 0 - by manipulating limits
- http://www.cut-the-knot.org/proofs/index.shtml
+step 2007ii4
+proof of ceva's theorem: 2007ii8
+proof of AM-GM: Jensen's inequality
 
- pi approximations, featuring 3b1b
+https://en.wikipedia.org/wiki/Mathematical_fallacy
+all integrals are equal to 0 - by manipulating limits
+http://www.cut-the-knot.org/proofs/index.shtml
 
- roots of polynomials, vieta's formulas
+pi approximations, featuring 3b1b
 
- sin theta tan theta = sec theta - cos thetat
+roots of polynomials, vieta's formulas
 
- integration reduction formulae:
-   _0^1 cos^n x
-   _0^1 x^n / sqrt(3 + x)
+sin theta tan theta = sec theta - cos thetat
 
- lambert W function - solving equations, derivative, power series
+integration reduction formulae:
+_0^1 cos^n x
+_0^1 x^n / sqrt(3 + x)
 
- diophantine equations and bezout's identity
+lambert W function - solving equations, derivative, power series
 
- proof of COM of segments (using integration)
+diophantine equations and bezout's identity
 
- formal systems/proofs (with coq)
+proof of COM of segments (using integration)
 
- formula for prime numbers????
- https://en.wikipedia.org/wiki/Formula_for_primes
+formal systems/proofs (with coq)
 
- does nonexistence of surjection imply surjection going the other way?
- integral step I 2002 q7
- further determinants
+formula for prime numbers????
+https://en.wikipedia.org/wiki/Formula_for_primes
 
- dijkstra's
- quicksort
+does nonexistence of surjection imply surjection going the other way?
+integral step I 2002 q7
+further determinants
 
-
- identity with (sin + cos) ^ 2 and 1 + sin(2)
- trig harmonic form
-
- olympiad:
- http://people.bath.ac.uk/masgcs/advice.html
- https://bmos.ukmt.org.uk/home/bmo.shtml
- qm-am-gm-hm, generalised power mean
- cauchy-shwarz in full , sum of squares positive,
- rearrangement inequality,
-
- factor theorem
-
- circle theorems - AST, cyclic quadrilateral, centres of triangle + heron's
- formula
-
- cosine rule, "full sine rule", trig identities
-
- fermat's little theorem, pell's equation
-
- binomial coefficients, pigeonhole principle
-
- more difficult stuff:
-
- Chinese Remainder, Pell's equation and maybe Quadratic Reciprocity
-
- Simson's Theorem, Ceva's theorem, excircles, Menelaus's theorem, power of
- a point and the radical axis theorem
-
- Jensen's inequality and Holder's inequality. Finally, international
- competitors must keep a grip on Muirhead and Schur's inequalities
-
- areal coordinate methods: https://bmos.ukmt.org.uk/home/areals.pdf
+dijkstra's
+quicksort
 
 
- multiple angle formulas using de moivre
- exponential representation of trig functions from euler's identity
- (quasi-arithmetic mean)
- limits, indeterminate forms
- more about e as limit + exponential
- transitive, commutative, symmetric, reflexive, etc
- e, pi irrational
- e^pi vs pi^e
- nowhere continuous function (dirichlet)
- notes on classical cryptanalysis in statistics
- recursively enumerable sets, generally turing machines/computability
- faulty proofs,
-   definite integral must be 0
-   0 == 1
- generator for pythagorean triple, (3b1b & bprp)
- pyth-n tuples https://www.researchgate.net/publication/250890871_A_method_of_generating_Pythagorean_n-tuples
- - integral _a^b of f(x) / (f(x) + f(a + b - x) dx
- - shortlist of things
- - generally: add links to everything.
- - modular arithmetic, congruence classes
- - fourier, laplace transforms
- - fractals, fractal dimension, l-systems, weierstrass functions
- - happy number, primes, etc (autobiographical integer)
- - inverse trig and hyperbolic trig, more on
- - leibniz integral rule/feynmen integration/differentiation under the
-   integral
- - integral of interesting functions (see blackpenredpen)
-   sec x, x^x, sqrt(tan x)
- - mathematical fields, rings, groups
- - frullani theorem
- - functions: continuity, differentiability, monoticity, elementaryness
- - central limit theorem, sum of normally distributed random variables
- - generating functions, moment generating functions (proof)
- - generating functions
- - characteristic functions
- - statistics: expectation, variance, covariance
- - add a wee bit of physics
- - factorisation of x^4 + 1
- - binomial expansion, pascal's triangle, properties thereof.
- - rational root theorem
- - multiple angle formulae
- - exponential representation of trig functions
- - matrices, homeogenous coordinates, affine spaces
- - add list of constants that are interesting.
- - vectors, vector products, convex combination trick, decompose into new
-   components, product spaces
- - catenary, parabola, brachistochrone etc
- - gamma, beta, zeta functions
- - sets of polynomial rings
- - gaussian integers, rationals
- - other notation for algebraic numbers.
- - failure of power and logarithm identities (also put these in)
- - quaternions, octonions, sedenions, prime numbers
- - euler, de moivre
- - work out how to use theorems & proofs from amsthm.
- - more math - fraktur, gothic, scr
- - prove d/dx x^alpha holds for alpha not in Z
- - prime number wheel erat atkin sieves, tests, li(x), pi(x), sympy prime
- - stirling's approximation
- - generating functions
- - list of symbols
- - equipotence of real interval and reals, similarly for rationals
+identity with (sin + cos) ^ 2 and 1 + sin(2)
+trig harmonic form
+
+olympiad:
+http://people.bath.ac.uk/masgcs/advice.html
+https://bmos.ukmt.org.uk/home/bmo.shtml
+qm-am-gm-hm, generalised power mean
+cauchy-shwarz in full , sum of squares positive,
+rearrangement inequality,
+
+factor theorem
+
+circle theorems - AST, cyclic quadrilateral, centres of triangle + heron's
+formula
+
+cosine rule, "full sine rule", trig identities
+
+fermat's little theorem, pell's equation
+
+binomial coefficients, pigeonhole principle
+
+more difficult stuff:
+
+Chinese Remainder, Pell's equation and maybe Quadratic Reciprocity
+
+Simson's Theorem, Ceva's theorem, excircles, Menelaus's theorem, power of
+a point and the radical axis theorem
+
+Jensen's inequality and Holder's inequality. Finally, international
+competitors must keep a grip on Muirhead and Schur's inequalities
+
+areal coordinate methods: https://bmos.ukmt.org.uk/home/areals.pdf
+
+
+multiple angle formulas using de moivre
+exponential representation of trig functions from euler's identity
+(quasi-arithmetic mean)
+limits, indeterminate forms
+more about e as limit + exponential
+transitive, commutative, symmetric, reflexive, etc
+e, pi irrational
+e^pi vs pi^e
+nowhere continuous function (dirichlet)
+notes on classical cryptanalysis in statistics
+recursively enumerable sets, generally turing machines/computability
+faulty proofs,
+definite integral must be 0
+0 == 1
+generator for pythagorean triple, (3b1b & bprp)
+pyth-n tuples https://www.researchgate.net/publication/250890871_A_method_of_generating_Pythagorean_n-tuples
+- integral _a^b of f(x) / (f(x) + f(a + b - x) dx
+- shortlist of things
+- generally: add links to everything.
+- modular arithmetic, congruence classes
+- fourier, laplace transforms
+- fractals, fractal dimension, l-systems, weierstrass functions
+- happy number, primes, etc (autobiographical integer)
+- inverse trig and hyperbolic trig, more on
+- leibniz integral rule/feynmen integration/differentiation under the
+integral
+- integral of interesting functions (see blackpenredpen)
+sec x, x^x, sqrt(tan x)
+- mathematical fields, rings, groups
+- frullani theorem
+- functions: continuity, differentiability, monoticity, elementaryness
+- central limit theorem, sum of normally distributed random variables
+- generating functions, moment generating functions (proof)
+- generating functions
+- characteristic functions
+- statistics: expectation, variance, covariance
+- add a wee bit of physics
+- factorisation of x^4 + 1
+- binomial expansion, pascal's triangle, properties thereof.
+- rational root theorem
+- multiple angle formulae
+- exponential representation of trig functions
+- matrices, homeogenous coordinates, affine spaces
+- add list of constants that are interesting.
+- vectors, vector products, convex combination trick, decompose into new
+components, product spaces
+- catenary, parabola, brachistochrone etc
+- gamma, beta, zeta functions
+- sets of polynomial rings
+- gaussian integers, rationals
+- other notation for algebraic numbers.
+- failure of power and logarithm identities (also put these in)
+- quaternions, octonions, sedenions, prime numbers
+- euler, de moivre
+- work out how to use theorems & proofs from amsthm.
+- more math - fraktur, gothic, scr
+- prove d/dx x^alpha holds for alpha not in Z
+- prime number wheel erat atkin sieves, tests, li(x), pi(x), sympy prime
+- stirling's approximation
+- generating functions
+- list of symbols
+- equipotence of real interval and reals, similarly for rationals

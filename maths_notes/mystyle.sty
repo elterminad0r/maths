@@ -55,6 +55,10 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
+% make the list of theorems set theorems further from numbers so no overlap.
+\makeatletter
+\renewcommand\thmt@listnumwidth{2.9em}
+\makeatother
 
 % provides typesetting of derivatives with \dv and \dd
 % also provides all the qty commands and some auto-scaling for operators like
@@ -72,13 +76,12 @@
 % text(frak|swab|goth)
 \usepackage{yfonts}
 \def\initdefault{yinit} % fix weird font thing
-% mathfrak
-\usepackage{eufrak}
 
 % extra maths operators
 \DeclareMathOperator{\Normal}{\mathcal{N}}
 \DeclareMathOperator{\Binomial}{\mathcal{B}}
-\DeclareMathOperator{\Prob}{\mathrm P}
+\DeclareMathOperator{\Prob}{\mathrm{Pr}}
+\DeclareMathOperator{\BigO}{\mathcal O}
 \DeclareMathOperator{\arccosh}{arccosh}
 \DeclareMathOperator{\arcsinh}{arcsinh}
 \DeclareMathOperator{\arctanh}{arctanh}
