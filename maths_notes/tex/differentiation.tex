@@ -7,7 +7,7 @@
 The derivative of \(f(x)\) gives the gradient of the curve \(y = f(x)\) at
 \(x\). It is defined as
 \begin{equation}
-f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}h
 \end{equation}
 Other notations include, if \(y = f(x)\), then
 \begin{equation}
@@ -63,7 +63,7 @@ with \(\note\). All the following ones can be derived using only these
 rules, and the derivatives of some functions in table
 \ref{tab_calc_derivatives}
 
-\begin{longtable}{*{4}{>{\(\displaystyle}c<{\)}}c}
+\begin{longtable}{*4M c}
 \toprule
 \text{\boldmath\(f(x)\)} & \text{\boldmath\(f'(x)\)}
     & \text{\bfseries Alternatives/Notes} & \note & \bfseries ref \\
@@ -106,7 +106,7 @@ you get, the more obscure the functions get. For most, it can save time to
 know the derivatives, but people obviously have their priorities and often
 it's more worthwile to understand how to derive the derivative, anyway.
 
-\begin{longtable}{*{4}{>{\(\displaystyle}c<{\)}}c}
+\begin{longtable}{*4M c}
 \toprule
 \text{\boldmath\(f(x)\)} & \text{\boldmath\(f'(x)\)}
     & \text{\bfseries Alternatives/Notes} & \note & \bfseries ref \\
@@ -129,9 +129,9 @@ a^x & \ln a \cdot a^x & \text{\(a\) is constant}
 \arcsin x & \frac 1{\sqrt{1 - x^2}} && \note & \ref{sec_calc_trig_inv} \\[3ex]
 \arccos x & \frac{-1}{\sqrt{1 - x^2}} && \note & \ref{sec_calc_trig_inv} \\[3ex]
 \arctan x & \frac 1{x^2 + 1} && \note & \ref{sec_calc_trig_inv} \\[3ex]
-\arcsec x & \frac 1{\abs{x} \sqrt{x^2 - 1}}
+\arcsec x & \frac 1{\abs x \sqrt{x^2 - 1}}
     & \frac 1{x^2 \sqrt{1 - x^{-2}}} && \ref{sec_calc_trig_inv} \\[3ex]
-\arccsc x & \frac{-1}{\abs{x} \sqrt{x^2 - 1}}
+\arccsc x & \frac{-1}{\abs x \sqrt{x^2 - 1}}
     & \frac{-1}{x^2 \sqrt{1 - x^{-2}}} && \ref{sec_calc_trig_inv} \\[3ex]
 \arccot x & -\frac 1{x^2 + 1} &&& \ref{sec_calc_trig_inv} \\[3ex]
 \sinh x & \cosh x \\[1ex]
@@ -144,7 +144,7 @@ a^x & \ln a \cdot a^x & \text{\(a\) is constant}
 \arccosh x & \frac 1{\sqrt{x^2 - 1}} \\[3ex]
 \arctanh x & \frac 1{1 - x^2} \\[3ex]
 \arcsech x & \frac{-1}{x\sqrt{1 - x^2}} \\[3ex]
-\arccsch x & \frac{-1}{\abs{x}\sqrt{1 + x^2}} \\[3ex]
+\arccsch x & \frac{-1}{\abs x\sqrt{1 + x^2}} \\[3ex]
 \arccoth x & \frac 1{1 - x^2} \\[3ex]
 \bottomrule
 \caption{Common derivatives} \label{tab_calc_derivatives}
@@ -265,7 +265,7 @@ We can use implicit differentiation and some identities to tackle
 derivatives of inverse trig functions. If we let \(y = \arcsin x\), then
 \begin{equation*}
 \sin y = x \implies \dv{y}{x} \cos y = 1
-    \implies \dv{x}(\arcsin x) = \frac{1}{\cos y} = \frac{1}{\sqrt{1 - x^2}}
+    \implies \dv{x}(\arcsin x) = \frac 1{\cos y} = \frac 1{\sqrt{1 - x^2}}
 \end{equation*}
 This is allowed because the domain of \(\arcsin x\) is restricted to
 \(\intcc{-1, 1}\), meaning that the range of \(y\) is
@@ -301,7 +301,7 @@ that \(\tan y < 0\) for
 Therefore, \(\tan y\) has the same sign as \(x\), so we can rewrite
 \begin{equation*}
 \dv{x}(\arcsec x) = \frac 1{x \tan y} = \frac 1{\abs{x \tan y}}
-    = \frac 1{\abs{x}\abs{\tan y}} = \frac 1{\abs{x}\sqrt{x^2 - 1}}
+    = \frac 1{\abs x\abs{\tan y}} = \frac 1{\abs x\sqrt{x^2 - 1}}
 \end{equation*}
 This is perhaps a little tricky, and it is in some cases more obvious to
 just go about it piecewise:
@@ -311,12 +311,12 @@ just go about it piecewise:
     \dfrac {-1}{x\sqrt{x^2 - 1}} & x < 0
 \end{cases}
 \end{equation*}
-The other equivalent can be found by taking out a factor of \(\abs{x}^2\)
+The other equivalent can be found by taking out a factor of \(\abs x^2\)
 from the square root, to cancel the absolute sign by squaring it. This can
 be useful sometimes.
 \begin{equation*}
-\dv{x}(\arcsec x) = \frac 1{\abs{x}\sqrt{x^2 - 1}}
-    = \frac 1{\abs{x}\sqrt{x^2}\sqrt{1 - x^{-2}}}
+\dv{x}(\arcsec x) = \frac 1{\abs x\sqrt{x^2 - 1}}
+    = \frac 1{\abs x\sqrt{x^2}\sqrt{1 - x^{-2}}}
     = \frac 1{x^2\sqrt{1 - x^{-2}}}
 \end{equation*}
 To attack the inverse cosecant, it will be order of magnitude easier to just
@@ -329,5 +329,24 @@ and then taking your pick of your favourite inverse secant derivative.
 
 Similarly, \(\arccot x = \frac 12 \pi - \arctan x\), so
 \begin{equation*}
-\dv{x}(\arccot x) = \dv{x}(\frac \pi 2 - \arctan x) = -\frac{1}{1 + x^2}
+\dv{x}(\arccot x) = \dv{x}(\frac \pi 2 - \arctan x) = -\frac 1{1 + x^2}
 \end{equation*}
+
+\subsection{Implicit differentiation}
+
+% fix this
+
+%FIXME: add x^y for fun
+
+An example may help to clarify.
+\begin{align*}
+0 &= y^2 + x^3 + \sin x^2 y + \ln \frac{\sqrt y} x - 5 \\
+\implies 0 &=
+            2y \dv{y}{x} + 3x^2 +
+            \pqty{2x \cdot y + \dv{y}{x} \cdot x^2} \cdot \cos x^2 y +
+            \pqty{\frac{x \cdot \frac 12 y^{-\frac 12} \cdot \dv{y}{x} -
+                        \sqrt y \cdot 1}
+                       {x^2}} \cdot \frac x{\sqrt y} \\
+\end{align*}
+
+%FIXME finish this

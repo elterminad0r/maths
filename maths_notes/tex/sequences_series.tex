@@ -29,7 +29,7 @@ is true.
           + b\sum_{r = 0}^n \binom nr a^r b^{n - r} \\
     &\equiv \sum_{r = 0}^n \binom nr a^{r + 1} b^{n - r}
           + \sum_{r = 0}^n \binom nr a^r b^{n - r + 1} \\
-    &\equiv \sum_{r = 1}^{n + 1} \binom n{r - 1} a^{r} b^{n - r + 1}
+    &\equiv \sum_{r = 1}^{n + 1} \binom n{r - 1} a^r b^{n - r + 1}
           + \sum_{r = 0}^n \binom nr a^r b^{n - r + 1} \\
     &\equiv a^{n + 1} + b^{n + 1}
           + \sum_{r = 1}^n \bqty{\binom n{r - 1} + \binom nr}
@@ -99,12 +99,12 @@ This can be proven by induction. First we note that \(F_1 < 2^1\) and
 \(F_2 < 2^2\), and that \\
 \(F_{n + 2} = F_{n + 1} + F_n < 2^{n + 1} + 2^n < 2^{n + 1} + 2^{n + 1}
     = 2^{n + 2}\). So \(F_n < 2^n\) for all \(n\). Therefore, for
-\(\abs{x} < \frac 12\), \(f(x)\)  must be convergent, as \(g(x)\) is
-convergent for \(\abs{x} < \frac 12\). This means \(f(x)\) is well defined
+\(\abs x < \frac 12\), \(f(x)\)  must be convergent, as \(g(x)\) is
+convergent for \(\abs x < \frac 12\). This means \(f(x)\) is well defined
 and we can manipulate it.
 
 Consider now:
-\begin{alignat*}{9}
+\begin{alignat*}9
 && f(x) &= \sum_{k = 1}^\infty F_k x^k
     &&=&\; x\; &+&\; x^2\; &+&\; 2x^3\; &+&\;
         3x^4\; &+&\; 5x^5\; &+&\; 8x^6\; + \dotsb \\
@@ -125,7 +125,7 @@ somewhat tricky way in order to make our lives easier. Note that
 \end{equation*}
 where \(\varphi, \psi = \dfrac{1 \pm \sqrt 5}2\), ie the roots of
 \(x^2 - x - 1\), ie the roots of the golden ratio. Now,
-\begin{alignat*}{2}
+\begin{alignat*}2
 && f(x) = \frac x{(1 - \varphi x)(1 - \psi x)}
     &\equiv \frac A{1 - \varphi x} + \frac B{1 - \psi x} \\
 &\implies& A(1 - \psi x) + B(1 - \varphi x) &\equiv x \\
@@ -160,7 +160,7 @@ faster iteration or memoized recursion.
 
 The Maclaurin series is the Taylor series around \(0\).
 \begin{equation}
-f(x) = f(0) + f'(0) x + \frac{f''(0)} 2 x^2 + \frac{f'''(0)}{6}x^3 +\dotsb
+f(x) = f(0) + f'(0) x + \frac{f''(0)} 2 x^2 + \frac{f'''(0)}6 x^3 +\dotsb
   = \sum_{k=0}^\infty \frac{f^{(k)}(0)}{k!}x^k
 \end{equation}
 

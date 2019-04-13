@@ -32,14 +32,14 @@ implying
 \cos(\theta + \pi) &\equiv -\cos \theta
 \end{align}
 From this, we see that
-\begin{alignat}{2}
+\begin{alignat}2
 \sin(\theta + 2\pi) &\equiv \sin(\theta + \pi + \pi) &&\equiv \sin \theta \\
 \cos(\theta + 2\pi) &\equiv \cos(\theta + \pi + \pi) &&\equiv \cos \theta \\
 \tan(\theta + \pi) &\equiv \frac{\sin(\theta + \pi)}{\cos(\theta + \pi)}
     &&\equiv \frac{-\sin \theta}{-\cos \theta} \equiv \tan \theta
 \end{alignat}
 and in fact,
-\begin{alignat}{2}
+\begin{alignat}2
 \sin(\theta + 2\pi n) &\equiv \sin \theta &&\iff n \in \Integers \\
 \cos(\theta + 2\pi n) &\equiv \cos \theta &&\iff n \in \Integers \\
 \tan(\theta + \pi n) &\equiv \tan \theta &&\iff n \in \Integers
@@ -62,10 +62,10 @@ whereas \(\cos \theta\) is an \emph{even} function:
 The reciprocals of sine, cosine and tangent are cosecant, secant and
 cotangent respectively. These are written
 \begin{align}
-\sec \theta &= \frac{1}{\cos \theta} \\
+\sec \theta &= \frac 1{\cos \theta} \\
 \operatorname{cosec} \theta = \csc \theta
-    &= \frac{1}{\sin \theta} \\
-\cot \theta &= \frac{1}{\tan \theta}
+    &= \frac 1{\sin \theta} \\
+\cot \theta &= \frac 1{\tan \theta}
     = \frac{\cos \theta}{\sin \theta}
 \end{align}
 
@@ -79,7 +79,7 @@ trigonometric functions at certain angles hold.
 
 %FIXME automatic math mode
 
-\begin{longtable}{*{4}{>{\(\displaystyle}c<{\)}}}
+\begin{longtable}{*4M}
 \toprule
 \text{\boldmath\(\theta\)} & \text{\boldmath\(\sin \theta\)}
     & \text{\boldmath\(\cos \theta\)} & \text{\boldmath\(\tan \theta\)} \\
@@ -113,7 +113,7 @@ compound angle formulae to build some angles, such as
 A small number of more esoteric angles are presented below. Many more can be
 found \cite{WikiTrigConstants}.
 
-\begin{longtable}{*{4}{>{\(\displaystyle}c<{\)}}}
+\begin{longtable}{*4M}
 \toprule
 \text{\boldmath\(\theta\)} & \text{\boldmath\(\sin \theta\)}
     & \text{\boldmath\(\cos \theta\)} & \text{\boldmath\(\tan \theta\)} \\
@@ -146,7 +146,7 @@ The result for \(\frac 18 \pi\) can be derived by using
 To get the result for \(\frac 15 \pi\) we can let
 \(\varphi = \frac 15 \pi\).  Noting that
 \(\sin 2\varphi = \sin 3\varphi\), we have
-\begin{alignat*}{2}
+\begin{alignat*}2
 && 2\sin \varphi \cos \varphi
     &= \sin \varphi (2\cos^2 \varphi - 1)
      + \cos \varphi \cdot 2\sin \varphi \cos \varphi \\
@@ -287,7 +287,7 @@ and
 \end{align*}
 \end{theorem}
 \begin{theorem}[Half angle identities] \label{thm_trig_half_angle}
-\begin{alignat*}{2}
+\begin{alignat*}2
 &&\sin \theta &\equiv
     \pm\sqrt{\frac{1 - \cos 2 \theta} 2}
  \ \pqty{\text{where \(\pm\) depends on the quadrant}} \\
@@ -361,7 +361,7 @@ Derive from RHS:
 \end{align*}
 \end{proof}
 
-\subsection{Product-Sum Identities} \label{sec_trig_product_sum}
+\subsubsection{Product-Sum Identities} \label{sec_trig_product_sum}
 
 %FIXME: annotate sections used
 
@@ -430,7 +430,8 @@ We can exploit the periodicity of cosine (\ref{sec_trig_periodic}).
 \end{align*}
 \end{proof}
 
-\subsection[The Weierstrass substitution (\(\tan(\theta / 2)\))]
+\subsection[The Weierstrass substitution
+            \texorpdfstring{(\(\tan(\theta / 2)\))}{(tangent half-angle)}]
    {The Weierstrass substitution \boldmath\(\pqty{\tan(\frac \theta 2)}\)}
 
 \begin{theorem}[The Weierstrass substitution]
@@ -440,7 +441,7 @@ If we let \(t = \tan(\frac \theta 2)\), such that \(t\) is defined (ie
 \sin \theta &\equiv \dfrac{2t}{1 + t^2} \\
 \cos \theta &\equiv \dfrac{1 - t^2}{1 + t^2} \\
 \tan \theta &\equiv \dfrac{2t}{1 - t^2} \\
-\dv{\theta}{t} &\equiv \dfrac{2}{1 + t^2}
+\dv{\theta}{t} &\equiv \dfrac 2{1 + t^2}
 \end{align*}
 \end{theorem}
 \begin{proof}

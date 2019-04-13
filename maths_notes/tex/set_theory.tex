@@ -7,14 +7,15 @@
 %FIXME: sets of congruence classes
 %       sets of polynomial rings: apply set setstyle A
 
-\begin{longtable}{>{\(}c<{\)}l}
+\begin{longtable}{M p{0.7\textwidth}}
 \toprule
 \text{\bfseries Set} & \bfseries Description \\
 \midrule
 \endhead
 \emptyset, \varnothing & The empty set \(\set{}\). \\
 \Naturals & The set of natural numbers, \(\set{1, 2, 3, \dotsc}\).
-               May or may not include 0. \\
+               May or may not include 0, so sometimes the next few presented
+               alternatives are preferable. \\
 \Integers & The set of integers
                \(\set{\dotsc, -2, 1, 0, 1, 2, \dotsc}\) \\
 \Integers^+, \Integers_{> 0} & The set of strictly positive integers
@@ -31,8 +32,8 @@
                \(\set{\frac ab \mid a, b \in \Integers \land b \neq 0}\).\\
 \setstyle A & The set of algebraic numbers, ie numbers that are roots of
                polynomials in \(\Integers[x]\). \\
-\Reals & The set of real numbers, which may be constructed as
-               ``slices'' of \(\Rationals\). \\
+\Reals & The set of real numbers, which may be constructed as in
+         \ref{sec_dedekind_cut}. \\
 \Complex & The set of complex numbers
                \(\set{a + bi \mid a, b \in \Reals}\),
                where \(i^2 = 1\).\\
@@ -45,6 +46,7 @@
 \intoc{a, b} & The half-open interval
                  \(\set{x \in \Reals \mid a < x \le b}\).\\
 \bottomrule
+\caption{Common sets}
 \end{longtable}
 
 \subsection{Closed, Open, Clopen}
@@ -53,7 +55,9 @@
 
 \subsection{ZFC}
 
-\subsection{Peano Arithmetic}
+\subsection{Construction of Sets}
+
+\subsubsection{Dedekind Cuts} \label{sec_dedekind_cut}
 
 \subsection{Cardinality}
 
@@ -75,3 +79,19 @@ We also denote the cardinality of the natural numbers
 
 It can be shown that there exists a bijection between the natural numbers and
 the rationals,
+
+\subsection{Functions}
+
+% add involutions
+
+\subsubsection{Jections}
+
+%FIXME mnemonic or diagram
+
+\begin{itemize}
+\item An injection maps each element of its domain to a unique element of
+      its codomain.
+\item A surjection maps an element of its domain to each element of its
+      codomain.
+\item A bijection is an injection and a surjection.
+\end{itemize}

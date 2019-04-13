@@ -33,7 +33,7 @@ then the integral
 
 \subsection{Common integrals}
 
-\begin{longtable}{*{3}{>{\(\displaystyle}c<{\)}}c}
+\begin{longtable}{*3M c}
 \toprule
 \text{\boldmath\(f(x)\)}
     & \text{\boldmath\(\int f(x) \dd{x}\ (+ C)\)}
@@ -48,7 +48,7 @@ g'(x) \cdot h(x) & g(x) \cdot h(x) - \int g(x) \cdot h'(x) \dd{x} \\[2ex]
 \frac{g'(x)}{g(x)} & \ln \abs{g(x)} \\[3ex]
 \frac{g'(x)}{\sqrt{g(x)}} & 2\sqrt{g(x)} \\[3ex]
 x^n & \frac 1{n + 1}x^{n + 1} & n \ne -1 \\[3ex]
-\frac 1x & \ln \abs{x} \\[3ex]
+\frac 1x & \ln \abs x \\[3ex]
 e^x & e^x & \text{\(e\) is Euler's constant} \\[1ex]
 a^x & \frac 1{\ln a}a^x & \text{\(a\) is a constant} \\[3ex]
 \sin x & -\cos x \\[1ex]
@@ -69,7 +69,7 @@ a^x & \frac 1{\ln a}a^x & \text{\(a\) is a constant} \\[3ex]
 \label{tab_calc_integrals}
 \end{longtable}
 
-\begin{longtable}{*{3}{>{\(\displaystyle}c<{\)}}c}
+\begin{longtable}{*3M c}
 \toprule
 \text{\boldmath\(f(x)\)}
     & \text{\boldmath\(\int f(x) \dd{x}\ (+ C)\)}
@@ -84,7 +84,7 @@ a^x & \frac 1{\ln a}a^x & \text{\(a\) is a constant} \\[3ex]
 \caption{Niche but interesting integrals}
 \end{longtable}
 
-\subsection{Frullani Integral}
+\subsubsection{Frullani Integral}
 
 \begin{theorem}[Frullani's Integral]
 Where the limit of \(f(x)\) exists at both 0 and \(\infty\), and \(f'(x)\)
@@ -110,7 +110,7 @@ respect to \(t\), from \(b\) to \(a\). We can then exchange the integrals.
 \end{align*}
 \end{proof}
 
-\subsection{Archyperbolic \textit t-substitutions.}
+\subsubsection{Archyperbolic \textit t-substitutions.}
 
 \begin{theorem}[Archyperbolic t substitution]
 \begin{equation*}
@@ -146,7 +146,7 @@ and also \(\frac 12(t - t^{-1}) = \sqrt{x^2 - 1}\). Therefore,
 \end{alignat*}
 \end{proof}
 
-\subsection{Supersymmetric involution substitution}
+\subsubsection{Supersymmetric involution substitution}
 
 \begin{theorem}[Additive involution substitution]
 \begin{equation*}
@@ -186,7 +186,7 @@ Again let \(I\) denote the integral. Make the substitution \(u = ab / x\),
 \end{alignat*}
 \end{proof}
 
-\subsection{Gaussian Integral}
+\subsubsection{Gaussian Integral}
 
 \begin{theorem}[Gaussian Integral] \label{thm_gauss_integral}
 \begin{equation*}
@@ -258,25 +258,6 @@ is:
  \int_{t_1}^{t_2} f(t)g'(t) \dd{t}
 \end{equation}
 where \(g(t_1) = y_1\) and \(g(t_2) = y_2\).
-
-\subsection{Implicit differentiation}
-
-% fix this
-
-%FIXME: add x^y for fun
-
-An example may help to clarify.
-\begin{align*}
-0 &= y^2 + x^3 + \sin x^2 y + \ln \frac{\sqrt y} x - 5 \\
-\implies 0 &=
-            2y \dv{y}{x} + 3x^2 +
-            \pqty{2x \cdot y + \dv{y}{x} \cdot x^2} \cdot \cos x^2 y +
-            \pqty{\frac{x \cdot \frac 12 y^{-\frac 12} \cdot \dv{y}{x} -
-                        \sqrt y \cdot 1}
-                       {x^2}} \cdot \frac{x}{\sqrt y} \\
-\end{align*}
-
-%FIXME finish this
 
 \subsection{Arc Length}
 

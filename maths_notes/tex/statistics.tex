@@ -1,8 +1,12 @@
 \section{Statistics}
 
-\subsection{Random Variables}
+\subsection{Discrete Random Variables}
 
-\subsection{Binomial Distribution}
+\subsection{Probability Generating Functions}
+
+\subsection{Common Discrete Distributions}
+
+\subsubsection{Binomial Distribution}
 
 %FIXME add diagram
 
@@ -34,34 +38,42 @@ where
 \binom \nu k = \nCr \nu k = \frac{\nu!}{k!\cdot (\nu - k)!}
 \end{equation*}
 
-\subsubsection{Normal approximation}
+\begin{theorem}[Binomial properties]
+Where \(X \sim \Binomial(\nu, \pi)\),
+\begin{align*}
+\Expect(X) &= \nu \pi \\
+\Var(X) &= \nu \pi (1 - \pi)
+\end{align*}
+\end{theorem}
+\begin{proof}
+\end{proof}
 
 A binomial distribution can be approximated by a normal distribution.
 
-\subsection{Normal Distribution}
+\subsubsection{Poisson Distribution}
+
+%FIXME derivation as limit of binomial, see generating functions
+
+\subsection{Continuous Random Variables}
+
+\subsection{Moment Generating Functions}
+
+\subsection{Common Continuous Distributions}
+
+\subsubsection{Normal Distribution}
 
 %FIXME add diagram
 
 The PDF of \(X \sim \Normal(\mu, \sigma^2)\) is given by
 \begin{equation*}
-f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \cdot
+f_X(x) = \frac 1{\sqrt{2\pi\sigma^2}} \cdot
     \exp(\frac{(x - \mu)^2}{2\sigma^2})
 \end{equation*}
 
-\subsubsection{Dimensional Verification/Mnemonic}
+\subsubsection{Exponential Distribution}
 
-NB \(\bqty{f(x)} =
-    \bqty{\frac 1{\sqrt{\sigma^2}}}
-    e^{\bqty{\frac{x^2}{\sigma^2}}}
-  = \bqty{\frac 1\sigma}\), as
-\(\bqty{\sigma} = \bqty{\mu} = \bqty{x}\). Therefore, the
-evaluation of the probability \(\Prob(a < X < b)\) by the integral
-\(\int_a^bf(x) \dd{x}\) has dimension
-\(\bqty{\frac{\dd{x}}{\sigma}} = 1\), as expected for a probability.
-
-\subsection{Poisson Distribution}
-
-%FIXME derivation as limit of binomial, see generating functions
+\subsubsection[Student's \texorpdfstring{\(t\)}{t}-distribution]
+              {Student's \boldmath\(t\)-distribution}
 
 \subsection{Hypothesis Testing}
 
