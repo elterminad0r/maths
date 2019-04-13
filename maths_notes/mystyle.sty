@@ -75,10 +75,12 @@
 % listing the tables in the table of contents
 \usepackage[nottoc,notlof,notlot]{tocbibind}
 
-% increase spacing of section numbers from headings
-\usepackage{tocloft}
+% increase spacing of section numbers from headings. The titles option keeps
+% hdrs normal.
+\usepackage[titles]{tocloft}
 \setlength{\cftsubsecnumwidth}{2.9em}
 \setlength{\cftsubsubsecindent}{4.4em}
+%\setlength{\cftsubsubsecnumwidth}{3.7em}
 
 % bibliography management with square braces for citations
 \usepackage[square,numbers]{natbib}
@@ -104,6 +106,3 @@
 \newenvironment{longlisting}
 {\addvspace{\baselineskip}\captionsetup{type=listing}}
 {\addvspace{\baselineskip}}
-
-% allow maths to break across pages
-\allowdisplaybreaks
