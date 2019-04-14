@@ -56,9 +56,6 @@
 % needed for colouring and stuff (xcolor supersedes color). provides LightSalmon
 \usepackage[x11names]{xcolor}
 
-% no paragraph indent
-\usepackage[parfill]{parskip}
-
 % pretty table rules and multirow entries. Also page-breaking tables
 \usepackage{booktabs}
 \usepackage{multirow}
@@ -69,7 +66,7 @@
 
 % plotting mathematical functions (needs version request)
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.15}
+\pgfplotsset{compat=1.16}
 
 % for better table of contents stuff, providing the \listof* commands and not
 % listing the tables in the table of contents
@@ -81,6 +78,9 @@
 \setlength{\cftsubsecnumwidth}{2.9em}
 \setlength{\cftsubsubsecindent}{4.4em}
 %\setlength{\cftsubsubsecnumwidth}{3.7em}
+
+% no paragraph indent - after tocloft because of starttoc
+\usepackage[parfill]{parskip}
 
 % bibliography management with square braces for citations
 \usepackage[square,numbers]{natbib}
@@ -106,3 +106,10 @@
 \newenvironment{longlisting}
 {\addvspace{\baselineskip}\captionsetup{type=listing}}
 {\addvspace{\baselineskip}}
+
+\usepackage{tikz}
+\usepackage{tikzsymbols}
+
+%\usepackage{savesym}
+%\savesymbol{checkmark}
+\usepackage{bbding}

@@ -7,20 +7,30 @@
 \allowdisplaybreaks
 
 % theorem and proof environments. thmtools creates the List of Theorems.
-% Singular nitpick is that you have to cludge qedheres for proofs that end in an
-% alignat.
 \usepackage{amsthm}
 \usepackage{thmtools}
-% Start theorems on a new line
-\newtheoremstyle{break}
-  {\topsep}{\topsep}%
-  {\itshape}{}%
-  {\bfseries}{}%
-  {\newline}{}%
-\theoremstyle{break}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}{Corollary}[theorem]
-\newtheorem{lemma}[theorem]{Lemma}
+% FIXME wishlist: make theorem body start on a new line that doesn't hug the
+% head.
+\declaretheoremstyle[
+     notefont=\bfseries,
+     bodyfont=\normalfont\itshape]{break}
+
+\declaretheorem[style=break,parent=section]{theorem}
+\declaretheorem[style=break,numberwithin=theorem]{corollary}
+\declaretheorem[style=break,sibling=theorem]{lemma}
+
+% a little hack so that qedhere works properly in alignat*.
+\makeatletter
+\let\oldqedhere\qedhere
+\def\@qedherereplace{alignat*}
+\renewcommand*\qedhere{
+  \ifx\@currenvir\@qedherereplace
+    \tag*{\oldqedhere}
+  \else
+    \oldqedhere
+  \fi}
+\makeatother
+
 % make the list of theorems set theorems further from numbers so no overlap.
 \makeatletter
 \renewcommand\thmt@listnumwidth{2.9em}
@@ -35,58 +45,68 @@
 \usepackage{upgreek}
 % provides \varnothing
 \usepackage{amssymb}
-% why not
-\newcommand\omicron o
-\newcommand\Alpha{\mathrm{A}}
-\newcommand\Beta{\mathrm{B}}
-\newcommand\Epsilon{\mathrm{E}}
-\newcommand\Zeta{\mathrm{Z}}
-\newcommand\Eta{\mathrm{H}}
-\newcommand\Iota{\mathrm{I}}
-\newcommand\Kappa{\mathrm{K}}
-\newcommand\Mu{\mathrm{M}}
-\newcommand\Nu{\mathrm{N}}
-\newcommand\Omicron{\mathrm{O}}
-\newcommand\Rho{\mathrm{R}}
-\newcommand\Tau{\mathrm{T}}
-\newcommand\Chi{\mathrm{X}}
 % mathscr
 \usepackage{mathrsfs}
 % text(frak|swab|goth)
 \usepackage{yfonts}
 \def\initdefault{yinit} % fix weird font thing
+% why not
+\newcommand*\omicron o
+\newcommand*\Alpha{\mathrm{A}}
+\newcommand*\Beta{\mathrm{B}}
+\newcommand*\Epsilon{\mathrm{E}}
+\newcommand*\Zeta{\mathrm{Z}}
+\newcommand*\Eta{\mathrm{H}}
+\newcommand*\Iota{\mathrm{I}}
+\newcommand*\Kappa{\mathrm{K}}
+\newcommand*\Mu{\mathrm{M}}
+\newcommand*\Nu{\mathrm{N}}
+\newcommand*\Omicron{\mathrm{O}}
+\newcommand*\Rho{\mathrm{R}}
+\newcommand*\Tau{\mathrm{T}}
+\newcommand*\Chi{\mathrm{X}}
 
+% indpendent symbol:
+% https://tex.stackexchange.com/questions/79434/double-perpendicular-symbol-for-independence
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\newcommand*\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+
+\newcommand*\distributionstyle\mathcal
 % extra maths operators
-\DeclareMathOperator{\Normal}{\mathcal{N}}
-\DeclareMathOperator{\Binomial}{\mathcal{B}}
-\DeclareMathOperator{\Prob}{\mathrm{Pr}}
-\DeclareMathOperator{\Expect}{\mathrm{E}}
-\DeclareMathOperator{\Var}{\mathrm{Var}}
-\DeclareMathOperator{\BigO}{\mathcal O}
-\DeclareMathOperator{\arccosh}{arccosh}
-\DeclareMathOperator{\arcsinh}{arcsinh}
-\DeclareMathOperator{\arctanh}{arctanh}
-\DeclareMathOperator{\arcsech}{arcsech}
-\DeclareMathOperator{\arccsch}{arccsch}
-\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator\Exists\exists
+\DeclareMathOperator\NExists\nexists
+\DeclareMathOperator\Forall\forall
+\DeclareMathOperator\Normal{\distributionstyle{N}}
+\DeclareMathOperator\Binomial{\distributionstyle{B}}
+\DeclareMathOperator\Poisson{\distributionstyle{P}}
+\DeclareMathOperator\Prob{Pr}
+\DeclareMathOperator\Expect{E}
+\DeclareMathOperator\Var{Var}
+\DeclareMathOperator\BigO{\mathcal O}
+\DeclareMathOperator\arccosh{arccosh}
+\DeclareMathOperator\arcsinh{arcsinh}
+\DeclareMathOperator\arctanh{arctanh}
+\DeclareMathOperator\arcsech{arcsech}
+\DeclareMathOperator\arccsch{arccsch}
+\DeclareMathOperator\arccoth{arccoth}
 % these are mostly commands from commath, but i'd rather define them myself
-\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
-\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
-\DeclarePairedDelimiter{\intcc}{[}{]}
-\DeclarePairedDelimiter{\intco}{[}{)}
-\DeclarePairedDelimiter{\intoc}{(}{]}
-\DeclarePairedDelimiter{\intoo}{(}{)}
-\DeclarePairedDelimiter{\set}{\{}{\}}
+\DeclarePairedDelimiter\floor\lfloor\rfloor
+\DeclarePairedDelimiter\ceil\lceil\rceil
+\DeclarePairedDelimiter\intcc[]
+\DeclarePairedDelimiter\intco[)
+\DeclarePairedDelimiter\intoc(]
+\DeclarePairedDelimiter\intoo()
+\DeclarePairedDelimiter\set\{\}
 % I redeclare these so they don't have the weird physics business going on
 % (man can't work out every day)
 \let\abs\relax
-\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter\abs\lvert\rvert
 \let\norm\relax
-\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter\norm\lVert\rVert
 
 % General commands for typsetting different types of mathematical object
 % modularity and all that
-\newcommand{\defeq}{\vcentcolon=}
+\newcommand*\defeq\coloneqq
 \newcommand*\mean[1]{\overline{#1}}
 \newcommand*\lseg[1]{\mathit{#1}}
 \newcommand*\fld[1]{\mathit{#1}}
@@ -102,11 +122,11 @@
 \newcommand*\nCr[2]{\prescript{#1\mkern-0.5mu}{}C_{#2}}
 % drop-in commands for some sets
 % modularity and all that
-\newcommand*\setstyle{\mathbb}
+\newcommand*\setstyle\mathbb
 \newcommand*\Naturals{\setstyle N}
 \newcommand*\Integers{\setstyle Z}
 \newcommand*\Rationals{\setstyle Q}
 \newcommand*\Reals{\setstyle R}
 \newcommand*\Complex{\setstyle C}
 % to mark things of interest?
-\newcommand*\note{(\star)}
+\newcommand*\note{(\ast)}

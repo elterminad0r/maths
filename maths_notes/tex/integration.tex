@@ -9,11 +9,11 @@
 Integration by substitution is effectively the chain rule
 (\ref{sec_calc_chain}) in reverse. If we consider the function
 \begin{equation*}
-f(x) = g(h(x)) \implies f'(x) = h'(x) \cdot g'(h(x))
+f(x) = g(h(x)) \implies f'(x) = h'(x) g'(h(x))
 \end{equation*}
 then the integral
 \begin{equation}
-\int h'(x) \cdot g'(h(x)) \dd{x} = \int f'(x) \dd{x} = f(x) + C
+\int h'(x) g'(h(x)) \dd{x} = \int f'(x) \dd{x} = f(x) + C
 \end{equation}
 
 \subsubsection{Trig Substitution} \label{sec_calc_trig_substitution}
@@ -23,30 +23,61 @@ then the integral
 Integration by parts is derived from the product rule
 (\ref{sec_calc_product}).  Consider the function
 \begin{equation*}
-f(x) = g(x) \cdot h(x) \implies f'(x) = g'(x) \cdot h(x) + g(x) \cdot h'(x)
+f(x) = g(x) h(x) \implies f'(x) = g'(x) h(x) + g(x) h'(x)
 \end{equation*}
 then the integral
 \begin{equation}
-\int g'(x) \cdot h(x) \dd{x} = f(x) - \int g(x) \cdot h'(x) \dd{x} + C
+\int g'(x) h(x) \dd{x} = f(x) - \int g(x) h'(x) \dd{x} + C
 \end{equation}
-
 
 \subsection{Common integrals}
 
-\begin{longtable}{*3M c}
+Similarly to the derivatives section, there are a number of slightly differing
+tables in this section, and a number of subsection providing working. The first,
+Table \ref{tab_calc_int_funcs}, gives antiderivatives of forms of composed
+functions.  These are mostly obtained by reversing table
+\ref{tab_calc_functions_derivatives}, using FTC.
+
+Table \ref{tab_calc_int_common} gives the antiderivatives of some specific
+functions, sometimes using FTC, sometimes by other techniques.
+
+Table \ref{tab_calc_int_uncommon} gives further antiderivatives of oddly
+specific functions.
+
+Table \ref{tab_calc_int_uncommon_def} goes even further, giving examples of
+interesting integrals that are only of interest when evaluated over a definite
+interval.
+
+In each table, again, particularly important rows are denoted \(\note\).
+
+\begin{longtable}{*4M c}
 \toprule
 \text{\boldmath\(f(x)\)}
     & \text{\boldmath\(\int f(x) \dd{x}\ (+ C)\)}
-    & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
+    & \text{\bfseries Alternatives/Notes} & \note & \bfseries Reference\\
 \midrule
 \endhead
 g'(x) & g(x) \\[1ex]
 g(x) + h(x) & \int g(x) \dd{x} + \int h(x) \dd{x} \\[2ex]
-a \cdot g(x) & a\int g(x) \dd{x} & \text{\(a\) is a constant} \\[2ex]
-g'(h(x)) \cdot h'(x) & g(h(x)) \\[1ex]
-g'(x) \cdot h(x) & g(x) \cdot h(x) - \int g(x) \cdot h'(x) \dd{x} \\[2ex]
+a g(x) & a\int g(x) \dd{x} & \text{\(a\) is a constant} \\[2ex]
+g(ax + b) & \frac 1a \int g(ax + b) \dd{x}
+    & \text{\(a, b\) are constant} \\[2ex]
+g'(h(x)) h'(x) & g(h(x)) \\[1ex]
+g'(x) h(x) & g(x) h(x) - \int g(x) h'(x) \dd{x} \\[2ex]
 \frac{g'(x)}{g(x)} & \ln \abs{g(x)} \\[3ex]
 \frac{g'(x)}{\sqrt{g(x)}} & 2\sqrt{g(x)} \\[3ex]
+\bottomrule
+\caption{Antiderivatives of general forms of functions}
+\label{tab_calc_int_funcs}
+\end{longtable}
+
+\begin{longtable}{*4M c}
+\toprule
+\text{\boldmath\(f(x)\)}
+    & \text{\boldmath\(\int f(x) \dd{x}\ (+ C)\)}
+    & \text{\bfseries Alternatives/Notes} & \note & \bfseries Reference\\
+\midrule
+\endhead
 x^n & \frac 1{n + 1}x^{n + 1} & n \ne -1 \\[3ex]
 \frac 1x & \ln \abs x \\[3ex]
 e^x & e^x & \text{\(e\) is Euler's constant} \\[1ex]
@@ -55,8 +86,8 @@ a^x & \frac 1{\ln a}a^x & \text{\(a\) is a constant} \\[3ex]
 \cos x & \sin x \\[1ex]
 \tan x & \ln \abs{\sec x} \\[1ex]
 \sec x & \ln \abs{\sec x + \tan x}
-    & \ln \abs{\tan(\tfrac 12 x + \tfrac 14 \pi)} \\[2ex]
-\csc x & \ln \abs{\csc x - \cot x} & \ln \abs{\tan(\tfrac 12 x)} \\[2ex]
+    & \ln \abs*{\tan{(\tfrac 12 x + \tfrac 14 \pi)}} \\[2ex]
+\csc x & \ln \abs{\csc x - \cot x} & \ln \abs*{\tan{(\tfrac 12 x)}} \\[2ex]
 \cot x & \ln \abs{\sin x} \\[1ex]
 \sin^2 x & \tfrac 12 x - \tfrac 14 \sin 2x \\[1ex]
 \cos^2 x & \tfrac 12 x + \tfrac 14 \sin 2x \\[1ex]
@@ -65,15 +96,15 @@ a^x & \frac 1{\ln a}a^x & \text{\(a\) is a constant} \\[3ex]
 \csc^2 x & -\cot x \\[1ex]
 \cot^2 x & -\cot x - x \\[1ex]
 \bottomrule
-\caption{Common integrals}
-\label{tab_calc_integrals}
+\caption{Common antiderivatives}
+\label{tab_calc_int_common}
 \end{longtable}
 
-\begin{longtable}{*3M c}
+\begin{longtable}{*4M c}
 \toprule
 \text{\boldmath\(f(x)\)}
     & \text{\boldmath\(\int f(x) \dd{x}\ (+ C)\)}
-    & \text{\bfseries Alternatives/Notes} & \bfseries Reference\\
+    & \text{\bfseries Alternatives/Notes} & \note & \bfseries Reference\\
 \midrule
 \endhead
 \frac{\cos x}{\sin x + \cos x}
@@ -81,10 +112,31 @@ a^x & \frac 1{\ln a}a^x & \text{\(a\) is a constant} \\[3ex]
 \frac{\sin x}{\sin x + \cos x}
     & \tfrac 12 x - \tfrac 12 \ln \abs{\sin x + \cos x} \\[3ex]
 \bottomrule
-\caption{Niche but interesting integrals}
+\caption{Niche but interesting antiderivatives}
+\label{tab_calc_int_uncommon}
 \end{longtable}
 
-\subsubsection{Frullani Integral}
+\begin{longtable}{*6M c}
+\toprule
+\text{\boldmath\(f(x)\)}
+    & \text{\boldmath\(x_1\)} & \text{\boldmath\(x_2\)}
+    & \text{\boldmath\(\int_{x_1}^{x_2} f(x) \dd{x}\)}
+    & \text{\bfseries Notes} & \note & \bfseries Reference\\
+\midrule
+\endhead
+e^{-x^2} & -\infty & \infty & \sqrt \pi && \note \\[1ex]
+\frac{f(ax) - f(bx)} x & 0 & \infty & (f(\infty) - f(0)) \ln \frac ab
+    & \text{\(a, b\) const.} && \ref{sec_calc_frullani} \\[3ex]
+\frac{f(x)}{f(x) + f(a + b - x)} & a & b & \frac{b - a} 2
+    & \text{\(a, b\) const.} \\[3ex]
+\frac{f(x)}{x(f(x) + f(ab / x))} & a & b & \frac 12 \ln \frac ba
+    & \text{\(a, b\) const.} \\[3ex]
+\bottomrule
+\caption{Very niche but interesting definite integrals}
+\label{tab_calc_int_uncommon_def}
+\end{longtable}
+
+\subsubsection{Frullani Integral} \label{sec_calc_frullani}
 
 \begin{theorem}[Frullani's Integral]
 Where the limit of \(f(x)\) exists at both 0 and \(\infty\), and \(f'(x)\)
@@ -142,11 +194,11 @@ and also \(\frac 12(t - t^{-1}) = \sqrt{x^2 - 1}\). Therefore,
 \begin{alignat*}{2}
 && \dv{x}{t} &= \frac 12\pqty{1 - \frac 1{t^2}} \\
 &\implies& \int f(x + \sqrt{x^2 - 1}) \dd{x}
-    &= \frac 12 \int \pqty{1 - \frac 1{t^2}}f(t) \dd{t} \tag*{\qedhere}
+    &= \frac 12 \int \pqty{1 - \frac 1{t^2}}f(t) \dd{t} \qedhere
 \end{alignat*}
 \end{proof}
 
-\subsubsection{Supersymmetric involution substitution}
+\subsubsection{Negated involution substitution}
 
 \begin{theorem}[Additive involution substitution]
 \begin{equation*}
@@ -164,7 +216,7 @@ Let \(I\) denote the integral, and make the substitution \(u = a + b - x\),
                     \frac{f(a + b - x) + f(x)}
                          {f(a + b - x) + f(x)} \dd{x} \\
 &&  &= \int_a^b 1 \dd{x} = b - a \\
-&\implies& I &= \frac{b - a} 2 \tag*{\qedhere}
+&\implies& I &= \frac{b - a} 2 \qedhere
 \end{alignat*}
 \end{proof}
 \begin{theorem}[Divisive involution substitution]
@@ -182,7 +234,7 @@ Again let \(I\) denote the integral. Make the substitution \(u = ab / x\),
 &\implies& I + I &= \int_a^b \frac{f(ab / x) + f(x)}
                                   {x(f(ab / x) + f(x))} \dd{x} \\
 && &= \int_a^b \frac 1x \dd{x} = \ln \frac ba \\
-&\implies& I &= \frac 12 \ln \frac ba \tag*{\qedhere}
+&\implies& I &= \frac 12 \ln \frac ba \qedhere
 \end{alignat*}
 \end{proof}
 
@@ -224,9 +276,12 @@ This means
 &&  &= -\pi \pqty{0 - 1 - 0 + 0} \\
 &&  &= \pi \\
 &\implies& \int_{-\infty}^\infty e^{-x^2} \dd{x}
-    &= \sqrt \pi \tag*{\qedhere}
+    &= \sqrt \pi \qedhere
 \end{alignat*}
 \end{proof}
+This proof is a bit of a ``trick''. The standard way to approach an integral
+like this is by contour integration or something.
+
 This integral is used as the normalising constant of the normal
 distribution. It also pops up in the evaluation of \(\Gamma(\frac 12)\).
 

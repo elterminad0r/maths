@@ -22,7 +22,8 @@ f''(x) = \dv[2]{y}{x} = \dv[2]{x}(f(x))
 In general, differentiating \(y = f(x)\) \(n\) times, we have the \(n\)th
 derivative
 \begin{equation*}
-f'''^{\ \text{\(n\) times}} = f^{(n)}(x) = \dv[n]{y}{x} = \dv[n]{x}(f(x))
+f^{\overbrace{\prime\prime\prime\dotsb}^{\text{\(n\) times}}}
+    = f^{(n)}(x) = \dv[n]{y}{x} = \dv[n]{x}(f(x))
 \end{equation*}
 
 \subsection{Basic properties of the derivative}
@@ -31,7 +32,7 @@ f'''^{\ \text{\(n\) times}} = f^{(n)}(x) = \dv[n]{y}{x} = \dv[n]{x}(f(x))
 Some basic properties of limits result in corresponding basic properties of
 the derivative.
 \begin{equation*}
-\dv{x}(a \cdot f(x)) = af'(x) \quad \text{where \(a\) is a constant}
+\dv{x}(a f(x)) = af'(x) \quad \text{where \(a\) is a constant}
 \end{equation*}
 \begin{equation*}
 \dv{x}(f(x) + g(x)) = f'(x) + g'(x)
@@ -40,6 +41,13 @@ the derivative.
 \subsection{Chain Rule} \label{sec_calc_chain}
 
 \subsection{Product Rule} \label{sec_calc_product}
+
+\begin{theorem}[Product rule]
+For two differentiable functions \(f, g\),
+\begin{equation*}
+\dv{x}(\frac{f(x)}{g(x)}) = \frac{g(x)f'(x) - f(x)g'(x)}{(g(x))^2}
+\end{equation*}
+\end{theorem}
 
 \subsubsection{Quotient Rule} \label{sec_calc_quotient}
 
@@ -61,7 +69,7 @@ unspecified functions are shown in table
 \ref{tab_calc_functions_derivatives}. The most essential ones are marked
 with \(\note\). All the following ones can be derived using only these
 rules, and the derivatives of some functions in table
-\ref{tab_calc_derivatives}
+\ref{tab_calc_derivatives}.
 
 \begin{longtable}{*4M c}
 \toprule
@@ -71,14 +79,14 @@ rules, and the derivatives of some functions in table
 \endhead
 g(x) + h(x) & g'(x) + h'(x) & & \note
     & \ref{sec_calc_derivative_properties} \\[1ex]
-a \cdot g(x) & a \cdot g'(x) & & \note
+a g(x) & a g'(x) & & \note
     & \ref{sec_calc_derivative_properties} \\[1ex]
-g(x) \cdot h(x) & g'(x) \cdot h(x) + g(x) \cdot h'(x)
+g(x) h(x) & g'(x) h(x) + g(x) h'(x)
     & & \note & \ref{sec_calc_product} \\[1ex]
-g(h(x)) & h'(x) \cdot g'(h(x)) & & \note & \ref{sec_calc_chain} \\[1ex]
-\frac{g(x)}{h(x)} & \frac{h(x) \cdot g'(x) - g(x) \cdot h'(x)}{(h(x))^2}
+g(h(x)) & h'(x) g'(h(x)) & & \note & \ref{sec_calc_chain} \\[1ex]
+\frac{g(x)}{h(x)} & \frac{h(x) g'(x) - g(x) h'(x)}{(h(x))^2}
     &&& \ref{sec_calc_quotient} \\[3ex]
-g(ax + b) & a \cdot g'(ax + b) \\[3ex]
+g(ax + b) & a g'(ax + b) \\[3ex]
 g(x)^{h(x)}
     & \pqty{\frac{h(x)g'(x)}{g(x)} + h'(x)\ln(g(x))}g(x)^{h(x)}
     & g(x) > 0 && \ref{sec_calc_powers} \\[3ex]
@@ -175,8 +183,7 @@ We can do this for a general positive integer power of \(x\),
                                 \binom nr x^r h^{n - (r + 2)}}} \\
     &= \lim_{h \to 0} \bqty{nx^{n - 1} + h \sum_{r = 0}^{n - 2}
                                 \binom nr x^r h^{n - (r + 2)}} \\
-    &= nx^{n-1} \qquad
-        \text{as the smallest power of \(h\) inside the sum is 0.}
+    &= nx^{n-1} \quad \text{as the smallest power of \(h\) inside the sum is 0}
 \end{align*}
 Now if we have some negative integer exponent \(-n\) where
 \(n \in \Integers^+\), we can use implicit differentiation to show the rule
@@ -201,11 +208,11 @@ rational exponent \(p / q \in \Rationals\). We let \(y = x^{p / q}\)
 We can show that this power rule generalizes to any real exponent \(k \in
 \Reals\), for \(x > 0\), using the chain rule and the derivative of \(e^x\).
 \begin{equation*}
-\dv{x}(x^k) = \dv{x}(\exp(k(\ln x))) = \frac kx \exp(k(\ln x))
+\dv{x}(x^k) = \dv{x}(e^{k\ln x}) = \frac kx e^{k\ln x}
     = \frac kx x^k = k x^{k - 1}
 \end{equation*}
-Unfortunately there's no straightforward way to even define exponentiation
-with a negative base for a general real exponent.
+Unfortunately there's no straightforward way to even define exponentiation as a
+differentiable function with a negative base for a general real exponent.
 
 To differentiate an exponential function of a positive constant
 \(a \in \Reals^+\), we can rewrite it as a power of \(e\), and use the chain
@@ -335,18 +342,5 @@ Similarly, \(\arccot x = \frac 12 \pi - \arctan x\), so
 \subsection{Implicit differentiation}
 
 % fix this
-
-%FIXME: add x^y for fun
-
-An example may help to clarify.
-\begin{align*}
-0 &= y^2 + x^3 + \sin x^2 y + \ln \frac{\sqrt y} x - 5 \\
-\implies 0 &=
-            2y \dv{y}{x} + 3x^2 +
-            \pqty{2x \cdot y + \dv{y}{x} \cdot x^2} \cdot \cos x^2 y +
-            \pqty{\frac{x \cdot \frac 12 y^{-\frac 12} \cdot \dv{y}{x} -
-                        \sqrt y \cdot 1}
-                       {x^2}} \cdot \frac x{\sqrt y} \\
-\end{align*}
 
 %FIXME finish this

@@ -86,7 +86,7 @@ We can complete the square to solve a general quadratic equation.
     = \frac{b^2 - 4ac}{4a^2} \\
 &\iff& x + \frac b{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
     = \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\
-&\iff& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \tag*{\qedhere}
+&\iff& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \qedhere
 \end{alignat*}
 \end{proof}
 
@@ -116,7 +116,7 @@ For two sequences of length \(n\), \(u_i, v_i \in \Reals\), indexed by
 \begin{equation*}
 \pqty{\sum u_i v_i}^2 \le \pqty{\sum u_i^2} \pqty{\sum v_i^2}
 \end{equation*}
-with equality iff \(\exists k \in \Reals. \forall i \in I. u_i = k v_i\) (ie one
+with equality iff \(\Exists k \in \Reals: \Forall i \in I: u_i = k v_i\) (ie one
 sequence is a multiple of the other).
 \end{theorem}
 \begin{proof}
@@ -141,7 +141,7 @@ As it has no zeroes or one zero (in the case of the condition for equality)
 &\iff&
 \pqty{\sum 2 u_i v_i}^2 - 4\pqty{\sum u_i^2}\pqty{\sum v_i^2} &\le 0 \\
 &\iff& \pqty{\sum u_i v_i}^2 &\le \pqty{\sum u_i^2} \pqty{\sum v_i^2}
-    \tag*{\qedhere}
+    \qedhere
 \end{alignat*}
 \end{proof}
 
@@ -171,27 +171,25 @@ case, \(n = 2\):
 \end{alignat*}
 Then, supposing AM-GM holds for \(n\) and 2, we show that it holds for
 \(2n\).  Taking
-\begin{alignat*}2
+\begin{alignat*}3
 &&a &= \sqrt[n]{u_1 u_2 \dotsm u_n} \\
 &&b &= \sqrt[n]{u_{n+1} u_{n+2} \dotsm u_{2n}} \\
 &\implies& a &\le \frac{u_1 + u_2 + \dotsb + u_n}n
-        \quad \text{with equality iff \(u_i: 1 \le i \le n\) are equal}\\
+        &&\quad \text{with equality iff \(u_1 = \dotsb = u_n\)}\\
 &&b &\le \frac{u_{n + 1} + u_{n + 2} + \dotsb + u_{2n}}n
-        \quad \text{with equality iff \(u_i: n < i \le 2n\) are equal}\\
+        &&\quad \text{with equality iff \(u_{n+1} = \dotsb = u_{2n}\)}\\
 &&\text{and}\ \sqrt{ab} &\le \frac{a + b}2
-    \quad \text{with equality iff \(a = b\)}\\
+    &&\quad \text{with equality iff \(a = b\)}\\
 &\implies& \sqrt[2n]{u_1 u_2 \dotsm u_{2n}} &\le
          \frac{u_1 + u_2 + \dotsb u_{2n}}{2n}
-            \quad \text{with equality iff all \(u_i\) are equal}
+        &&\quad \text{with equality iff \(u_1 = \dotsb = u_{2n}\)}
 \end{alignat*}
 Now, supposing AM-GM holds for \(n\), we show that it holds for \(n - 1\).
 Taking
 \begin{alignat*}2
 &&u_n &= \sqrt[n - 1]{u_1 u_2 \dotsm u_{n - 1}} \\
-&\implies& \pqty{u_1 u_2 \dotsm u_{n - 1}
-            \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1 / (n - 1)}}^{1 / n}
-         &\le \frac 1n \pqty{u_1 + u_2 + \dotsb  + u_{n - 1} +
-            \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1/{n - 1}}} \\
+&\implies& \pqty{u_1 u_2 \dotsm u_n}^{1 / n}
+           &= \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1 / (n - 1)} \\
 &\implies& \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1 / (n - 1)} &\le
          \frac 1n \pqty{u_1 + u_2 + \dotsb u_{n - 1}} +
          \frac 1n \pqty{u_1 u_2 \dotsm u_{n - 1}}^{1 / (n - 1)} \\
@@ -205,7 +203,6 @@ Taking
          \frac 1{n - 1} \pqty{u_1 + u_2 + \dotsb + u_{n - 1}}
 \end{alignat*}
 As equality for \(n\) was iff all \(u_i\) were the same, this is still true.
-
 Now, for any \(n \in \Integers^+\), we can induct up to a power of 2 above
 \(n\), and then descend from there.
 \end{proof}

@@ -1,3 +1,6 @@
+\RequirePackage{silence}
+\WarningFilter{remreset}{The remreset package}
+
 % fleqn aligns equations to the left, a4 paper size, 11pt font, article class
 \documentclass[fleqn,a4paper,11pt]{article}
 \title{Maths}
@@ -14,8 +17,6 @@
     \listoflistings
     \listoftheorems
 
-    %FIXME glitch with fancyhdr not present on page 3???
-
     \input{tex/set_theory}
     \input{tex/number_theory}
     \input{tex/algebra}
@@ -29,7 +30,7 @@
     \input{tex/integration}
     \input{tex/numerical_methods}
     \input{tex/mechanics.tex}
-    \input{tex/discrete_maths}
+    \input{tex/computer_science}
     \input{tex/jokes}
     \input{tex/sandbox}
 

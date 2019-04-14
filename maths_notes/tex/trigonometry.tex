@@ -153,10 +153,10 @@ To get the result for \(\frac 15 \pi\) we can let
 &\iff& 0 &= \sin \varphi (2\cos^2 \varphi - 1
                         + 2\cos^2 \varphi - 2\cos \varphi) \\
 &\iff& 0 &= 4\cos^2 \varphi - 2\cos \varphi - 1
-    \qquad \text{as \(\sin \varphi \ne 0\)} \\
+    \quad \text{as \(\sin \varphi \ne 0\)} \\
 &\iff& \cos \varphi &= \frac{1 \pm \sqrt 5} 4 \\
 &\iff& \cos \varphi &= \frac{1 + \sqrt 5} 4
-    \qquad \text{as \(\cos \varphi > 0\)}
+    \quad \text{as \(\cos \varphi > 0\)}
 \end{alignat*}
 We can then proceed to derive sine, and therefore also tangent, by applying
 the Pythagorean identity and simplifying.
@@ -182,25 +182,23 @@ and subsequently from the definition of
 
 %FIXME add diagram
 
-\begin{theorem}[Addition formula for sine]
-\begin{equation*}
-\sin(\alpha + \beta) \equiv
-   \sin \alpha \cos \beta +  \sin \beta \cos \alpha
-\end{equation*}
+\begin{theorem}[Addition formulae for trig functions]
+Trigonometric functions of a sum or difference of angles can be expanded into
+trigonometric functions of each angle.
+\begin{align*}
+\sin(\alpha + \beta) &\equiv
+   \sin \alpha \cos \beta +  \sin \beta \cos \alpha \\
+\cos(\alpha + \beta) &\equiv
+   \cos \alpha \cos \beta - \sin \alpha \sin \beta \\
+\tan(\alpha + \beta) &\equiv
+    \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta}
+\end{align*}
 \end{theorem}
 \begin{proof}
-This can be shown geometrically.
-\end{proof}
-From this, it follows
-\begin{theorem}[Addition formula for cosine]
-\begin{equation*}
-\cos(\alpha + \beta) \equiv
-   \cos \alpha \cos \beta - \sin \alpha \sin \beta
-\end{equation*}
-\end{theorem}
-\begin{proof}
-This could also be shown with a similar geometrical argument, but we can
-simply use section \ref{sec_trig_periodic} to show
+The formula for sine can be shown geometrically.
+
+The formula for cosine could also be shown with a similar geometrical argument,
+but we can simply use section \ref{sec_trig_periodic} to show
 \begin{align*}
 \cos(\alpha + \beta) &\equiv
     \sin(\frac 12 \pi - \alpha - \beta) \equiv
@@ -210,13 +208,6 @@ simply use section \ref{sec_trig_periodic} to show
     \cos \alpha \cos \beta + \sin \beta \sin \alpha \qedhere
 \end{align*}
 \end{proof}
-We can now deduce
-\begin{theorem}[Addition formula for tangent]
-\begin{equation*}
-\tan(\alpha + \beta) \equiv
-    \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta}
-\end{equation*}
-\end{theorem}
 \begin{proof}
 \begin{align*}
 \tan(\alpha + \beta) &\equiv
@@ -232,8 +223,10 @@ We can now deduce
     \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta} \qedhere
 \end{align*}
 \end{proof}
-There is a corresponding set of results also allowing for differences.
+
 \begin{theorem}[Compound angle formulae] \label{thm_trig_compound}
+Trigonometric functions of a sum or difference of angles can be expanded into
+trigonometric functions of each angle.
 \begin{align*}
 \sin \alpha \pm \beta &\equiv
    \sin \alpha \cos \beta \pm \sin \beta \cos \alpha \\
@@ -252,6 +245,8 @@ One might also just assume it's probably OK to flip signs.
 
 \subsubsection{Double Angle Formulae} \label{sec_trig_double_angle}
 \begin{theorem}[Double angle formulae] \label{thm_trig_double_angle}
+Trigonometric functions of double angles can be expressed in terms of
+trigonometric functions of the angle.
 \begin{align*}
 \sin 2\theta &\equiv
    2\sin \theta \cos \theta \\
@@ -270,89 +265,71 @@ Theorem \ref{thm_trig_compound}.
 It follows, by rearrangement of identities in Theorem
 \ref{thm_trig_double_angle}, that
 \begin{theorem}[Squared half-angle identities]
-\begin{align*}
+Squared trigonometric functions can be rewritten in terms of trigonometric
+functions of the double angle.
+\begin{alignat*} 3
 \sin^2 \theta &\equiv
     \frac{1 - \cos 2 \theta} 2 \\
 \cos^2 \theta &\equiv
     \frac{1 + \cos 2 \theta} 2
-\end{align*}
-and
-\begin{align*}
-\tan^2 \theta \equiv \frac{\sin^2 \theta}{\cos^2 \theta}
+\intertext{and}
+\tan^2 \theta &\equiv \frac{\sin^2 \theta}{\cos^2 \theta}
     \equiv \frac{1 - \cos 2 \theta}{1 + \cos 2 \theta}
-    &\equiv \frac{1 - \cos^2 2 \theta}{(1 + \cos 2 \theta)^2}
+    &&\equiv \frac{1 - \cos^2 2 \theta}{(1 + \cos 2 \theta)^2}
     \equiv \pqty{\frac{\sin 2 \theta}{1 + \cos 2 \theta}}^2 \\
-    &\equiv \frac{(1 - \cos 2 \theta)^2}{1 - \cos^2 2 \theta}
+&   &&\equiv \frac{(1 - \cos 2 \theta)^2}{1 - \cos^2 2 \theta}
     \equiv \pqty{\frac{1 - \cos 2 \theta}{\sin 2 \theta}}^2
-\end{align*}
+\end{alignat*}
 \end{theorem}
 \begin{theorem}[Half angle identities] \label{thm_trig_half_angle}
+Trigonometric functions of half-angles can be expressed in terms of
+trigonometric functions of the full angle.
 \begin{alignat*}2
-&&\sin \theta &\equiv
-    \pm\sqrt{\frac{1 - \cos 2 \theta} 2}
- \ \pqty{\text{where \(\pm\) depends on the quadrant}} \\
-&\iff& \sin \frac \theta 2 &\equiv
-    \pm\sqrt{\frac{1 - \cos \theta} 2} \\
-&&\cos \theta &\equiv
-    \pm\sqrt{\frac{1 + \cos 2 \theta} 2} \\
-&\iff& \cos \frac \theta 2 &\equiv
-    \pm\sqrt{\frac{1 + \cos \theta} 2} \\
+&&\abs*{\sin \theta} &\equiv
+    \sqrt{\frac{1 - \cos 2 \theta} 2} \\
+&\iff& \abs*{\sin \tfrac 12 \theta} &\equiv
+    \sqrt{\frac{1 - \cos \theta} 2} \\
+&&\abs*{\cos \theta} &\equiv
+    \sqrt{\frac{1 + \cos 2 \theta} 2} \\
+&\iff& \abs*{\cos \tfrac 12 \theta} &\equiv
+    \sqrt{\frac{1 + \cos \theta} 2} \\
 &&\tan \theta &\equiv
     \frac{\sin 2 \theta}{1 + \cos 2 \theta}
     \equiv \frac{1 - \cos 2 \theta}{\sin 2 \theta} \\
-&\iff& \tan \frac \theta 2 &\equiv
+&\iff& \tan \tfrac 12 \theta &\equiv
     \frac{\sin \theta}{1 + \cos \theta}
     \equiv \frac{1 - \cos \theta}{\sin \theta}
 \end{alignat*}
+The modulus signs here are due to the sign changes between quadrants. They can
+often by eliminated by consideration of the domain of \(\theta\).
 \end{theorem}
 
 \subsubsection{Triple Angles and Beyond}
 
 \subsection{Sum-Product Identities} \label{sec_trig_sum_product}
 
-The products of trig functions can be variously rewritten as sums.
-
-\begin{theorem}[Product of sine and cosine]
-\begin{equation*}
-\sin \alpha \cos \beta \equiv
-    \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)} 2
-\end{equation*}
+\begin{theorem}[Sum-Product Identities]
+The product of trigonometric functions can be rewritten as a sum:
+\begin{align*}
+\sin \alpha \cos \beta &\equiv
+    \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)} 2 \\
+\cos \alpha \cos \beta &\equiv
+ \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)} 2 \\
+\sin \alpha \sin \beta &\equiv
+ \frac{\cos(\alpha - \beta) - \cos(\alpha + \beta)} 2
+\end{align*}
 \end{theorem}
 \begin{proof}
-Derive from RHS:
+In each case we can derive by applying compound angle formulae to the RHS:
 \begin{align*}
 \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)} 2 &\equiv
  \frac{\sin \alpha \cos \beta + \sin \beta \cos \alpha +
        \sin \alpha \cos \beta - \sin \beta \cos \alpha} 2 \\
-&\equiv \frac{2 \sin \alpha \cos \beta} 2 \equiv \sin \alpha \cos \beta
-    \qedhere
-\end{align*}
-\end{proof}
-\begin{theorem}[Product of cosines]
-\begin{equation*}
-\cos \alpha \cos \beta \equiv
- \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)} 2
-\end{equation*}
-\end{theorem}
-\begin{proof}
-Derive from RHS:
-\begin{align*}
+&\equiv \frac{2 \sin \alpha \cos \beta} 2 \equiv \sin \alpha \cos \beta \\[3ex]
 \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)} 2 &\equiv
  \frac{\cos \alpha \cos \beta - \sin \alpha \sin \beta +
        \cos \alpha \cos \beta + \sin \alpha \sin \beta} 2 \\
-&\equiv \frac{2 \cos \alpha \cos \beta} 2 \equiv \cos \alpha \cos \beta
-    \qedhere
-\end{align*}
-\end{proof}
-\begin{theorem}[Product of sines]
-\begin{equation*}
-\sin \alpha \sin \beta \equiv
- \frac{\cos(\alpha - \beta) - \cos(\alpha + \beta)} 2
-\end{equation*}
-\end{theorem}
-\begin{proof}
-Derive from RHS:
-\begin{align*}
+&\equiv \frac{2 \cos \alpha \cos \beta} 2 \equiv \cos \alpha \cos \beta \\[3ex]
 \frac{\cos(\alpha - \beta) - \cos(\alpha + \beta)} 2 &\equiv
  \frac{\cos \alpha \cos \beta + \sin \alpha \sin \beta -
        \cos \alpha \cos \beta + \sin \alpha \sin \beta} 2 \\
@@ -365,59 +342,42 @@ Derive from RHS:
 
 %FIXME: annotate sections used
 
-\begin{theorem}[Relating the sum of sines to a product]
-\begin{equation*}
-\sin \alpha + \sin \beta \equiv
-    2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta}2
-\end{equation*}
+\begin{theorem}[Sum-Product Identities]
+Similarly, the sums and differences of trigonometric functions can be rewritten
+as a product:
+\begin{align*}
+\sin \alpha + \sin \beta &\equiv
+    2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta}2 \\
+\sin \alpha - \sin \beta &\equiv
+    2 \sin \frac{\alpha - \beta} 2 \cos\frac{\alpha + \beta} 2 \\
+\cos \alpha + \cos \beta &\equiv
+    2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2 \\
+\cos \alpha - \cos \beta &\equiv
+ -2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2
+\end{align*}
 \end{theorem}
 \begin{proof}
-We derive by considering \(\alpha' = \frac 12 (\alpha + \beta)\) and
-\(\beta' = \frac 12 (\alpha - \beta)\). Then,
+We can derive the sums by considering \(\alpha' = \frac 12 (\alpha + \beta)\)
+and \(\beta' = \frac 12 (\alpha - \beta)\). Then,
 \begin{align*}
 \sin \alpha + \sin \beta &\equiv
  \sin(\alpha' + \beta') + \sin(\alpha' - \beta') \equiv
- 2\sin \alpha' \cos \beta'\ \text{(from \ref{sec_trig_sum_product})}
-\\&\equiv 2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta} 2
-    \qedhere
+ 2\sin \alpha' \cos \beta'\quad \text{(from \ref{sec_trig_sum_product})}
+\\&\equiv 2 \sin \frac{\alpha + \beta}2 \cos \frac{\alpha - \beta} 2 \\[3ex]
+ \cos \alpha + \cos \beta &\equiv
+ \cos(\alpha' + \beta') + \cos(\alpha' - \beta') \equiv
+ 2\cos \alpha' \cos \beta'\quad \text{(from \ref{sec_trig_sum_product})}
+ \\&\equiv 2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2
 \end{align*}
-\end{proof}
-As a direct corollary of this due to the oddness of the sine
-(\ref{sec_trig_parity}), we have
-\begin{theorem}[Relating the difference of sines to a product]
+The differencec of sines is quite straightforward to show using
+(\ref{sec_trig_parity}).
 \begin{equation*}
 \sin \alpha - \sin \beta =
     \sin \alpha + \sin -\beta =
     2 \sin \frac{\alpha - \beta} 2 \cos\frac{\alpha + \beta} 2
 \end{equation*}
-\end{theorem}
-We also show
-\begin{theorem}[Relating the sum of cosines to a product]
-\begin{equation*}
-\cos \alpha + \cos \beta \equiv
-    2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2
-\end{equation*}
-\end{theorem}
-\begin{proof}
-Again, let \(\alpha' = \frac 12 (\alpha + \beta)\) and
-\(\beta' = \frac 12 (\alpha - \beta)\). Then,
-\begin{align*}
- \cos \alpha + \cos \beta &\equiv
- \cos(\alpha' + \beta') + \cos(\alpha' - \beta') \equiv
- 2\cos \alpha' \cos \beta'\ \text{(from \ref{sec_trig_sum_product})}
- \\&\equiv 2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2
-    \qedhere
-\end{align*}
-\end{proof}
-Finally, we show
-\begin{theorem}[Relating the difference of cosines to a product]
-\begin{equation*}
-\cos \alpha - \cos \beta \equiv
- -2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2
-\end{equation*}
-\end{theorem}
-\begin{proof}
-We can exploit the periodicity of cosine (\ref{sec_trig_periodic}).
+For the difference of cosines, can exploit the periodicity of cosine
+(\ref{sec_trig_periodic}).
 \begin{align*}
  \cos \alpha - \cos \beta &\equiv
  \cos \alpha + \cos (\beta + \pi)  \equiv
@@ -432,11 +392,11 @@ We can exploit the periodicity of cosine (\ref{sec_trig_periodic}).
 
 \subsection[The Weierstrass substitution
             \texorpdfstring{(\(\tan(\theta / 2)\))}{(tangent half-angle)}]
-   {The Weierstrass substitution \boldmath\(\pqty{\tan(\frac \theta 2)}\)}
+   {The Weierstrass substitution \boldmath\(\pqty{\tan(\tfrac 12 \theta)}\)}
 
 \begin{theorem}[The Weierstrass substitution]
-If we let \(t = \tan(\frac \theta 2)\), such that \(t\) is defined (ie
-\(\theta \ne (2n + 1)\pi, n \in \Integers\)) then we have:
+If we let \(t = \tan \tfrac 12 \theta\), such that \(t\) is defined (ie
+\(\NExists n \in \Integers: \theta = (2n + 1)\pi\)) then we have:
 \begin{align*}
 \sin \theta &\equiv \dfrac{2t}{1 + t^2} \\
 \cos \theta &\equiv \dfrac{1 - t^2}{1 + t^2} \\
@@ -447,25 +407,25 @@ If we let \(t = \tan(\frac \theta 2)\), such that \(t\) is defined (ie
 \begin{proof}
 The identity for the tangent is an immediate consequence of the double
 angle formula for the tangent (\ref{sec_trig_double_angle}), where we're
-considering \(\tan(2 \cdot \frac 12 \theta)\).
+considering \(\tan{(2 \cdot \frac 12 \theta)}\).
 
 The identity for the sine can be derived by considering the double angle
 formula for sine, and using a smattering of identities from sections
 \ref{sec_trig_definitions}, \ref{sec_trig_pythag}:
 \begin{align*}
-\sin \theta &\equiv 2\sin \tfrac \theta 2 \cos\tfrac \theta 2
-    \equiv 2\tan \tfrac \theta 2 \cos^2 \tfrac \theta 2 \\
-    &\equiv \frac{2\tan \frac \theta 2}{\sec^2 \frac \theta 2}
+\sin \theta &\equiv 2\sin \tfrac 12 \theta \cos\tfrac 12 \theta
+    \equiv 2\tan \tfrac 12 \theta \cos^2 \tfrac 12 \theta \\
+    &\equiv \frac{2\tan \tfrac 12 \theta}{\sec^2 \tfrac 12 \theta}
     \equiv \frac{2t}{1 + t^2}
 \end{align*}
 Similarly for the cosine:
 \begin{align*}
 \cos \theta
-    &\equiv \cos^2 \tfrac \theta 2 - \sin^2 \tfrac \theta 2
-    \equiv \cos^2 \tfrac \theta 2
-        \pqty{1 - \tan^2 \tfrac \theta 2} \\
-    &\equiv \frac{1 - \tan^2 \tfrac \theta 2}
-                 {\sec^2 \tfrac \theta 2}
+    &\equiv \cos^2 \tfrac 12 \theta - \sin^2 \tfrac 12 \theta
+    \equiv \cos^2 \tfrac 12 \theta
+        \pqty{1 - \tan^2 \tfrac 12 \theta} \\
+    &\equiv \frac{1 - \tan^2 \tfrac 12 \theta}
+                 {\sec^2 \tfrac 12 \theta}
     \equiv \frac{1 - t^2}{1 + t^2} \qedhere
 \end{align*}
 \end{proof}
@@ -476,11 +436,17 @@ the integral into a rational function of \(t\), as all trig functions and
 also \(\dd{\theta}\) become rational functions of \(t\).
 
 It can also be used as an alternative parametrisation of a circle: instead
-of \((\cos\theta, \sin\theta)\), \(\theta \in \intco{0, 2\pi}\) we can use
-\(\pqty{\dfrac{1 - t^2}{1 + t^2}, \dfrac{2t}{1 + t^2}}\), \(t \in \Reals\).
+of
+\begin{equation*}
+(x, y) = (\cos\theta, \sin\theta): \theta \in \intco{0, 2\pi}
+\end{equation*}
+we can use
+\begin{equation*}
+(x, y) = \pqty{\dfrac{1 - t^2}{1 + t^2}, \dfrac{2t}{1 + t^2}}: t \in \Reals
+\end{equation*}
 This is useful as it is a rational function, so for rational \(t\) it gives
 a rational point on the unit circle, which can be used, for example, to find
-Pythagorean triples.
+Pythagorean triples. The only point it misses is \((0, 1)\).
 
 \subsubsection{Heuristic for sine and cosine}
 
