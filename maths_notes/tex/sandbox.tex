@@ -1,4 +1,4 @@
-\section{Sandbox}
+\section{Sandbox} \ref{sec_algebra}
 
 \lettrine{\color{RoyalBlue4}I}{zaak van Dongen}. \lipsum[1]
 
@@ -17,7 +17,7 @@
 \pm&\cap&\diamond&\oplus\\
 \mp&\cup&\bigtriangleup&\ominus\\
 \times&\uplus&\bigtriangledown&\otimes\\
-\divisionsymbol&\sqcap&\triangleleft&\oslash\\
+\div&\sqcap&\triangleleft&\oslash\\
 \ast&\sqcup&\triangleright&\odot\\
 \star&\vee \land&\lhd&\bigcirc\\
 \circ&\wedge \lor&\rhd&\dagger\\
@@ -69,8 +69,8 @@
 \jmath&\surd&\flat&\triangle\\
 \ell&\top&\natural&\clubsuit\\
 \wp&\bot&\sharp&\diamondsuit\\
-\real&\|&\backslash&\heartsuit\\
-\imaginary&\angle&\partial&\spadesuit\\
+\Re&\|&\backslash&\heartsuit\\
+\Im&\angle&\partial&\spadesuit\\
 \end{array}\) \\
 \(\begin{array}{*2c}
 DIFferent          & % symbols
@@ -88,8 +88,8 @@ DIFferent          & % symbols
 \textgoth{DIFferent} & % gothic font
 \mathscr{DIFFERENT} \\ % script font
 \multicolumn 2c{
-(\vec d \cp \vec i)
-    \vdot \uvec f - \abs{\veca{FE}} \norm{\veca{RE}} +
+(\vec d \times \vec i)
+    \cdot \uvec f - \abs{\veca{FE}} \norm{\veca{RE}} +
     \veca{NT}} \\
 \end{array}\) &
 \(\begin{array}{*3c}
@@ -517,23 +517,23 @@ But \(x > 0\) and therefore \(\frac 42 = x = 2\).
 \scalebox{1.5}{
 \begin{equation*}
 \left\{ \begin{array}{*5c}
-\underbrace{\dv{\text{\textcolor{Orange4} \Cat}}{t}}_{\text{cat interest}}
+\underbrace{\dv<\text{\textcolor{Orange4} \Cat}>{t}}_{\text{cat interest}}
     &=& \underbrace{
-        \vphantom{\dv{\text{\textcolor{Orange4} \Cat}}{t}}
+        \vphantom{\dv<\text{\textcolor{Orange4} \Cat}>{t}}
         \pi \text{\textcolor{Blue4} \PencilLeftDown}}_{
             \text{productivity term}}
     &-& \underbrace{
-        \vphantom{\dv{\text{\textcolor{Orange4} \Cat}}{t}}
+        \vphantom{\dv<\text{\textcolor{Orange4} \Cat}>{t}}
         \mu \text{\textcolor{Orange4} \Cat}}_{
         \text{mew term}} \\[6ex]
-\underbrace{\dv{\text{\textcolor{Blue4} \PencilLeftDown}}{t}}_{
+\underbrace{\dv<\text{\textcolor{Blue4} \PencilLeftDown}>{t}}_{
     \text{productivity}}
     &=& \underbrace{
-        \vphantom{\dv{\text{\textcolor{Blue4} \PencilLeftDown}}{t}}
+        \vphantom{\dv<\text{\textcolor{Blue4} \PencilLeftDown}>{t}}
         -\kappa \text{\textcolor{Orange4} \Cat}}_{
             \text{cat term}}
     &+& \underbrace{
-        \vphantom{\dv{\text{\textcolor{Blue4} \PencilLeftDown}}{t}}
-        \int_C F \vdot \dd{\vec s}}_{\text{work term}}
+        \vphantom{\dv<\text{\textcolor{Blue4} \PencilLeftDown}>{t}}
+        \int_C \vec F \cdot \diff \vec s}_{\text{work term}}
 \end{array} \right.
 \end{equation*}}

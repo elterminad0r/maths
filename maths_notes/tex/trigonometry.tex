@@ -77,22 +77,22 @@ From geometric construction of triangles in addition to Pythagoras' Theorem
 (\ref{sec_pythagoras}), we can determine that the following values of
 trigonometric functions at certain angles hold.
 
-%FIXME automatic math mode
-
-\begin{longtable}{*4M}
-\toprule
-\text{\boldmath\(\theta\)} & \text{\boldmath\(\sin \theta\)}
-    & \text{\boldmath\(\cos \theta\)} & \text{\boldmath\(\tan \theta\)} \\
-\midrule
-\endhead
-0 & 0 & 1 & 0 \\[1ex]
-\frac \pi 6 & \frac 12 & \frac{\sqrt 3} 2 & \frac {\sqrt 3} 3 \\[3ex]
-\frac \pi 4 & \frac {\sqrt 2} 2 & \frac {\sqrt 2} 2 & 1 \\[3ex]
-\frac \pi 3 & \frac{\sqrt 3} 2 & \frac 12 & \sqrt 3 \\[3ex]
-\frac \pi 2 & 1 & 0 & \infty\\[2ex]
-\bottomrule
-\caption{The basic trigonometric constants} \\
-\end{longtable}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{*4M}
+        \toprule
+        \text{\boldmath\(\theta\)} & \text{\boldmath\(\sin \theta\)}
+        & \text{\boldmath\(\cos \theta\)} & \text{\boldmath\(\tan \theta\)} \\
+        \midrule
+        0 & 0 & 1 & 0 \\[1ex]
+        \frac \pi 6 & \frac 12 & \frac{\sqrt 3} 2 & \frac {\sqrt 3} 3 \\[3ex]
+        \frac \pi 4 & \frac {\sqrt 2} 2 & \frac {\sqrt 2} 2 & 1 \\[3ex]
+        \frac \pi 3 & \frac{\sqrt 3} 2 & \frac 12 & \sqrt 3 \\[3ex]
+        \frac \pi 2 & 1 & 0 & \infty\\[2ex]
+        \bottomrule
+    \end{tabular}
+    \caption{The basic trigonometric constants}
+\end{table}
 
 Strictly, \(\tan \frac 12 \pi\) is undefined.
 
@@ -113,27 +113,29 @@ compound angle formulae to build some angles, such as
 A small number of more esoteric angles are presented below. Many more can be
 found \cite{WikiTrigConstants}.
 
-\begin{longtable}{*4M}
-\toprule
-\text{\boldmath\(\theta\)} & \text{\boldmath\(\sin \theta\)}
-    & \text{\boldmath\(\cos \theta\)} & \text{\boldmath\(\tan \theta\)} \\
-\midrule
-\endhead
-\frac \pi {12} & \frac{\sqrt 6 - \sqrt 2} 4 & \frac{\sqrt 6 + \sqrt 2} 4
-    & 2 - \sqrt 3 \\[3ex]
-\frac \pi 8 & \frac 12 \sqrt{2 - \sqrt 2} & \frac 12 \sqrt{2 + \sqrt 2}
-    & \sqrt 2 - 1 \\[3ex]
-\frac \pi 5 & \frac 14 \sqrt{10 - 2\sqrt 5} & \frac{\sqrt 5 + 1} 4
-    & \sqrt{5 - 2\sqrt 5} \\[3ex]
-\frac{3\pi}{10} & \frac{\sqrt 5 + 1} 4 & \frac 14 \sqrt{10 - 2\sqrt 5}
-    & \frac 15 \sqrt{25 + 10\sqrt 5} \\[3ex]
-\frac{3\pi} 8 & \frac 12 \sqrt{2 + \sqrt 2} & \frac 12 \sqrt{2 - \sqrt 2}
-    & \sqrt 2 + 1 \\[3ex]
-\frac{5\pi}{12} & \frac{\sqrt 6 + \sqrt 2} 4 & \frac{\sqrt 6 - \sqrt 2} 4
-    & 2 + \sqrt 3  \\[2ex]
-\bottomrule
-\caption{More advanced trigonometric constants} \\
-\end{longtable}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{*4M}
+        \toprule
+        \text{\boldmath\(\theta\)} & \text{\boldmath\(\sin \theta\)}
+        & \text{\boldmath\(\cos \theta\)} & \text{\boldmath\(\tan \theta\)} \\
+        \midrule
+        \frac \pi {12} & \frac{\sqrt 6 - \sqrt 2} 4 & \frac{\sqrt 6 + \sqrt 2} 4
+        & 2 - \sqrt 3 \\[3ex]
+        \frac \pi 8 & \frac 12 \sqrt{2 - \sqrt 2} & \frac 12 \sqrt{2 + \sqrt 2}
+        & \sqrt 2 - 1 \\[3ex]
+        \frac \pi 5 & \frac 14 \sqrt{10 - 2\sqrt 5} & \frac{\sqrt 5 + 1} 4
+        & \sqrt{5 - 2\sqrt 5} \\[3ex]
+        \frac{3\pi}{10} & \frac{\sqrt 5 + 1} 4 & \frac 14 \sqrt{10 - 2\sqrt 5}
+        & \frac 15 \sqrt{25 + 10\sqrt 5} \\[3ex]
+        \frac{3\pi} 8 & \frac 12 \sqrt{2 + \sqrt 2} & \frac 12 \sqrt{2 - \sqrt 2}
+        & \sqrt 2 + 1 \\[3ex]
+        \frac{5\pi}{12} & \frac{\sqrt 6 + \sqrt 2} 4 & \frac{\sqrt 6 - \sqrt 2} 4
+        & 2 + \sqrt 3  \\[2ex]
+        \bottomrule
+    \end{tabular}
+    \caption{More advanced trigonometric constants}
+\end{table}
 
 The second half of the table can be derived from the first half.
 
@@ -276,9 +278,9 @@ functions of the double angle.
 \tan^2 \theta &\equiv \frac{\sin^2 \theta}{\cos^2 \theta}
     \equiv \frac{1 - \cos 2 \theta}{1 + \cos 2 \theta}
     &&\equiv \frac{1 - \cos^2 2 \theta}{(1 + \cos 2 \theta)^2}
-    \equiv \pqty{\frac{\sin 2 \theta}{1 + \cos 2 \theta}}^2 \\
+    \equiv \parens[\Big]{\frac{\sin 2 \theta}{1 + \cos 2 \theta}}^2 \\
 &   &&\equiv \frac{(1 - \cos 2 \theta)^2}{1 - \cos^2 2 \theta}
-    \equiv \pqty{\frac{1 - \cos 2 \theta}{\sin 2 \theta}}^2
+    \equiv \parens[\Big]{\frac{1 - \cos 2 \theta}{\sin 2 \theta}}^2
 \end{alignat*}
 \end{theorem}
 \begin{theorem}[Half angle identities] \label{thm_trig_half_angle}
@@ -369,7 +371,7 @@ and \(\beta' = \frac 12 (\alpha - \beta)\). Then,
  2\cos \alpha' \cos \beta'\quad \text{(from \ref{sec_trig_sum_product})}
  \\&\equiv 2 \cos\frac{\alpha + \beta} 2 \cos \frac{\alpha - \beta} 2
 \end{align*}
-The differencec of sines is quite straightforward to show using
+The difference of sines is quite straightforward to show using
 (\ref{sec_trig_parity}).
 \begin{equation*}
 \sin \alpha - \sin \beta =
@@ -383,8 +385,8 @@ For the difference of cosines, can exploit the periodicity of cosine
  \cos \alpha + \cos (\beta + \pi)  \equiv
  2 \cos \frac{\alpha + \beta + \pi} 2 \cos \frac {\alpha - \beta - \pi} 2
  \\&\equiv
- 2 \cos \pqty{\frac \pi 2 - \pqty{-\frac{\alpha + \beta} 2}}
-   \cos \pqty{\frac \pi 2 - \frac{\alpha - \beta} 2} \equiv
+ 2 \cos \parens[\Big]{\frac \pi 2 - \parens[\Big]{-\frac{\alpha + \beta} 2}}
+   \cos \parens[\Big]{\frac \pi 2 - \frac{\alpha - \beta} 2} \equiv
  2 \sin -\frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2 \\&\equiv
  -2 \sin \frac{\alpha + \beta} 2 \sin \frac{\alpha - \beta} 2 \qedhere
 \end{align*}
@@ -392,7 +394,7 @@ For the difference of cosines, can exploit the periodicity of cosine
 
 \subsection[The Weierstrass substitution
             \texorpdfstring{(\(\tan(\theta / 2)\))}{(tangent half-angle)}]
-   {The Weierstrass substitution \boldmath\(\pqty{\tan(\tfrac 12 \theta)}\)}
+   {The Weierstrass substitution \boldmath\(\parens[\Big]{\tan(\tfrac 12 \theta)}\)}
 
 \begin{theorem}[The Weierstrass substitution]
 If we let \(t = \tan \tfrac 12 \theta\), such that \(t\) is defined (ie
@@ -401,7 +403,7 @@ If we let \(t = \tan \tfrac 12 \theta\), such that \(t\) is defined (ie
 \sin \theta &\equiv \dfrac{2t}{1 + t^2} \\
 \cos \theta &\equiv \dfrac{1 - t^2}{1 + t^2} \\
 \tan \theta &\equiv \dfrac{2t}{1 - t^2} \\
-\dv{\theta}{t} &\equiv \dfrac 2{1 + t^2}
+\dv<\theta>{t} &\equiv \dfrac 2{1 + t^2}
 \end{align*}
 \end{theorem}
 \begin{proof}
@@ -423,7 +425,7 @@ Similarly for the cosine:
 \cos \theta
     &\equiv \cos^2 \tfrac 12 \theta - \sin^2 \tfrac 12 \theta
     \equiv \cos^2 \tfrac 12 \theta
-        \pqty{1 - \tan^2 \tfrac 12 \theta} \\
+        (1 - \tan^2 \tfrac 12 \theta) \\
     &\equiv \frac{1 - \tan^2 \tfrac 12 \theta}
                  {\sec^2 \tfrac 12 \theta}
     \equiv \frac{1 - t^2}{1 + t^2} \qedhere
@@ -433,7 +435,7 @@ Similarly for the cosine:
 This fact is useful for a number of reasons. Firstly, when integrating a
 rational function of trig functions, we can apply this trick to transform
 the integral into a rational function of \(t\), as all trig functions and
-also \(\dd{\theta}\) become rational functions of \(t\).
+also \(\diff \theta\) become rational functions of \(t\).
 
 It can also be used as an alternative parametrisation of a circle: instead
 of
@@ -442,7 +444,7 @@ of
 \end{equation*}
 we can use
 \begin{equation*}
-(x, y) = \pqty{\dfrac{1 - t^2}{1 + t^2}, \dfrac{2t}{1 + t^2}}: t \in \Reals
+    (x, y) = \parens[\Big]{\frac{1 - t^2}{1 + t^2}, \frac{2t}{1 + t^2}}: t \in \Reals
 \end{equation*}
 This is useful as it is a rational function, so for rational \(t\) it gives
 a rational point on the unit circle, which can be used, for example, to find

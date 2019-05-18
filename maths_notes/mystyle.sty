@@ -11,8 +11,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-% make the document take up more of the page
-\usepackage[margin=1in,headheight=13.6pt]{geometry}
+% change geometry so more of page is used
+\usepackage[
+    margin=1in,
+    headheight=13.6pt]{geometry}
 
 % custom document header/footer
 \usepackage{fancyhdr}
@@ -20,9 +22,10 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{\thetitle}
-\rhead{\theauthor}
-\rfoot{Page \thepage\ of \pageref{LastPage}}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\rightmark}
+\fancyfoot[L]{\theauthor\ (\thetitle)}
+\fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
 
 % better fonts, apparently
 \usepackage{lmodern}
@@ -110,6 +113,4 @@
 \usepackage{tikz}
 \usepackage{tikzsymbols}
 
-%\usepackage{savesym}
-%\savesymbol{checkmark}
 \usepackage{bbding}

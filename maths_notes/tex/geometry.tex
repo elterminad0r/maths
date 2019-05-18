@@ -29,39 +29,39 @@ centre point, we form the equation of a circle using \ref{sec_pythagoras}:
 
 We can find half the area enclosed by the curve by integrating:
 \begin{equation*}
-\frac 12 A = \int_{-r}^r \sqrt{r^2 - x^2} \dd{x}
+    \frac 12 A = \integ[-r]<r>{\sqrt{r^2 - x^2}}{x}
 \end{equation*}
 We use the substitution (\ref{sec_calc_trig_substitution})
-\(x = r \cos \theta \implies \dv{x}{\theta} = -r \sin \theta\) so
+\(x = r \cos \theta \implies \dv<x>{\theta} = -r \sin \theta\) so that
 \begin{equation*}
-\frac 12 A = \int_{\arccos -1}^{\arccos 1}
-    r\sqrt{1 - \cos^2 \theta} \cdot -r \sin \theta \dd{\theta}
-  = -\int_\pi^0 r^2 \sin^2 \theta \dd{\theta}
+    \frac 12 A = \integ[\arccos -1]<\arccos 1>
+    {r\sqrt{1 - \cos^2 \theta} \cdot -r \sin \theta}{\theta}
+    = -\integ[\pi]<0>{r^2 \sin^2 \theta}{\theta}
 \end{equation*}
 by \ref{sec_trig_pythag}. We use \ref{sec_trig_double_angle} to derive
 \begin{align*}
-\frac 12 A &= -\int_\pi^0
-    r^2 \frac 12 (1 - \cos 2 \theta) \dd{\theta} \implies
- A = r^2 \int_0^\pi (1 - \cos 2 \theta) \dd{\theta} =
- r^2\pqty{\theta - \frac 12 \sin 2 \theta}\eval_0^\pi \\
- &= r^2 \pqty{\pi - \frac 12 \sin 2 \pi -
-               \pqty{0 - \frac 12 \sin 0}} = \pi r^2 \qedhere
+    \frac 12 A &= -\integ[\pi]<0>
+    {r^2 \frac 12 (1 - \cos 2 \theta)}{\theta} \implies
+    A = r^2 \integ[0]<\pi>{(1 - \cos 2 \theta)}{\theta} =
+    r^2\parens[\Big]{\theta - \frac 12 \sin 2 \theta}\eval_0^\pi \\
+    &= r^2 \parens[\Big]{\pi - \frac 12 \sin 2 \pi -
+    \parens[\Big]{0 - \frac 12 \sin 0}} = \pi r^2 \qedhere
 \end{align*}
 \end{proof}
 \begin{proof}[Alternative proof]
-One might alternatively use the parametric form of a circle,
-\(y = r \sin \theta\) and \(x = r \cos \theta\)
-(note that \(x^2 + y^2 = r^2(\sin^2 \theta + \cos^2 \theta) = r^2\)
-(\ref{sec_trig_pythag})), and calculate the area using
-\ref{sec_calc_parametric_area}:
-\begin{align*}
-A &= \int_0^{2\pi}
-    r \sin \theta \cdot -r \sin \theta \dd{\theta} =
- \frac 12 r^2 \int_0^{2\pi} (1 - \cos 2 \theta) \dd{\theta} =
- \frac 12 r^2 \pqty{\theta - \frac 12 \sin 2 \theta}\eval_0^{2\pi} \\
- &= \frac 12 r^2 \pqty{2\pi - \frac 12 \sin 4 \pi -
-                  \pqty{0 - \sin 0}} = \pi r^2 \qedhere
-\end{align*}
+    One might alternatively use the parametric form of a circle,
+    \(y = r \sin \theta\) and \(x = r \cos \theta\)
+    (note that \(x^2 + y^2 = r^2(\sin^2 \theta + \cos^2 \theta) = r^2\)
+    (\ref{sec_trig_pythag})), and calculate the area using
+    \ref{sec_calc_parametric_area}:
+    \begin{align*}
+        A &= \integ[0]<2\pi>
+        {r \sin \theta \cdot -r \sin \theta}{\theta} =
+        \frac 12 r^2 \integ[0]<2\pi>{(1 - \cos 2 \theta)}{\theta} =
+        \frac 12 r^2 \parens[\Big]{\theta - \frac 12 \sin 2 \theta}\eval_0^{2\pi} \\
+        &= \frac 12 r^2 \parens[\Big]{2\pi - \frac 12 \sin 4 \pi -
+        (0 - \sin 0)} = \pi r^2 \qedhere
+    \end{align*}
 \end{proof}
 
 \subsection{Volume of a sphere}

@@ -13,7 +13,7 @@ G_X(\eta) \defeq \sum_{r = 0}^\infty \Prob(X = r)\eta^r
     = \Expect(\eta^X)
 \end{equation*}
 This does imply the restriction that \(X\) only takes
-nonnegative integer values, but this is not usually a huge hindrance.
+non-negative integer values, but this is not usually a huge hindrance.
 
 It is easy to see that \(G(\eta)\) has a radius of convergence and is therefore
 defined, as each coefficient is necessarily less than or equal to \(1\), so
@@ -58,7 +58,7 @@ can just differentiate the inside when differentiating. This generalises to the
 fact that the \(n\)th derivative of \(G_X\) at \(\eta = 1\) gives the \(n\)th
 \emph{factorial moment} of \(X\).
 \begin{equation*}
-G_X^{(n)}(1) = \Expect\pqty{\frac{X!}{(X - n)!}}
+    G_X^{(n)}(1) = \Expect\bracks[\bigg]{\frac{X!}{(X - n)!}}
 \end{equation*}
 
 Regardless, we now have a useful tool. If we know \(G_X\), we can work out
@@ -81,9 +81,9 @@ multiplied by some constant coefficient:
 \begin{alignat*} 3
 && S &= \sum_{r = 1}^n \alpha_r X_r
     &&= \alpha_1 X_1 + \alpha_2 X_2 + \dotsb + \alpha_n X_n \\
-&\implies& G_S(\eta) &= \Expect\pqty{\eta^{\sum_{r = 1}^n \alpha_r X_r}}
+    &\implies& G_S(\eta) &= \Expect\parens[\Big]{\eta^{\sum_{r = 1}^n \alpha_r X_r}}
     &&= \Expect(\eta^{\alpha_1 X_1 + \alpha_2 X_2 + \dotsb + \alpha_n X_n}) \\
-&& &= \Expect\pqty{\prod_{r = 1}^n \eta^{\alpha_r X_r}}
+    && &= \Expect\parens[\Big]{\prod_{r = 1}^n \eta^{\alpha_r X_r}}
     &&= \Expect(\eta^{\alpha_1 X_1} \eta^{\alpha_2 X_2} \dotsm
               \eta^{\alpha_N X_n}) \\
 && &= \prod_{r = 1}^\infty\Expect(\eta^{\alpha_r X_r}) \\
@@ -217,11 +217,11 @@ as \(\nu \to \infty\). This means particularly that we can use
 From Lemma \ref{lem_binom_pgf} we know the PGF of \(Y\):
 \begin{alignat*}2
 && G_Y(\eta) &= (1 - \pi + \pi \eta)^\nu \\
-&&  &= \pqty{1 - \frac \lambda \nu + \frac \lambda \nu \eta}^\nu \\
+    &&  &= \parens[\Big]{1 - \frac \lambda \nu + \frac \lambda \nu \eta}^\nu \\
 &\implies& G_X(\eta) = \lim_{\nu \to \infty}G_Y(\eta)
-    &= \lim_{\nu \to \infty} \pqty{1 - \frac \lambda \nu
+    &= \lim_{\nu \to \infty} \parens[\Big]{1 - \frac \lambda \nu
                                  + \frac \lambda \nu \eta}^\nu \\
-&&  &= \lim_{\nu \to \infty} \pqty{1 + \frac{\lambda(\eta - 1)}\nu}^\nu \\
+    &&  &= \lim_{\nu \to \infty} \parens[\Big]{1 + \frac{\lambda(\eta - 1)}\nu}^\nu \\
 &&  &= e^{\lambda(\eta - 1)} = e^{-\lambda}e^{\lambda \eta}
     \quad \text{see section \ref{sec_e}} \\
 &&  &= e^{-\lambda} \sum_{k = 0}^\infty \frac{(\lambda \eta)^k}{k!} \\

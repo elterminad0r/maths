@@ -1,4 +1,4 @@
-\section{Sums, Sequences and Series Galore}
+\section{Sums, Sequences, Series}
 
 \subsection{Binomial Theorem}
 
@@ -33,7 +33,7 @@ is true.
     &\equiv \sum_{r = 1}^{n + 1} \binom n{r - 1} a^r b^{n - r + 1}
           + \sum_{r = 0}^n \binom nr a^r b^{n - r + 1} \\
     &\equiv a^{n + 1} + b^{n + 1}
-          + \sum_{r = 1}^n \bqty{\binom n{r - 1} + \binom nr}
+          + \sum_{r = 1}^n \bracks[\bigg]{\binom n{r - 1} + \binom nr}
             a^r b^{n - r + 1} \\
     &\equiv a^{n + 1} + b^{n + 1}
           + \sum_{r = 1}^n \binom{n + 1}r a^r b^{n - r + 1}
@@ -156,8 +156,8 @@ Consider now:
 Now we perform a partial fraction decomposition on \(f(x)\). We do this in a
 somewhat tricky way in order to make our lives easier. Note that
 \begin{equation*}
-1 - x - x^2 = x^2 \pqty{\frac 1x^2 - \frac 1x - 1}
-    = x^2\pqty{\frac 1x - \varphi}\pqty{\frac 1x - \psi}
+1 - x - x^2 = x^2 \parens[\Big]{\frac 1x^2 - \frac 1x - 1}
+    = x^2\parens[\Big]{\frac 1x - \varphi}\parens[\Big]{\frac 1x - \psi}
     = (1 - \varphi x)(1 - \psi x)
 \end{equation*}
 where \(\varphi, \psi = \dfrac{1 \pm \sqrt 5}2\), ie the roots of
@@ -175,9 +175,9 @@ where \(\varphi, \psi = \dfrac{1 \pm \sqrt 5}2\), ie the roots of
 \end{alignat*}
 Now we can use a binomial series expansion to obtain an equivalent series.
 \begin{align*}
-f(x) &= \frac 1{\sqrt 5}\pqty{\frac 1{1 - \varphi x}
+f(x) &= \frac 1{\sqrt 5}\parens[\Big]{\frac 1{1 - \varphi x}
                             - \frac 1{1 - \psi x}} \\
-&= \frac 1{\sqrt 5}\pqty{\sum_{k = 0}^\infty (\varphi x)^k
+&= \frac 1{\sqrt 5}\parens[\Big]{\sum_{k = 0}^\infty (\varphi x)^k
                        - \sum_{k = 0}^\infty (\psi x)^k} \\
 &= \sum_{k = 0}^\infty \frac 1{\sqrt 5}(\varphi^k - \psi^k)x^k
 = \sum_{k = 1}^\infty F_k x^k

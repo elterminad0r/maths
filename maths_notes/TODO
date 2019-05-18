@@ -1,3 +1,32 @@
+product rule from
+first principles (add/subtract)
+chain rule (exponential)
+chain rule (complete square)
+
+http://www.math.chalmers.se/~wastlund/monthly.pdf
+
+integral (1 / x ln x)
+
+step 2013 question 6
+
+e^pi or pi^e larger?
+
+stirling's approximation
+
+write macro with xparse to do integrals etc
+
+integrals:
+P(sin(x), cos(x))
+Q(sin(x), cos(x))
+exp(-x^2) with
+    - feynman
+    - complex analysis
+sinx / x
+ln(1 + x)/(1 + x^2)
+ln(sin(x))
+
+understand definitions and interoperabilities with e
+
 cannonball polygonal numbers
 
 mechanics: restitution etc

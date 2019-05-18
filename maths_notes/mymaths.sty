@@ -4,7 +4,7 @@
 \usepackage{mathtools}
 
 % allow maths to break across pages
-\allowdisplaybreaks
+% \allowdisplaybreaks
 
 % theorem and proof environments. thmtools creates the List of Theorems.
 \usepackage{amsthm}
@@ -31,6 +31,56 @@
   \fi}
 \makeatother
 
+\usepackage{xparse}
+
+\newcommand*\diff{\mathrm d}
+
+% macro to typeset a simple derivative. If you want the differentiand to be in
+% the denominator, give it as a <> delimited optional argument.
+% Similarly, the order of the derivative can be given as a [] optional argument.
+\NewDocumentCommand\dv{ o d<> m }{%
+    \IfValueTF{#2}{%
+        \IfValueTF{#1}{%
+            \frac{\diff^{#1} #2}{\diff^{#1} #3}%
+        }{%
+            \frac{\diff #2}{\diff #3}%
+        }%
+    }{%
+        \IfValueTF{#1}{%
+            \frac{\diff^{#1}}{\diff^{#1} #3}%
+        }{%
+            \frac{\diff}{\diff #3}%
+        }%
+    }%
+}
+
+\NewDocumentCommand\integ{ o d<> m m }{%
+    \IfValueTF{#1}{%
+        \IfValueTF{#2}{%
+            \int_{#1}^{#2} #3 \, \diff #4%
+        }{%
+            \int_{#1} #3 \, \diff #4%
+        }%
+    }{%
+        \IfValueTF{#2}{%
+            \int^{#2} #3 \, \diff #4%
+        }{%
+            \int #3 \, \diff #4%
+        }%
+    }%
+}
+
+% TODO make this resizeable
+\newcommand*\eval{\bigg\rvert}
+
+% \newcommand*\dd\diff
+
+% \newcommand*\dv[2]{\frac{\diff #1}{\diff #2}}
+% \newcommand*\dvn[3]{\frac{\diff^#1 #2}{\diff #3^#1}}
+
+% \newcommand*\integ[2]{\int #1 \,\diff #2}
+% \newcommand*\inteb[4]{\int_{#3}^{#4} #1 \,\diff #2}
+
 % make the list of theorems set theorems further from numbers so no overlap.
 \makeatletter
 \renewcommand\thmt@listnumwidth{2.9em}
@@ -39,7 +89,7 @@
 % provides typesetting of derivatives with \dv and \dd
 % also provides all the qty commands and some auto-scaling for operators like
 % \sin, \cos
-\usepackage{physics}
+% \usepackage{physics}
 
 % provides uptau
 \usepackage{upgreek}
@@ -83,12 +133,36 @@
 \DeclareMathOperator\Expect{E}
 \DeclareMathOperator\Var{Var}
 \DeclareMathOperator\BigO{\mathcal O}
+% \DeclareMathOperator\arccos{arccos}
+% \DeclareMathOperator\arcsin{arcsin}
+% \DeclareMathOperator\arctan{arctan}
+\DeclareMathOperator\arcsec{arcsec}
+\DeclareMathOperator\arccsc{arccsc}
+\DeclareMathOperator\arccot{arccot}
+% \DeclareMathOperator\cosh{cosh}
+% \DeclareMathOperator\sinh{sinh}
+% \DeclareMathOperator\tanh{tanh}
+% \DeclareMathOperator\coth{coth}
+\DeclareMathOperator\sech{sech}
+\DeclareMathOperator\csch{csch}
 \DeclareMathOperator\arccosh{arccosh}
 \DeclareMathOperator\arcsinh{arcsinh}
 \DeclareMathOperator\arctanh{arctanh}
 \DeclareMathOperator\arcsech{arcsech}
 \DeclareMathOperator\arccsch{arccsch}
 \DeclareMathOperator\arccoth{arccoth}
+
+% all the paired delimiters. These draw a pair of delimiters with saner
+% typesetting, and provide nicer ways to scale them. You ~can~ use the starred
+% version of each environment for autoscaling, but that's not very cool and you
+% should just set the sizes yourself. It's not that hard.
+
+% TODO: put this into action
+% \makeatletter
+% \newcommand{\vast}{\bBigg@{4}}
+% \newcommand{\Vast}{\bBigg@{5}}
+% \makeatother
+
 % these are mostly commands from commath, but i'd rather define them myself
 \DeclarePairedDelimiter\floor\lfloor\rfloor
 \DeclarePairedDelimiter\ceil\lceil\rceil
@@ -99,10 +173,11 @@
 \DeclarePairedDelimiter\set\{\}
 % I redeclare these so they don't have the weird physics business going on
 % (man can't work out every day)
-\let\abs\relax
 \DeclarePairedDelimiter\abs\lvert\rvert
-\let\norm\relax
 \DeclarePairedDelimiter\norm\lVert\rVert
+\DeclarePairedDelimiter\parens()
+\DeclarePairedDelimiter\bracks[]
+\DeclarePairedDelimiter\braces\{\}
 
 % General commands for typsetting different types of mathematical object
 % modularity and all that
