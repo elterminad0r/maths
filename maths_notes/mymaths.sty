@@ -54,6 +54,9 @@
     }%
 }
 
+% macro to typeset an integral, centralised etc and so on and so forth.
+% The two optional arguments are upper and lower bounds (really subscript and
+% superscript on the integral, it's up to you what you do with it)
 \NewDocumentCommand\integ{ o d<> m m }{%
     \IfValueTF{#1}{%
         \IfValueTF{#2}{%
