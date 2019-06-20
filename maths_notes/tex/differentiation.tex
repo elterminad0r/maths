@@ -331,7 +331,8 @@ Lastly, if we have a positive function to the power of another function,
 \(g(x)^{h(x)}\) where \(g(x) > 0\), we do a similar rewrite in terms of
 \(e\).
 \begin{align*}
-    \dv{x}\parens[\Big]{g(x)^{h(x)}} &= \dv{x}\parens[\Big]{e^{(\ln(g(x)))h(x)}} \\
+    \dv{x}\parens[\Big]{g(x)^{h(x)}}
+                          &= \dv{x}\parens[\Big]{e^{(\ln(g(x)))h(x)}} \\
                           &= \parens[\Big]{\frac{h(x)g'(x)}{g(x)}
                                  + h'(x)\ln(g(x))}e^{(\ln(g(x)))h(x)} \\
                           &= \parens[\Big]{\frac{h(x)g'(x)}{g(x)}
@@ -350,28 +351,28 @@ exponentials.
 We can deduce from the chain rule that
 \begin{equation*}
     \dv{x}(\cos x) = \dv{x}(\sin(\tfrac 12 \pi - x))
-                     = -\cos(\tfrac 12 \pi - x) = -\sin(x)
+                   = -\cos(\tfrac 12 \pi - x) = -\sin(x)
 \end{equation*}
 Now we can use the quotient rule for the tangent.
 \begin{equation*}
-    \dv{x}(\tan x) = \dv{x}(\frac{\sin x}{\cos x})
-                     = \frac{\cos x \cos x + \sin x \sin x}{\cos^2 x}
-                     = \frac 1{\cos^2 x} = \sec^2 x
+    \dv{x}(\tan x) = \dv{x}\parens[\Big]{\frac{\sin x}{\cos x}}
+                   = \frac{\cos x \cos x + \sin x \sin x}{\cos^2 x}
+                   = \frac 1{\cos^2 x} = \sec^2 x
 \end{equation*}
 We can use the chain rule for the reciprocal functions.
 \begin{equation*}
-    \dv{x}(\sec x) = \dv{x}(\frac 1{\cos x}) = -\frac{-\sin x}{\cos^2 x}
-                     = \tan x \sec x
+    \dv{x}(\sec x) = \dv{x}\parens[\Big]{\frac 1{\cos x}}
+                   = -\frac{-\sin x}{\cos^2 x} = \tan x \sec x
 \end{equation*}
 \begin{equation*}
-\dv{x}(\csc x) = \dv{x}(\frac 1{\sin x}) = -\frac{\cos x}{\sin^2 x}
-    = -\cot x \csc x
+    \dv{x}(\csc x) = \dv{x}\parens[\Big]{\frac 1{\sin x}}
+                   = -\frac{\cos x}{\sin^2 x} = -\cot x \csc x
 \end{equation*}
 The quotient rule can again be applied for the cotangent.
 \begin{equation*}
-\dv{x}(\cot x) = \dv{x}(\frac{\cos x}{\sin x})
-    = \frac{-\sin x \sin x - \cos x \cos x}{\sin^2 x}
-    = -\frac 1{\sin^2 x} = -\csc^2 x
+    \dv{x}(\cot x) = \dv{x}\parens[\Big]{\frac{\cos x}{\sin x}}
+                   = \frac{-\sin x \sin x - \cos x \cos x}{\sin^2 x}
+                   = -\frac 1{\sin^2 x} = -\csc^2 x
 \end{equation*}
 
 \subsubsection{Inverse trigonometric functions} \label{sec_calc_trig_inv}
@@ -437,13 +438,15 @@ To attack the inverse cosecant, it will be order of magnitude easier to just
 make use of the fact that \(\arccsc x = \frac 12 \pi - \arcsec x\),
 so that
 \begin{equation*}
-\dv{x}(\arccsc x) = \dv{x}(\frac \pi 2 - \arcsec x) = -\dv{x}(\arcsec x)
+    \dv{x}(\arccsc x) = \dv{x}\parens[\Big]{\frac \pi 2 - \arcsec x}
+                      = -\dv{x}(\arcsec x)
 \end{equation*}
 and then taking your pick of your favourite inverse secant derivative.
 
 Similarly, \(\arccot x = \frac 12 \pi - \arctan x\), so
 \begin{equation*}
-\dv{x}(\arccot x) = \dv{x}(\frac \pi 2 - \arctan x) = -\frac 1{1 + x^2}
+    \dv{x}(\arccot x) = \dv{x}\parens[\Big]{\frac \pi 2 - \arctan x}
+                      = -\frac 1{1 + x^2}
 \end{equation*}
 
 \subsection{Implicit differentiation}
