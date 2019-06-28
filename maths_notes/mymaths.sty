@@ -1,14 +1,14 @@
 \ProvidesPackage{mymaths}
 
 % maths symbols and other stuff (supersedes the ams* packages)
-\usepackage{mathtools}
+\RequirePackage{mathtools}
 
 % allow maths to break across pages
 % \allowdisplaybreaks
 
 % theorem and proof environments. thmtools creates the List of Theorems.
-\usepackage{amsthm}
-\usepackage{thmtools}
+\RequirePackage{amsthm}
+\RequirePackage{thmtools}
 % FIXME wishlist: make theorem body start on a new line that doesn't hug the
 % head.
 \declaretheoremstyle[
@@ -31,7 +31,7 @@
   \fi}
 \makeatother
 
-\usepackage{xparse}
+\RequirePackage{xparse}
 
 \newcommand*\diff{\mathrm d}
 
@@ -92,16 +92,16 @@
 % provides typesetting of derivatives with \dv and \dd
 % also provides all the qty commands and some auto-scaling for operators like
 % \sin, \cos
-% \usepackage{physics}
+% \RequirePackage{physics}
 
 % provides uptau
-\usepackage{upgreek}
+\RequirePackage{upgreek}
 % provides \varnothing
-\usepackage{amssymb}
+\RequirePackage{amssymb}
 % mathscr
-\usepackage{mathrsfs}
+\RequirePackage{mathrsfs}
 % text(frak|swab|goth)
-\usepackage{yfonts}
+\RequirePackage{yfonts}
 \def\initdefault{yinit} % fix weird font thing
 % why not
 \newcommand*\omicron o

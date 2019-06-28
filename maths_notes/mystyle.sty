@@ -8,17 +8,17 @@
 \makeatother
 
 % more advanced handling of utf8 and fonts or something. apparently good to have
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
 
 % change geometry so more of page is used
-\usepackage[
+\RequirePackage[
     margin=1in,
     headheight=13.6pt]{geometry}
 
 % custom document header/footer
-\usepackage{fancyhdr}
-\usepackage{lastpage}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -28,12 +28,12 @@
 \fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
 
 % better fonts, apparently
-\usepackage{lmodern}
+\RequirePackage{lmodern}
 % fixes some small caps things
-\usepackage{slantsc}
+\RequirePackage{slantsc}
 
 % \url function and clickable table of contents. no ugly red boxes though
-\usepackage[hidelinks,pdfencoding=auto,psdextra,
+\RequirePackage[hidelinks,pdfencoding=auto,psdextra,
             pdfauthor={\theauthor},
             pdftitle={\thetitle},
             pdfsubject={\thetitle},
@@ -41,61 +41,64 @@
             pdfcreator={pdflatex}]{hyperref}
 
 % define starting paragraph letter stuff
-\usepackage{lettrine}
+\RequirePackage{lettrine}
 \setcounter{DefaultLines}{4}
 \setlength{\DefaultFindent}{0.5em}
 \setlength{\DefaultNindent}{0em}
 \renewcommand{\LettrineFontHook}{\usefont{U}{yinit}{m}{n}}
 
 % typesetting units
-\usepackage[separate-uncertainty]{siunitx}
+\RequirePackage[separate-uncertainty]{siunitx}
 
 % for references
-\usepackage[square,numbers]{natbib}
+\RequirePackage[square,numbers]{natbib}
 
 % package for drawing tex-related logos - eg \hologo(bibtex)
-\usepackage{hologo}
+\RequirePackage{hologo}
 
 % needed for colouring and stuff (xcolor supersedes color). provides LightSalmon
-\usepackage[x11names]{xcolor}
+\RequirePackage[x11names]{xcolor}
 
 % pretty table rules and multirow entries. Also page-breaking tables
-\usepackage{booktabs}
-\usepackage{multirow}
-\usepackage{longtable}
+\RequirePackage{booktabs}
+\RequirePackage{multirow}
+\RequirePackage{longtable}
+
+% For complicated column specification
+\RequirePackage{array}
 
 % Custom column type to automatically go into maths mode with displaystyle
-\newcolumntype{M}{>{\(\displaystyle}c<{\)}}
+\newcolumntype M{>{\(\displaystyle}c<{\)}}
 
 % plotting mathematical functions (needs version request)
-\usepackage{pgfplots}
+\RequirePackage{pgfplots}
 \pgfplotsset{compat=1.16}
 
 % for better table of contents stuff, providing the \listof* commands and not
 % listing the tables in the table of contents
-\usepackage[nottoc,notlof,notlot]{tocbibind}
+\RequirePackage[nottoc,notlof,notlot]{tocbibind}
 
 % increase spacing of section numbers from headings. The titles option keeps
 % hdrs normal.
-\usepackage[titles]{tocloft}
+\RequirePackage[titles]{tocloft}
 \setlength{\cftsubsecnumwidth}{2.9em}
 \setlength{\cftsubsubsecindent}{4.4em}
 %\setlength{\cftsubsubsecnumwidth}{3.7em}
 
 % no paragraph indent - after tocloft because of starttoc
-\usepackage[parfill]{parskip}
+\RequirePackage[parfill]{parskip}
 
 % bibliography management with square braces for citations
-\usepackage[square,numbers]{natbib}
+\RequirePackage[square,numbers]{natbib}
 
 % graphics, like eps files and stuff (supersedes graphics)
-\usepackage{graphicx}
+\RequirePackage{graphicx}
 
 % lorem ipsum generator
-\usepackage{lipsum}
+\RequirePackage{lipsum}
 
 % listings of code
-\usepackage{minted}
+\RequirePackage{minted}
 \setminted{breaklines,
            breakbytokenanywhere,
            linenos
@@ -105,12 +108,12 @@
 \renewcommand\theFancyVerbLine{\footnotesize\arabic{FancyVerbLine}}
 
 % that can break across pages while being captioned figures
-\usepackage{caption}
+\RequirePackage{caption}
 \newenvironment{longlisting}
 {\addvspace{\baselineskip}\captionsetup{type=listing}}
 {\addvspace{\baselineskip}}
 
-\usepackage{tikz}
-\usepackage{tikzsymbols}
+\RequirePackage{tikz}
+\RequirePackage{tikzsymbols}
 
-\usepackage{bbding}
+\RequirePackage{bbding}
