@@ -182,13 +182,193 @@ f(x) &= \frac 1{\sqrt 5}\parens[\Big]{\frac 1{1 - \varphi x}
 &= \sum_{k = 0}^\infty \frac 1{\sqrt 5}(\varphi^k - \psi^k)x^k
 = \sum_{k = 1}^\infty F_k x^k
 \end{align*}
-So we have \(F_n = \dfrac 1{\sqrt 5}(\varphi^n - \psi^n)\). Note that the
+So we have \(F_n = \frac 1{\sqrt 5}(\varphi^n - \psi^n)\). Note that the
 constant term is indeed zero, as \(\varphi^0 - \psi^0 = 0\).
 \end{proof}
-Combined with Exponentation by Squaring (\ref{sec_exp_by_squaring}), and
-some simple surd arithmetic, this should be a particularly fast way to
-calculate \(F_n\), as compared to utterly na\"ive recursion, or somewhat
-faster iteration or memoized recursion.
+\begin{proof}[Proof by matrices]
+    Noting that the given recurrence \(F_n = F_{n - 1} + F_{n - 2}\) is a linear
+    transition (and a fairly simple one at that),
+
+    we can define the vector
+    \begin{equation*}
+        \vec f_n =
+        \begin{pmatrix*}[l]
+            F_n \\
+            F_{n + 1}
+        \end{pmatrix*}
+    \end{equation*}
+    and take advantage of the linear transition to write
+    \begin{equation*}
+        \vec f_{n + 1} = \mat T \vec f_n \quad \text{where} \quad
+        \mat T =
+        \begin{pmatrix}
+            0 & 1 \\
+            1 & 1
+        \end{pmatrix}
+    \end{equation*}
+    so that in fact,
+    \begin{equation*}
+        \vec f_n = \mat T^n\vec f_0
+    \end{equation*}
+    where we define \(F_0 = 0\). This avoids messily subtracting one from
+    things. Now we proceed to diagonalise \(\mat T\) by first solving its
+    characteristic equation for its eigenvalues.
+    \begin{alignat*}4
+        && \abs{\mat T - \lambda \mat I} &= 0 \\
+        &\iff{}&
+            \begin{vmatrix}
+                -\lambda & 1 \\
+                1 & 1 - \lambda
+            \end{vmatrix} &= 0
+        &\iff{}& \lambda (\lambda - 1) - 1 &= 0 \\
+        &\iff{}& \lambda^2 - \lambda - 1 &= 0 \\
+        &\iff{}& \lambda &\in \set{\varphi, \psi}
+    \end{alignat*}
+    as we saw earlier.
+
+    Now we can find the eigenvectors.
+    \begin{alignat*}6
+        \lambda_1 &= \varphi:&
+        &&
+        \begin{pmatrix}
+            -\varphi & 1 \\
+            1 & 1 - \varphi
+        \end{pmatrix} \vec e_1 &= \vec 0 \\
+        && &\iff{}&
+        \begin{pmatrix}
+            -\varphi & 1 \\
+            1 & -\varphi^{-1}
+        \end{pmatrix} \vec e_1 &= \vec 0 \impliedby \vec e_1 &{}=
+            \begin{pmatrix}
+                1 \\
+                \varphi
+            \end{pmatrix} \\
+        \lambda_2 &= \psi:&
+        &&
+        \begin{pmatrix}
+            -\psi & 1 \\
+            1 & 1 - \psi
+        \end{pmatrix} \vec e_2 &= \vec 0 \\
+        && &\iff{}&
+        \begin{pmatrix}
+            -\psi & 1 \\
+            1 & -\psi^{-1}
+        \end{pmatrix} \vec e_2 &= \vec 0 \impliedby \vec e_2 &{}=
+            \begin{pmatrix}
+                1 \\
+                \psi
+            \end{pmatrix}
+    \end{alignat*}
+    So that
+    \begin{align*}
+        \mat T^n &=
+        \parens[\bigg]{
+            \begin{array}{c|c}
+                \vec e_1 & \vec e_2
+            \end{array}
+        }
+        \begin{pmatrix}
+            \lambda_1^n & 0 \\
+            0 & \lambda_2^n
+        \end{pmatrix}
+        \parens[\bigg]{
+            \begin{array}{c|c}
+                \vec e_1 & \vec e_2
+            \end{array}
+        }^{-1} \\
+        &=
+        \begin{pmatrix}
+            1 & 1 \\
+            \varphi & \psi
+        \end{pmatrix}
+        \begin{pmatrix}
+            \varphi^n & 0 \\
+            0 & \psi^n
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 1 \\
+            \varphi & \psi
+        \end{pmatrix}^{-1} \\
+        &=
+        \begin{pmatrix}
+            1 & 1 \\
+            \varphi & \psi
+        \end{pmatrix}
+        \begin{pmatrix}
+            \varphi^n & 0 \\
+            0 & \psi^n
+        \end{pmatrix}
+        \frac 1 {\psi - \varphi}
+        \begin{pmatrix}
+            \psi & -1 \\
+            -\varphi & 1
+        \end{pmatrix} \\
+        &=
+        \begin{pmatrix}
+            1 & 1 \\
+            \varphi & \psi
+        \end{pmatrix}
+        \begin{pmatrix}
+            \varphi^n & 0 \\
+            0 & \psi^n
+        \end{pmatrix}
+        \frac 1 {\psi - \varphi}
+        \begin{pmatrix}
+            \psi & -1 \\
+            -\varphi & 1
+        \end{pmatrix} \\
+        &=
+        -\frac 1 {\sqrt 5}
+        \begin{pmatrix}
+            \varphi^n & \psi^n \\
+            \varphi^{n + 1} & \psi^{n + 1} \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            \psi & -1 \\
+            -\varphi & 1
+        \end{pmatrix} \\
+        &=
+        -\frac 1 {\sqrt 5}
+        \begin{pmatrix}
+            \psi \varphi^n -\varphi \psi^n & \psi^n - \varphi^n \\
+            \psi \varphi^{n + 1} - \varphi \psi^{n + 1} &
+                \psi^{n + 1} - \varphi^{n + 1}
+        \end{pmatrix}
+    \end{align*}
+    and
+    \begin{alignat*}4
+        &&\vec f_n &= \mat T_n \vec f_0 \\
+        &\iff{}&
+        \begin{pmatrix}
+            F_n \\
+            F_{n + 1}
+        \end{pmatrix} &=
+        -\frac 1 {\sqrt 5}
+        \begin{pmatrix}
+            \psi \varphi^n -\varphi \psi^n & \psi^n - \varphi^n \\
+            \psi \varphi^{n + 1} - \varphi \psi^{n + 1} &
+                \psi^{n + 1} - \varphi^{n + 1}
+        \end{pmatrix}
+        \begin{pmatrix}
+            0 \\
+            1
+        \end{pmatrix} \\
+        && &=
+        \frac 1 {\sqrt 5}
+        \begin{pmatrix}
+            \varphi^n - \psi^n \\
+            \varphi^{n + 1} - \psi^{n + 1}
+        \end{pmatrix} \\
+        &\implies{}& F_n &= \frac{\varphi^n - \psi^n}{\sqrt 5} \qedhere
+    \end{alignat*}
+\end{proof}
+Combined with Exponentation by Squaring (\ref{sec_exp_by_squaring}), and some
+simple surd arithmetic, this is a fairly fast way to calculate \(F_n\), as
+compared to utterly na\"ive recursion, or somewhat faster iteration or memoized
+recursion. However it is often in fact faster to simply use the matrix form
+given in the second proof, to calculate \(\vec f_n\) as \(\mat M^n\vec f_0\),
+again using exponentiation by squaring. This requires fewer arithmetic
+operations.
 
 \subsection{Taylor Series}
 
