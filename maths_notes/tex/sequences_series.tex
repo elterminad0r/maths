@@ -142,16 +142,16 @@ and we can manipulate it.
 
 Consider now:
 \begin{alignat*}9
-&& f(x) &= \sum_{k = 1}^\infty F_k x^k
-    &&={}& x &+{}& x^2 &+{}& 2x^3 &+{}&
-        3x^4 &+{}& 5x^5 &+{}& 8x^6 + \dotsb \\
-&& x f(x) &= \sum_{k = 2}^\infty F_{k - 1} x^k
-    &&={}& &&x^2 &+{}& x^3 &+{}& 2x^4 &+{}&
-        3x^5 &+{}& 5x^6 + \dotsb \\
-&& x^2 f(x) &= \sum_{k = 3}^\infty F_{k - 2}x^k
-    &&={}& &&&& x^3 &+{}& x^4 &+{}& 2x^5 &+{}& 3x^6 + \dotsb \\
-&\implies& (1 - x - x^2) f(x) &= x \\
-&\implies& f(x) &= \frac x{1 - x - x^2}
+    && f(x) &= \sum_{k = 1}^\infty F_k x^k
+        &&={}& x &+{}& x^2 &+{}& 2x^3 &+{}&
+            3x^4 &+{}& 5x^5 &+{}& 8x^6 + \dotsb \\
+    && x f(x) &= \sum_{k = 2}^\infty F_{k - 1} x^k
+        &&={}& &&x^2 &+{}& x^3 &+{}& 2x^4 &+{}&
+            3x^5 &+{}& 5x^6 + \dotsb \\
+    && x^2 f(x) &= \sum_{k = 3}^\infty F_{k - 2}x^k
+        &&={}& &&&& x^3 &+{}& x^4 &+{}& 2x^5 &+{}& 3x^6 + \dotsb \\
+    &\implies{}& (1 - x - x^2) f(x) &= x \\
+    &\implies{}& f(x) &= \frac x{1 - x - x^2}
 \end{alignat*}
 Now we perform a partial fraction decomposition on \(f(x)\). We do this in a
 somewhat tricky way in order to make our lives easier. Note that
@@ -160,18 +160,18 @@ somewhat tricky way in order to make our lives easier. Note that
     = x^2\parens[\Big]{\frac 1x - \varphi}\parens[\Big]{\frac 1x - \psi}
     = (1 - \varphi x)(1 - \psi x)
 \end{equation*}
-where \(\varphi, \psi = \dfrac{1 \pm \sqrt 5}2\), ie the roots of
+where \(\varphi, \psi = \frac 12(1 \pm \sqrt 5)\), ie the roots of
 \(x^2 - x - 1\), ie the roots of the golden ratio. Now,
 \begin{alignat*}2
-&& f(x) = \frac x{(1 - \varphi x)(1 - \psi x)}
-    &\equiv \frac A{1 - \varphi x} + \frac B{1 - \psi x} \\
-&\implies& A(1 - \psi x) + B(1 - \varphi x) &\equiv x \\
-&\implies& A + B &= 0 \\
-&& -\psi A - \varphi B &= 1 \\
-&\implies& B &= -A  \\
-&& A(\psi - \varphi) &= 1 \\
-&\implies& A(\sqrt 5) &= 1 \\
-&\implies& A &= \frac 1{\sqrt 5}, B = -\frac 1{\sqrt 5}
+    && f(x) = \frac x{(1 - \varphi x)(1 - \psi x)}
+        &\equiv \frac A{1 - \varphi x} + \frac B{1 - \psi x} \\
+    &\implies{}& A(1 - \psi x) + B(1 - \varphi x) &\equiv x \\
+    &\implies{}& A + B &= 0 \\
+    && -\psi A - \varphi B &= 1 \\
+    &\implies{}& B &= -A  \\
+    && A(\psi - \varphi) &= 1 \\
+    &\implies{}& A(\sqrt 5) &= 1 \\
+    &\implies{}& A &= \frac 1{\sqrt 5}, B = -\frac 1{\sqrt 5}
 \end{alignat*}
 Now we can use a binomial series expansion to obtain an equivalent series.
 \begin{align*}

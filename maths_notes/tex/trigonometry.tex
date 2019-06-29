@@ -99,7 +99,7 @@ Strictly, \(\tan \frac 12 \pi\) is undefined.
 The symmetry of sine and cosine going opposite ways across this table is due
 to the fact that \(\sin \theta \equiv \cos(\frac 12 \pi - \theta)\).
 
-We need only discuss special angles in \(\intcc{0, \dfrac \pi 2}\) because
+We need only discuss special angles in \(\intcc{0, \frac 12 \pi}\) because
 the corresponding angles in the other quadrants can be found from symmetries
 and periodicities. This is convenient as it means all values of trig
 functions that we discuss here are positive, so we can take positive square
@@ -149,16 +149,16 @@ To get the result for \(\frac 15 \pi\) we can let
 \(\varphi = \frac 15 \pi\).  Noting that
 \(\sin 2\varphi = \sin 3\varphi\), we have
 \begin{alignat*}2
-&& 2\sin \varphi \cos \varphi
-    &= \sin \varphi (2\cos^2 \varphi - 1)
-     + \cos \varphi \cdot 2\sin \varphi \cos \varphi \\
-&\iff& 0 &= \sin \varphi (2\cos^2 \varphi - 1
-                        + 2\cos^2 \varphi - 2\cos \varphi) \\
-&\iff& 0 &= 4\cos^2 \varphi - 2\cos \varphi - 1
-    \quad \text{as \(\sin \varphi \ne 0\)} \\
-&\iff& \cos \varphi &= \frac{1 \pm \sqrt 5} 4 \\
-&\iff& \cos \varphi &= \frac{1 + \sqrt 5} 4
-    \quad \text{as \(\cos \varphi > 0\)}
+    && 2\sin \varphi \cos \varphi
+        &= \sin \varphi (2\cos^2 \varphi - 1)
+        + \cos \varphi \cdot 2\sin \varphi \cos \varphi \\
+    &\iff{}& 0 &= \sin \varphi (2\cos^2 \varphi - 1
+                            + 2\cos^2 \varphi - 2\cos \varphi) \\
+    &\iff{}& 0 &= 4\cos^2 \varphi - 2\cos \varphi - 1
+        \quad \text{as \(\sin \varphi \ne 0\)} \\
+    &\iff{}& \cos \varphi &= \frac{1 \pm \sqrt 5} 4 \\
+    &\iff{}& \cos \varphi &= \frac{1 + \sqrt 5} 4
+        \quad \text{as \(\cos \varphi > 0\)}
 \end{alignat*}
 We can then proceed to derive sine, and therefore also tangent, by applying
 the Pythagorean identity and simplifying.
@@ -287,20 +287,20 @@ functions of the double angle.
 Trigonometric functions of half-angles can be expressed in terms of
 trigonometric functions of the full angle.
 \begin{alignat*}2
-&&\abs*{\sin \theta} &\equiv
-    \sqrt{\frac{1 - \cos 2 \theta} 2} \\
-&\iff& \abs*{\sin \tfrac 12 \theta} &\equiv
-    \sqrt{\frac{1 - \cos \theta} 2} \\
-&&\abs*{\cos \theta} &\equiv
-    \sqrt{\frac{1 + \cos 2 \theta} 2} \\
-&\iff& \abs*{\cos \tfrac 12 \theta} &\equiv
-    \sqrt{\frac{1 + \cos \theta} 2} \\
-&&\tan \theta &\equiv
-    \frac{\sin 2 \theta}{1 + \cos 2 \theta}
-    \equiv \frac{1 - \cos 2 \theta}{\sin 2 \theta} \\
-&\iff& \tan \tfrac 12 \theta &\equiv
-    \frac{\sin \theta}{1 + \cos \theta}
-    \equiv \frac{1 - \cos \theta}{\sin \theta}
+    &&\abs*{\sin \theta} &\equiv
+        \sqrt{\frac{1 - \cos 2 \theta} 2} \\
+    &\iff{}& \abs*{\sin \tfrac 12 \theta} &\equiv
+        \sqrt{\frac{1 - \cos \theta} 2} \\
+    &&\abs*{\cos \theta} &\equiv
+        \sqrt{\frac{1 + \cos 2 \theta} 2} \\
+    &\iff{}& \abs*{\cos \tfrac 12 \theta} &\equiv
+        \sqrt{\frac{1 + \cos \theta} 2} \\
+    &&\tan \theta &\equiv
+        \frac{\sin 2 \theta}{1 + \cos 2 \theta}
+        \equiv \frac{1 - \cos 2 \theta}{\sin 2 \theta} \\
+    &\iff{}& \tan \tfrac 12 \theta &\equiv
+        \frac{\sin \theta}{1 + \cos \theta}
+        \equiv \frac{1 - \cos \theta}{\sin \theta}
 \end{alignat*}
 The modulus signs here are due to the sign changes between quadrants. They can
 often by eliminated by consideration of the domain of \(\theta\).
@@ -400,10 +400,10 @@ For the difference of cosines, can exploit the periodicity of cosine
 If we let \(t = \tan \tfrac 12 \theta\), such that \(t\) is defined (ie
 \(\NExists n \in \Integers: \theta = (2n + 1)\pi\)) then we have:
 \begin{align*}
-\sin \theta &\equiv \dfrac{2t}{1 + t^2} \\
-\cos \theta &\equiv \dfrac{1 - t^2}{1 + t^2} \\
-\tan \theta &\equiv \dfrac{2t}{1 - t^2} \\
-\dv<\theta>{t} &\equiv \dfrac 2{1 + t^2}
+\sin \theta &\equiv \frac{2t}{1 + t^2} \\
+\cos \theta &\equiv \frac{1 - t^2}{1 + t^2} \\
+\tan \theta &\equiv \frac{2t}{1 - t^2} \\
+\dv<\theta>{t} &\equiv \frac 2{1 + t^2}
 \end{align*}
 \end{theorem}
 \begin{proof}

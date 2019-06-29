@@ -35,11 +35,11 @@ then the integral
     integration over addition,
     \begin{alignat*} 2
         && \integ{f'(x)}{x} &= \integ{(g'(x)h(x) + g(x)h'(x))}{x} + C \\
-        &\implies& f(x) &= \integ{g'(x)h(x)}{x} + \integ{g(x)h'(x)}{x} + C \\
-        &\implies& f(x) &= \integ{g'(x)h(x)}{x} + \integ{g(x)h'(x)}{x} + C \\
-        &\implies& g(x)h(x)
+        &\implies{}& f(x) &= \integ{g'(x)h(x)}{x} + \integ{g(x)h'(x)}{x} + C \\
+        &\implies{}& f(x) &= \integ{g'(x)h(x)}{x} + \integ{g(x)h'(x)}{x} + C \\
+        &\implies{}& g(x)h(x)
             &= \integ{g'(x)h(x)}{x} + \integ{g(x)h'(x)}{x} + C \\
-        &\implies& \integ{g'(x)h(x)}{x}
+        &\implies{}& \integ{g'(x)h(x)}{x}
             &= g(x)h(x) - \integ{g(x)h'(x)}{x} + C \qedhere \\
     \end{alignat*}
 \end{proof}
@@ -200,7 +200,7 @@ and also \(\frac 12(t + t^{-1}) = \sqrt{x^2 + 1}\), so in fact the form of
 written in terms of \(t\). From the former equation, we have also
 \begin{alignat*}{2}
     && \dv<x>{t} &= \frac 12\parens[\Big]{1 + \frac 1{t^2}} \\
-    &\implies& \integ{f(x + \sqrt{x^2 + 1})}{x}
+    &\implies{}& \integ{f(x + \sqrt{x^2 + 1})}{x}
     &= \frac 12 \integ{\parens[\Big]{1 + \frac 1{t^2}}f(t)}{t}
 \end{alignat*}
 Similarly for the second one, we let \(t = x + \sqrt{x^2 - 1}\) so that
@@ -208,7 +208,7 @@ Similarly for the second one, we let \(t = x + \sqrt{x^2 - 1}\) so that
 and also \(\frac 12(t - t^{-1}) = \sqrt{x^2 - 1}\). Therefore,
 \begin{alignat*}{2}
     && \dv<x>{t} &= \frac 12\parens[\Big]{1 - \frac 1{t^2}} \\
-    &\implies& \integ{f(x + \sqrt{x^2 - 1})}{x}
+    &\implies{}& \integ{f(x + \sqrt{x^2 - 1})}{x}
     &= \frac 12 \integ{\parens[\Big]{1 - \frac 1{t^2}}f(t)}{t} \qedhere
 \end{alignat*}
 \end{proof}
@@ -223,15 +223,15 @@ and also \(\frac 12(t - t^{-1}) = \sqrt{x^2 - 1}\). Therefore,
 \begin{proof}
 Let \(I\) denote the integral, and make the substitution \(u = a + b - x\),
 \begin{alignat*}{2}
-&\implies& \dv<u>{x} &= -1, \quad x = a + b - u \\
-&\implies& I &= \integ[a + b - a]<a + b - b>{
-                    \frac{-f(a + b - u)}{f(a + b - u) + f(u)}}{u} \\
-&&  &= \integ[a]<b>{\frac{f(a + b - u)}{f(a + b - u) + f(u)}}{u} \\
-&\implies& I + I &= \integ[a]<b>{
-                    \frac{f(a + b - x) + f(x)}
-                         {f(a + b - x) + f(x)}}{x} \\
-&&  &= \integ[a]<b>{1}{x} = b - a \\
-&\implies& I &= \frac{b - a} 2 \qedhere
+    &\implies{}& \dv<u>{x} &= -1, \quad x = a + b - u \\
+    &\implies{}& I &= \integ[a + b - a]<a + b - b>{
+                        \frac{-f(a + b - u)}{f(a + b - u) + f(u)}}{u} \\
+    &&  &= \integ[a]<b>{\frac{f(a + b - u)}{f(a + b - u) + f(u)}}{u} \\
+    &\implies{}& I + I &= \integ[a]<b>{
+                        \frac{f(a + b - x) + f(x)}
+                            {f(a + b - x) + f(x)}}{x} \\
+    &&  &= \integ[a]<b>{1}{x} = b - a \\
+    &\implies{}& I &= \frac{b - a} 2 \qedhere
 \end{alignat*}
 \end{proof}
 \begin{theorem}[Divisive involution substitution]
@@ -242,14 +242,14 @@ Let \(I\) denote the integral, and make the substitution \(u = a + b - x\),
 \begin{proof}
 Again let \(I\) denote the integral. Make the substitution \(u = ab / x\),
 \begin{alignat*}{2}
-&\implies& \dv<u>{x} &= -\frac{ab}{x^2} = -\frac ux, \quad x = \frac{ab}u \\
-&\implies& I &= \integ[ab/a]<ab/b>{\frac{-f(ab / u)}{u(f(ab / u) + f(u))}
-}{u} \\
-&& &= \integ[a]<b>{\frac{f(ab / u)}{u(f(ab / u) + f(u))}}{u} \\
-&\implies& I + I &= \integ[a]<b>{\frac{f(ab / x) + f(x)}
-                                  {x(f(ab / x) + f(x))}}{x} \\
-&& &= \integ[a]<b>{\frac 1x}{x} = \ln \frac ba \\
-&\implies& I &= \frac 12 \ln \frac ba \qedhere
+    &\implies{}& \dv<u>{x} &= -\frac{ab}{x^2} = -\frac ux, \quad x = \frac{ab}u \\
+    &\implies{}& I &= \integ[ab/a]<ab/b>{\frac{-f(ab / u)}{u(f(ab / u) + f(u))}
+    }{u} \\
+    && &= \integ[a]<b>{\frac{f(ab / u)}{u(f(ab / u) + f(u))}}{u} \\
+    &\implies{}& I + I &= \integ[a]<b>{\frac{f(ab / x) + f(x)}
+                                    {x(f(ab / x) + f(x))}}{x} \\
+    && &= \integ[a]<b>{\frac 1x}{x} = \ln \frac ba \\
+    &\implies{}& I &= \frac 12 \ln \frac ba \qedhere
 \end{alignat*}
 \end{proof}
 
@@ -285,13 +285,13 @@ equivalent to the volume obtained by fully rotating the curve in the
 This means
 \begin{alignat*}{2}
     && \parens[\Big]{\integ[-\infty]<\infty>{e^{-x^2}}{x}}^2
-    &= \integ[0]<1>{\pi x^2}{y} \\
-&&  &= -\pi \integ[0]<1>{\ln y}{y} \\
-&&  &= -\pi (y\ln y - y)\eval_0^1 \\
-&&  &= -\pi (0 - 1 - 0 + 0) \\
-&&  &= \pi \\
-&\implies& \integ[-\infty]<\infty>{e^{-x^2}}{x}
-    &= \sqrt \pi \qedhere
+        &= \integ[0]<1>{\pi x^2}{y} \\
+    &&  &= -\pi \integ[0]<1>{\ln y}{y} \\
+    &&  &= -\pi (y\ln y - y)\eval_0^1 \\
+    &&  &= -\pi (0 - 1 - 0 + 0) \\
+    &&  &= \pi \\
+    &\implies{}& \integ[-\infty]<\infty>{e^{-x^2}}{x}
+        &= \sqrt \pi \qedhere
 \end{alignat*}
 \end{proof}
 This proof is a bit of a ``trick''. The standard way to approach an integral
