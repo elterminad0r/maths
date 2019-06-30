@@ -187,9 +187,7 @@ constant term is indeed zero, as \(\varphi^0 - \psi^0 = 0\).
 \end{proof}
 \begin{proof}[Proof by matrices]
     Noting that the given recurrence \(F_n = F_{n - 1} + F_{n - 2}\) is a linear
-    transition (and a fairly simple one at that),
-
-    we can define the vector
+    transition (and a fairly simple one at that), we can define the vector
     \begin{equation*}
         \vec f_n =
         \begin{pmatrix*}[l]
@@ -226,7 +224,9 @@ constant term is indeed zero, as \(\varphi^0 - \psi^0 = 0\).
     \end{alignat*}
     as we saw earlier.
 
-    Now we can find the eigenvectors.
+    Now we can find the eigenvectors \footnote{
+        Note that as \(\varphi\) satisfies \(\varphi^2 - \varphi - 1 = 0\),
+        we can rearrange to get \(\varphi - 1 = \frac 1\varphi\).}
     \begin{alignat*}6
         \lambda_1 &= \varphi:&
         &&
