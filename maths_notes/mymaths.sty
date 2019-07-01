@@ -12,8 +12,8 @@
 % FIXME wishlist: make theorem body start on a new line that doesn't hug the
 % head.
 \declaretheoremstyle[
-     notefont=\bfseries,
-     bodyfont=\normalfont\itshape]{break}
+ notefont=\bfseries,
+ bodyfont=\normalfont\itshape]{break}
 
 \declaretheorem[style=break,parent=section]{theorem}
 \declaretheorem[style=break,numberwithin=theorem]{corollary}
@@ -24,11 +24,11 @@
 \let\oldqedhere\qedhere
 \def\@qedherereplace{alignat*}
 \renewcommand*\qedhere{
-  \ifx\@currenvir\@qedherereplace
-    \tag*{\oldqedhere}
-  \else
-    \oldqedhere
-  \fi}
+ \ifx\@currenvir\@qedherereplace
+  \tag*{\oldqedhere}
+ \else
+  \oldqedhere
+ \fi}
 \makeatother
 
 \RequirePackage{xparse}
@@ -39,38 +39,38 @@
 % the numerator, give it as a <> delimited optional argument.
 % Similarly, the order of the derivative can be given as a [] optional argument.
 \NewDocumentCommand\dv{ o d<> m }{%
-    \IfValueTF{#2}{%
-        \IfValueTF{#1}{%
-            \frac{\diff^{#1} #2}{\diff^{#1} #3}%
-        }{%
-            \frac{\diff #2}{\diff #3}%
-        }%
-    }{%
-        \IfValueTF{#1}{%
-            \frac{\diff^{#1}}{\diff^{#1} #3}%
-        }{%
-            \frac{\diff}{\diff #3}%
-        }%
-    }%
+ \IfValueTF{#2}{%
+  \IfValueTF{#1}{%
+   \frac{\diff^{#1} #2}{\diff^{#1} #3}%
+  }{%
+   \frac{\diff #2}{\diff #3}%
+  }%
+ }{%
+  \IfValueTF{#1}{%
+   \frac{\diff^{#1}}{\diff^{#1} #3}%
+  }{%
+   \frac{\diff}{\diff #3}%
+  }%
+ }%
 }
 
 % macro to typeset an integral, centralised etc and so on and so forth.
 % The two optional arguments are upper and lower bounds (really subscript and
 % superscript on the integral, it's up to you what you do with it)
 \NewDocumentCommand\integ{ o d<> m m }{%
-    \IfValueTF{#1}{%
-        \IfValueTF{#2}{%
-            \int_{#1}^{#2} #3 \, \diff #4%
-        }{%
-            \int_{#1} #3 \, \diff #4%
-        }%
-    }{%
-        \IfValueTF{#2}{%
-            \int^{#2} #3 \, \diff #4%
-        }{%
-            \int #3 \, \diff #4%
-        }%
-    }%
+ \IfValueTF{#1}{%
+  \IfValueTF{#2}{%
+   \int_{#1}^{#2} #3 \, \diff #4%
+  }{%
+   \int_{#1} #3 \, \diff #4%
+  }%
+ }{%
+  \IfValueTF{#2}{%
+   \int^{#2} #3 \, \diff #4%
+  }{%
+   \int #3 \, \diff #4%
+  }%
+ }%
 }
 
 % TODO make this resizeable

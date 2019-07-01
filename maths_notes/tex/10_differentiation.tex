@@ -7,23 +7,23 @@
 The derivative of \(f(x)\) gives the gradient of the curve \(y = f(x)\) at
 \(x\). It is defined as
 \begin{equation}
-f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}h
+ f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}h
 \end{equation}
 Other notations include, if \(y = f(x)\), then
 \begin{equation}
-    f'(x) = \dv{x}(f(x)) = \dv<y>{x} = y'
+ f'(x) = \dv{x}(f(x)) = \dv<y>{x} = y'
 \end{equation}
 
 There is also various notation for repeated differentiation. If
 \(g(x) = f'(x)\), then \(g'(x) = f''(x)\).
 \begin{equation*}
-f''(x) = \dv[2]<y>{x} = \dv[2]{x}(f(x))
+ f''(x) = \dv[2]<y>{x} = \dv[2]{x}(f(x))
 \end{equation*}
 In general, differentiating \(y = f(x)\) \(n\) times, we have the \(n\)th
 derivative
 \begin{equation*}
-f^{\overbrace{\prime\prime\prime\dotsb}^{\text{\(n\) times}}}
-    = f^{(n)}(x) = \dv[n]<y>{x} = \dv[n]{x}(f(x))
+ f^{\overbrace{\prime\prime\prime\dotsb}^{\text{\(n\) times}}}
+     = f^{(n)}(x) = \dv[n]<y>{x} = \dv[n]{x}(f(x))
 \end{equation*}
 
 \subsection{Basic properties of the derivative}
@@ -32,10 +32,10 @@ f^{\overbrace{\prime\prime\prime\dotsb}^{\text{\(n\) times}}}
 Some basic properties of limits result in corresponding basic properties of
 the derivative.
 \begin{equation*}
-    \dv{x}(a f(x)) = af'(x) \quad \text{where \(a\) is a constant}
+ \dv{x}(a f(x)) = af'(x) \quad \text{where \(a\) is a constant}
 \end{equation*}
 \begin{equation*}
-    \dv{x}(f(x) + g(x)) = f'(x) + g'(x)
+ \dv{x}(f(x) + g(x)) = f'(x) + g'(x)
 \end{equation*}
 
 \subsection{Chain Rule} \label{sec_calc_chain}
@@ -43,119 +43,119 @@ the derivative.
 \subsection{Product Rule} \label{sec_calc_product}
 
 \begin{theorem}[Product rule]
-    For two differentiable functions \(f, g\),
-    \begin{equation*}
-        \dv{x} (f(x)g(x)) = f(x)g'(x) + f'(x)g(x)
-    \end{equation*}
+ For two differentiable functions \(f, g\),
+ \begin{equation*}
+  \dv{x} (f(x)g(x)) = f(x)g'(x) + f'(x)g(x)
+ \end{equation*}
 \end{theorem}
 \begin{proof}[Proof from first principles]
-    This can be derived from the definition of the derivative. Let
-    \begin{equation*}
-        h(x) = f(x)g(x)
-    \end{equation*}
-    Then, by definition,
-    \begin{align*}
-        h'(x) &= \lim_{t \to 0} \frac{h(x + t) - h(x)} t \\
-              &= \lim_{t \to 0} \frac{f(x + t)g(x + t) - f(x)g(x)} t \\
-              &= \lim_{t \to 0} \frac{f(x + t)g(x + t) - f(x + t)g(x)
-                                    + f(x + t)g(x) - f(x)g(x)} t \\
-              &= \lim_{t \to 0} \bracks[\bigg]{
-                  f(x + t) \frac{g(x + t) - g(x)} t
-                + g(x) \frac{f(x + t) - f(x)} t} \\
-              &= \lim_{t \to 0} \bracks[\bigg]{
-                  f(x + t)g'(x)
-                + g(x) f'(x)} \quad \text{by definition} \\
-              &= f(x)g'(x) + g(x)f'(x)
-        \qedhere
-    \end{align*}
+ This can be derived from the definition of the derivative. Let
+ \begin{equation*}
+  h(x) = f(x)g(x)
+ \end{equation*}
+ Then, by definition,
+ \begin{align*}
+  h'(x) &= \lim_{t \to 0} \frac{h(x + t) - h(x)} t \\
+        &= \lim_{t \to 0} \frac{f(x + t)g(x + t) - f(x)g(x)} t \\
+        &= \lim_{t \to 0} \frac{f(x + t)g(x + t) - f(x + t)g(x)
+                              + f(x + t)g(x) - f(x)g(x)} t \\
+        &= \lim_{t \to 0} \bracks[\bigg]{
+            f(x + t) \frac{g(x + t) - g(x)} t
+          + g(x) \frac{f(x + t) - f(x)} t} \\
+        &= \lim_{t \to 0} \bracks[\bigg]{
+            f(x + t)g'(x)
+          + g(x) f'(x)} \quad \text{by definition} \\
+        &= f(x)g'(x) + g(x)f'(x)
+  \qedhere
+ \end{align*}
 \end{proof}
 \begin{proof}[Proof from the chain rule]
-    We can alternatively apply the chain rule after completng the square of
-    \(f(x)g(x)\) by writing
-    \begin{alignat*}{2}
-        && f(x)g(x) &= \frac 12 \bracks[\Big]
-                        {(f(x))^2 + (g(x))^2 - (f(x) - g(x))^2} \\
-        &\implies{}& \dv{x} (f(x)g(x))
-                    &= \frac 12 \dv{x} \bracks[\Big]
-                        {(f(x))^2 + (g(x))^2 - (f(x) - g(x))^2} \\
-        &&          &= \frac 12 \bracks[\Big]
-                        {2f(x)f'(x) + 2g(x)g'(x)
-                       - 2(f(x) - g(x))(f'(x) - g'(x))} \\
-        &&          &= f(x)f'(x) + g(x)g'(x)
-                     - (f(x)f'(x) + g(x)g'(x) - f'(x)g(x) - f(x)g'(x)) \\
-        &&          &= f'(x)g(x) + f(x)g'(x) \qedhere
-    \end{alignat*}
+ We can alternatively apply the chain rule after completng the square of
+ \(f(x)g(x)\) by writing
+ \begin{alignat*}{2}
+  && f(x)g(x) &= \frac 12 \bracks[\Big]
+                  {(f(x))^2 + (g(x))^2 - (f(x) - g(x))^2} \\
+  &\implies{}& \dv{x} (f(x)g(x))
+              &= \frac 12 \dv{x} \bracks[\Big]
+                  {(f(x))^2 + (g(x))^2 - (f(x) - g(x))^2} \\
+  &&          &= \frac 12 \bracks[\Big]
+                  {2f(x)f'(x) + 2g(x)g'(x)
+                 - 2(f(x) - g(x))(f'(x) - g'(x))} \\
+  &&          &= f(x)f'(x) + g(x)g'(x)
+               - (f(x)f'(x) + g(x)g'(x) - f'(x)g(x) - f(x)g'(x)) \\
+  &&          &= f'(x)g(x) + f(x)g'(x) \qedhere
+ \end{alignat*}
 \end{proof}
 \begin{proof}[Proof by exponentials]
-    Yet another way to show this is to rewrite \(f(x)g(x)\) in terms of
-    exponentials, eliminating the product so we can again apply the chain rule.
-    \begin{alignat*}{2}
-        && f(x)g(x) &= e^{\ln f(x) + \ln g(x)} \\
-        &\implies{}& \dv{x} (f(x)g(x))
-                    &= \dv{x} e^{\ln f(x) + \ln g(x)} \\
-        &&          &= \parens[\bigg]{\frac{f'(x)}{f(x)} + \frac{g'(x)}{g(x)}}
-                         e^{\ln f(x) + \ln g(x)} \\
-        &&          &= \parens[\bigg]{\frac{f'(x)}{f(x)} + \frac{g'(x)}{g(x)}}
-                         f(x)g(x) \\
-        &&          &= f'(x)g(x) + f(x)g'(x)
-    \end{alignat*}
-    Now a little more care must be taken, as this does assume that \(\ln f(x)\)
-    and \(\ln g(x)\) exist. This will be true if both \(f\) and \(g\) are
-    positive at \(x\). If either or both is negative, we can factor out a
-    \(-1\), and instead continue with the proof using \(-f(x)\) or \(-g(x)\).
-    This minus will then eliminate. Suppose wlog that \(f(x) < 0\):
-    \begin{alignat*}{2}
-        && f(x)g(x) &= -e^{\ln(-f(x)) + \ln g(x)} \\
-        &\implies{}& \dv{x} (f(x)g(x))
-                    &= -\dv{x} e^{\ln(-f(x)) + \ln g(x)} \\
-        &&          &= -\parens[\bigg]{\frac{-f'(x)}{-f(x)}
-                                     + \frac{g'(x)}{g(x)}}
-                         e^{\ln(-f(x)) + \ln g(x)} \\
-        &&          &= -\parens[\bigg]{\frac{f'(x)}{f(x)} + \frac{g'(x)}{g(x)}}
-                         \parens[\big]{-f(x)g(x)} \\
-        &&          &= \parens[\bigg]{\frac{f'(x)}{f(x)} + \frac{g'(x)}{g(x)}}
-                         (f(x)g(x)) \\
-        &&          &= f'(x)g(x) + f(x)g'(x) \qedhere
-    \end{alignat*}
+ Yet another way to show this is to rewrite \(f(x)g(x)\) in terms of
+ exponentials, eliminating the product so we can again apply the chain rule.
+ \begin{alignat*}{2}
+  && f(x)g(x) &= e^{\ln f(x) + \ln g(x)} \\
+  &\implies{}& \dv{x} (f(x)g(x))
+              &= \dv{x} e^{\ln f(x) + \ln g(x)} \\
+  &&          &= \parens[\bigg]{\frac{f'(x)}{f(x)} + \frac{g'(x)}{g(x)}}
+                   e^{\ln f(x) + \ln g(x)} \\
+  &&          &= \parens[\bigg]{\frac{f'(x)}{f(x)} + \frac{g'(x)}{g(x)}}
+                   f(x)g(x) \\
+  &&          &= f'(x)g(x) + f(x)g'(x)
+ \end{alignat*}
+ Now a little more care must be taken, as this does assume that \(\ln f(x)\)
+ and \(\ln g(x)\) exist. This will be true if both \(f\) and \(g\) are
+ positive at \(x\). If either or both is negative, we can factor out a
+ \(-1\), and instead continue with the proof using \(-f(x)\) or \(-g(x)\).
+ This minus will then eliminate. Suppose wlog that \(f(x) < 0\):
+ \begin{alignat*}{2}
+  && f(x)g(x) &= -e^{\ln(-f(x)) + \ln g(x)} \\
+  &\implies{}& \dv{x} (f(x)g(x))
+              &= -\dv{x} e^{\ln(-f(x)) + \ln g(x)} \\
+  &&          &= -\parens[\bigg]{\frac{-f'(x)}{-f(x)}
+                               + \frac{g'(x)}{g(x)}}
+                   e^{\ln(-f(x)) + \ln g(x)} \\
+  &&          &= -\parens[\bigg]{\frac{f'(x)}{f(x)} + \frac{g'(x)}{g(x)}}
+                   \parens[\big]{-f(x)g(x)} \\
+  &&          &= \parens[\bigg]{\frac{f'(x)}{f(x)} + \frac{g'(x)}{g(x)}}
+                   (f(x)g(x)) \\
+  &&          &= f'(x)g(x) + f(x)g'(x) \qedhere
+ \end{alignat*}
 \end{proof}
 
 \subsubsection{Quotient Rule} \label{sec_calc_quotient}
 
 \begin{theorem}[Quotient rule]
-For two differentiable functions \(f, g\),
-\begin{equation*}
-    \dv{x}\parens[\bigg]{\frac{f(x)}{g(x)}} = \frac{g(x)f'(x) - f(x)g'(x)}{(g(x))^2}
-\end{equation*}
+ For two differentiable functions \(f, g\),
+ \begin{equation*}
+  \dv{x}\parens[\bigg]{\frac{f(x)}{g(x)}} = \frac{g(x)f'(x) - f(x)g'(x)}{(g(x))^2}
+ \end{equation*}
 \end{theorem}
 There are a few ways to prove this. We could reappropriate some of the arguments
 made in the proof of the product rule (\ref{sec_calc_product}), but it is much
 more straightforward to use the product rule as a stepping stone.
 \begin{proof}[Proof by explicit differentiation]
-    Let
-    \begin{alignat*}{2}
-        && h(x) &= \frac{f(x)}{g(x)} \\
-        &&      &= f(x) \cdot \frac 1{g(x)} \\
-        &\implies{}& h'(x)
-                &= f'(x) \cdot \frac 1{g(x)}
-                    + f(x) \cdot \parens[\Bigg]{\frac{-g'(x)}{(g(x))^2}}
-                    \quad \text{from the product and chain rules} \\
-        &&      &= \frac{f'(x)}{g(x)} - \frac{f(x)g'(x)}{(g(x))^2} \\
-        &&      &= \frac{f'(x)g(x) - f(x)g'(x)}{(g(x))^2} \qedhere
-    \end{alignat*}
+ Let
+ \begin{alignat*}{2}
+  && h(x) &= \frac{f(x)}{g(x)} \\
+  &&      &= f(x) \cdot \frac 1{g(x)} \\
+  &\implies{}& h'(x)
+          &= f'(x) \cdot \frac 1{g(x)}
+              + f(x) \cdot \parens[\Bigg]{\frac{-g'(x)}{(g(x))^2}}
+              \quad \text{from the product and chain rules} \\
+  &&      &= \frac{f'(x)}{g(x)} - \frac{f(x)g'(x)}{(g(x))^2} \\
+  &&      &= \frac{f'(x)g(x) - f(x)g'(x)}{(g(x))^2} \qedhere
+ \end{alignat*}
 \end{proof}
 \begin{proof}[Proof by implicit differentiation]
-    Let
-    \begin{alignat*}{2}
-        && h(x) &= \frac{f(x)}{g(x)} \\
-        &\implies{}& h(x)g(x) &= f(x) \\
-        &\implies{}& h(x)g'(x) + h'(x)g(x)
-                &= f'(x) \quad \text{from the product and chain rules} \\
-        &\implies{}& h'(x)
-                &= \frac{f'(x) - h(x)g'(x)}{g(x)} \\
-        &&      &= \frac{f'(x) - \frac{f(x)}{g(x)}g'(x)}{g(x)}
-                    \quad \text{by definition of \(h\)} \\
-        &&      &= \frac{f'(x)g(x) - f(x)g'(x)}{(g(x))^2} \qedhere
-    \end{alignat*}
+ Let
+ \begin{alignat*}{2}
+  && h(x) &= \frac{f(x)}{g(x)} \\
+  &\implies{}& h(x)g(x) &= f(x) \\
+  &\implies{}& h(x)g'(x) + h'(x)g(x)
+          &= f'(x) \quad \text{from the product and chain rules} \\
+  &\implies{}& h'(x)
+          &= \frac{f'(x) - h(x)g'(x)}{g(x)} \\
+  &&      &= \frac{f'(x) - \frac{f(x)}{g(x)}g'(x)}{g(x)}
+              \quad \text{by definition of \(h\)} \\
+  &&      &= \frac{f'(x)g(x) - f(x)g'(x)}{(g(x))^2} \qedhere
+ \end{alignat*}
 \end{proof}
 
 \subsection{Common derivatives} \label{calc_common}
@@ -177,35 +177,35 @@ rules, and the derivatives of some functions in table
 \ref{tab_calc_derivatives}.
 
 \begin{longtable}{*4M c}
-\toprule
-\text{\boldmath\(f(x)\)} & \text{\boldmath\(f'(x)\)}
-    & \text{\bfseries Alternatives/Notes} & \note & \bfseries ref \\
-\midrule
-\endhead
-g(x) + h(x) & g'(x) + h'(x) & & \note
-    & \ref{sec_calc_derivative_properties} \\[1ex]
-a g(x) & a g'(x) & & \note
-    & \ref{sec_calc_derivative_properties} \\[1ex]
-g(x) h(x) & g'(x) h(x) + g(x) h'(x)
-    & & \note & \ref{sec_calc_product} \\[1ex]
-g(h(x)) & h'(x) g'(h(x)) & & \note & \ref{sec_calc_chain} \\[1ex]
-\frac{g(x)}{h(x)} & \frac{h(x) g'(x) - g(x) h'(x)}{(h(x))^2}
-    &&& \ref{sec_calc_quotient} \\[3ex]
-g(ax + b) & a g'(ax + b) \\[3ex]
-g(x)^{h(x)}
-    & \parens[\bigg]{\frac{h(x)g'(x)}{g(x)} + h'(x)\ln(g(x))}g(x)^{h(x)}
-    & g(x) > 0 && \ref{sec_calc_powers} \\[3ex]
-\sqrt{g(x)} & \frac{g'(x)}{2\sqrt{g(x)}} & g(x) \ge 0 \\[3ex]
-\ln(g(x)) & \frac{g'(x)}{g(x)} & g(x) > 0 \\[3ex]
-\log_a(g(x)) & \frac{g'(x)}{g(x) \ln a} & g(x) > 0 \\[3ex]
-\log_{g(x)} a & \frac{-\ln a}{g(x) (\ln(g(x)))^2}
-    & \text{const \(a > 0\), \(g(x) > 0\)} \\[3ex]
-    \log_{g(x)} h(x) & \frac 1{(\ln(g(x)))^2}\parens[\bigg]{\frac{\ln(g(x))}{h(x)}
-                                             - \frac{\ln(h(x))}{g(x)}}
-    & g(x), h(x) > 0 \\[3ex]
-\bottomrule
-\caption{General derivatives of compositions of functions}
-\label{tab_calc_functions_derivatives}
+ \toprule
+ \text{\boldmath\(f(x)\)} & \text{\boldmath\(f'(x)\)}
+     & \text{\bfseries Alternatives/Notes} & \note & \bfseries ref \\
+ \midrule
+ \endhead
+ g(x) + h(x) & g'(x) + h'(x) & & \note
+  & \ref{sec_calc_derivative_properties} \\[1ex]
+ a g(x) & a g'(x) & & \note
+  & \ref{sec_calc_derivative_properties} \\[1ex]
+ g(x) h(x) & g'(x) h(x) + g(x) h'(x)
+  & & \note & \ref{sec_calc_product} \\[1ex]
+ g(h(x)) & h'(x) g'(h(x)) & & \note & \ref{sec_calc_chain} \\[1ex]
+ \frac{g(x)}{h(x)} & \frac{h(x) g'(x) - g(x) h'(x)}{(h(x))^2}
+  &&& \ref{sec_calc_quotient} \\[3ex]
+ g(ax + b) & a g'(ax + b) \\[3ex]
+ g(x)^{h(x)}
+  & \parens[\bigg]{\frac{h(x)g'(x)}{g(x)} + h'(x)\ln(g(x))}g(x)^{h(x)}
+  & g(x) > 0 && \ref{sec_calc_powers} \\[3ex]
+ \sqrt{g(x)} & \frac{g'(x)}{2\sqrt{g(x)}} & g(x) \ge 0 \\[3ex]
+ \ln(g(x)) & \frac{g'(x)}{g(x)} & g(x) > 0 \\[3ex]
+ \log_a(g(x)) & \frac{g'(x)}{g(x) \ln a} & g(x) > 0 \\[3ex]
+ \log_{g(x)} a & \frac{-\ln a}{g(x) (\ln(g(x)))^2}
+  & \text{const \(a > 0\), \(g(x) > 0\)} \\[3ex]
+  \log_{g(x)} h(x) & \frac 1{(\ln(g(x)))^2}\parens[\bigg]{\frac{\ln(g(x))}{h(x)}
+                                           - \frac{\ln(h(x))}{g(x)}}
+  & g(x), h(x) > 0 \\[3ex]
+ \bottomrule
+ \caption{General derivatives of compositions of functions}
+ \label{tab_calc_functions_derivatives}
 \end{longtable}
 
 In table \ref{tab_calc_derivatives} is a set of common derivatives of
@@ -220,47 +220,47 @@ know the derivatives, but people obviously have their priorities and often
 it's more worthwile to understand how to derive the derivative, anyway.
 
 \begin{longtable}{*4M c}
-\toprule
-\text{\boldmath\(f(x)\)} & \text{\boldmath\(f'(x)\)}
-    & \text{\bfseries Alternatives/Notes} & \note & \bfseries ref \\
-\midrule
-\endhead
-a & 0 & \text{\(a\) is constant} & \note \\[1ex]
-x^n & nx^{n-1} & \text{\(n\) is constant} & \note
-    & \ref{sec_calc_powers} \\[1ex]
-e^x & e^x & \text{\(e\) is Euler's number} & \note & \ref{sec_e} \\[1ex]
-a^x & \ln a \cdot a^x & \text{\(a\) is constant}
-    && \ref{sec_calc_powers}\\[1ex]
-\ln x & \frac 1{x} && \note \\[3ex]
-\log_a x & \frac 1{x\ln a} & \text{\(a\) is a constant} \\[3ex]
-\sin x & \cos x && \note \\[1ex]
-\cos x & -\sin x && \note & \ref{sec_calc_trig_basic} \\[1ex]
-\tan x & \sec^2 x & \tan^2 x + 1 && \ref{sec_calc_trig_basic} \\[1ex]
-\sec x & \sec x \tan x &&& \ref{sec_calc_trig_basic} \\[1ex]
-\csc x & -\csc x \cot x &&& \ref{sec_calc_trig_basic} \\[1ex]
-\cot x & -\csc^2 x & -(\cot^2 x + 1) && \ref{sec_calc_trig_basic} \\[1ex]
-\arcsin x & \frac 1{\sqrt{1 - x^2}} && \note & \ref{sec_calc_trig_inv} \\[3ex]
-\arccos x & \frac{-1}{\sqrt{1 - x^2}} && \note & \ref{sec_calc_trig_inv} \\[3ex]
-\arctan x & \frac 1{x^2 + 1} && \note & \ref{sec_calc_trig_inv} \\[3ex]
-\arcsec x & \frac 1{\abs x \sqrt{x^2 - 1}}
-    & \frac 1{x^2 \sqrt{1 - x^{-2}}} && \ref{sec_calc_trig_inv} \\[3ex]
-\arccsc x & \frac{-1}{\abs x \sqrt{x^2 - 1}}
-    & \frac{-1}{x^2 \sqrt{1 - x^{-2}}} && \ref{sec_calc_trig_inv} \\[3ex]
-\arccot x & -\frac 1{x^2 + 1} &&& \ref{sec_calc_trig_inv} \\[3ex]
-\sinh x & \cosh x \\[1ex]
-\cosh x & \sinh x \\[1ex]
-\tanh x & \sech^2 x & -\tanh^2 x + 1 \\[1ex]
-\sech x & -\tanh x \sech x \\[1ex]
-\csch x & -\coth x \csch x \\[1ex]
-\coth x & -\csch^2 x & -(\coth^2 x + 1) \\[1ex]
-\arcsinh x & \frac 1{\sqrt{x^2 + 1}} \\[3ex]
-\arccosh x & \frac 1{\sqrt{x^2 - 1}} \\[3ex]
-\arctanh x & \frac 1{1 - x^2} \\[3ex]
-\arcsech x & \frac{-1}{x\sqrt{1 - x^2}} \\[3ex]
-\arccsch x & \frac{-1}{\abs x\sqrt{1 + x^2}} \\[3ex]
-\arccoth x & \frac 1{1 - x^2} \\[3ex]
-\bottomrule
-\caption{Common derivatives} \label{tab_calc_derivatives}
+ \toprule
+ \text{\boldmath\(f(x)\)} & \text{\boldmath\(f'(x)\)}
+     & \text{\bfseries Alternatives/Notes} & \note & \bfseries ref \\
+ \midrule
+ \endhead
+ a & 0 & \text{\(a\) is constant} & \note \\[1ex]
+ x^n & nx^{n-1} & \text{\(n\) is constant} & \note
+  & \ref{sec_calc_powers} \\[1ex]
+ e^x & e^x & \text{\(e\) is Euler's number} & \note & \ref{sec_e} \\[1ex]
+ a^x & \ln a \cdot a^x & \text{\(a\) is constant}
+  && \ref{sec_calc_powers}\\[1ex]
+ \ln x & \frac 1{x} && \note \\[3ex]
+ \log_a x & \frac 1{x\ln a} & \text{\(a\) is a constant} \\[3ex]
+ \sin x & \cos x && \note \\[1ex]
+ \cos x & -\sin x && \note & \ref{sec_calc_trig_basic} \\[1ex]
+ \tan x & \sec^2 x & \tan^2 x + 1 && \ref{sec_calc_trig_basic} \\[1ex]
+ \sec x & \sec x \tan x &&& \ref{sec_calc_trig_basic} \\[1ex]
+ \csc x & -\csc x \cot x &&& \ref{sec_calc_trig_basic} \\[1ex]
+ \cot x & -\csc^2 x & -(\cot^2 x + 1) && \ref{sec_calc_trig_basic} \\[1ex]
+ \arcsin x & \frac 1{\sqrt{1 - x^2}} && \note & \ref{sec_calc_trig_inv} \\[3ex]
+ \arccos x & \frac{-1}{\sqrt{1 - x^2}} && \note & \ref{sec_calc_trig_inv} \\[3ex]
+ \arctan x & \frac 1{x^2 + 1} && \note & \ref{sec_calc_trig_inv} \\[3ex]
+ \arcsec x & \frac 1{\abs x \sqrt{x^2 - 1}}
+  & \frac 1{x^2 \sqrt{1 - x^{-2}}} && \ref{sec_calc_trig_inv} \\[3ex]
+ \arccsc x & \frac{-1}{\abs x \sqrt{x^2 - 1}}
+  & \frac{-1}{x^2 \sqrt{1 - x^{-2}}} && \ref{sec_calc_trig_inv} \\[3ex]
+ \arccot x & -\frac 1{x^2 + 1} &&& \ref{sec_calc_trig_inv} \\[3ex]
+ \sinh x & \cosh x \\[1ex]
+ \cosh x & \sinh x \\[1ex]
+ \tanh x & \sech^2 x & -\tanh^2 x + 1 \\[1ex]
+ \sech x & -\tanh x \sech x \\[1ex]
+ \csch x & -\coth x \csch x \\[1ex]
+ \coth x & -\csch^2 x & -(\coth^2 x + 1) \\[1ex]
+ \arcsinh x & \frac 1{\sqrt{x^2 + 1}} \\[3ex]
+ \arccosh x & \frac 1{\sqrt{x^2 - 1}} \\[3ex]
+ \arctanh x & \frac 1{1 - x^2} \\[3ex]
+ \arcsech x & \frac{-1}{x\sqrt{1 - x^2}} \\[3ex]
+ \arccsch x & \frac{-1}{\abs x\sqrt{1 + x^2}} \\[3ex]
+ \arccoth x & \frac 1{1 - x^2} \\[3ex]
+ \bottomrule
+ \caption{Common derivatives} \label{tab_calc_derivatives}
 \end{longtable}
 
 \subsubsection{Derivatives with powers} \label{sec_calc_powers}
@@ -268,54 +268,54 @@ a^x & \ln a \cdot a^x & \text{\(a\) is constant}
 Often when being introduced to differentiation, derivatives like that of
 \(x^2\) are demonstrated from first principles, as follows:
 \begin{align*}
-    \dv{x}(x^2) &= \lim_{h \to 0} \frac{(x + h)^2 - x^2} h \\
-                  &= \lim_{h \to 0} \frac{2hx + h^2} h \\
-                  &= \lim_{h \to 0} (2x + h) \\
-                  &= 2x
+ \dv{x}(x^2) &= \lim_{h \to 0} \frac{(x + h)^2 - x^2} h \\
+             &= \lim_{h \to 0} \frac{2hx + h^2} h \\
+             &= \lim_{h \to 0} (2x + h) \\
+             &= 2x
 \end{align*}
 We can do this for a general positive integer power of \(x\),
 \(n \in \Integers^+\) by using the binomial theorem:
 \begin{align*}
-    \dv{x}(x^n) &= \lim_{h \to 0} \frac{(x + h)^n - x^n} h \\
-                  &= \lim_{h \to 0} \bracks[\bigg]{\frac 1h \parens[\Big]{-x^n
-                          + \sum_{r = 0}^n \binom nr x^r h^{n - r}}} \\
-                  &= \lim_{h \to 0} \bracks[\bigg]{\frac 1h \parens[\Big]{
-                          -x^n + \binom n0 x^n + \binom n1 hx^{n - 1}
-                          + \sum_{r = 0}^{n - 2}
-                  \binom nr x^r h^{n - r}}} \\
-              &= \lim_{h \to 0} \bracks[\bigg]{\frac 1h \parens[\Big]{-x^n + x^n
-                          + hnx^{n - 1} + h^2 \sum_{r = 0}^{n - 2}
-                  \binom nr x^r h^{n - (r + 2)}}} \\
-                  &= \lim_{h \to 0} \bracks[\bigg]{nx^{n - 1} + h \sum_{r = 0}^{n - 2}
-                  \binom nr x^r h^{n - (r + 2)}} \\
-                  &= nx^{n-1}\quad
-                  \text{as the smallest power of \(h\) inside the sum is 0}
+ \dv{x}(x^n) &= \lim_{h \to 0} \frac{(x + h)^n - x^n} h \\
+             &= \lim_{h \to 0} \bracks[\bigg]{\frac 1h \parens[\Big]{-x^n
+                     + \sum_{r = 0}^n \binom nr x^r h^{n - r}}} \\
+             &= \lim_{h \to 0} \bracks[\bigg]{\frac 1h \parens[\Big]{
+                       -x^n + \binom n0 x^n + \binom n1 hx^{n - 1}
+                       + \sum_{r = 0}^{n - 2}
+               \binom nr x^r h^{n - r}}} \\
+             &= \lim_{h \to 0} \bracks[\bigg]{\frac 1h \parens[\Big]{-x^n + x^n
+                         + hnx^{n - 1} + h^2 \sum_{r = 0}^{n - 2}
+               \binom nr x^r h^{n - (r + 2)}}} \\
+             &= \lim_{h \to 0} \bracks[\bigg]{nx^{n - 1} + h \sum_{r = 0}^{n - 2}
+               \binom nr x^r h^{n - (r + 2)}} \\
+             &= nx^{n-1}\quad
+               \text{as the smallest power of \(h\) inside the sum is 0}
 \end{align*}
 Now if we have some negative integer exponent \(-n\) where
 \(n \in \Integers^+\), we can use implicit differentiation to show the rule
 still holds. Letting \(y = x^{-n}\),
 \begin{alignat*}{2}
-    &\implies{}& yx^n &= 1 \\
-    &\implies{}& nx^{n - 1}y + x^n \dv<y>{x} &= 0 \\
-    &\implies{}& \dv<y>{x} &= -nx^{n - 1}yx^{-n}
-        = -nx^{-1}x^{-n} = -nx^{-n - 1}
+ &\implies{}& yx^n &= 1 \\
+ &\implies{}& nx^{n - 1}y + x^n \dv<y>{x} &= 0 \\
+ &\implies{}& \dv<y>{x} &= -nx^{n - 1}yx^{-n}
+     = -nx^{-1}x^{-n} = -nx^{-n - 1}
 \end{alignat*}
 We can then use a little implicit differentiation to carry this onto any
 rational exponent \(p / q \in \Rationals\). We let \(y = x^{p / q}\)
 \begin{alignat*}{2}
-    &\implies{}& y^q &= x^p \\
-    &\implies{}& qy^{q - 1}\dv<y>{x} &= px^{p - 1} \\
-    &\implies{}& \dv<y>{x} &= \frac pq x^{p - 1}y^{1 - q}
-        = \frac pq x^{p - 1}x^{(p / q)(1 - q)} \\
-    &&  &= \frac pq x^{p - 1 + (p / q) - p}
-        = \frac pq x^{(p / q) - 1}
+ &\implies{}& y^q &= x^p \\
+ &\implies{}& qy^{q - 1}\dv<y>{x} &= px^{p - 1} \\
+ &\implies{}& \dv<y>{x} &= \frac pq x^{p - 1}y^{1 - q}
+     = \frac pq x^{p - 1}x^{(p / q)(1 - q)} \\
+ &&  &= \frac pq x^{p - 1 + (p / q) - p}
+     = \frac pq x^{(p / q) - 1}
 \end{alignat*}
 
 We can show that this power rule generalizes to any real exponent \(k \in
 \Reals\), for \(x > 0\), using the chain rule and the derivative of \(e^x\).
 \begin{equation*}
-    \dv{x}(x^k) = \dv{x}(e^{k\ln x}) = \frac kx e^{k\ln x}
-                  = \frac kx x^k = k x^{k - 1}
+ \dv{x}(x^k) = \dv{x}(e^{k\ln x}) = \frac kx e^{k\ln x}
+             = \frac kx x^k = k x^{k - 1}
 \end{equation*}
 Unfortunately there's no straightforward way to even define exponentiation as a
 differentiable function with a negative base for a general real exponent.
@@ -324,19 +324,19 @@ To differentiate an exponential function of a positive constant
 \(a \in \Reals^+\), we can rewrite it as a power of \(e\), and use the chain
 rule.
 \begin{equation*}
-    \dv{x}(a^x) = \dv{x}(e^{(\ln a)x}) = \ln a \cdot e^{(\ln a)x}
-                  = \ln a \cdot a^x
+ \dv{x}(a^x) = \dv{x}(e^{(\ln a)x}) = \ln a \cdot e^{(\ln a)x}
+             = \ln a \cdot a^x
 \end{equation*}
 Lastly, if we have a positive function to the power of another function,
 \(g(x)^{h(x)}\) where \(g(x) > 0\), we do a similar rewrite in terms of
 \(e\).
 \begin{align*}
-    \dv{x}\parens[\Big]{g(x)^{h(x)}}
-                          &= \dv{x}\parens[\Big]{e^{(\ln(g(x)))h(x)}} \\
-                          &= \parens[\Big]{\frac{h(x)g'(x)}{g(x)}
-                                 + h'(x)\ln(g(x))}e^{(\ln(g(x)))h(x)} \\
-                          &= \parens[\Big]{\frac{h(x)g'(x)}{g(x)}
-                                 + h'(x)\ln(g(x))}g(x)^{h(x)}
+ \dv{x}\parens[\Big]{g(x)^{h(x)}}
+                       &= \dv{x}\parens[\Big]{e^{(\ln(g(x)))h(x)}} \\
+                       &= \parens[\Big]{\frac{h(x)g'(x)}{g(x)}
+                              + h'(x)\ln(g(x))}e^{(\ln(g(x)))h(x)} \\
+                       &= \parens[\Big]{\frac{h(x)g'(x)}{g(x)}
+                              + h'(x)\ln(g(x))}g(x)^{h(x)}
 \end{align*}
 
 \subsubsection{Basic trigonometric functions} \label{sec_calc_trig_basic}
@@ -350,29 +350,29 @@ exponentials.
 
 We can deduce from the chain rule that
 \begin{equation*}
-    \dv{x}(\cos x) = \dv{x}(\sin(\tfrac 12 \pi - x))
-                   = -\cos(\tfrac 12 \pi - x) = -\sin(x)
+ \dv{x}(\cos x) = \dv{x}(\sin(\tfrac 12 \pi - x))
+                = -\cos(\tfrac 12 \pi - x) = -\sin(x)
 \end{equation*}
 Now we can use the quotient rule for the tangent.
 \begin{equation*}
-    \dv{x}(\tan x) = \dv{x}\parens[\Big]{\frac{\sin x}{\cos x}}
-                   = \frac{\cos x \cos x + \sin x \sin x}{\cos^2 x}
-                   = \frac 1{\cos^2 x} = \sec^2 x
+ \dv{x}(\tan x) = \dv{x}\parens[\Big]{\frac{\sin x}{\cos x}}
+                = \frac{\cos x \cos x + \sin x \sin x}{\cos^2 x}
+                = \frac 1{\cos^2 x} = \sec^2 x
 \end{equation*}
 We can use the chain rule for the reciprocal functions.
 \begin{equation*}
-    \dv{x}(\sec x) = \dv{x}\parens[\Big]{\frac 1{\cos x}}
-                   = -\frac{-\sin x}{\cos^2 x} = \tan x \sec x
+ \dv{x}(\sec x) = \dv{x}\parens[\Big]{\frac 1{\cos x}}
+                = -\frac{-\sin x}{\cos^2 x} = \tan x \sec x
 \end{equation*}
 \begin{equation*}
-    \dv{x}(\csc x) = \dv{x}\parens[\Big]{\frac 1{\sin x}}
-                   = -\frac{\cos x}{\sin^2 x} = -\cot x \csc x
+ \dv{x}(\csc x) = \dv{x}\parens[\Big]{\frac 1{\sin x}}
+                = -\frac{\cos x}{\sin^2 x} = -\cot x \csc x
 \end{equation*}
 The quotient rule can again be applied for the cotangent.
 \begin{equation*}
-    \dv{x}(\cot x) = \dv{x}\parens[\Big]{\frac{\cos x}{\sin x}}
-                   = \frac{-\sin x \sin x - \cos x \cos x}{\sin^2 x}
-                   = -\frac 1{\sin^2 x} = -\csc^2 x
+ \dv{x}(\cot x) = \dv{x}\parens[\Big]{\frac{\cos x}{\sin x}}
+                = \frac{-\sin x \sin x - \cos x \cos x}{\sin^2 x}
+                = -\frac 1{\sin^2 x} = -\csc^2 x
 \end{equation*}
 
 \subsubsection{Inverse trigonometric functions} \label{sec_calc_trig_inv}
@@ -380,8 +380,8 @@ The quotient rule can again be applied for the cotangent.
 We can use implicit differentiation and some identities to tackle
 derivatives of inverse trig functions. If we let \(y = \arcsin x\), then
 \begin{equation*}
-\sin y = x \implies \dv<y>{x} \cos y = 1
-    \implies \dv{x}(\arcsin x) = \frac 1{\cos y} = \frac 1{\sqrt{1 - x^2}}
+ \sin y = x \implies \dv<y>{x} \cos y = 1
+     \implies \dv{x}(\arcsin x) = \frac 1{\cos y} = \frac 1{\sqrt{1 - x^2}}
 \end{equation*}
 This is allowed because the domain of \(\arcsin x\) is restricted to
 \(\intcc{-1, 1}\), meaning that the range of \(y\) is
@@ -392,19 +392,19 @@ Now, for the inverse cosine, rather than repeating this whole song and
 dance, we can use the fact that
 \(\arccos x \equiv \frac 12 \pi - \arcsin x\).
 \begin{equation*}
-\dv{x}(\arccos x) = \dv{x}(\frac \pi 2 - \arcsin x)
-    = -\frac 1{\sqrt{1 - x^2}}
+ \dv{x}(\arccos x) = \dv{x}(\frac \pi 2 - \arcsin x)
+     = -\frac 1{\sqrt{1 - x^2}}
 \end{equation*}
 For the inverse tangent, we again let \(y = \arctan x\), so that
 \begin{equation*}
-\tan y = x \implies \dv<y>{x}(\tan^2 y + 1) = 1
-    \implies \dv{x}(\arctan x) = \frac 1{1 + \tan^2 y}
-        = \frac 1{1 + x^2}
+ \tan y = x \implies \dv<y>{x}(\tan^2 y + 1) = 1
+     \implies \dv{x}(\arctan x) = \frac 1{1 + \tan^2 y}
+         = \frac 1{1 + x^2}
 \end{equation*}
 For the inverse secant, we let \(y = \arcsec x\), so that
 \begin{equation*}
-\sec y = x \implies \dv<y>{x} \sec y \tan y = 1
-    \implies \dv{x}(\arcsec x) = \frac 1{x \tan y}
+ \sec y = x \implies \dv<y>{x} \sec y \tan y = 1
+     \implies \dv{x}(\arcsec x) = \frac 1{x \tan y}
 \end{equation*}
 Unfortunately, we can't just take \(\tan y = \sqrt{x^2 - 1}\) as
 \(x \in \Reals \setminus \intoo{-1, 1}\), and
@@ -415,38 +415,39 @@ that \(\tan y < 0\) for
 \(y \in \intoc{\frac 12 \pi, \pi} \iff x \in \intoc{-\infty, -1}\).
 Therefore, \(\tan y\) has the same sign as \(x\), so we can rewrite
 \begin{equation*}
-\dv{x}(\arcsec x) = \frac 1{x \tan y} = \frac 1{\abs{x \tan y}}
-    = \frac 1{\abs x\abs{\tan y}} = \frac 1{\abs x\sqrt{x^2 - 1}}
+ \dv{x}(\arcsec x) = \frac 1{x \tan y} = \frac 1{\abs{x \tan y}}
+     = \frac 1{\abs x\abs{\tan y}} = \frac 1{\abs x\sqrt{x^2 - 1}}
 \end{equation*}
 This is perhaps a little tricky, and it is in some cases more obvious to
 just go about it piecewise:
 \begin{equation*}
-\dv{x}(\arcsec x) = \begin{cases}
-    \dfrac 1{x\sqrt{x^2 - 1}} & x \ge 0 \\[3ex]
-    \dfrac {-1}{x\sqrt{x^2 - 1}} & x < 0
-\end{cases}
+ \dv{x}(\arcsec x) =
+ \begin{cases}
+  \dfrac 1{x\sqrt{x^2 - 1}} & x \ge 0 \\[3ex]
+  \dfrac {-1}{x\sqrt{x^2 - 1}} & x < 0
+ \end{cases}
 \end{equation*}
 The other equivalent can be found by taking out a factor of \(\abs x^2\)
 from the square root, to cancel the absolute sign by squaring it. This can
 be useful sometimes.
 \begin{equation*}
-\dv{x}(\arcsec x) = \frac 1{\abs x\sqrt{x^2 - 1}}
-    = \frac 1{\abs x\sqrt{x^2}\sqrt{1 - x^{-2}}}
-    = \frac 1{x^2\sqrt{1 - x^{-2}}}
+ \dv{x}(\arcsec x) = \frac 1{\abs x\sqrt{x^2 - 1}}
+     = \frac 1{\abs x\sqrt{x^2}\sqrt{1 - x^{-2}}}
+     = \frac 1{x^2\sqrt{1 - x^{-2}}}
 \end{equation*}
 To attack the inverse cosecant, it will be order of magnitude easier to just
 make use of the fact that \(\arccsc x = \frac 12 \pi - \arcsec x\),
 so that
 \begin{equation*}
-    \dv{x}(\arccsc x) = \dv{x}\parens[\Big]{\frac \pi 2 - \arcsec x}
-                      = -\dv{x}(\arcsec x)
+ \dv{x}(\arccsc x) = \dv{x}\parens[\Big]{\frac \pi 2 - \arcsec x}
+                   = -\dv{x}(\arcsec x)
 \end{equation*}
 and then taking your pick of your favourite inverse secant derivative.
 
 Similarly, \(\arccot x = \frac 12 \pi - \arctan x\), so
 \begin{equation*}
-    \dv{x}(\arccot x) = \dv{x}\parens[\Big]{\frac \pi 2 - \arctan x}
-                      = -\frac 1{1 + x^2}
+ \dv{x}(\arccot x) = \dv{x}\parens[\Big]{\frac \pi 2 - \arctan x}
+                   = -\frac 1{1 + x^2}
 \end{equation*}
 
 \subsection{Implicit differentiation}

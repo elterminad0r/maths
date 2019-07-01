@@ -13,8 +13,8 @@
 
 % change geometry so more of page is used
 \RequirePackage[
-    margin=1in,
-    headheight=13.6pt]{geometry}
+ margin=1in,
+ headheight=13.6pt]{geometry}
 
 % custom document header/footer
 \RequirePackage{fancyhdr}
@@ -34,11 +34,11 @@
 
 % \url function and clickable table of contents. no ugly red boxes though
 \RequirePackage[hidelinks,pdfencoding=auto,psdextra,
-            pdfauthor={\theauthor},
-            pdftitle={\thetitle},
-            pdfsubject={\thetitle},
-            pdfproducer={LaTeX with hyperref},
-            pdfcreator={pdflatex}]{hyperref}
+ pdfauthor={\theauthor},
+ pdftitle={\thetitle},
+ pdfsubject={\thetitle},
+ pdfproducer={LaTeX with hyperref},
+ pdfcreator={pdflatex}]{hyperref}
 
 % define starting paragraph letter stuff
 \RequirePackage{lettrine}
@@ -66,6 +66,9 @@
 
 % For complicated column specification
 \RequirePackage{array}
+
+% For fancy numbering specifications of enumerations
+\RequirePackage{enumerate}
 
 % Custom column type to automatically go into maths mode with displaystyle
 \newcolumntype M{>{\(\displaystyle}c<{\)}}
@@ -100,8 +103,8 @@
 % listings of code
 \RequirePackage{minted}
 \setminted{breaklines,
-           breakbytokenanywhere,
-           linenos
+ breakbytokenanywhere,
+ linenos
 }
 \usemintedstyle{friendly}
 % bigger line numbers

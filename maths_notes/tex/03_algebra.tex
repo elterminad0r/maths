@@ -6,7 +6,7 @@
 
 A difference of squares can be factorised
 \begin{equation}
-    a^2 - b^2 \equiv (a + b)(a - b)
+ a^2 - b^2 \equiv (a + b)(a - b)
 \end{equation}
 This can be verified with fairly simple
 algebra.
@@ -15,27 +15,27 @@ algebra.
 
 Similar results can be found in higher powers of \(a\) and \(b\):
 \begin{align*}
-    a^3 - b^3 &\equiv (a - b)(a^2 + ab + b^2) \\
-    a^4 - b^4 &\equiv (a - b)(a^3 + a^2b + b^2a + b^3) \\
-    \dots
+ a^3 - b^3 &\equiv (a - b)(a^2 + ab + b^2) \\
+ a^4 - b^4 &\equiv (a - b)(a^3 + a^2b + b^2a + b^3) \\
+ \dots
 \end{align*}
 In general, you take out a factor of \((a - b)\) and then start with the
 term \(a^{n - 1}\), and for each subsequent term decrease the power in \(a\)
 and increase the power in \(b\):
 \begin{equation}
-    a^n - b^n \equiv (a - b)(a^{n - 1} + a^{n - 2}b + a^{n - 3}b^2 + \dotsb +
-                            ab^{n - 2} + b^{n - 1})
+ a^n - b^n \equiv (a - b)(a^{n - 1} + a^{n - 2}b + a^{n - 3}b^2 + \dotsb +
+                         ab^{n - 2} + b^{n - 1})
 \end{equation}
 This can in fact be derived from the partial sum of a geometric progression
 (\ref{sec_seq_GP}). The sum \(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n\) is
 a geometric progression of \(n + 1\) terms with first term \(a^n\) and
 common ratio \(b/a\).  Therefore,
 \begin{alignat*}2
-    &&a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n &=
-            a^n \cdot \frac{(b / a)^{n + 1} - 1}{(b / a) - 1} \\
-    &&    &= \frac{a^{n + 1} - b^{n + 1}}{a - b} \\
-    &\implies{}& (a - b)(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n) &=
-            a^{n + 1} - b^{n + 1}
+ &&a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n &=
+         a^n \cdot \frac{(b / a)^{n + 1} - 1}{(b / a) - 1} \\
+ &&    &= \frac{a^{n + 1} - b^{n + 1}}{a - b} \\
+ &\implies{}& (a - b)(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n) &=
+         a^{n + 1} - b^{n + 1}
 \end{alignat*}
 
 Note that for odd \(n\), \(a^n + b^n\) can also be factorised as
@@ -50,8 +50,8 @@ alternating positive and negative terms.
 In fact, in the last section, \(a^4 - b^4\) may be more fully factorised by
 using:
 \begin{equation*}
-    a^4 - b^4 \equiv (a^2)^2 - (b^2)^2 \equiv (a^2 - b^2)(a^2 + b^2) \equiv
-        (a - b)(a + b)(a^2 + b^2)
+ a^4 - b^4 \equiv (a^2)^2 - (b^2)^2 \equiv (a^2 - b^2)(a^2 + b^2) \equiv
+     (a - b)(a + b)(a^2 + b^2)
 \end{equation*}
 This happens as \(4\) is composite. Any composite \(n\) will in fact result
 in the cototient (\ref{sec_totient}) of \(n = n - \phi(n)\) factors (at
@@ -63,9 +63,9 @@ a prime \(n\) are \(1\) and \(n\).
 We may derive this from the fact that any \(n = pq: p, q \in \setstyle P\),
 \(a^n - b^n\) will factorise as
 \begin{equation}
-    a^{pq} - b^{pq} \equiv
-        (a^p - b^p)(a^{p(q - 1)} + a^{p(q - 2)}b^{p(1)} + \dotsb +
-                    a^{p(1)}b^{p(q - 2)} + b^{p(q - 1)}
+ a^{pq} - b^{pq} \equiv
+     (a^p - b^p)(a^{p(q - 1)} + a^{p(q - 2)}b^{p(1)} + \dotsb +
+                 a^{p(1)}b^{p(q - 2)} + b^{p(q - 1)}
 \end{equation}
 
 \subsection{Quadratic formula} \label{sec_quad_formula}
@@ -73,33 +73,33 @@ We may derive this from the fact that any \(n = pq: p, q \in \setstyle P\),
 There is a formula to give the roots of a general quadratic.
 \begin{theorem}[Quadratic formula]
 \begin{align*}
-ax^2 + bx + c &= 0\ \text{where}\ a \neq 0 \\
-\iff x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+ ax^2 + bx + c &= 0\ \text{where}\ a \neq 0 \\
+ \iff x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 \end{align*}
 \end{theorem}
 \begin{proof}
 We can complete the square to solve a general quadratic equation.
 \begin{alignat*}2
-&&ax^2 + bx + c &= 0 \\
-    &\iff{}& x^2 + \frac ba x + \frac ca &= 0 \\
-    &\iff{}& \parens[\Big]{x + \frac b{2a}}^2
-        &= \parens[\Big]{\frac b{2a}}^2 - \frac ca
-        = \frac{b^2 - 4ac}{4a^2} \\
-    &\iff{}& x + \frac b{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
-        = \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\
-    &\iff{}& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \qedhere
+ &&ax^2 + bx + c &= 0 \\
+ &\iff{}& x^2 + \frac ba x + \frac ca &= 0 \\
+ &\iff{}& \parens[\Big]{x + \frac b{2a}}^2
+     &= \parens[\Big]{\frac b{2a}}^2 - \frac ca
+     = \frac{b^2 - 4ac}{4a^2} \\
+ &\iff{}& x + \frac b{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
+     = \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\
+ &\iff{}& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \qedhere
 \end{alignat*}
 \end{proof}
 
 A corollary is that the number of real roots of a quadratic is determined by the
 discriminant \({\Delta = b^2 - 4ac}\).
 \begin{corollary}[Quadratic real roots]
-Where \(P(x) \defeq ax^2 + bx + c\) and \(\Delta \defeq b^2 - 4ac\),
-\begin{align*}
-\Delta &= 0 \iff \text{``\(P(x) = 0\) has one repeated real root''} \\
-\Delta &< 0 \iff \text{``\(P(x) = 0\) has no real roots''} \\
-\Delta &> 0 \iff \text{``\(P(x) = 0\) has two real roots''}
-\end{align*}
+ Where \(P(x) \defeq ax^2 + bx + c\) and \(\Delta \defeq b^2 - 4ac\),
+ \begin{align*}
+  \Delta &= 0 \iff \text{``\(P(x) = 0\) has one repeated real root''} \\
+  \Delta &< 0 \iff \text{``\(P(x) = 0\) has no real roots''} \\
+  \Delta &> 0 \iff \text{``\(P(x) = 0\) has two real roots''}
+ \end{align*}
 \end{corollary}
 
 \subsection{Partial Fraction Decomposition}
@@ -112,103 +112,104 @@ into a sum of smaller rational functions.
            {Cauchy-Shwarz inequality for \boldmath\(\Reals^n\)}
 
 \begin{theorem}[Cauchy-Shwarz inequality]
-For two sequences of length \(n\), \(u_i, v_i \in \Reals\), indexed by
-\(i \in I\) where \(I = \set{1, 2, \dotsc, n}\),
-\begin{equation*}
-    \parens[\Big]{\sum u_i v_i}^2 \le
-        \parens[\Big]{\sum u_i^2} \parens[\Big]{\sum v_i^2}
-\end{equation*}
-with equality iff \(\Exists k \in \Reals: \Forall i \in I: u_i = k v_i\) (ie one
-sequence is a multiple of the other).
+ For two sequences of length \(n\), \(u_i, v_i \in \Reals\), indexed by
+ \(i \in I\) where \(I = \set{1, 2, \dotsc, n}\),
+ \begin{equation*}
+  \parens[\Big]{\sum u_i v_i}^2 \le
+      \parens[\Big]{\sum u_i^2} \parens[\Big]{\sum v_i^2}
+ \end{equation*}
+ with equality iff \(\Exists k \in \Reals: \Forall i \in I: u_i = k v_i\) (ie
+ one sequence is a multiple of the other).
 \end{theorem}
 \begin{proof}
-We consider the polynomial
-\begin{equation*}
-P(x) = \sum (u_i x + v_i)^2 = 0
-\end{equation*}
-If there is any \(u_i\) term which is nonzero, this is a quadratic in \(x\)
-(if this condition is not met, the inequality becomes obviously true with
-equality).
-\begin{equation*}
-    \parens[\Big]{\sum u_i^2} x^2
-  + \parens[\Big]{\sum 2 u_i v_i} x + \sum v_i^2 = 0
-\end{equation*}
-As it is a sum of squares of real terms, it must be nonnegative. In fact, it
-can only be zero if each contributing term has precisely the same zero,
-which happens only if all \(-v_i/u_i\) are equal, which leads to the
-condition for equality.
+    We consider the polynomial
+    \begin{equation*}
+    P(x) = \sum (u_i x + v_i)^2 = 0
+    \end{equation*}
+    If there is any \(u_i\) term which is nonzero, this is a quadratic in \(x\)
+    (if this condition is not met, the inequality becomes obviously true with
+    equality).
+    \begin{equation*}
+     \parens[\Big]{\sum u_i^2} x^2 +
+     \parens[\Big]{\sum 2 u_i v_i} x + \sum v_i^2 = 0
+    \end{equation*}
+    As it is a sum of squares of real terms, it must be nonnegative. In fact, it
+    can only be zero if each contributing term has precisely the same zero,
+    which happens only if all \(-v_i/u_i\) are equal, which leads to the
+    condition for equality.
 
-As it has no zeroes or one zero (in the case of the condition for equality)
-\begin{alignat*}2
-    &&\Delta = b^2 - 4ac &\le 0 \\
-    &\iff{}&
-    \parens[\Big]{\sum 2 u_i v_i}^2 -
-                  4\parens[\Big]{\sum u_i^2}\parens[\Big]{\sum v_i^2} &\le 0 \\
-    &\iff{}& \parens[\Big]{\sum u_i v_i}^2
-        &\le \parens[\Big]{\sum u_i^2} \parens[\Big]{\sum v_i^2} \qedhere
-\end{alignat*}
+    As it has no zeroes or one zero (in the case of the condition for equality)
+    \begin{alignat*}2
+     &&\Delta = b^2 - 4ac &\le 0 \\
+     &\iff{}&
+     \parens[\Big]{\sum 2 u_i v_i}^2 -
+                4\parens[\Big]{\sum u_i^2}\parens[\Big]{\sum v_i^2} &\le 0 \\
+     &\iff{}& \parens[\Big]{\sum u_i v_i}^2
+         &\le \parens[\Big]{\sum u_i^2} \parens[\Big]{\sum v_i^2} \qedhere
+    \end{alignat*}
 \end{proof}
 
 \subsection{AM-GM inequality}
 
 \begin{theorem}[AM-GM inequality]
-For a sequence \(u_i \in \Reals\), for \(1 \le i \le n\) (ie, the
-sequence is of length \(n\)) and \(u_i \ge 0\),
-\begin{equation*}
-\sqrt[n]{u_1 u_2 \dotsm u_n} \le \frac{u_1 + u_2 + \dotsb + u_n}n
-\end{equation*}
-with equality iff all \(u_i\) are equal.
+ For a sequence \(u_i \in \Reals\), for \(1 \le i \le n\) (ie, the
+ sequence is of length \(n\)) and \(u_i \ge 0\),
+ \begin{equation*}
+  \sqrt[n]{u_1 u_2 \dotsm u_n} \le \frac{u_1 + u_2 + \dotsb + u_n}n
+ \end{equation*}
+ with equality iff all \(u_i\) are equal.
 
-Equivalently, using sigma and pi notation:
-\begin{equation*}
-    \parens[\Big]{\prod u_i}^\frac 1n \le \frac 1n\sum u_i
-\end{equation*}
+ Equivalently, using sigma and pi notation:
+ \begin{equation*}
+  \parens[\Big]{\prod u_i}^\frac 1n \le \frac 1n\sum u_i
+ \end{equation*}
 \end{theorem}
 \begin{proof}
-We can use a kind of wonky induction. First, we verify the base
-case, \(n = 2\):
-\begin{alignat*}2
-    &&\sqrt{ab} &\le \frac{a + b}2 \\
-    &\iff{}& 4ab &\le a^2 + 2ab + b^2 \\
-    &\iff{}& 0 &\le a^2 - 2ab + b^2 \\
-    &\iff{}& 0 &\le (a - b)^2\quad \text{with equality iff \(a = b\)}
-\end{alignat*}
-Then, supposing AM-GM holds for \(n\) and 2, we show that it holds for
-\(2n\).  Taking
-\begin{alignat*}3
-    &&a &= \sqrt[n]{u_1 u_2 \dotsm u_n} \\
-    &&b &= \sqrt[n]{u_{n+1} u_{n+2} \dotsm u_{2n}} \\
-    &\implies{}& a &\le \frac{u_1 + u_2 + \dotsb + u_n}n
-            &&\quad \text{with equality iff \(u_1 = \dotsb = u_n\)}\\
-    &&b &\le \frac{u_{n + 1} + u_{n + 2} + \dotsb + u_{2n}}n
-            &&\quad \text{with equality iff \(u_{n+1} = \dotsb = u_{2n}\)}\\
-    &&\text{and}\ \sqrt{ab} &\le \frac{a + b}2
-        &&\quad \text{with equality iff \(a = b\)}\\
-    &\implies{}& \sqrt[2n]{u_1 u_2 \dotsm u_{2n}} &\le
-            \frac{u_1 + u_2 + \dotsb u_{2n}}{2n}
-            &&\quad \text{with equality iff \(u_1 = \dotsb = u_{2n}\)}
-\end{alignat*}
-Now, supposing AM-GM holds for \(n\), we show that it holds for \(n - 1\).
-Taking
-\begin{alignat*}2
-    &&u_n &= \sqrt[n - 1]{u_1 u_2 \dotsm u_{n - 1}} \\
-    &\implies{}& (u_1 u_2 \dotsm u_n)^{1 / n}
-            &= (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} \\
-    &\implies{}& (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} &\le
-            \frac 1n (u_1 + u_2 + \dotsb u_{n - 1}) +
-            \frac 1n (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} \\
-    &\implies{}& \parens[\Big]{1 - \frac 1n}
-        (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} &\le
-        \frac 1n (u_1 + u_2 + \dotsb + u_{n - 1}) \\
-    &\implies{}& \frac {n - 1}n
-            (u_1 u_2 \dotsb u_{n - 1})^{1 / (n - 1)} &\le
-            \frac 1n (u_1 + u_2 + \dotsb + u_{n - 1}) \\
-    &\implies{}& (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} &\le
-            \frac 1{n - 1} (u_1 + u_2 + \dotsb + u_{n - 1})
-\end{alignat*}
-As equality for \(n\) was iff all \(u_i\) were the same, this is still true.
-Now, for any \(n \in \Integers^+\), we can induct up to a power of 2 above
-\(n\), and then descend from there.
+ We can use a kind of wonky induction. First, we verify the base
+ case, \(n = 2\):
+ \begin{alignat*}2
+  &&\sqrt{ab} &\le \frac{a + b}2 \\
+  &\iff{}& 4ab &\le a^2 + 2ab + b^2 \\
+  &\iff{}& 0 &\le a^2 - 2ab + b^2 \\
+  &\iff{}& 0 &\le (a - b)^2\quad \text{with equality iff \(a = b\)}
+ \end{alignat*}
+ Then, supposing AM-GM holds for \(n\) and 2, we show that it holds for
+ \(2n\).  Taking
+ \begin{alignat*}3
+  &&a &= \sqrt[n]{u_1 u_2 \dotsm u_n} \\
+  &&b &= \sqrt[n]{u_{n+1} u_{n+2} \dotsm u_{2n}} \\
+  &\implies{}& a &\le \frac{u_1 + u_2 + \dotsb + u_n}n
+          &&\quad \text{with equality iff \(u_1 = \dotsb = u_n\)}\\
+  &&b &\le \frac{u_{n + 1} + u_{n + 2} + \dotsb + u_{2n}}n
+          &&\quad \text{with equality iff \(u_{n+1} = \dotsb = u_{2n}\)}\\
+  &&\text{and}\ \sqrt{ab} &\le \frac{a + b}2
+      &&\quad \text{with equality iff \(a = b\)}\\
+  &\implies{}& \sqrt[2n]{u_1 u_2 \dotsm u_{2n}} &\le
+          \frac{u_1 + u_2 + \dotsb u_{2n}}{2n}
+          &&\quad \text{with equality iff \(u_1 = \dotsb = u_{2n}\)}
+ \end{alignat*}
+ Now, supposing AM-GM holds for \(n\), we show that it holds for \(n - 1\).
+ Taking
+ \begin{alignat*}2
+  &&u_n &= \sqrt[n - 1]{u_1 u_2 \dotsm u_{n - 1}} \\
+  &\implies{}& (u_1 u_2 \dotsm u_n)^{1 / n}
+          &= (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} \\
+  &\implies{}& (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} &\le
+          \frac 1n (u_1 + u_2 + \dotsb u_{n - 1}) +
+          \frac 1n (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} \\
+  &\implies{}& \parens[\Big]{1 - \frac 1n}
+      (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} &\le
+      \frac 1n (u_1 + u_2 + \dotsb + u_{n - 1}) \\
+  &\implies{}& \frac {n - 1}n
+          (u_1 u_2 \dotsb u_{n - 1})^{1 / (n - 1)} &\le
+          \frac 1n (u_1 + u_2 + \dotsb + u_{n - 1}) \\
+  &\implies{}& (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} &\le
+          \frac 1{n - 1} (u_1 + u_2 + \dotsb + u_{n - 1})
+ \end{alignat*}
+ As equality for \(n\) was iff all \(u_i\) were the same, this is still true.
+ Now, for any \(n \in \Integers^+\), we can induct up to a power of 2 above
+ \(n\), and then descend from there, so we know \(P(n)\) is true for all
+ \(n \in \Integers^+\).
 \end{proof}
 
 \subsubsection{Generalized Power Means}
@@ -225,39 +226,39 @@ Now, for any \(n \in \Integers^+\), we can induct up to a power of 2 above
 The ``gamma'' or \(\Gamma\) function is defined for
 \(z \in \Complex, \Re(z) > 0\) as
 \begin{equation}
-    \Gamma(z) = \integ[0]<\infty>{x^{z - 1}e^{-x}}{x}
+ \Gamma(z) = \integ[0]<\infty>{x^{z - 1}e^{-x}}{x}
 \end{equation}
 By integrating by parts, we show the following:
 \begin{align*}
-    \Gamma(z + 1) &= \integ[0]<\infty>{x^z e^{-x}}{x} \\
-              &= -x^z e^{-x}\eval_0^\infty
-                 + \integ[0]<\infty>{zx^{z - 1}e^{-x}}{x} \\
-              &= z\Gamma(z)
+ \Gamma(z + 1) &= \integ[0]<\infty>{x^z e^{-x}}{x} \\
+           &= -x^z e^{-x}\eval_0^\infty
+              + \integ[0]<\infty>{zx^{z - 1}e^{-x}}{x} \\
+           &= z\Gamma(z)
 \end{align*}
 Noting also that
 \begin{align*}
-    \Gamma(1) &= \integ[0]<\infty>{e^{-x}}{x} \\
-          &= -e^{-x}\eval_0^\infty \\
-          &= 1
+ \Gamma(1) &= \integ[0]<\infty>{e^{-x}}{x} \\
+       &= -e^{-x}\eval_0^\infty \\
+       &= 1
 \end{align*}
 it can be seen from this recurrence that where \(n \in \Integers^+\),
 \begin{equation}
-\Gamma(n) = (n - 1)!
+ \Gamma(n) = (n - 1)!
 \end{equation}
 In fact, the gamma function is used as an extension of the idea of
 factorials to the real and complex numbers other than the negative integers.
 
 An interesting value that the gamma function takes is for \(z = \frac 12\).
 \begin{equation*}
-    \Gamma(\tfrac 12) = \integ[0]<\infty>{x^{-\frac 12} e^{-x}}{x}
+ \Gamma(\tfrac 12) = \integ[0]<\infty>{x^{-\frac 12} e^{-x}}{x}
 \end{equation*}
 Letting \(x = u^2\)
 \begin{alignat*}2
-    &\implies{}& \dv<x>{u} &= 2u \\
-    &\implies{}& \Gamma(\tfrac 12) &=
-        \integ[0]<\infty>{\frac{2u}u e^{-u^2}}{u} \\
-    &&  &= 2\integ[0]<\infty>{e^{-u^2}}{u} \\
-    &&  &= \sqrt \pi
+ &\implies{}& \dv<x>{u} &= 2u \\
+ &\implies{}& \Gamma(\tfrac 12) &=
+     \integ[0]<\infty>{\frac{2u}u e^{-u^2}}{u} \\
+ &&  &= 2\integ[0]<\infty>{e^{-u^2}}{u} \\
+ &&  &= \sqrt \pi
 \end{alignat*}
 from Theorem \ref{thm_gauss_integral}. From this we can derive the value of
 any \(\Gamma(n + \frac 12)\) where \(n \in \Integers\) from the recurrence
@@ -265,19 +266,19 @@ relation on \(\Gamma\), and in some very informal sense, we can find that
 the ``factorials'' of the half-integers are rational multiples of the square
 root of pi. The first few are shown in Table \ref{tab_gamma_halves}.
 \begin{longtable}{*2M}
-\toprule
-\text{\boldmath\(z\)}
-    & \text{\bfseries\boldmath\(\Gamma(z)\), AKA ``\boldmath\((z - 1)!\)''} \\
-\midrule
-\endhead
-\rule{0pt}{4ex}
-\frac 12 & \sqrt{\pi} \\[3ex]
-\frac 32 & \frac{\sqrt{\pi}}2 \\[3ex]
-\frac 52 & \frac{3 \sqrt{\pi}}4 \\[3ex]
-\frac 72 & \frac{15 \sqrt{\pi}}8 \\[3ex]
-\frac 92 & \frac{105 \sqrt{\pi}}{16} \\[3ex]
-\multicolumn 2c{\(\cdots\)} \\
-\bottomrule
-\caption{Half-integer values of the gamma function}
-\label{tab_gamma_halves}
+ \toprule
+ \text{\boldmath\(z\)}
+     & \text{\bfseries\boldmath\(\Gamma(z)\), AKA ``\boldmath\((z - 1)!\)''} \\
+ \midrule
+ \endhead
+ \rule{0pt}{4ex}
+ \frac 12 & \sqrt{\pi} \\[3ex]
+ \frac 32 & \frac{\sqrt{\pi}}2 \\[3ex]
+ \frac 52 & \frac{3 \sqrt{\pi}}4 \\[3ex]
+ \frac 72 & \frac{15 \sqrt{\pi}}8 \\[3ex]
+ \frac 92 & \frac{105 \sqrt{\pi}}{16} \\[3ex]
+ \multicolumn 2c{\(\cdots\)} \\
+ \bottomrule
+ \caption{Half-integer values of the gamma function}
+ \label{tab_gamma_halves}
 \end{longtable}

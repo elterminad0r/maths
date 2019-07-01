@@ -8,9 +8,9 @@ The PGF of some discrete random variable \(G_X(\eta)\) is, essentially, a power
 series in \(\eta\) with as coefficients the probability associated with that
 power of \(\eta\):
 \begin{equation*}
-G_X(\eta) \defeq \sum_{r = 0}^\infty \Prob(X = r)\eta^r
-    = \sum_{r = 0}^\infty p_X(r)\eta^r
-    = \Expect(\eta^X)
+ G_X(\eta) \defeq \sum_{r = 0}^\infty \Prob(X = r)\eta^r
+     = \sum_{r = 0}^\infty p_X(r)\eta^r
+     = \Expect(\eta^X)
 \end{equation*}
 This does imply the restriction that \(X\) only takes
 non-negative integer values, but this is not usually a huge hindrance.
@@ -19,11 +19,11 @@ It is easy to see that \(G(\eta)\) has a radius of convergence and is therefore
 defined, as each coefficient is necessarily less than or equal to \(1\), so
 \(G(\eta)\) is bounded by
 \begin{equation*}
-G_X(\eta) < 1 + x + x^2 + \dotsb = \frac 1{1 - x}
+ G_X(\eta) < 1 + x + x^2 + \dotsb = \frac 1{1 - x}
 \end{equation*}
 which is defined for \(\eta \in \intco{0, 1}\). Moreover,
 \begin{equation*}
-G(1) = \sum_{r = 0}^\infty \Prob(X = r) = 1
+ G(1) = \sum_{r = 0}^\infty \Prob(X = r) = 1
 \end{equation*}
 Some particularly useful properties arise when considering the derivatives of
 \(G\) wrt \(\eta\).
@@ -31,26 +31,26 @@ Some particularly useful properties arise when considering the derivatives of
 Note that we can extract the coefficients of the power series by taking
 derivatives,
 \begin{equation*}
-\Prob(X = k) = \frac{G_X^{(k)}(0)}{k!}
+ \Prob(X = k) = \frac{G_X^{(k)}(0)}{k!}
 \end{equation*}
 Therefore a probability distribution is uniquely identified by its associated
 generating function. Obverve also that
 \begin{alignat*}6
-G_X(\nu) &= \sum_{r = 0}^\infty p_X(r)\eta^r
-    &&={}& p_X(0) &+{}& p_X(1)\eta
-    &+{}& p_X(2)\eta^2 &+{}& p_X(3) \eta^3 + \dotsb \\
-G_X'(\nu) &= \sum_{r = 0}^\infty rp_X(r)\eta^{(r - 1)}
-    &&={}& 1 p_X(1) &+{}& 2p_X(2)\eta
-    &+{}& 3p_X(3) \eta^2 &+{}& 4p_X(4) \eta^3 + \dotsb \\
-G_X''(\nu) &= \sum_{r = 0}^\infty r(r - 1)p_X(r)\eta^{(r - 2)}
-    &&={}& 2 p_X(2) &+{}& 6p_X(3)\eta
-    &+{}& 12p_X(4) \eta^2 &+{}& 20p_X(5) \eta^3 + \dotsb
+ G_X(\nu) &= \sum_{r = 0}^\infty p_X(r)\eta^r
+     &&={}& p_X(0) &+{}& p_X(1)\eta
+     &+{}& p_X(2)\eta^2 &+{}& p_X(3) \eta^3 + \dotsb \\
+ G_X'(\nu) &= \sum_{r = 0}^\infty rp_X(r)\eta^{(r - 1)}
+     &&={}& 1 p_X(1) &+{}& 2p_X(2)\eta
+     &+{}& 3p_X(3) \eta^2 &+{}& 4p_X(4) \eta^3 + \dotsb \\
+ G_X''(\nu) &= \sum_{r = 0}^\infty r(r - 1)p_X(r)\eta^{(r - 2)}
+     &&={}& 2 p_X(2) &+{}& 6p_X(3)\eta
+     &+{}& 12p_X(4) \eta^2 &+{}& 20p_X(5) \eta^3 + \dotsb
 \end{alignat*}
 So that particularly,
 \begin{align*}
-G_X(1) &= \Expect(1) \\
-G_X'(1) &= \Expect(X) \\
-G_X''(1) &= \Expect(X(X - 1))
+ G_X(1) &= \Expect(1) \\
+ G_X'(1) &= \Expect(X) \\
+ G_X''(1) &= \Expect(X(X - 1))
 \end{align*}
 This is really just spelling out that by considering the expectation definition
 of \(G_X\), in addition to the fact that an expectation is really just a sum, we
@@ -58,45 +58,45 @@ can just differentiate the inside when differentiating. This generalises to the
 fact that the \(n\)th derivative of \(G_X\) at \(\eta = 1\) gives the \(n\)th
 \emph{factorial moment} of \(X\).
 \begin{equation*}
-    G_X^{(n)}(1) = \Expect\bracks[\bigg]{\frac{X!}{(X - n)!}}
+ G_X^{(n)}(1) = \Expect\bracks[\bigg]{\frac{X!}{(X - n)!}}
 \end{equation*}
 
 Regardless, we now have a useful tool. If we know \(G_X\), we can work out
 \(\Expect(X)\) by differentiating once, and to obtain the variance we can use
 \begin{align*}
-\Var(x) &= \Expect(X^2) - (\Expect(X))^2
-    = \Expect(X^2 - X) + \Expect(X) - (\Expect(X))^2 \\
-    &= G_X''(1) + G_X'(1) - (G_X'(1))^2
+ \Var(x) &= \Expect(X^2) - (\Expect(X))^2
+     = \Expect(X^2 - X) + \Expect(X) - (\Expect(X))^2 \\
+     &= G_X''(1) + G_X'(1) - (G_X'(1))^2
 \end{align*}
 The generating function of the sum of two independent random variables \(X + Y\)
 (that need not necessarily be identically distributed) has a particularly useful
 form. Consider
 \begin{align*}
-G_{X+Y}(\eta) &= \Expect(\eta^{X + Y}) = \Expect(\eta^X \eta^Y) \\
-    &= \Expect(\eta^X) \Expect(\eta^Y) \impliedby X \independent Y \\
-    &= G_X(\eta) G_Y(\eta)
+ G_{X+Y}(\eta) &= \Expect(\eta^{X + Y}) = \Expect(\eta^X \eta^Y) \\
+     &= \Expect(\eta^X) \Expect(\eta^Y) \impliedby X \independent Y \\
+     &= G_X(\eta) G_Y(\eta)
 \end{align*}
 In fact, this generalises to the sum of \(n\) independent random variables, each
 multiplied by some constant coefficient:
 \begin{alignat*} 3
-    && S &= \sum_{r = 1}^n \alpha_r X_r
-    &&= \alpha_1 X_1 + \alpha_2 X_2 + \dotsb + \alpha_n X_n \\
-    &\implies{}& G_S(\eta)
-        &= \Expect\parens[\Big]{\eta^{\sum_{r = 1}^n \alpha_r X_r}}
-    &&= \Expect(\eta^{\alpha_1 X_1 + \alpha_2 X_2 + \dotsb + \alpha_n X_n}) \\
-    && &= \Expect\parens[\Big]{\prod_{r = 1}^n \eta^{\alpha_r X_r}}
-    &&= \Expect(\eta^{\alpha_1 X_1} \eta^{\alpha_2 X_2} \dotsm
-              \eta^{\alpha_N X_n}) \\
-&& &= \prod_{r = 1}^\infty\Expect(\eta^{\alpha_r X_r}) \\
-% a bit of witchcraft so that the width of this cell is ignored
-&& &= \mathrlap{
-        \Expect(\eta^{\alpha_n X_n}) \Expect(\eta^{\alpha_2 X_2}) \dotsm
-        \Expect(\eta^{\alpha_n X_n})
-            \impliedby X_1 \independent X_2 \independent
-                             \dotsb \independent X_n} \\
-&& &= \prod_{r = 1}^\infty G_{X_r}(\eta^{\alpha_r})
-    &&= G_{X_1}(\eta^{\alpha_1}) G_{X_2}(\eta^{\alpha_2}) \dotsm
-        G_{X_n}(\eta^{\alpha_n})
+ && S &= \sum_{r = 1}^n \alpha_r X_r
+ &&= \alpha_1 X_1 + \alpha_2 X_2 + \dotsb + \alpha_n X_n \\
+ &\implies{}& G_S(\eta)
+     &= \Expect\parens[\Big]{\eta^{\sum_{r = 1}^n \alpha_r X_r}}
+ &&= \Expect(\eta^{\alpha_1 X_1 + \alpha_2 X_2 + \dotsb + \alpha_n X_n}) \\
+ && &= \Expect\parens[\Big]{\prod_{r = 1}^n \eta^{\alpha_r X_r}}
+ &&= \Expect(\eta^{\alpha_1 X_1} \eta^{\alpha_2 X_2} \dotsm
+           \eta^{\alpha_N X_n}) \\
+ && &= \prod_{r = 1}^\infty\Expect(\eta^{\alpha_r X_r}) \\
+ % a bit of witchcraft so that the width of this cell is ignored
+ && &= \mathrlap{
+     \Expect(\eta^{\alpha_n X_n}) \Expect(\eta^{\alpha_2 X_2}) \dotsm
+     \Expect(\eta^{\alpha_n X_n})
+         \impliedby X_1 \independent X_2 \independent
+                          \dotsb \independent X_n} \\
+ && &= \prod_{r = 1}^\infty G_{X_r}(\eta^{\alpha_r})
+ &&= G_{X_1}(\eta^{\alpha_1}) G_{X_2}(\eta^{\alpha_2}) \dotsm
+     G_{X_n}(\eta^{\alpha_n})
 \end{alignat*}
 
 \subsection{Common Discrete Distributions}
@@ -110,10 +110,10 @@ of having a certain number of outcomes in a set of trials,  where there are
 \(\nu\) trials each with probability \(\pi\) of having that outcome.
 The validity of this distribution is subject to these constraints:
 \begin{enumerate}
-\item Each event must be independent.
-\item Each event must either have that outcome or not have it.
-\item The probability of having this outcome must be identically the same in
-      each trial.
+ \item Each event must be independent.
+ \item Each event must either have that outcome or not have it.
+ \item The probability of having this outcome must be identically the same in
+       each trial.
 \end{enumerate}
 This means that the binomial distribution can be used to model the expected
 number of occurrences of some attribute in a random sample of a population
@@ -124,71 +124,71 @@ large population sizes, however, it remains a good approximation.
 In this case, ``large'' can be taken to mean more than about 30-100.
 
 \begin{theorem}[Binomial properties]
-Where \(X \sim \Binomial(\nu, \pi)\),
-\begin{align*}
-p_X(k) &= \Prob(X = k) = \binom \nu k \pi^k (1 - \pi)^{\nu - k}
-    \quad \text{where \(k \in \set{0, 1, \dotsc, \nu}\)} \\
-\Expect(X) &= \nu \pi \\
-\Var(X) &= \nu \pi (1 - \pi) \\
-\intertext{where}
-\binom \nu k &= \nCr \nu k = \frac{\nu!}{k!\cdot (\nu - k)!}
-\end{align*}
+ Where \(X \sim \Binomial(\nu, \pi)\),
+ \begin{align*}
+  p_X(k) &= \Prob(X = k) = \binom \nu k \pi^k (1 - \pi)^{\nu - k}
+      \quad \text{where \(k \in \set{0, 1, \dotsc, \nu}\)} \\
+  \Expect(X) &= \nu \pi \\
+  \Var(X) &= \nu \pi (1 - \pi) \\
+  \intertext{where}
+  \binom \nu k &= \nCr \nu k = \frac{\nu!}{k!\cdot (\nu - k)!}
+ \end{align*}
 \end{theorem}
 \begin{proof}
-From Lemma \ref{lem_binom_pgf}, we have that if \(X \sim \Binomial(\nu, \pi)\)
-\begin{alignat*} 2
-    && G_X(\eta) &= (1 - \pi + \pi \eta)^\nu \\
-    &&           &= \sum_{k = 0}^\nu
-                    \binom \nu k (1 - \pi)^{\nu - k} \pi^k \eta^k
-                        \quad \text{by the Binomial Theorem} \\
-    \intertext{
-    So clearly, where \(k \in \set{0, 1, \dotsc, \nu}\), the coefficient in
-    \(\eta^k\) (which is \(\Prob(X = k)\)) is
-    \(\binom \nu k (1 - \pi)^{\nu - k} \pi^k\).}
-    &\implies{}& G_X'(\eta) &= \nu \pi (1 - \pi + \pi \eta)^{\nu - 1} \\
-    && G_X'(1) &= \nu \pi (1 - pi + pi)^{\nu - 1} = \nu \pi \\
-    &\implies{}& G_X''(\eta)
-        &= \nu(\nu - 1) \pi^2 (1 - \pi + \pi \eta)^{\nu - 2} \\
-    && G_X''(1)
-        &= \nu(\nu - 1)\pi^2(1 - \pi + \pi)^{\nu - 2} = \nu(\nu - 1)\pi^2 \\
-    &\implies{}& \Expect(X) &= G_X'(1) = \nu \pi \\
-    && \Var(X) &= G_X''(1) + G_X'(1) - (G_X''(1))^2
-        = \nu(\nu - 1) \pi^2 + \nu \pi - (\nu \pi)^2 \\
-    && &= \nu \pi - \nu \pi^2 = \nu \pi (1 - \pi) \qedhere
-\end{alignat*}
+ From Lemma \ref{lem_binom_pgf}, we have that if \(X \sim \Binomial(\nu, \pi)\)
+ \begin{alignat*} 2
+  && G_X(\eta) &= (1 - \pi + \pi \eta)^\nu \\
+  &&           &= \sum_{k = 0}^\nu
+                  \binom \nu k (1 - \pi)^{\nu - k} \pi^k \eta^k
+                      \quad \text{by the Binomial Theorem} \\
+  \intertext{
+  So clearly, where \(k \in \set{0, 1, \dotsc, \nu}\), the coefficient in
+  \(\eta^k\) (which is \(\Prob(X = k)\)) is
+  \(\binom \nu k (1 - \pi)^{\nu - k} \pi^k\).}
+  &\implies{}& G_X'(\eta) &= \nu \pi (1 - \pi + \pi \eta)^{\nu - 1} \\
+  && G_X'(1) &= \nu \pi (1 - pi + pi)^{\nu - 1} = \nu \pi \\
+  &\implies{}& G_X''(\eta)
+      &= \nu(\nu - 1) \pi^2 (1 - \pi + \pi \eta)^{\nu - 2} \\
+  && G_X''(1)
+      &= \nu(\nu - 1)\pi^2(1 - \pi + \pi)^{\nu - 2} = \nu(\nu - 1)\pi^2 \\
+  &\implies{}& \Expect(X) &= G_X'(1) = \nu \pi \\
+  && \Var(X) &= G_X''(1) + G_X'(1) - (G_X''(1))^2
+      = \nu(\nu - 1) \pi^2 + \nu \pi - (\nu \pi)^2 \\
+  && &= \nu \pi - \nu \pi^2 = \nu \pi (1 - \pi) \qedhere
+ \end{alignat*}
 \end{proof}
 \begin{proof}[Alternative for \(p_X(k)\)]
-We can also argue for \(\Prob(X = k)\) combinatorially. We can consider the
-possible outcomes where the trials have an ordering, ie possible sequences
-of successes and failures. If the outcome is a total of \(k\) successes, then
-there are precisely \(\binom \nu k\) sequences achieving this, as we must choose
-\(k\) of the \(\nu\) trials to be successful. Each of these sequences has
-probability \(\pi^k (1 - \pi)^{\nu - k}\) of occurring, as \(k\) of the trials
-must be successful and \(\nu - k\) of the trials must be unsuccessful. As they
-are all mutually exclusive, the probability of getting any one such sequence is
-\(\binom \nu k \pi^k (1 - \pi)^{\nu - k}\).
+ We can also argue for \(\Prob(X = k)\) combinatorially. We can consider the
+ possible outcomes where the trials have an ordering, ie possible sequences of
+ successes and failures. If the outcome is a total of \(k\) successes, then
+ there are precisely \(\binom \nu k\) sequences achieving this, as we must
+ choose \(k\) of the \(\nu\) trials to be successful. Each of these sequences
+ has probability \(\pi^k (1 - \pi)^{\nu - k}\) of occurring, as \(k\) of the
+ trials must be successful and \(\nu - k\) of the trials must be unsuccessful.
+ As they are all mutually exclusive, the probability of getting any one such
+ sequence is \(\binom \nu k \pi^k (1 - \pi)^{\nu - k}\).
 \end{proof}
 \begin{lemma}[Binomial PGF] \label{lem_binom_pgf}
-If \(X \sim \Binomial(\nu, \pi)\), then
-\begin{equation*}
-G_X(\eta) = (1 - \pi + \pi \eta)^\nu
-\end{equation*}
+ If \(X \sim \Binomial(\nu, \pi)\), then
+ \begin{equation*}
+ G_X(\eta) = (1 - \pi + \pi \eta)^\nu
+ \end{equation*}
 \end{lemma}
 \begin{proof}
-We can use the sum of indendent random variables property of PGFs. If we let the
-random variable \(X_k'\) denote the number of successes in the \(k\)th trial, we
-have by definition that either \(X_k'\) is 0 or 1, with probability \(1 - \pi\)
-and \(\pi\) respectively, and that each different \(X_k'\) will be mutually
-independent. Each \(X_k'\) is identically distributed, so they have identical
-PGFs:
-\begin{equation*}
-\Forall k \in \set{1, 2, \dotsc, \eta}: G_{X_k'}(\eta) = 1 - \pi + \pi \eta
-\end{equation*}
-Now, because \(X = X_1' + X_2' + \dotsb + X_n' = \sum_{r = 1}^\nu X_r'\),
-\begin{equation*}
-G_X(\eta) = \prod_{r = 1}^\nu G_{X_r'}(\eta)
-    = (1 - \pi + \pi \eta)^\nu \qedhere
-\end{equation*}
+ We can use the sum of indendent random variables property of PGFs. If we let the
+ random variable \(X_k'\) denote the number of successes in the \(k\)th trial, we
+ have by definition that either \(X_k'\) is 0 or 1, with probability \(1 - \pi\)
+ and \(\pi\) respectively, and that each different \(X_k'\) will be mutually
+ independent. Each \(X_k'\) is identically distributed, so they have identical
+ PGFs:
+ \begin{equation*}
+  \Forall k \in \set{1, 2, \dotsc, \eta}: G_{X_k'}(\eta) = 1 - \pi + \pi \eta
+ \end{equation*}
+ Now, because \(X = X_1' + X_2' + \dotsb + X_n' = \sum_{r = 1}^\nu X_r'\),
+ \begin{equation*}
+  G_X(\eta) = \prod_{r = 1}^\nu G_{X_r'}(\eta)
+      = (1 - \pi + \pi \eta)^\nu \qedhere
+ \end{equation*}
 \end{proof}
 
 A binomial distribution can be approximated by a normal distribution.
@@ -201,45 +201,45 @@ It's phrased like that because it can be a rate of occurrence per unit distance,
 or per unit time, etc.
 
 \begin{theorem}[Poisson properties]
-Where \(X \sim \Poisson(\lambda)\),
-\begin{align*}
-\Prob(X = k) &= p_X(k) = \frac{\lambda^k e^{-\lambda}}{k!}
-    \quad \text{for \(k \in \Integers^+_0\)} \\
-\Expect(X) &= \lambda \\
-\Var(X) &= \lambda
-\end{align*}
+ Where \(X \sim \Poisson(\lambda)\),
+ \begin{align*}
+  \Prob(X = k) &= p_X(k) = \frac{\lambda^k e^{-\lambda}}{k!}
+      \quad \text{for \(k \in \Integers^+_0\)} \\
+  \Expect(X) &= \lambda \\
+  \Var(X) &= \lambda
+ \end{align*}
 \end{theorem}
 \begin{proof}
-If we let \(X \sim \Poisson(\lambda)\), and \(Y \sim \Binomial(\nu, \pi)\),
-we can take \(X\) to be the limit of Y if we set \(\Expect(Y) = \lambda\)
-as \(\nu \to \infty\). This means particularly that we can use
-\begin{alignat*}2
-    && \Expect(X) = \nu \pi &= \lambda \\
-    &\implies{}& \pi &= \frac \lambda \nu
-\end{alignat*}
-From Lemma \ref{lem_binom_pgf} we know the PGF of \(Y\):
-\begin{alignat*}2
-    && G_Y(\eta) &= (1 - \pi + \pi \eta)^\nu \\
-    &&  &= \parens[\Big]{1 - \frac \lambda \nu + \frac \lambda \nu \eta}^\nu \\
-    &\implies{}& G_X(\eta) = \lim_{\nu \to \infty}G_Y(\eta)
-        &= \lim_{\nu \to \infty} \parens[\Big]{1 - \frac \lambda \nu
-                                    + \frac \lambda \nu \eta}^\nu \\
-    &&  &= \lim_{\nu \to \infty} \parens[\Big]
-        {1 + \frac{\lambda(\eta - 1)}\nu}^\nu \\
-    &&  &= e^{\lambda(\eta - 1)} = e^{-\lambda}e^{\lambda \eta}
-        \quad \text{see section \ref{sec_e}} \\
-    &&  &= e^{-\lambda} \sum_{k = 0}^\infty \frac{(\lambda \eta)^k}{k!} \\
-    &&  &= \sum_{k = 0}^\infty \frac{\lambda ^k e^{-\lambda}}{k!} \eta^k \\
-    \intertext{
-    So clearly the coefficient of the term in \(\eta^k\) (ie \(\Prob(X = k)\))
-    is \(\dfrac{\lambda^k e^{-\lambda}}{k!}\). Also,}
-    &\implies{}& G_X'(\eta) &= \lambda e^{\lambda(\eta - 1)} \\
-    && G_X'(1) &= \lambda \\
-    &\implies{}& G_X''(\eta) &= \lambda^2 e^{\lambda(\eta - 1)} \\
-    && G_X''(1) &= \lambda^2 \\
-    && \Var(X) &= G_X''(1) + G_X'(1) - (G_X''(1))^2
-        = \lambda^2 + \lambda - \lambda^2 = \lambda \qedhere
-\end{alignat*}
+ If we let \(X \sim \Poisson(\lambda)\), and \(Y \sim \Binomial(\nu, \pi)\),
+ we can take \(X\) to be the limit of Y if we set \(\Expect(Y) = \lambda\)
+ as \(\nu \to \infty\). This means particularly that we can use
+ \begin{alignat*}2
+  && \Expect(X) = \nu \pi &= \lambda \\
+  &\implies{}& \pi &= \frac \lambda \nu
+ \end{alignat*}
+ From Lemma \ref{lem_binom_pgf} we know the PGF of \(Y\):
+ \begin{alignat*}2
+  && G_Y(\eta) &= (1 - \pi + \pi \eta)^\nu \\
+  &&  &= \parens[\Big]{1 - \frac \lambda \nu + \frac \lambda \nu \eta}^\nu \\
+  &\implies{}& G_X(\eta) = \lim_{\nu \to \infty}G_Y(\eta)
+      &= \lim_{\nu \to \infty} \parens[\Big]{1 - \frac \lambda \nu
+                                  + \frac \lambda \nu \eta}^\nu \\
+  &&  &= \lim_{\nu \to \infty} \parens[\Big]
+      {1 + \frac{\lambda(\eta - 1)}\nu}^\nu \\
+  &&  &= e^{\lambda(\eta - 1)} = e^{-\lambda}e^{\lambda \eta}
+      \quad \text{see section \ref{sec_e}} \\
+  &&  &= e^{-\lambda} \sum_{k = 0}^\infty \frac{(\lambda \eta)^k}{k!} \\
+  &&  &= \sum_{k = 0}^\infty \frac{\lambda ^k e^{-\lambda}}{k!} \eta^k \\
+  \intertext{
+  So clearly the coefficient of the term in \(\eta^k\) (ie \(\Prob(X = k)\))
+  is \(\dfrac{\lambda^k e^{-\lambda}}{k!}\). Also,}
+  &\implies{}& G_X'(\eta) &= \lambda e^{\lambda(\eta - 1)} \\
+  && G_X'(1) &= \lambda \\
+  &\implies{}& G_X''(\eta) &= \lambda^2 e^{\lambda(\eta - 1)} \\
+  && G_X''(1) &= \lambda^2 \\
+  && \Var(X) &= G_X''(1) + G_X'(1) - (G_X''(1))^2
+      = \lambda^2 + \lambda - \lambda^2 = \lambda \qedhere
+ \end{alignat*}
 \end{proof}
 
 \subsection{Continuous Random Variables}
@@ -254,8 +254,8 @@ From Lemma \ref{lem_binom_pgf} we know the PGF of \(Y\):
 
 The PDF of \(X \sim \Normal(\mu, \sigma^2)\) is given by
 \begin{equation*}
-f_X(x) = \frac 1{\sqrt{2\pi\sigma^2}} \cdot
-    e^{\frac{(x - \mu)^2}{2\sigma^2}}
+ f_X(x) = \frac 1{\sqrt{2\pi\sigma^2}} \cdot
+     e^{\frac{(x - \mu)^2}{2\sigma^2}}
 \end{equation*}
 
 \subsubsection{Exponential Distribution}
