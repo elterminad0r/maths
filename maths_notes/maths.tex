@@ -1,3 +1,9 @@
+% Compiling with
+% latexmk -halt-on-error -shell-escape -synctex=1 -pdf maths.tex
+% (Recommend using a latexmkrc file so as just to run latexmk -pvc, for example)
+% Probably you can achieve the same with an inordinate number of invocations of
+% pdflatex -halt-on-error -shell-escape -synctex=1 maths.tex
+
 \RequirePackage{silence}
 \WarningFilter{remreset}{The remreset package}
 
