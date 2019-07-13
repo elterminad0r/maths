@@ -514,26 +514,30 @@ Now,
 But \(x > 0\) and therefore \(\frac 42 = x = 2\).
 \end{proof}
 
-\scalebox{1.5}{
-\begin{equation*}
-\left\{ \begin{array}{*5c}
-\underbrace{\dv<\text{\textcolor{Orange4} \Cat}>{t}}_{\text{cat interest}}
- &=& \underbrace{
-  \vphantom{\dv<\text{\textcolor{Orange4} \Cat}>{t}}
-  \pi \text{\textcolor{Blue4} \PencilLeftDown}}_{
-    \text{productivity term}}
- &-& \underbrace{
-  \vphantom{\dv<\text{\textcolor{Orange4} \Cat}>{t}}
-  \mu \text{\textcolor{Orange4} \Cat}}_{
-  \text{mew term}} \\[6ex]
-\underbrace{\dv<\text{\textcolor{Blue4} \PencilLeftDown}>{t}}_{
- \text{productivity}}
- &=& \underbrace{
-  \vphantom{\dv<\text{\textcolor{Blue4} \PencilLeftDown}>{t}}
-  -\kappa \text{\textcolor{Orange4} \Cat}}_{
-    \text{cat term}}
- &+& \underbrace{
-  \vphantom{\dv<\text{\textcolor{Blue4} \PencilLeftDown}>{t}}
-  \int_C \vec F \cdot \diff \vec s}_{\text{work term}}
-\end{array} \right.
-\end{equation*}}
+% Some right proper weird stuff with scalebox
+% https://tex.stackexchange.com/questions/164040/scalebox-doesnt-compile
+\scalebox{1.5}{\parbox{\linewidth}{%
+ \begin{equation}
+  \left\{ \begin{array}{*5c}
+  \underbrace{\dv<\text{\textcolor{Orange4} \Cat}>{t}}_{\text{cat interest}}
+   &=& \underbrace{
+    \vphantom{\dv<\text{\textcolor{Orange4} \Cat}>{t}}
+    \pi \text{\textcolor{Blue4} \PencilLeftDown}}_{
+      \text{productivity term}}
+   &-& \underbrace{
+    \vphantom{\dv<\text{\textcolor{Orange4} \Cat}>{t}}
+    \mu \text{\textcolor{Orange4} \Cat}}_{
+    \text{mew term}} \\[6ex]
+  \underbrace{\dv<\text{\textcolor{Blue4} \PencilLeftDown}>{t}}_{
+   \text{productivity}}
+   &=& \underbrace{
+    \vphantom{\dv<\text{\textcolor{Blue4} \PencilLeftDown}>{t}}
+    -\kappa \text{\textcolor{Orange4} \Cat}}_{
+      \text{cat term}}
+   &+& \underbrace{
+    \vphantom{\dv<\text{\textcolor{Blue4} \PencilLeftDown}>{t}}
+    \int_C \vec F \cdot \diff \vec s}_{\text{work term}}
+  \end{array} \right.
+ \end{equation}
+}}
+

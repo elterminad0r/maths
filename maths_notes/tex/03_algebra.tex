@@ -216,9 +216,261 @@ into a sum of smaller rational functions.
 
 \subsection{de Moivre's Theorem}
 
-\begin{equation}
-(\cos \theta + i \sin \theta)^n \equiv \cos n\theta + i \sin n\theta
-\end{equation}
+\begin{theorem}[de Moivre's Theorem]
+ \begin{equation*}
+  (\cos \theta + i \sin \theta)^n \equiv \cos n\theta + i \sin n\theta
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ This can be proven for the integers by induction. Let \(P(n)\) denote de
+ Moivre's theorem for \(\Forall n \in \Integers_0^+\).
+ \begin{enumerate}[I.]
+  \item \label{basec_thm_demoivre} Consider \(P(0)\):
+        \begin{equation*}
+         (\cos \theta + i \sin \theta)^0 \equiv 1 \equiv \cos 0 + i \sin 0
+        \end{equation*}
+  \item \label{induct_thm_demoivre}Now suppose \(P(n)\) is true and consider
+        \(P(n + 1)\):
+        \begin{align*}
+         (\cos \theta + i \sin \theta)^{n + 1} &\equiv
+          (\cos \theta + i \sin \theta)(\cos \theta + i \sin \theta)^n \\
+          &\equiv (\cos \theta + i \sin \theta)
+                  (\cos n\theta + i \sin n\theta) \impliedby P(n) \\
+          &\equiv \cos \theta \cos n\theta - \sin \theta \sin n\theta
+                + i(\cos \theta \sin n\theta + \sin \theta \cos n\theta) \\
+          &\equiv \cos(\theta + n\theta) + i \sin(\theta + n\theta) \\
+          &\equiv \cos (n + 1)\theta + i \sin (n + 1)\theta
+        \end{align*}
+        So \(P(n + 1)\) is true if \(P(n)\) is true.
+  \item By the principle of mathematical induction, \ref{basec_thm_demoivre} and
+        \ref{induct_thm_demoivre} imply that \(P(n)\) is true for
+        \(\Forall n \in \Integers_0^+\).
+ \end{enumerate}
+\end{proof}
+
+\subsection{Euler's Formula}
+
+\begin{theorem}[Euler's Formula]
+ \begin{equation*}
+  e^{i\theta} \equiv \cos \theta + i \sin \theta
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ The standard, though fairly non-intuitive proof of this fact comes from a
+ consideration of power series. Using the Maclaurin series of \(e^x\), we get
+ \begin{alignat*}2
+  e^{i\theta} &= \sum_{r = 0}^\infty \frac{(i\theta)^r}{r!}
+            &{}={}& \frac{(i\theta)^0}{0!} + \frac{(i\theta)^1}{1!}
+               + \frac{(i\theta)^2}{2!} + \frac{(i\theta)^3}{3!} + \dotsb \\
+              &= \sum_{r = 0}^\infty \frac{(i\theta)^{2r}}{(2r)!}
+               + \sum_{r = 0}^\infty \frac{(i\theta)^{2r + 1}}{(2r + 1)!}
+            &{}={}& \parens[\Bigg]{
+                  \frac{(i\theta)^0}{0!} + \frac{(i\theta)^2}{2!} + \dotsb}
+               + \parens[\Bigg]{
+                  \frac{(i\theta)^1}{1!} + \frac{(i\theta)^3}{3!} + \dotsb} \\
+              &= \sum_{r = 0}^\infty \frac{(-1)^r\theta^{2r}}{(2r)!}
+               + i\sum_{r = 0}^\infty \frac{(-1)^r\theta^{2r + 1}}{(2r + 1)!}
+            &{}={}& \parens[\Bigg]{
+                  1 - \frac{\theta^2}{2!}
+                + \frac{\theta^4}{4!} - \dotsb}
+               + i\parens[\Bigg]{
+                  \theta - \frac{\theta^3}{3!}
+                + \frac{\theta^5}{5!} - \dotsb} \\
+              &= \cos \theta + i \sin \theta
+ \end{alignat*}
+ Here the reordering of the series \emph{is} justified as each series is
+ absolutely convergent. % TODO
+\end{proof}
+\begin{proof}
+ A way I find more intuitive to understand is by considering the function
+ \(e^x\) as the unique solution to the differential equation
+ \begin{equation*}
+  \dv<y>{x} = y
+ \end{equation*}
+ with \(y(0) = 1\). Using the chain rule, it can be seen that
+ \(f(\theta) = e^{i\theta}\) must satisfy
+ \begin{equation*}
+  f'(\theta) = if(\theta)
+ \end{equation*}
+ % TODO expansion and diagrams
+ This means that the rate at which \(f(\theta)\) is changing is \(f(\theta)\)
+ multiplied by \(i\). In the complex plane, multiplication by \(i\) corresponds
+ to rotation by \(\SI{90}{\degree}\). Thinking of the derivative of \(f\) as the
+ velocity of the point described in the plane by \(f(t)\), we see that its
+ tangential velocity is always perpendicular to its position vector with respect
+ to the origin. Furthermore, by differentiating again we can show that
+ \(f''(\theta) = -f(\theta)\), ie its acceleration is always centripetal. This,
+ to me, explains why \(f(\theta)\) should be a circle. I first encountered this
+ explanation in \cite{3B1BEToTheIPi}.
+
+ A more rigorous (wordy) procedure from here might be as follows. If we suppose
+ that \(f\) is complex-valued - ie for any \(\theta\),
+ \(f(\theta) \in \Complex\), then we can decompose \(f(\theta)\) into its real
+ and imaginary parts. This assumption will be justified by the fact that we
+ later get a solution, but it might also be justified by considering again the
+ Maclaurin series of \(e^{i\theta}\), noting that it is a sum of complex and
+ real numbers, and so must be complex valued. A less rigorous approach is to
+ note that \(f(0) = 1 \in \Reals\), and \(f'(0) = i \in \Complex\). Then the
+ first ``step'' the function takes is a complex-valued one, but then so must be
+ any subsequent step, as the commmplex numbers are closed under multiplication.
+  Anyway,
+ \begin{equation*}
+  f(\theta) = g(\theta) + i h(\theta)
+   \quad \text{where} \quad
+    g(\theta) = \Re(f(\theta)),\quad h(\theta) = \Im(f(\theta))
+ \end{equation*}
+ But
+ \begin{alignat*}2
+  && f'(\theta) &= if(\theta) = -h(\theta) + ig(\theta)
+                 = g'(\theta) + ih'(\theta) \\
+  &\implies{}&
+   % TODO: centre asterisks
+      g'(\theta) &= -h(\theta) \tag{\(\ast\)} \label{eqn_thm_euler_gh} \\
+  &&  h'(\theta) &= -g(\theta) \tag{\(\ast\ast\)} \label{eqn_thm_euler_hg}
+ \end{alignat*}
+    By differentiating \ref{eqn_thm_euler_gh}, and then substituting in
+    \ref{eqn_thm_euler_hg}, we get
+    \begin{equation*}
+     g''(\theta) = -h'(\theta) = -g(\theta)
+    \end{equation*}
+    Symmetrically,
+    \begin{equation*}
+     h''(\theta) = -g'(\theta) = -h(\theta)
+    \end{equation*}
+    Noting that \(f(0) = 1\), we have the initial conditions
+    \begin{equation*}
+     g(0) = 1, \quad h(0) = 0
+    \end{equation*}
+    This is sufficient to determine that \(g(\theta) = \cos \theta\), and
+    subsequently \(h(\theta) = -\dv{\theta}(\cos \theta) = \sin \theta\).
+\end{proof}
+\begin{proof}[Proof from the exponential limit definition]
+ We can use the definition
+ \begin{equation*}
+  e^x = \lim_{n \to \infty} \parens[\Big]{1 + \frac xn}^n
+ \end{equation*}
+ to form a geometric construction in the complex plane of \(e^{i \theta}\).
+
+ Using some properties of complex numbers written in polar form under
+ exponentiation, we can deduce the modulus and argument of the result in order
+ to deduce its value.
+
+ Consider first the argument.
+ \begin{align*}
+  \arg e^{i \theta} &= \arg \lim_{n \to \infty} \parens[\Big]
+                             {1 + \frac{i \theta}n}^n \\
+                    &= \lim_{n \to \infty} \arg \parens[\Big]
+                             {1 + \frac{i \theta}n}^n \\
+                    &= \lim_{n \to \infty} n\parens[\Big]{\arg \parens[\Big]
+                             {1 + \frac{i \theta}n}} \\
+                    &= \lim_{n \to \infty} n \arctan \frac \theta n \\
+                    &= \lim_{n \to \infty} n \cdot \frac \theta n \\
+                    &= \lim_{n \to \infty} \theta \\
+                    &= \theta
+ \end{align*}
+ Consider now the modulus.
+ \begin{align*}
+  \abs{e^{i \theta}}^2 &= \abs[\Big]{\lim_{n \to \infty} \parens[\Big]
+                            {1 + \frac{i \theta}n}^n}^2 \\
+                       &= \lim_{n \to \infty} \abs[\Big]{\parens[\Big]
+                            {1 + \frac{i \theta}n}^n}^2 \\
+                       &= \lim_{n \to \infty} \abs[\Big]{\parens[\Big]
+                            {1 + \frac{i \theta}n}}^{2n} \\
+                       &= \lim_{n \to \infty} \parens[\Big]
+                          {1 + \parens[\Big]{\frac \theta n}^2}^n \\
+                       &= \lim_{n \to \infty} \parens[\Big]
+                          {\frac{n^2 + \theta^2}{n^2}}^n \\
+                       &= \lim_{n \to \infty} \parens[\Big]
+                          {\frac
+                           {\sum_{r = 0}^n \binom nr n^{2(n - r)} \theta^{2r}}
+                           {n^{2n}}} \\
+                       &= \lim_{n \to \infty} \parens[\Big]
+                          {\frac
+                           {n^{2n} +
+                            \sum_{r = 1}^n \binom nr n^{2(n - r)} \theta^{2r}}
+                           {n^{2n}}} \\
+                       &= \lim_{n \to \infty} \parens[\Big]
+                          {1 + \frac
+                           {\sum_{r = 1}^n \binom nr n^{2(n - r)} \theta^{2r}}
+                           {n^{2n}}} \\
+                       &= 1 \quad \text{(see Lemma \ref{lem_nn_exp_limit})}
+ \end{align*}
+ So indeed, \(e^{i \theta} = \cos \theta + i \sin \theta\).
+ % TODO: diagram
+\end{proof}
+\begin{proof}[Proof by polar coordinates]
+ I found this proof first in \cite{WikiEulersFormula}.
+
+ If we suppose that \(e^{i \theta} \in \Complex\), then it can be expressed in
+ polar form:
+ \begin{equation*}
+  e^{i \theta} = \rho (\cos \phi + i \sin \phi)
+ \end{equation*}
+ Where \(\rho\) and \(\phi\) are (currently) undetermined functions of
+ \(\theta\). We differentiate on each side with respect to \(\theta\):
+ \begin{equation*}
+  i e^{i \theta} = \dv<\rho>{\theta} (\cos \phi + i \sin \phi)
+                 + \dv<\phi>{\theta} \rho (-\sin \phi + i \cos \phi)
+ \end{equation*}
+ We can now use make use of the substitution
+ \(e^{i \theta} = \rho (\cos \phi + i \sin \phi)\)
+ \begin{alignat*}4
+  && i \rho (\cos \phi + i \sin \phi) &=
+                   \dv<\rho>{\theta} (\cos \phi + i \sin \phi)
+                 + \dv<\phi>{\theta} \rho (-\sin \phi + i \cos \phi) \\
+  &\implies{}& i \rho \cos \phi - \rho \sin \phi &=
+                   \dv<\rho>{\theta} (\cos \phi + i \sin \phi)
+                 + \dv<\phi>{\theta} \rho (-\sin \phi + i \cos \phi)
+ \end{alignat*}
+ Equating real and imaginary parts, we get
+ \begin{alignat*}2
+  && -\rho \sin \phi &= \dv<\rho>{\theta} \cos \phi
+                      - \rho \dv<\phi>{\theta} \sin \phi \\
+  && \rho \cos \phi &= \dv<\rho>{\theta} \sin \phi
+                     + \rho \dv<\phi>{\theta} \cos \phi \\
+  &\implies{}& \rho \sin^2 \phi \parens[\Big]{\dv<\phi>{\theta} - 1} &=
+               \rho \cos^2 \phi \parens[\Big]{1 - \dv<\phi>{\theta}} \\
+  && \cos \phi \parens[\Big]{\dv<\rho>{\theta} \cos \phi + \rho \sin \phi} &=
+     \sin \phi \parens[\Big]{\rho \cos \phi - \dv<\rho>{\theta} \sin \phi} \\
+  &\implies{}& \rho \parens[\Big]{\dv<\phi>{\theta} - 1} &= 0
+   % TODO: centre asterisks
+   \tag{\(\ast\)} \label{eq_euler_polar_1} \\
+  && \dv<\rho>{\theta} &= 0
+   \tag{\(\ast\ast\)} \label{eq_euler_polar_2}
+ \end{alignat*}
+ From \ref{eq_euler_polar_1}, we determine that \(\dv<\phi>{\theta} = 1\), as
+ there exist values of \(\theta\) for which \(\rho \ne 0\)
+ (eg \(\theta = 0 \implies \rho = \abs{e^{i \cdot 0}} = 1\)). So \(\phi\) is a
+ function of the form \(\theta + C\).
+ \(\abs{e^{i \cdot 0}} = 1\). Noting that \(\arg e^{i \cdot 0} = 0\), it is
+ clear that \(\phi = \theta\).
+
+ Even more immediately, from \ref{eq_euler_polar_2} we see that \(\rho\) is a
+ constant function of \(\theta\). As we showed earlier, for \(\theta = 0\)
+ \(\rho = 1\) so \(\rho = 1\) for all \(\theta\), and therefore
+ \begin{equation*}
+  e^{i \theta} = 1 (\cos \theta + i \sin \theta) \qedhere
+ \end{equation*}
+\end{proof}
+
+\begin{lemma}[Limit of \(n^{an} n^{-bn}\) as \(n \to \infty\), where \(a < b\)]
+ \label{lem_nn_exp_limit}
+ This corresponds to
+ \begin{align*}
+  \lim_{n \to \infty} n^{n(a - b)}
+   &= \lim_{n \to \infty} e^{(a - b)n \ln n} \\
+   &= 0
+ \end{align*}
+ because \(a < b \implies a - b < 0 \implies e^{a - b} < 1\), and
+ \(n \ln n \to \infty\) as \(n \to \infty\).
+\end{lemma}
+
+\begin{corollary}[Euler's Identity]
+ By simply taking \(\theta = \pi\), we get the famous ``Euler's identity'':
+ \begin{equation*}
+  e^{i \pi} = \cos \pi + i \sin \pi = -1
+ \end{equation*}
+\end{corollary}
 
 \subsection[The \texorpdfstring{\(\Gamma\)}{Gamma} function]
            {The \boldmath\(\Gamma\) function}
