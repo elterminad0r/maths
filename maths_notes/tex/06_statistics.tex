@@ -87,13 +87,14 @@ multiplied by some constant coefficient:
  && &= \Expect\parens[\Big]{\prod_{r = 1}^n \eta^{\alpha_r X_r}}
  &&= \Expect(\eta^{\alpha_1 X_1} \eta^{\alpha_2 X_2} \dotsm
            \eta^{\alpha_N X_n}) \\
- && &= \prod_{r = 1}^\infty\Expect(\eta^{\alpha_r X_r}) \\
+ && &= \prod_{r = 1}^\infty\Expect(\eta^{\alpha_r X_r})
+  \mathrlap{
+   {}\impliedby X_1 \independent X_2 \independent
+                          \dotsb \independent X_n} \\
  % a bit of witchcraft so that the width of this cell is ignored
  && &= \mathrlap{
-     \Expect(\eta^{\alpha_n X_n}) \Expect(\eta^{\alpha_2 X_2}) \dotsm
-     \Expect(\eta^{\alpha_n X_n})
-         \impliedby X_1 \independent X_2 \independent
-                          \dotsb \independent X_n} \\
+     \Expect(\eta^{\alpha_1 X_1}) \Expect(\eta^{\alpha_2 X_2}) \dotsm
+     \Expect(\eta^{\alpha_n X_n})} \\
  && &= \prod_{r = 1}^\infty G_{X_r}(\eta^{\alpha_r})
  &&= G_{X_1}(\eta^{\alpha_1}) G_{X_2}(\eta^{\alpha_2}) \dotsm
      G_{X_n}(\eta^{\alpha_n})
@@ -141,10 +142,11 @@ In this case, ``large'' can be taken to mean more than about 30-100.
   &&           &= \sum_{k = 0}^\nu
                   \binom \nu k (1 - \pi)^{\nu - k} \pi^k \eta^k
                       \quad \text{by the Binomial Theorem} \\
-  \intertext{
+ \end{alignat*}
   So clearly, where \(k \in \set{0, 1, \dotsc, \nu}\), the coefficient in
   \(\eta^k\) (which is \(\Prob(X = k)\)) is
-  \(\binom \nu k (1 - \pi)^{\nu - k} \pi^k\).}
+  \(\binom \nu k (1 - \pi)^{\nu - k} \pi^k\).
+  \begin{alignat*}2
   &\implies{}& G_X'(\eta) &= \nu \pi (1 - \pi + \pi \eta)^{\nu - 1} \\
   && G_X'(1) &= \nu \pi (1 - pi + pi)^{\nu - 1} = \nu \pi \\
   &\implies{}& G_X''(\eta)
@@ -230,9 +232,10 @@ or per unit time, etc.
       \quad \text{see section \ref{sec_e}} \\
   &&  &= e^{-\lambda} \sum_{k = 0}^\infty \frac{(\lambda \eta)^k}{k!} \\
   &&  &= \sum_{k = 0}^\infty \frac{\lambda ^k e^{-\lambda}}{k!} \eta^k \\
-  \intertext{
+ \end{alignat*}
   So clearly the coefficient of the term in \(\eta^k\) (ie \(\Prob(X = k)\))
-  is \(\dfrac{\lambda^k e^{-\lambda}}{k!}\). Also,}
+  is \(\dfrac{\lambda^k e^{-\lambda}}{k!}\). Also,
+  \begin{alignat*}2
   &\implies{}& G_X'(\eta) &= \lambda e^{\lambda(\eta - 1)} \\
   && G_X'(1) &= \lambda \\
   &\implies{}& G_X''(\eta) &= \lambda^2 e^{\lambda(\eta - 1)} \\

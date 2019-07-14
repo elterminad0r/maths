@@ -123,11 +123,17 @@ denoted \(r\). The first term is denoted \(a\), such that
  \(F_1 = F_2 = 1\) and \(F_n = F_{n - 1} + F_{n - 2}\).  \(F_n\) can be given
  by the closed form
  \begin{equation*}
-  F_n = \frac{\varphi^n - \psi^n}{\sqrt 5}
+  F_n = \frac{\varphi^n - (-\varphi^{-n})}{\sqrt 5}
   \quad \text{where}\quad \varphi = \frac{1 + \sqrt 5} 2
-  \quad \text{and}\quad \psi = \frac{1 - \sqrt 5} 2
  \end{equation*}
 \end{theorem}
+Some people like to write
+\begin{equation*}
+ (-\varphi)^{-1} = \psi = \frac{1 - \sqrt 5}2
+\end{equation*}
+here. This can be nicer because then \(\varphi\) and \(\psi\) are the two
+roots of \(x^2 - x - 1 = 0\). However I prefer to use \((-\varphi)^{-1}\) as
+it makes some algebraic manipulations more immediately obvious.
 \begin{proof}
  Consider the power series
  \begin{equation*}
@@ -166,7 +172,7 @@ denoted \(r\). The first term is denoted \(a\), such that
   &\implies{}& A + B &= 0 \\
   && -\psi A - \varphi B &= 1 \\
   &\implies{}& B &= -A  \\
-  && A(\psi - \varphi) &= 1 \\
+  && A(\varphi - \psi) &= 1 \\
   &\implies{}& A(\sqrt 5) &= 1 \\
   &\implies{}& A &= \frac 1{\sqrt 5}, B = -\frac 1{\sqrt 5}
  \end{alignat*}
@@ -429,10 +435,10 @@ denoted \(r\). The first term is denoted \(a\), such that
 Combined with Exponentation by Squaring (\ref{sec_exp_by_squaring}), and some
 simple surd arithmetic, this theorem provides a fairly fast way to calculate
 \(F_n\), as compared to utterly na\"ive recursion, or somewhat faster iteration
-or memoized recursion. However it is often in fact faster to simply use the
-matrix form given in the second proof, to calculate \(\vec f_n\) as \(\mat
-M^n\vec f_0\), again using exponentiation by squaring. This requires fewer
-arithmetic operations.
+or memoized/linearised recursion. However it is often in fact faster to
+simply use the matrix form given in the second proof, to calculate
+\(\vec f_n\) as \(\mat M^n\vec f_0\), again using exponentiation by squaring.
+This requires fewer arithmetic operations.
 
 \subsection{Taylor Series}
 

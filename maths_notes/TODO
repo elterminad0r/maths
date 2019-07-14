@@ -1,9 +1,4 @@
-e^{i \theta} intuition
-
-product rule from
-first principles (add/subtract)
-chain rule (exponential)
-chain rule (complete square)
+https://projecteuclid.org/download/pdf_1/euclid.bams/1183510788
 
 roots of random polynomials lie on unit circle
 
@@ -16,8 +11,6 @@ step 2013 question 6
 e^pi or pi^e larger?
 
 stirling's approximation
-
-write macro with xparse to do integrals etc
 
 integrals:
 P(sin(x), cos(x))
