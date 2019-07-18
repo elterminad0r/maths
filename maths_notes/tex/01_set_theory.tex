@@ -94,14 +94,16 @@ have
 which is to say
 \begin{align*}
  f(n) &=
-  \frac 12 \begin{cases}
+  \frac 12 \left\{
+  \begin{array}{cl}
    n & \text{\(n\) is even} \\
    1 - n & \text{\(n\) is odd}
-  \end{cases} \\
+  \end{array}
+  \right. \\
  f^{-1}(n) &=
   \begin{cases}
-   2n & n \ge 1 \\
-   -2n + 1 & n \le 0
+   \hfil 2n & n \ge 1 \\
+   \hfil -2n + 1 & n \le 0
   \end{cases}
 \end{align*}
 Similarly, the cardinality of for example the odd numbers is the same as that of
@@ -147,26 +149,26 @@ G\"odels incompleteness theorems.
 \begin{proof}
  Suppose to the contrary that for some set \(S\) there does exist some
  surjective function \(f\) from \(S\) to \(\PowerSet(s)\). Consider the set
- \(R = \set{x \in S \mid x \not\in f(x)}\), that is all elements of \(S\) that
+ \(R = \set{x \in S \mid x \notin f(x)}\), that is all elements of \(S\) that
  are not in their own image under \(f\). As \(f\) is surjective onto
  \(\PowerSet(S)\) and \(R\) must be a subset of \(S\), we can now consider the
  preimage of \(R\) under \(f\) - there must exist some \(\zeta\) such that
- \(f(\zeta) = R\). But then \(\zeta \in R \iff \zeta \not\in R\), due to the
+ \(f(\zeta) = R\). But then \(\zeta \in R \iff \zeta \notin R\), due to the
  definition of \(R\). This is a contradiction.
 
  % TODO: is this the law of excluded middle?
  Elaborating, we first of all know that either \(\zeta \in R\) or
- \(\zeta \not\in R\), as they are logically opposite statements that must be
+ \(\zeta \notin R\), as they are logically opposite statements that must be
  either true or false.
 
  If \(\zeta \in R\), then by the definition of \(R\),
- \(\zeta \not\in R\) because \(R = f(\zeta)\), so
+ \(\zeta \notin R\) because \(R = f(\zeta)\), so
  \(\zeta \in R \iff \zeta \in f(\zeta)\).
 
- If on the other hand, \(\zeta \not\in R\), then \(\zeta \in R\) by the
+ If on the other hand, \(\zeta \notin R\), then \(\zeta \in R\) by the
  construction of R, following the same argument. So
- \(\zeta \in R \implies \zeta \not\in R\) and
- \(\zeta \not\in R \implies \zeta \in R\).
+ \(\zeta \in R \implies \zeta \notin R\) and
+ \(\zeta \notin R \implies \zeta \in R\).
 \end{proof}
 
 This theorem can be leveraged to give a nice proof that the reals have strictly
