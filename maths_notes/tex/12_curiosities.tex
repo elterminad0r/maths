@@ -1,0 +1,29 @@
+\section{Curiosities}
+
+\subsection[\texorpdfstring{\(e^\pi\) vs \(\pi^e\)}{e to the pi vs pi to the e}]
+           {\boldmath\(e^\pi\) vs \(\pi^e\)}
+
+This is a classic problem. Is \(e^\pi\) or \(\pi^e\) greater? A nice way to
+tackle it is by noticing that you can rewrite it as an equivalent inequality, by
+raising to the power \(1 / (\pi e)\), as both sides are positive.
+\begin{alignat*}2
+ && e^\pi &> \pi^e \\
+ &\iff{}& e^{\frac 1e} &> \pi^{\frac 1\pi}
+\end{alignat*}
+This is easier to tackle, as by separating the two constants to either side like
+this, we have basically turned the question into one about the shape of the
+graph \(y = x^{\frac 1x}\). Note that
+\begin{equation*}
+ \dv<y>{x} = \parens[\Big]{\frac 1{x^2} - \frac 1{x^2}\ln x} x^{\frac 1x}
+           = \frac 1{x^2} (1 - \ln x) x^{\frac 1x}
+\end{equation*}
+so in fact, for \(x < e\), \(\dv<y>{x} > 0\), and for
+\(x > e\), \(\dv<y>{x} < 0\), so the graph has a local maximum at \(x = 1\) and
+is decreasing from there on out. We conclude that
+\begin{equation*}
+ e^{\frac 1e} < \pi^{\frac 1\pi}
+\end{equation*}
+and therefore,
+\begin{equation*}
+ e^\pi > \pi^e
+\end{equation*}

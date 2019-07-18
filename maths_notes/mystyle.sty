@@ -11,6 +11,9 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 
+% this is basically good for hyphenation if you're not sure about the locale
+\RequirePackage[UKenglish]{babel}
+
 % change geometry so more of page is used
 \RequirePackage[
  margin=1in,
@@ -96,9 +99,6 @@
 
 % graphics, like eps files and stuff (supersedes graphics)
 \RequirePackage{graphicx}
-
-% lorem ipsum generator
-\RequirePackage{lipsum}
 
 % listings of code
 \RequirePackage{minted}
