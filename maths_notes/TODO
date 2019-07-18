@@ -8,8 +8,6 @@ integral (1 / x ln x)
 
 step 2013 question 6
 
-e^pi or pi^e larger?
-
 stirling's approximation
 
 integrals:
@@ -134,7 +132,6 @@ integral
 - integral of interesting functions (see blackpenredpen)
 sec x, x^x, sqrt(tan x)
 - mathematical fields, rings, groups
-- frullani theorem
 - functions: continuity, differentiability, monoticity, elementaryness
 - central limit theorem, sum of normally distributed random variables
 - generating functions, moment generating functions (proof)

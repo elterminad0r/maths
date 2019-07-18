@@ -70,7 +70,8 @@
 Cardinality is a way to think about the ``size'' of sets. Cardinality is really
 a kind of equivalence relation on the class of sets, where two sets have the
 same cardinality iff there exists a bijection between them - ie there is a way
-to produce a one-to-one mapping between the two sets.
+to produce a one-to-one mapping between the two sets. If two sets have the same
+cardinality they are said to be equipotent.
 
 Any two finite sets obviously have the same cardinality iff they have the same
 number of elements. The cardinality of a finite set is usually just given as the
@@ -80,8 +81,137 @@ number of elements it has. For example, \(\abs{\emptyset} = 0\) and
 We also denote the cardinality of the natural numbers
 \(\abs{\Naturals} = \aleph_0\).
 
-It can be shown that there exists a bijection between the natural numbers and
-the rationals,
+It is fairly straightforward to show, for example, that we also have
+\(\abs{\Integers} = \aleph_0\), with for example the function \(f\) such that we
+have
+\begin{equation*}
+ \begin{array}{c|r|r|r|r|r|r|r|r|r|r}
+  n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & \cdots \\
+  \hline
+  f(n) & 0 & 1 & -1 & 2 & -2 & 3 & -3 & 4 & -4 & \cdots \\
+ \end{array}
+\end{equation*}
+which is to say
+\begin{align*}
+ f(n) &=
+  \frac 12 \begin{cases}
+   n & \text{\(n\) is even} \\
+   1 - n & \text{\(n\) is odd}
+  \end{cases} \\
+ f^{-1}(n) &=
+  \begin{cases}
+   2n & n \ge 1 \\
+   -2n + 1 & n \le 0
+  \end{cases}
+\end{align*}
+Similarly, the cardinality of for example the odd numbers is the same as that of
+the naturals.
+
+It can also be shown that there exists a bijection between the natural numbers
+and the rationals. Explicitly, you can enumerate the rationals in a large grid,
+and then simply traverse the grid by spiralling outwards. The bijection here is
+that \(n \in \Naturals\) corresponds the \(n\)th rational you reach.
+
+% TODO: pretty pictures
+Another approach is to leverage the Cantor-Schr\"oder-Bernstein Theorem, which
+states that there exists a bijection between the sets \(A\) and \(B\) iff there
+exists an injection from \(A\) to \(B\) and there exists an injection from \(B\)
+to \(A\).
+
+% TODO how are you actually supposed to write this with like fancy arrows
+For example, we can take
+\begin{equation*}
+ f(n) = \frac n1
+\end{equation*}
+and
+\begin{equation*}
+ g\parens[\Big]{\frac pq} = 2^p 3^q
+\end{equation*}
+which is guaranteed by the Fundamental Theorem of Arithmetic to be injective for
+distinct \(p, q\).
+
+The nice thing about this approach is that it is quite neat, and it easily
+generalises to sets of objects that can be identified by finite sequences of
+natural numbers (or integers). This is (or at least resembles) a technique
+called G\"odel coding, which can be applied to statements in formal systems. See
+G\"odels incompleteness theorems.
+
+\begin{theorem}[Cantor's Theorem]
+ For any set \(S\), there will be no surjection from \(S\) to its powerset
+ \(\PowerSet(S)\), which, to be clear, is defined as
+ \begin{equation*}
+  \PowerSet(S) \defeq \set{X \mid X \subseteq S}
+ \end{equation*}
+ Clearly then there is also no bijection.
+\end{theorem}
+\begin{proof}
+ Suppose to the contrary that for some set \(S\) there does exist some
+ surjective function \(f\) from \(S\) to \(\PowerSet(s)\). Consider the set
+ \(R = \set{x \in S \mid x \not\in f(x)}\), that is all elements of \(S\) that
+ are not in their own image under \(f\). As \(f\) is surjective onto
+ \(\PowerSet(S)\) and \(R\) must be a subset of \(S\), we can now consider the
+ preimage of \(R\) under \(f\) - there must exist some \(\zeta\) such that
+ \(f(\zeta) = R\). But then \(\zeta \in R \iff \zeta \not\in R\), due to the
+ definition of \(R\). This is a contradiction.
+
+ % TODO: is this the law of excluded middle?
+ Elaborating, we first of all know that either \(\zeta \in R\) or
+ \(\zeta \not\in R\), as they are logically opposite statements that must be
+ either true or false.
+
+ If \(\zeta \in R\), then by the definition of \(R\),
+ \(\zeta \not\in R\) because \(R = f(\zeta)\), so
+ \(\zeta \in R \iff \zeta \in f(\zeta)\).
+
+ If on the other hand, \(\zeta \not\in R\), then \(\zeta \in R\) by the
+ construction of R, following the same argument. So
+ \(\zeta \in R \implies \zeta \not\in R\) and
+ \(\zeta \not\in R \implies \zeta \in R\).
+\end{proof}
+
+This theorem can be leveraged to give a nice proof that the reals have strictly
+greater cardinality than the naturals, by showing that they are equipotent with
+the powerset of the naturals.
+
+Firstly, we construct an injection \(f\) from \(\Reals\) to
+\(\PowerSet(\Rationals)\). For some real number \(x\), we define \(f(x)\) as the
+set of all rationals less than or equal to \(x\).
+\begin{equation*}
+ f(x) = \set{q \in \Rationals \mid q \le x}
+\end{equation*}
+This is the Dedekind cut corresponding to \(x\), and uniquely identifies each
+\(x\). Recalling that the rationals have the same cardinality as the natural
+numbers, clearly there must then exist an injection from \(\Reals\) to
+\(\PowerSet(\Naturals)\).
+
+Now we construct an injection \(g\) from \(\PowerSet(\Naturals)\) to \(\Reals\).
+Note \(\PowerSet(\Naturals)\) is isomorphic to the set of all infinite sequences
+of binary digits. Particularly, for some subset
+\(S \in \PowerSet(\Naturals) \iff S \subseteq \Naturals\), the \(n\)th digit of
+the binary sequence corresponding to \(S\) may be given by \(1\) if \(n \in S\),
+and \(0\) otherwise.
+
+Now for some \(S \in \PowerSet(\Naturals)\), generate the binary sequence, then
+read it back as a ternary expansion of a real number. That is to say, if the
+digits are given by \(U_i, i \in \Naturals\), then we extract the real number
+\begin{equation*}
+ x = \sum_{r \in \Naturals} \frac{U_r}{3^r}
+\end{equation*}
+This sum will always converge, as it is bounded by
+\begin{equation*}
+ x = \sum_{r \in \Naturals} \frac 1{3^r} = \frac 12
+\end{equation*}
+Furthermore, none of these sequences conflict with one another, as we have
+interpreted them in ternary, which avoids any infinite sequences of \(2\)s,
+which could be replaced by a single zero. For example, had we read them in
+binary, then the sequences \(0.011111\ldots\) and \(0.1000000\ldots\) would both
+correspond to the real number \(\frac 12\).
+
+So we have our injection, and then by the Cantor-Schr\"oder-Bernstein Theorem,
+\(\abs{\Reals} = \abs{\PowerSet(\Naturals)}\), and then by Cantor's Theorem,
+\(\abs{\Reals} > \abs{\Naturals}\).
+
+% TODO: diagonalisation argument
 
 \subsection{Functions}
 
