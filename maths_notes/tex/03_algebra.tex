@@ -5,9 +5,9 @@
 \subsection{Difference of two Squares}
 
 A difference of squares can be factorised
-\begin{equation}
+\begin{equation*}
  a^2 - b^2 \equiv (a + b)(a - b)
-\end{equation}
+\end{equation*}
 This can be verified with fairly simple
 algebra.
 
@@ -22,10 +22,10 @@ Similar results can be found in higher powers of \(a\) and \(b\):
 In general, you take out a factor of \((a - b)\) and then start with the
 term \(a^{n - 1}\), and for each subsequent term decrease the power in \(a\)
 and increase the power in \(b\):
-\begin{equation}
+\begin{equation*}
  a^n - b^n \equiv (a - b)(a^{n - 1} + a^{n - 2}b + a^{n - 3}b^2 + \dotsb +
                          ab^{n - 2} + b^{n - 1})
-\end{equation}
+\end{equation*}
 This can in fact be derived from the partial sum of a geometric progression
 (\ref{sec_seq_GP}). The sum \(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n\) is
 a geometric progression of \(n + 1\) terms with first term \(a^n\) and
@@ -63,11 +63,11 @@ a prime \(n\) are \(1\) and \(n\).
 We may derive this from the fact that any
 \(n = pq \colon p, q \in \setstyle P\),
 \(a^n - b^n\) will factorise as
-\begin{equation}
+\begin{equation*}
  a^{pq} - b^{pq} \equiv
      (a^p - b^p)(a^{p(q - 1)} + a^{p(q - 2)}b^{p(1)} + \dotsb +
                  a^{p(1)}b^{p(q - 2)} + b^{p(q - 1)}
-\end{equation}
+\end{equation*}
 
 \subsection{Quadratic formula} \label{sec_quad_formula}
 
@@ -479,9 +479,9 @@ into a sum of smaller rational functions.
 
 The ``gamma'' or \(\Gamma\) function is defined for
 \(z \in \Complex, \Re(z) > 0\) as
-\begin{equation}
+\begin{equation*}
  \Gamma(z) = \integ[0]<\infty>{x^{z - 1}e^{-x}}{x}
-\end{equation}
+\end{equation*}
 By integrating by parts, we show the following:
 \begin{align*}
  \Gamma(z + 1) &= \integ[0]<\infty>{x^z e^{-x}}{x} \\
@@ -496,9 +496,9 @@ Noting also that
        &= 1
 \end{align*}
 it can be seen from this recurrence that where \(n \in \Integers^+\),
-\begin{equation}
+\begin{equation*}
  \Gamma(n) = (n - 1)!
-\end{equation}
+\end{equation*}
 In fact, the gamma function is used as an extension of the idea of
 factorials to the real and complex numbers other than the negative integers.
 

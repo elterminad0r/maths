@@ -12,9 +12,9 @@ Integration by substitution is effectively the chain rule
  f(x) = g(h(x)) \implies f'(x) = h'(x) g'(h(x))
 \end{equation*}
 then the integral
-\begin{equation}
+\begin{equation*}
  \integ{h'(x) g'(h(x))}{x} = \integ{f'(x)}{x} = f(x) + C
-\end{equation}
+\end{equation*}
 
 \subsubsection{Trig Substitution} \label{sec_calc_trig_substitution}
 
@@ -361,20 +361,20 @@ when the curve is given in parametric form, \((x, y) = (f(t), g(t))\),
 we rewrite the integral, effectively using a substitution
 (\ref{sec_calc_substitution}) \(x = f(t)\) in order to express the integrand
 in \(t\).
-\begin{equation}
+\begin{equation*}
  \integ[x_1]<x_2>{y}{x} =
  \integ[t_1]<t_2>{y \dv<x>{t}}{t} =
  \integ[t_1]<t_2>{g(t)f'(t)}{t}
-\end{equation}
+\end{equation*}
 where \(f(t_1) = x_1\) and \(f(t_2) = x_2\).
 
 Similarly, the area between the curve and the y-axis from \(y_1\) to \(y_2\)
 is:
-\begin{equation}
+\begin{equation*}
  \integ[y_1]<y_2>{x}{y} =
  \integ[t_1]<t_2>{x \dv<y>{t}}{t} =
  \integ[t_1]<t_2>{f(t)g'(t)}{t}
-\end{equation}
+\end{equation*}
 where \(g(t_1) = y_1\) and \(g(t_2) = y_2\).
 
 \subsection{Arc Length}
