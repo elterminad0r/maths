@@ -400,7 +400,7 @@ It follows, by rearrangement of identities in Theorem
 
 \begin{theorem}[The Weierstrass substitution]
  If we let \(t = \tan \tfrac 12 \theta\), such that \(t\) is defined (ie
- \(\NExists n \in \Integers: \theta = (2n + 1)\pi\)) then we have:
+ \(\NExists n \in \Integers \colon \theta = (2n + 1)\pi\)) then we have:
  \begin{align*}
   \sin \theta &\equiv \frac{2t}{1 + t^2} \\
   \cos \theta &\equiv \frac{1 - t^2}{1 + t^2} \\
@@ -442,11 +442,12 @@ also \(\diff \theta\) become rational functions of \(t\).
 It can also be used as an alternative parametrisation of a circle: instead
 of
 \begin{equation*}
- (x, y) = (\cos\theta, \sin\theta): \theta \in \intco{0, 2\pi}
+ (x, y) = (\cos\theta, \sin\theta) \colon \theta \in \intco{0, 2\pi}
 \end{equation*}
 we can use
 \begin{equation*}
- (x, y) = \parens[\Big]{\frac{1 - t^2}{1 + t^2}, \frac{2t}{1 + t^2}}: t \in \Reals
+ (x, y) = \parens[\Big]{\frac{1 - t^2}{1 + t^2},
+                        \frac{2t}{1 + t^2}} \colon t \in \Reals
 \end{equation*}
 This is useful as it is a rational function, so for rational \(t\) it gives
 a rational point on the unit circle, which can be used, for example, to find
