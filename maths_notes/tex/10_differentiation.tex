@@ -428,10 +428,10 @@ This is perhaps a little tricky, and it is in some cases more obvious to
 just go about it piecewise:
 \begin{equation*}
  \dv{x}(\arcsec x) =
- \begin{cases}
-  \dfrac 1{x\sqrt{x^2 - 1}} & x \ge 0 \\[3ex]
-  \dfrac {-1}{x\sqrt{x^2 - 1}} & x < 0
- \end{cases}
+ \begin{dcases}
+  \frac 1{x\sqrt{x^2 - 1}} & x \ge 0 \\[3ex]
+  \frac {-1}{x\sqrt{x^2 - 1}} & x < 0
+ \end{dcases}
 \end{equation*}
 The other equivalent can be found by taking out a factor of \(\abs x^2\)
 from the square root, to cancel the absolute sign by squaring it. This can
