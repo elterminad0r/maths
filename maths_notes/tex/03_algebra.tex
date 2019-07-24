@@ -73,27 +73,48 @@ We may derive this from the fact that any
 
 There is a formula to give the roots of a general quadratic.
 \begin{theorem}[Quadratic formula]
-\begin{align*}
- ax^2 + bx + c &= 0\ \text{where}\ a \neq 0 \\
- \iff x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-\end{align*}
+ \label{thm_quad_form}
+ \begin{align*}
+  ax^2 + bx + c &= 0\ \text{where}\ a \neq 0 \\
+  \iff x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+ \end{align*}
 \end{theorem}
 \begin{proof}
-We can complete the square to solve a general quadratic equation.
-\begin{alignat*}2
- &&ax^2 + bx + c &= 0 \\
- &\iff{}& x^2 + \frac ba x + \frac ca &= 0 \\
- &\iff{}& \parens[\Big]{x + \frac b{2a}}^2
-     &= \parens[\Big]{\frac b{2a}}^2 - \frac ca
-     = \frac{b^2 - 4ac}{4a^2} \\
- &\iff{}& x + \frac b{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
-     = \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\
- &\iff{}& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \qedhere
-\end{alignat*}
+ We can complete the square to solve a general quadratic equation.
+ \begin{alignat*}2
+  &&ax^2 + bx + c &= 0 \\
+  &\iff{}& x^2 + \frac ba x + \frac ca &= 0 \\
+  &\iff{}& \parens[\Big]{x + \frac b{2a}}^2
+      &= \parens[\Big]{\frac b{2a}}^2 - \frac ca
+      = \frac{b^2 - 4ac}{4a^2} \\
+  &\iff{}& x + \frac b{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
+      = \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\
+  &\iff{}& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \qedhere
+ \end{alignat*}
 \end{proof}
+Notational note: the notation \(\bullet_0 = \bullet_1 \pm \bullet_2\) is really
+a shorthand for
+\(\bullet_0 \in \set{\bullet_1 + \bullet_2, \bullet_1 - \bullet_2}\), where
+\(\bullet_i\) are placeholders for expressions. This means it becomes fairly
+important to keep a handle on the direction that your implications are going.
+Generally, the \(\pm\) ``operator'' behaves similarly to addition -
+multiplication and division distribute over it, for example.
 
-A corollary is that the number of real roots of a quadratic is determined by the
-discriminant \({\Delta = b^2 - 4ac}\).
+The symbol can occur multiple times in an expression, which usually means you
+should just convert them all to \(+\) once, and to \(-\) once - that is, it does
+not exhibit branching behaviour. If that's what you want to show, probably
+better off just explicitly writing that out. Occasionally
+\(\bullet_0 \mp \bullet_1\) is used as a shorthand for
+\(\bullet_0 \pm -\bullet_1\)
+(eg \(x = 1 \pm 2 \mp 3 \iff x = 1 \pm -1\)).
+
+Confusingly, it is also used inside a set to indicate an element in addition to
+its negation, sometimes:
+\(\set{\pm \bullet, \cdots} \defeq \set{\bullet, -\bullet, \cdots}\).
+
+Back to business. A corollary of Theorem \ref{thm_quad_form} is that the number
+of real roots of a quadratic is
+determined by the discriminant \({\Delta = b^2 - 4ac}\).
 \begin{corollary}[Quadratic real roots]
  Where \(P(x) \defeq ax^2 + bx + c\) and \(\Delta \defeq b^2 - 4ac\),
  \begin{align*}

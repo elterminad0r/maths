@@ -79,7 +79,8 @@ number of elements it has. For example, \(\abs{\emptyset} = 0\) and
 \(\abs{\set{1, 3, 2}} = 3\), etc.
 
 We also denote the cardinality of the natural numbers
-\(\abs{\Naturals} = \aleph_0\).
+\(\abs{\Naturals} = \aleph_0\). This is the Hebrew letter ``aleph'' or ``alef'',
+with subscript naught.
 
 It is fairly straightforward to show, for example, that we also have
 \(\abs{\Integers} = \aleph_0\), with for example the function \(f\) such that we
@@ -120,15 +121,16 @@ states that there exists a bijection between the sets \(A\) and \(B\) iff there
 exists an injection from \(A\) to \(B\) and there exists an injection from \(B\)
 to \(A\).
 
-% TODO how are you actually supposed to write this with like fancy arrows
 For example, we can take
-\begin{equation*}
- f(n) = \frac n1
-\end{equation*}
+\begin{align*}
+ f \colon \Integers &\to \Rationals \\
+          n &\mapsto \frac n1
+\end{align*}
 and
-\begin{equation*}
- g\parens[\Big]{\frac pq} = 2^p 3^q
-\end{equation*}
+\begin{align*}
+ g \colon \Rationals &\to \Integers \\
+          \frac pq &\mapsto 2^p 3^q
+\end{align*}
 which is guaranteed by the Fundamental Theorem of Arithmetic to be injective for
 distinct \(p, q\).
 
@@ -148,7 +150,7 @@ G\"odels incompleteness theorems.
 \end{theorem}
 \begin{proof}
  Suppose to the contrary that for some set \(S\) there does exist some
- surjective function \(f\) from \(S\) to \(\PowerSet(s)\). Consider the set
+ surjective function \(f \colon S \to \PowerSet(s)\). Consider the set
  \(R = \set{x \in S \mid x \notin f(x)}\), that is all elements of \(S\) that
  are not in their own image under \(f\). As \(f\) is surjective onto
  \(\PowerSet(S)\) and \(R\) must be a subset of \(S\), we can now consider the
@@ -178,13 +180,16 @@ the powerset of the naturals.
 Firstly, we construct an injection \(f\) from \(\Reals\) to
 \(\PowerSet(\Rationals)\). For some real number \(x\), we define \(f(x)\) as the
 set of all rationals less than or equal to \(x\).
-\begin{equation*}
- f(x) = \set{q \in \Rationals \mid q \le x}
-\end{equation*}
+\begin{align*}
+ f \colon \Reals &\to \PowerSet(\Rationals) \\
+          x &\mapsto \set{r \in \Rationals \mid r \le x}
+\end{align*}
 This is the Dedekind cut corresponding to \(x\), and uniquely identifies each
 \(x\). Recalling that the rationals have the same cardinality as the natural
 numbers, clearly there must then exist an injection from \(\Reals\) to
-\(\PowerSet(\Naturals)\).
+\(\PowerSet(\Naturals)\), by the composition of some bijection
+\(\Rationals \to \Naturals\) applied to each element of a subset of
+\(\Naturals\) with \(f\).
 
 Now we construct an injection \(g\) from \(\PowerSet(\Naturals)\) to \(\Reals\).
 Note \(\PowerSet(\Naturals)\) is isomorphic to the set of all infinite sequences
@@ -195,7 +200,8 @@ and \(0\) otherwise.
 
 Now for some \(S \in \PowerSet(\Naturals)\), generate the binary sequence, then
 read it back as a ternary expansion of a real number. That is to say, if the
-digits are given by \(U_i, i \in \Naturals\), then we extract the real number
+digits are given by \(U_i, i \in \Naturals\), then \(g\) will map \(s\) to the
+real number
 \begin{equation*}
  x = \sum_{r \in \Naturals} \frac{U_r}{3^r}
 \end{equation*}
@@ -212,6 +218,13 @@ correspond to the real number \(\frac 12\).
 So we have our injection, and then by the Cantor-Schr\"oder-Bernstein Theorem,
 \(\abs{\Reals} = \abs{\PowerSet(\Naturals)}\), and then by Cantor's Theorem,
 \(\abs{\Reals} > \abs{\Naturals}\).
+
+The cardinality of the reals \(\abs{\Reals}\) is also denoted \(\mathfrak c\) (a
+lowercase fraktur script c) and \(\beth_1\) (Hebrew letter ``beth'' with
+subscript one). If the continuum hypothesis is true, then \(\beth_1 = \aleph_1\)
+(this is in fact basically what CH states). However CH is known to be
+independent of ZFC, so you can't prove or disprove it with the ``standard''
+axioms of set theory.
 
 % TODO: diagonalisation argument
 
