@@ -116,150 +116,209 @@ denoted \(r\). The first term is denoted \(a\), such that
      = ar^{n - 1}
 \end{gather*}
 
-\subsection{Fibonacci Sequence}
+\subsection{Fibonacci Sequences}
 
+% TODO: why is this sometimes indeterminate
 \begin{theorem}[Fibonacci \(n\)th term]
- The Fibonacci numbers \(F_n \colon n \in \Naturals\) are such that
- \(F_1 = F_2 = 1\) and \(F_n = F_{n - 1} + F_{n - 2}\).  \(F_n\) can be given
- by the closed form
+ Where some sequence \((U_i)\) has given its two starting values
+ \(U_1, U_2 \in \Complex\), and obeys the recurrence
  \begin{equation*}
-  F_n = \frac{\varphi^n - (-\varphi^{-n})}{\sqrt 5}
-  \quad \text{where}\quad \varphi = \frac{1 + \sqrt 5} 2
+  U_{n + 2} = \alpha U_n + \beta U_{n + 1}
  \end{equation*}
+ for some constant \(\alpha, \beta \in \Complex\), the \(n\)th term is given by
+ \begin{equation*}
+  \frac 1{\lambda_1 - \lambda_2}(\lambda_1^{n - 1} (U_2 - U_1 \lambda_2)
+                               - \lambda_2^{n - 1} (U_2 - U_1 \lambda_1))
+ \end{equation*}
+ where \(\lambda_1, \lambda_2\) are explicitly
+ \begin{align*}
+  \lambda_1 &= \frac {\beta + \sqrt{\beta^2 + 4\alpha}}2 \\
+  \lambda_1 &= \frac {\beta - \sqrt{\beta^2 + 4\alpha}}2
+ \end{align*}
+ Quadratic equation fans may realise that they could be characterised as the two
+ solutions of \(\lambda^2 - \beta \lambda - \alpha = 0\), or equivalently as the
+ two unique numbers in \(\Complex\) satisfying \(\lambda_1 \lambda_2 = -\alpha\)
+ and \(\lambda_1 + \lambda_2 = \beta\).
 \end{theorem}
-Some people like to write
-\begin{equation*}
- (-\varphi)^{-1} = \psi = \frac{1 - \sqrt 5}2
-\end{equation*}
-here. This can be nicer because then \(\varphi\) and \(\psi\) are the two
-roots of \(x^2 - x - 1 = 0\). However I prefer to use \((-\varphi)^{-1}\) as
-it makes some algebraic manipulations more immediately obvious.
+
 \begin{proof}
  Consider the power series
  \begin{equation*}
-  f(x) \defeq \sum_{k=1}^\infty F_k x^k = x + x^2 + 2x^3 + 3x^4 + 5x^5
-      + \dotsb
+  f(x) \defeq \sum_{k=1}^\infty U_k x^k
+            = U_1 x + U_2 x^2 + (\alpha U_1 + \beta U_2) x^3
+            + ((\alpha + \beta^2)U_2 + \alpha \beta U_1)3x^4 + \dotsb
  \end{equation*}
  Note that this series has a radius of convergence, by Lemma
  \ref{lem_fibo_convergence}.
 
  Consider now:
- \begin{alignat*}9
-  && f(x) &= \sum_{k = 1}^\infty F_k x^k
-      &&={}& x &+{}& x^2 &+{}& 2x^3 &+{}&
-          3x^4 &+{}& 5x^5 &+{}& 8x^6 + \dotsb \\
-  && x f(x) &= \sum_{k = 2}^\infty F_{k - 1} x^k
-      &&={}& &&x^2 &+{}& x^3 &+{}& 2x^4 &+{}&
-          3x^5 &+{}& 5x^6 + \dotsb \\
-  && x^2 f(x) &= \sum_{k = 3}^\infty F_{k - 2}x^k
-      &&={}& &&&& x^3 &+{}& x^4 &+{}& 2x^5 &+{}& 3x^6 + \dotsb \\
-  &\implies{}& (1 - x - x^2) f(x) &= x \\
-  &\implies{}& f(x) &= \frac x{1 - x - x^2}
+ \begin{alignat*}7
+  f(x) &= \sum_{k = 1}^\infty U_k x^k
+   &&={}& U_1 x &+{}& U_2 x^2 &+{}& (\alpha U_1 + \beta U_2) x^3
+       &+{}& ((\alpha + \beta^2)U_2 + \alpha \beta U_1)3x^4
+       &+{}& \dotsb \\
+  x f(x) &= \sum_{k = 1}^\infty U_k x^k
+   &&={}& && U_1 x^2 &+{}& U_2 x^3 &+{}& (\alpha U_1 + \beta U_2) x^4
+       &+{}& \dotsb \\
+  x^2 f(x) &= \sum_{k = 1}^\infty U_k x^k
+   &&={}& &&&& U_1 x^2 &+{}& U_2 x^3 &+{}& \dotsb
+ \end{alignat*}
+ Now we can manipulate these a little, to get a nice closed form for \(f(x)\).
+ \begin{alignat*}2
+  && (1 - \beta x - \alpha x^2) f(x) &= (U_2 - \beta U_1)x^2 + U_1 x \\
+  &\implies{}& f(x) &= \frac{(U_2 - \beta U_1)x^2 + U_1 x}
+                            {1 - \beta x - \alpha x^2}
  \end{alignat*}
  Now we perform a partial fraction decomposition on \(f(x)\). We do this in a
  somewhat tricky way in order to make our lives easier. Note that
  \begin{equation*}
-  1 - x - x^2 = x^2 \parens[\Big]{\frac 1x^2 - \frac 1x - 1}
-      = x^2\parens[\Big]{\frac 1x - \varphi}\parens[\Big]{\frac 1x - \psi}
-      = (1 - \varphi x)(1 - \psi x)
+  1 - \beta x - \alpha x^2 = x^2 \parens[\Big]
+        {\frac 1x^2 - \frac \beta x - \alpha}
+      = x^2\parens[\Big]{\frac 1x - \lambda_1}
+           \parens[\Big]{\frac 1x - \lambda_2}
+      = (1 - \lambda_1 x)(1 - \lambda_2 x)
  \end{equation*}
- where \(\varphi, \psi = \frac 12(1 \pm \sqrt 5)\), ie the roots of
- \(x^2 - x - 1\), ie the roots of the golden ratio. Now,
+ Having a denominator with constant term 1 is particularly useful for Maclaurin
+ series expansion, which will come in later. Now,
  \begin{alignat*}2
-  && f(x) = \frac x{(1 - \varphi x)(1 - \psi x)}
-      &\equiv \frac A{1 - \varphi x} + \frac B{1 - \psi x} \\
-  &\implies{}& A(1 - \psi x) + B(1 - \varphi x) &\equiv x \\
-  &\implies{}& A + B &= 0 \\
-  && -\psi A - \varphi B &= 1 \\
-  &\implies{}& B &= -A  \\
-  && A(\varphi - \psi) &= 1 \\
-  &\implies{}& A(\sqrt 5) &= 1 \\
-  &\implies{}& A &= \frac 1{\sqrt 5}, B = -\frac 1{\sqrt 5}
+  && f(x) &= \frac{(U_2 - \beta U_1)x^2 + U_1 x}
+                 {(1 - \lambda_1 x)(1 - \lambda_2 x)} \\
+  && &\equiv - \frac{U_2 - \beta U_1}\alpha +
+                \frac A{1 - \lambda_1 x} + \frac B{1 - \lambda_2 x} \\
+  &\implies{}& (U_2 - \beta U_1)x^2 + U_1 x &\equiv
+               -\frac{(U_2 - \beta U_1)x^2 + U_1 x}\alpha
+                     (1 - \lambda_1 x)(1 - \lambda_2 x) \\
+  && &\phantom{\equiv} + A(1 - \lambda_2 x) + B(1 - \lambda_1 x) \\
+  (x = \lambda_1^{-1}) &\implies{}&
+   A\parens[\Big]{1 - \frac{\lambda_2}{\lambda_1}}
+   &= \frac{U_2 - \beta U_1 + U_1 \lambda_1}{\lambda_1^2} \\
+  &\implies{}& A &= \frac{U_2 - \beta U_1 + U_1 \lambda_1}
+                         {\lambda_1(\lambda_1 - \lambda_2)} \\
+  (x = \lambda_2^{-1}) &\implies{}&
+   B\parens[\Big]{1 - \frac{\lambda_1}{\lambda_2}}
+   &= \frac{U_2 - \beta U_1 + U_1 \lambda_2}{\lambda_2^2} \\
+  &\implies{}& B &= \frac{U_2 - \beta U_1 + U_1 \lambda_2}
+                         {\lambda_2(\lambda_2 - \lambda_1)}
  \end{alignat*}
  Now we can use a binomial series expansion to obtain an equivalent series.
  \begin{align*}
-  f(x) &= \frac 1{\sqrt 5}\parens[\Big]{\frac 1{1 - \varphi x}
-                              - \frac 1{1 - \psi x}} \\
-  &= \frac 1{\sqrt 5}\parens[\Big]{\sum_{k = 0}^\infty (\varphi x)^k
-                      - \sum_{k = 0}^\infty (\psi x)^k} \\
-  &= \sum_{k = 0}^\infty \frac 1{\sqrt 5}(\varphi^k - \psi^k)x^k
-  = \sum_{k = 1}^\infty F_k x^k
+  f(x) &= -\frac{U_2 - \beta U_1}\alpha +
+           \frac{U_2 - \beta U_1 + U_1 \lambda_1}
+                {\lambda_1(\lambda_1 - \lambda_2)(1 - \lambda_1 x)} +
+           \frac{U_2 - \beta U_1 + U_1 \lambda_2}
+                {\lambda_2(\lambda_2 - \lambda_1)(1 - \lambda_2 x)} \\
+       &= -\frac{U_2 - \beta U_1}\alpha +
+           \frac{U_2 - \beta U_1 + U_1 \lambda_1}
+                {\lambda_1(\lambda_1 - \lambda_2)}
+                \parens[\Big]{\sum_{r = 0}^\infty \lambda_1^r x^r} +
+           \frac{U_2 - \beta U_1 + U_1 \lambda_2}
+                {\lambda_2(\lambda_2 - \lambda_1)}
+                \parens[\Big]{\sum_{r = 0}^\infty \lambda_2^r x^r} \\
+       &= -\frac{U_2 - \beta U_1}\alpha +
+          \sum_{r = 0}^\infty \bracks[\Bigg]{
+           \frac{U_2 + U_1(\lambda_1 - \beta)}
+                {\lambda_1(\lambda_1 - \lambda_2)}
+            (\lambda_1^r x^r) +
+           \frac{U_2 + U_1(\lambda_2 - \beta)}
+                {\lambda_2(\lambda_2 - \lambda_1)}
+            (\lambda_2^r x^r)
+          } \\
+       &= -\frac{U_2 - \beta U_1}\alpha +
+          \sum_{r = 0}^\infty \bracks[\Bigg]{
+           \frac{U_2 - U_1 \lambda_1}
+                {\lambda_1(\lambda_1 - \lambda_2)}
+            (\lambda_1^r x^r) +
+           \frac{U_2 - U_1 \lambda_2}
+                {\lambda_2(\lambda_2 - \lambda_1)}
+            (\lambda_2^r x^r)
+          } \\
+       &= -\frac{U_2 - \beta U_1}\alpha +
+          \frac 1{\lambda_1 - \lambda_2} \sum_{r = 0}^\infty \bracks[\Bigg]{
+           (U_2 - U_1 \lambda_1) \lambda_1^{r - 1} x^r -
+           (U_2 - U_1 \lambda_2) \lambda_2^{r - 1} x^r
+          }
  \end{align*}
- So we have \(F_n = \frac 1{\sqrt 5}(\varphi^n - \psi^n)\). Note that the
- constant term is indeed zero, as \(\varphi^0 - \psi^0 = 0\).
+ Now, recalling the definition of \(f(x)\) as
+ \begin{equation*}
+  f(x) \defeq \sum_{k=1}^\infty U_k x^k
+            = U_1 x + U_2 x^2 + (\alpha U_1 + \beta U_2) x^3
+            + ((\alpha + \beta^2)U_2 + \alpha \beta U_1)3x^4 + \dotsb
+ \end{equation*}
+ and the well-definedness of \(f(x)\) we can equate the coefficients to get our
+ result:
+ \begin{equation*}
+  U_n = \frac 1{\lambda_1 - \lambda_2}(\lambda_1^{n - 1}(U_2 - U_1\lambda_2)
+                                     - \lambda_2^{n - 1}(U_2 - U_1\lambda_2))
+                                    \qedhere
+ \end{equation*}
 \end{proof}
 \begin{proof}[Proof by matrices]
- Noting that the given recurrence \(F_n = F_{n - 1} + F_{n - 2}\) is a linear
- transition (and a fairly simple one at that), we can define the vector
+ Noting that the given recurrence \(U_n = U_{n - 1} + U_{n - 2}\) is a linear
+ transition, we can define the vector
  \begin{equation*}
-  \vec f_n =
-  \begin{pmatrix*}[l]
-   F_n \\
-   F_{n + 1}
-  \end{pmatrix*}
+  \vec u_n =
+   \begin{pmatrix*}[l]
+    U_n \\
+    U_{n + 1}
+   \end{pmatrix*}
  \end{equation*}
  and take advantage of the linear transition to write
  \begin{equation*}
-  \vec f_{n + 1} = \mat T \vec f_n \quad \text{where} \quad
+  \vec u_{n + 1} = \mat T \vec u_n \quad \text{where} \quad
   \mat T =
   \begin{pmatrix}
    0 & 1 \\
-   1 & 1
+   \alpha & \beta
   \end{pmatrix}
  \end{equation*}
  so that in fact,
  \begin{equation*}
-  \vec f_n = \mat T^n\vec f_0
+  \vec u_n = \mat T^{n - 1}\vec u_1
  \end{equation*}
- where we define \(F_0 = 0\). This avoids messily subtracting one from
- things. Now we proceed to diagonalise \(\mat T\) by first solving its
+ Now we proceed to diagonalise \(\mat T\) by first solving its
  characteristic equation for its eigenvalues.
  \begin{alignat*}4
   && \abs{\mat T - \lambda \mat I} &= 0 \\
   &\iff{}&
    \begin{vmatrix}
     -\lambda & 1 \\
-    1 & 1 - \lambda
+    \alpha & \beta - \lambda
    \end{vmatrix} &= 0
-  &\iff{}& \lambda (\lambda - 1) - 1 &= 0 \\
-  &\iff{}& \lambda^2 - \lambda - 1 &= 0 \\
-  &\iff{}& \lambda &\in \set{\varphi, \psi}
+  &\iff{}& \lambda^2 - \beta \lambda - \alpha &= 0 \\
+  &\iff{}& \lambda \in \set{\lambda_1, \lambda_2}
  \end{alignat*}
- as we saw earlier.
+ which we defined as such earlier.
 
- Now we can find the eigenvectors \footnote{
-     Note that as \(\varphi\) satisfies \(\varphi^2 - \varphi - 1 = 0\),
-     we can rearrange to get \(\varphi - 1 = \frac 1\varphi\).}
- \begin{alignat*}6
-  \lambda_1 &= \varphi\colon&
+ \begin{alignat*}5
+  & \lambda_1 \colon&
   &&
    \begin{pmatrix}
-    -\varphi & 1 \\
-    1 & 1 - \varphi
+    -\lambda_1 & 1 \\
+    \alpha & \beta - \lambda_1
    \end{pmatrix} \vec e_1 &= \vec 0 \\
   && &\iff{}&
    \begin{pmatrix}
-    -\varphi & 1 \\
-    1 & -\varphi^{-1}
+    -\lambda_1 & 1 \\
+    -\lambda_1 \lambda_2 & \lambda_2
    \end{pmatrix} \vec e_1 &= \vec 0 \impliedby \vec e_1 &{}=
    \begin{pmatrix}
     1 \\
-    \varphi
+    \lambda_1
    \end{pmatrix} \\
-  \lambda_2 &= \psi\colon&
+  & \lambda_2 \colon&
   &&
    \begin{pmatrix}
-    -\psi & 1 \\
-    1 & 1 - \psi
+    -\lambda_2 & 1 \\
+    \alpha & \beta - \lambda_2
    \end{pmatrix} \vec e_2 &= \vec 0 \\
   && &\iff{}&
    \begin{pmatrix}
-    -\psi & 1 \\
-    1 & -\psi^{-1}
+    -\lambda_2 & 1 \\
+    -\lambda_1 \lambda_2 & \lambda_1
    \end{pmatrix} \vec e_2 &= \vec 0 \impliedby \vec e_2 &{}=
    \begin{pmatrix}
     1 \\
-    \psi
+    \lambda_2
    \end{pmatrix}
  \end{alignat*}
  So that
@@ -282,87 +341,96 @@ it makes some algebraic manipulations more immediately obvious.
   &=
   \begin{pmatrix}
    1 & 1 \\
-   \varphi & \psi
+   \lambda_1 & \lambda_2
   \end{pmatrix}
   \begin{pmatrix}
-   \varphi^n & 0 \\
-   0 & \psi^n
+   \lambda_1^n & 0 \\
+   0 & \lambda_2^n
   \end{pmatrix}
   \begin{pmatrix}
    1 & 1 \\
-   \varphi & \psi
+   \lambda_1 & \lambda_2
   \end{pmatrix}^{-1} \\
   &=
   \begin{pmatrix}
    1 & 1 \\
-   \varphi & \psi
+   \lambda_1 & \lambda_2
   \end{pmatrix}
   \begin{pmatrix}
-   \varphi^n & 0 \\
-   0 & \psi^n
+   \lambda_1^n & 0 \\
+   0 & \lambda_2^n
   \end{pmatrix}
-  \frac 1 {\psi - \varphi}
+  \frac 1{\lambda_2 - \lambda_1}
   \begin{pmatrix}
-   \psi & -1 \\
-   -\varphi & 1
+   \lambda_2 & -1 \\
+   -\lambda_1 & 1
   \end{pmatrix} \\
   &=
   \begin{pmatrix}
    1 & 1 \\
-   \varphi & \psi
+   \lambda_1 & \lambda_2
   \end{pmatrix}
   \begin{pmatrix}
-   \varphi^n & 0 \\
-   0 & \psi^n
+   \lambda_1^n & 0 \\
+   0 & \lambda_2^n
   \end{pmatrix}
-  \frac 1 {\psi - \varphi}
+  \frac 1{\lambda_2 - \lambda_1}
   \begin{pmatrix}
-   \psi & -1 \\
-   -\varphi & 1
+   \lambda_2 & -1 \\
+   -\lambda_1 & 1
   \end{pmatrix} \\
   &=
-  -\frac 1 {\sqrt 5}
+  -\frac 1{\lambda_1 - \lambda_2}
   \begin{pmatrix}
-   \varphi^n & \psi^n \\
-   \varphi^{n + 1} & \psi^{n + 1} \\
+   \lambda_1^n & \lambda_2^n \\
+   \lambda_1^{n + 1} & \lambda_2^{n + 1} \\
   \end{pmatrix}
   \begin{pmatrix}
-   \psi & -1 \\
-   -\varphi & 1
+   \lambda_2 & -1 \\
+   -\lambda_1 & 1
   \end{pmatrix} \\
   &=
-  -\frac 1 {\sqrt 5}
+  -\frac 1{\lambda_1 - \lambda_2}
   \begin{pmatrix}
-   \psi \varphi^n -\varphi \psi^n & \psi^n - \varphi^n \\
-   \psi \varphi^{n + 1} - \varphi \psi^{n + 1} &
-       \psi^{n + 1} - \varphi^{n + 1}
+   \lambda_2 \lambda_1^n -\lambda_1 \lambda_2^n & \lambda_2^n - \lambda_1^n \\
+   \lambda_2 \lambda_1^{n + 1} - \lambda_1 \lambda_2^{n + 1} &
+       \lambda_2^{n + 1} - \lambda_1^{n + 1}
   \end{pmatrix}
  \end{align*}
  and
  \begin{alignat*}4
-  &&\vec f_n &= \mat T_n \vec f_0 \\
+  &&\vec u_n &= \mat T^{n - 1} \vec u_1 \\
   &\iff{}&
    \begin{pmatrix}
-    F_n \\
-    F_{n + 1}
+    U_n \\
+    U_{n + 1}
    \end{pmatrix} &=
-   -\frac 1 {\sqrt 5}
+   -\frac 1{\lambda_1 - \lambda_2}
    \begin{pmatrix}
-    \psi \varphi^n -\varphi \psi^n & \psi^n - \varphi^n \\
-    \psi \varphi^{n + 1} - \varphi \psi^{n + 1} &
-        \psi^{n + 1} - \varphi^{n + 1}
+    \lambda_2 \lambda_1^{n - 1} -\lambda_1 \lambda_2^{n - 1}n
+     & \lambda_2^{n - 1} - \lambda_1^{n - 1} \\
+    \lambda_2 \lambda_1^n - \lambda_1 \lambda_2^n & \lambda_2^n - \lambda_1^n
    \end{pmatrix}
    \begin{pmatrix}
-    0 \\
-    1
+    U_1 \\
+    U_2
    \end{pmatrix} \\
   && &=
-  \frac 1 {\sqrt 5}
+  -\frac 1{\lambda_1 - \lambda_2}
    \begin{pmatrix}
-    \varphi^n - \psi^n \\
-    \varphi^{n + 1} - \psi^{n + 1}
+    U_1(\lambda_2 \lambda_1^{n - 1} - \lambda_1 \lambda_2^{n - 1})
+  + U_2(\lambda_2^{n - 1} - \lambda_1^{n - 1}) \\
+    U_1(\lambda_2 \lambda_1^n - \lambda_1 \lambda_2^n)
+  + U_2(\lambda_2^n - \lambda_1^n) \\
    \end{pmatrix} \\
-   &\implies{}& F_n &= \frac{\varphi^n - \psi^n}{\sqrt 5} \qedhere
+   &\implies{}& U_n &=
+    -\frac 1{\lambda_1 - \lambda_2} (
+       U_1(\lambda_2 \lambda_1^{n - 1} - \lambda_1 \lambda_2^{n - 1})
+     + U_2(\lambda_2^{n - 1} - \lambda_1^{n - 1})) \\
+   && &= 
+    \frac 1{\lambda_1 - \lambda_2} (
+       \lambda_1^{n - 1} (U_2 - U_1 \lambda_2)
+     - \lambda_2^{n - 1} (U_2 - U_1 \lambda_1)) \qedhere
  \end{alignat*}
 \end{proof}
 \begin{proof}[Proof by Induction]
@@ -370,30 +438,66 @@ it makes some algebraic manipulations more immediately obvious.
  less insight, and is generally not as useful. However it remains an
  interesting excercise.
 
- Let \(P(n)\) denote the theorem for \(F_n\).
+ Let \(P(n)\) denote the theorem for \(U_n\).
  \begin{enumerate}[I.]
-  \item \label{basec_thm_fibo} We verify the cases \(F_1\) and \(F_2\):
+  \item \label{basec_thm_fibo} We verify the cases \(n = 1\) and \(n = 2\):
         \begin{align*}
-            n = 1&\colon \frac{\varphi^1 - \psi^1}{\sqrt 5}
-                = \frac{\sqrt 5}{\sqrt 5} = 1 = F_1 \\
-            n = 2&\colon \frac{\varphi^2 - \psi^2}{\sqrt 5}
-                = \frac{(\varphi + \psi)(\varphi - \psi)}{\sqrt 5}
-                = \frac{(1)(\sqrt 5)}{\sqrt 5}= 1 = F_1
+         n = 1&\colon \frac 1{\lambda_1 - \lambda_2}
+                 ((U_2 - U_1 \lambda_2) - (U_2 - U_1 \lambda_1))
+                = \frac {U_1(\lambda_1 - \lambda_2)}{\lambda_1 - \lambda_2}
+                = U_1 \\
+         n = 2&\colon \frac 1{\lambda_1 - \lambda_2}
+                 (\lambda_1(U_2 - U_1 \lambda_2)
+                - \lambda_2(U_2 - U_1 \lambda_1))
+                = \frac {U_2(\lambda_1 - \lambda_2)}{\lambda_1 - \lambda_2}
+                = U_2
         \end{align*}
   \item \label{induct_thm_fibo} Now we suppose that \(P(n)\) and \(P(n + 1)\)
         are true, and consider \(P(n + 2)\):
-        \begin{align*}
-            F_{n + 2} &= F_n + F_{n + 1} \\
-                      &= \frac{\varphi^n - \psi^n +
-                               \varphi^{n + 1} - \psi^{n + 1}}
-                              {\sqrt 5} \impliedby P(n), P(n + 1) \\
-                      &= \frac{(\varphi + 1)\varphi^n - (\psi + 1)\psi^n}
-                               {\sqrt 5} \\
-                      &= \frac{\varphi^2\varphi^n - \psi^2\psi^n}{\sqrt 5} \\
-                      &= \frac{\varphi^{n + 2} - \psi^{n + 1}}{\sqrt 5}
-        \end{align*}
-        This uses the fact that \(\varphi\) and \(\psi\) satisfy
-        \(x^2 - x - 1 = 0\), which we rearrange to find \(x + 1 = x^2\).
+        \begin{alignat*}2
+         U_{n + 2} &= \mathrlap{\alpha U_n + \beta U_{n + 1}
+                      \quad \text{by definition}} \\
+                   &= \frac 1{\lambda_1 - \lambda_2}(
+                     &&\alpha\lambda_1^{n - 1}(U_2 - U_1 \lambda_2)
+                     - \alpha\lambda_2^{n - 1}(U_2 - U_1 \lambda_1) \\
+              &&{}+{}& \beta\lambda_1^n(U_2 - U_1 \lambda_2)
+                     - \beta\lambda_2^n(U_2 - U_1 \lambda_1))
+                       \impliedby P_n, P_{n + 1} \\
+                   &= \frac 1{\lambda_1 - \lambda_2}(
+                     &&\lambda_1^{n - 1}(
+                        \alpha U_2 - \alpha U_1 \lambda_2 +
+                        \beta U_2 \lambda_1 - \beta U_1 \lambda_1 \lambda_2) \\
+              &&{}-{}& \lambda_2^{n - 1}(
+                        \alpha U_2 - \alpha U_1 \lambda_1 +
+                        \beta U_2 \lambda_2 - \beta U_1 \lambda_2 \lambda_1)
+                      ) \\
+                   &= \frac 1{\lambda_1 - \lambda_2}(
+                     &&\lambda_1^{n - 1}(
+                        \lambda_1 \lambda_2 U_2 -
+                        \lambda_1 \lambda_2^2 U_1 +
+                        (\lambda_1 + \lambda_2) U_2 \lambda_1 -
+                        (\lambda_1 + \lambda_2) U_1 \lambda_1 \lambda_2) \\
+              &&{}-{}& \lambda_2^{n - 1}(
+                        \lambda_1 \lambda_2 U_2 -
+                        \lambda_1^2 \lambda_2 U_1 +
+                        (\lambda_1 + \lambda_2) U_2 \lambda_2 -
+                        (\lambda_1 + \lambda_2) U_1 \lambda_2 \lambda_1)
+                      ) \\
+                   &= \mathrlap{
+                       \frac 1{\lambda_1 - \lambda_2}(
+                        \lambda_1^{n - 1}(
+                         U_2 \lambda_1^2 - U_1 \lambda_1^2 \lambda_2)
+                      - \lambda_2^{n - 1}(
+                         U_2 \lambda_2^2 - U_1 \lambda_1 \lambda_2^2)
+                      )} \\
+                   &= \mathrlap{
+                       \frac 1{\lambda_1 - \lambda_2}(
+                        \lambda_1^{n + 1}(
+                         U_2 - U_1 \lambda_2)
+                      - \lambda_2^{n + 1}(
+                         U_2 - U_1 \lambda_1)
+                      )}
+        \end{alignat*}
   \item Now, by the principle of mathematical induction, \ref{basec_thm_fibo}
         and \ref{induct_thm_fibo} imply that \(P(n)\) must be true for all \(n
         \in \Integers^+\). \qedhere
@@ -401,44 +505,68 @@ it makes some algebraic manipulations more immediately obvious.
 \end{proof}
 \begin{lemma}[Fibonacci power series convergence]
 \label{lem_fibo_convergence}
- The power series
+ Where \(U_1, U_2, \alpha, \beta \in \Complex\), the power series
  \begin{equation*}
-  f(x) \defeq \sum_{k=1}^\infty F_k x^k = x + x^2 + 2x^3 + 3x^4 + 5x^5
-      + \dotsb
+  f(x) \defeq \sum_{k=1}^\infty U_k x^k
+            = U_1 x + U_2 x^2 + (\alpha U_1 + \beta U_2) x^3
+            + ((\alpha + \beta^2)U_2 + \alpha \beta U_1)3x^4 + \dotsb
  \end{equation*}
- has a radius of convergence and can therefore be manipulated.
+ has a radius of convergence and can therefore be justifiably manipulated.
 \end{lemma}
+% TODO
 \begin{proof}
- First we define
- \begin{equation*}
-  g(x) \defeq \sum_{k=1}^\infty 2^k x^k
- \end{equation*}
- Now we aim to show that \(f(x) < g(x)\) for \(x > 0\). This is because
- \(F_n < 2^n\). This can be proven by induction. Let \(P(n)\) denote
- ``\(F_n < 2^n\)'' for all \(n \in \Integers^+\).
- \begin{enumerate}[I.]
-  \item \label{basec_lem_fibo}
-        Note that \(F_1 = 1 < 2^1 = 2\) and \(F_2 = 1 < 2^2 = 4\).
-  \item \label{induct_lem_fibo}
-        Suppose \(P(n)\) and \(P(n + 1)\) are true. Consider \(P(n + 2)\):
-        \begin{equation*}
-        F_{n + 2} = F_{n + 1} + F_n < 2^{n + 1} + 2^n < 2^{n + 1} + 2^{n + 1}
-            = 2^{n + 2}
-        \end{equation*}
-  \item By the principle of mathematical induction, \ref{basec_lem_fibo} and
-        \ref{induct_lem_fibo} imply that \(P(n)\) is true for all
-        \(n \in \Integers^+\).
- \end{enumerate}
- Then for \(\abs x < \frac 12\), \(f(x)\)  must be convergent, as \(g(x)\) is
- convergent for \(\abs x < \frac 12\).
+ Hang tight!
 \end{proof}
+% \begin{proof}
+%  First we define
+%  \begin{equation*}
+%   g(x) \defeq \sum_{k=1}^\infty 2^k x^k
+%  \end{equation*}
+%  Now we aim to show that \(f(x) < g(x)\) for \(x > 0\). This is because
+%  \(U_n < 2^n\). This can be proven by induction. Let \(P(n)\) denote
+%  ``\(U_n < 2^n\)'' for all \(n \in \Integers^+\).
+%  \begin{enumerate}[I.]
+%   \item \label{basec_lem_fibo}
+%         Note that \(U_1 = 1 < 2^1 = 2\) and \(U_2 = 1 < 2^2 = 4\).
+%   \item \label{induct_lem_fibo}
+%         Suppose \(P(n)\) and \(P(n + 1)\) are true. Consider \(P(n + 2)\):
+%         \begin{equation*}
+%         U_{n + 2} = U_{n + 1} + U_n < 2^{n + 1} + 2^n < 2^{n + 1} + 2^{n + 1}
+%             = 2^{n + 2}
+%         \end{equation*}
+%   \item By the principle of mathematical induction, \ref{basec_lem_fibo} and
+%         \ref{induct_lem_fibo} imply that \(P(n)\) is true for all
+%         \(n \in \Integers^+\).
+%  \end{enumerate}
+%  Then for \(\abs x < \frac 12\), \(f(x)\)  must be convergent, as \(g(x)\) is
+%  convergent for \(\abs x < \frac 12\).
+% \end{proof}
 Combined with Exponentation by Squaring (\ref{sec_exp_by_squaring}), and some
 simple surd arithmetic, this theorem provides a fairly fast way to calculate
-\(F_n\), as compared to utterly na\"ive recursion, or somewhat faster iteration
+\(U_n\), as compared to utterly na\"ive recursion, or somewhat faster iteration
 or memoized/linearised recursion. However it is often in fact faster to
 simply use the matrix form given in the second proof, to calculate
-\(\vec f_n\) as \(\mat M^n\vec f_0\), again using exponentiation by squaring.
-This requires fewer arithmetic operations.
+\(\vec u_n\) as \(\mat T^{n - 1}\vec u_1\), again using exponentiation by
+squaring. This usually requires significantly fewer arithmetic operations, as if
+you're doing exact computation you don't need to worry about surds.
+
+A straightforward corollary is to give the \(n\)th term of the ``real''
+Fibonacci sequence:
+\begin{corollary}[Real Fibonacci \(n\)th term]
+ Where the Fibonacci sequence \((F_n)\) is defined by \(F_1 = F_2 = 1\) and
+ \(F_{n + 2} = F_n + F_{n + 1}\),
+ \begin{equation*}
+  F_n = \frac{\varphi^n - (-\varphi)^{-n}}{\varphi + \varphi^{-1}}
+      = \frac{\varphi^n - (-\varphi)^{-n}}{\sqrt 5}
+ \end{equation*}
+ where
+ \begin{equation*}
+  \varphi = \frac{1 + \sqrt 5}2
+ \end{equation*}
+\end{corollary}
+This can be derived by simply substituting \(U_1 = U_2 = \alpha = \beta = 1\)
+into the previous result, or by specifying any of the proofs to these
+parameters. Generally the proof then becomes easier to follow.
 
 \subsection{Taylor Series}
 
