@@ -195,8 +195,8 @@ Now we construct an injection \(g\) from \(\PowerSet(\Naturals)\) to \(\Reals\).
 Note \(\PowerSet(\Naturals)\) is isomorphic to the set of all infinite sequences
 of binary digits. Particularly, for some subset
 \(S \in \PowerSet(\Naturals) \iff S \subseteq \Naturals\), the \(n\)th digit of
-the binary sequence corresponding to \(S\) may be given by \(1\) if \(n \in S\),
-and \(0\) otherwise.
+the binary sequence corresponding to \(S\) may be given by \texttt 1 if
+\(n \in S\), and \texttt 0 otherwise.
 
 Now for some \(S \in \PowerSet(\Naturals)\), generate the binary sequence, then
 read it back as a ternary expansion of a real number. That is to say, if the
@@ -212,8 +212,8 @@ This sum will always converge, as it is bounded by
 Furthermore, none of these sequences conflict with one another, as we have
 interpreted them in ternary, which avoids any infinite sequences of \(2\)s,
 which could be replaced by a single zero. For example, had we read them in
-binary, then the sequences \(0.011111\ldots\) and \(0.1000000\ldots\) would both
-correspond to the real number \(\frac 12\).
+binary, then the sequences \texttt{0.011111}\ldots and \texttt{0.1000000}\ldots
+would both correspond to the real number \(\frac 12\).
 
 So we have our injection, and then by the Cantor-Schr\"oder-Bernstein Theorem,
 \(\abs{\Reals} = \abs{\PowerSet(\Naturals)}\), and then by Cantor's Theorem,
@@ -227,6 +227,153 @@ independent of ZFC, so you can't prove or disprove it with the ``standard''
 axioms of set theory.
 
 % TODO: diagonalisation argument
+
+It is also useful to know that generally, the cardinality of a non-empty
+interval of the reals is the same as the cardinality of the reals. Similarly,
+the cardinality of a non-empty interval of the rationals is the same as the
+cardinality of the rationals.
+
+% TODO: plots
+The case for reals is easier to show. First, note that any non-empty interval
+\(\intoo{a, b}\) (that is, where \(a < b\)) is equipotent to \(\intoo{0, 1}\),
+by using the bijection
+\begin{align*}
+ f \colon \intoo{0, 1} &\to \intoo{a, b} \\
+          x &\mapsto (b - a)x + a
+\end{align*}
+
+Now we just need to show that any interval has the same cardinality as the
+reals. Take \(\intoo{-1, 1}\), and consider the function
+\begin{align*}
+ g \colon \intoo{-1, 1} &\to \Reals \\
+          x &\mapsto \frac x{1 - x^2}
+\end{align*}
+Noting that
+\begin{equation*}
+ g'(x) = \frac{1 - x^2 + 2x^2}{(1 - x^2)^2}
+       = \frac{1 + x^2}{(1 - x^2)^2}
+\end{equation*}
+it is clear that \(g'(x) > 0\) for all \(x \in \Reals\). Further, as there are
+no discontinuities for \(x \in \intoo{-1, 1}\) and \(g(x) \to -\infty\) as
+\(x \to^+ -1\) and \(g(x) \to \infty\) as \(x \to^- 1\), the range of \(g(x)\)
+must be \(\Reals\) and \(g\) must be bijective as it is monotonically
+increasing.
+
+I picked this function because it has some generally nice properties (such as
+being a rational function, implying rational input have rational outputs), and
+is nice to work with. I could have used some corruption of \(\tan x\) or
+\(\arctanh x\).
+
+It seems reasonable that half-closed or entirely closed intervals should also
+have the same cardinality, as they only have one more element. It is in fact
+true that the union of any countable set with a set with cardinality \(\beth_1\)
+has cardinality \(\beth_1\) but the proof thereof is overkill for this case.
+
+We can use the same kind of linear map as our \(f\) to show that any closed
+interval has the same cardinality as \(\intcc{0, 1}\). Note then that
+\begin{equation*}
+ \abs[\Big]{\intcc{0, 1}} = \abs[\bigg]{\intcc[\Big]{\frac 14, \frac 34}} =
+  \abs[\Big]{\intcc{-1, 2}}
+\end{equation*}
+But \(\intcc{\frac 14, \frac 34} \subset \intoo{0, 1}\) so
+\(\abs{\intcc{\frac 14, \frac 34}} \le \abs{\intoo{0, 1}}\). Similarly,
+\(\abs{\intcc{-1, 2}} \ge \abs{\intoo{0, 1}}\). So then
+\(\abs{\intcc{0, 1}} \le \abs{\intoo{0, 1}}\) and
+\(\abs{\intcc{0, 1}} \ge \abs{\intoo{0, 1}}\), implying that
+\(\abs{\intcc{0, 1}} = \abs{\intoo{0, 1}}\), and hence any totally open
+non-empty interval is equipotent to any totally closed non-empty interval.
+
+The two remaining cases are half-closed or half-open intervals. Again, we need
+only consider \(\intoc{0, 1}\) and \(\intco{0, 1}\). The argument is in fact
+identical for each. Let \(S\) denote the range in question. Note that
+\(S \subset \intcc{0, 1}\) and \(S \supset \intoo{0, 1}\), so
+\(\abs S \ge \abs \Reals\) and \(\abs S \le \abs \Reals\), implying
+\(\abs S = \abs \Reals\).
+
+Now let's consider rational intervals. If some rational interval
+\(\intoo{a, b} \cup \Rationals\) has boundaries \(a, b \in \Rationals\), then
+the argument works exactly the same as for the real intervals above
+(particularly due to the choice of \(g\) as a rational function).
+The subtlety lies in our \(f\) function. The multiplication by \(b - a\) and the
+addition to \(a\) won't necessarily keep our elements in \(\Rationals\) if
+\(a, b \notin \Rationals\). It will be necessary to show the density of the
+rationals in the reals to get around this. This is basically the fact that
+between any to real numbers, there will be two rational numbers. It seems fairly
+obvious.
+
+A way to demonstrate this fact is by the pigeon-hole principle. First, we would
+like to pick some rational \(r \in \Rationals\) less than \(b - a \in \Reals\).
+This could be done, for example, by taking
+\begin{equation*}
+ r = 2^{\floor{\log_2(b - a)} - 1}
+\end{equation*}
+which is the second highest power of 2 (allowing negative exponents) under
+\(b - a\). We take the second highest just to be safe around edge cases where
+\(b - a\) happens to be a power of 2, because we aren't here to think things
+through. Here \(\floor{\cdot}\) is the floor function, basically ``rounding
+down'' to the nearest integer.
+
+Now consider the rationals which are \(\frac r4\) multiplied by an integer.
+Because \(r < b - a\), there must be at least \(2\) of these multiples of
+\(\frac r4\) in \(\intoo{a, b} \cup \Rationals\), in the worst possible case
+where two of them lie on a boundary. This argument works much the same for all
+the other types of boundary.
+
+Now we have determined a rational interval with rational boundaries that is a
+subset of our general rational interval in the reals. We have shown that this
+has the same cardinality as the rationals, so our rational interval has
+cardinality greater than or equal to that of the rationals. But the rational
+interval is itself a subset of the rationals, so must have cardinality less than
+or equal to that of the rationals. So it must be equipotent to the rationals.
+
+The cardinality of the set of all infinite sequences of naturals
+(\(\Naturals^\Naturals\)) is the same as that of the powerset of the naturals,
+\(\beth_1\). This is for example also the cardinality of the real numbers. We
+can show this by encoding an infinite sequence of naturals as a (possible
+infinite) subset of the naturals. This can be done, once again, with some binary
+trickery. We need a somewhat sophisticated encoding though.
+
+First determine the binary expansion of each natural in the sequence. Now, we
+can encode a \texttt 0 as \texttt{00} and a \texttt 1 as \texttt{11}. We can
+then use \texttt{01} as a delimiting sequence. This means that we encode each
+natural with this method, and then write it all in one long sequence, where
+\texttt{01} is used to indicate the boundaries between elements. This new unique
+``longer'' binary sequence also corresponds to a unique subset of the naturals,
+as we discussed earlier (by including each natural which corresponds to an index
+at which there is a \texttt 1 in the sequence). So we have an injection from the
+set of infinite natural sequences to the powerset of the naturals.
+
+An injection the other way is fairly straightforward - you could for example map
+a subset of the naturals to a list of the naturals in that set in order of
+increasing size. If the subset is finite, you could just ``pad'' the rest of it
+with any number of your choosing. I recommend 5. Wham, bam, thank you
+Cantor-Schr\"oder-Bernstein.
+
+The Cartesian product of the set of reals with itself, \(\Reals^2\),
+corresponding to the two-dimensional plane, the set of complex numbers
+\(\mathbb C\) or generally any state space that can be characterised by two real
+numbers, is equipotent to the reals. This is sometimes hand-waved into fact by
+waffling about space-filling curves but we can do better. A particularly nice
+approach is to use the previous paragraph to deduce that we can encode any real
+as an infinite sequence of integers, and any infinite sequence of integers as a
+real. We then need only take the two real numbers in question, take their
+infinite sequences of integers and interlace them to form a new infinite
+sequence, reading that back as a single real number. This in fact will work for
+any finite ``power'' of \(\Reals\), \(\Reals^n\).
+
+A similar result for \(\Rationals\) is even easier. We can just use the G\"odel
+codings, for example to form the injection
+\begin{alignat*}2
+ f \colon &&\Rationals^2 &\to \Rationals \\
+          &&\parens[\Big]{\frac ab, \frac cd} &\mapsto 2^a 3^b 5^c 7^d
+\end{alignat*}
+An injection the other way is fairly straightforward:
+\begin{align*}
+ g \colon \Rationals &\to \Rationals^2 \\
+          r &\to \parens[\Big]{r, \frac 01}
+\end{align*}
+It is again possible to use this approach for any finite power,
+\(\Rationals^n\).
 
 \subsection{Functions}
 
