@@ -162,7 +162,7 @@ In each table, again, particularly important rows are denoted \(\note\).
   \label{tab_calc_int_uncommon_def}}
 \end{longtable}
 
-% TODO: check these, write out working
+% TODO: TBC
 \begin{longtable}{*2M c}
  \toprule
  \text{\boldmath\(I_n\)} & \text{\bfseries Formula for \boldmath\(I_n\)}
@@ -173,11 +173,11 @@ In each table, again, particularly important rows are denoted \(\note\).
  \bottomrule
  \endfoot
  \endlastfoot
- \integ{x^n e^x}{x} & x^{n + 1} e^x - nI_{n - 1} \\[3ex]
- \integ{x^n \sin x}{x} & x^{n + 1} \sin x + n x^n \cos x
-                             - n(n - 1) I_{n - 2} \\[3ex]
- \integ{x^n \cos x}{x} & x^{n + 1} \cos x - n x^n \sin x
-                         - n(n - 1) I_{n - 2} \\[3ex]
+ \integ{x^n e^x}{x} & \frac{x^{n + 1} e^x}{n + 1} - nI_{n - 1} \\[3ex]
+ \integ{x^n \sin x}{x} & \frac{x^{n + 1} \sin x}{n + 1} +
+                         x^n \cos x - n(n - 1)I_{n - 2} \\[3ex]
+ \integ{x^n \cos x}{x} & \frac{x^{n + 1} \cos x}{n + 1} -
+                         x^n \sin x - n(n - 1)I_{n - 2} \\[3ex]
  \integ{\sin^n x}{x} & \frac{-\cos x \sin^{n - 1} x
                              + (n - 1) I_{n - 2}} n \\[3ex]
  \integ{\cos^n x}{x} & \frac{\sin x \cos^{n - 1} x
@@ -193,7 +193,7 @@ In each table, again, particularly important rows are denoted \(\note\).
   \frac{-x^{n - 1}(1 - x^2)^{\frac 32} + (n - 1) I_{n - 2}}{n + 2} \\[3ex]
  \integ{\frac{\sin nx}{\sin x}}{x} &
   \frac{2 \sin (n - 1) x}{n - 1} + I_{n - 2} \\[3ex]
- \integ{(1 + x^2)^n}{x} & \frac{2n I_{n - 1} + x^2(1 + x^2)^n}{2n + 1} \\[3ex]
+ \integ{(1 + x^2)^n}{x} & \frac{2n I_{n - 1} + x(1 + x^2)^n}{2n + 1} \\[3ex]
  \bottomrule
  \caption{Reduction formulae \label{tab_calc_reduction_formulae}}
 \end{longtable}
@@ -351,6 +351,242 @@ distribution. It also pops up in the evaluation of \(\Gamma(\frac 12)\).
 It's a quite famous example of an integral of an elementary integrand that
 has no elementary antiderivative, but when taken as a definite integral can
 be solved analytically.
+
+\subsubsection{Reduction Formulae}
+
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{x^n e^x}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{x^{n + 1} e^x}{n + 1} - nI_{n - 1}
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ Integrating by parts, we have
+ \begin{align*}
+  I_n &= \integ{x^n e^x}{x} \\
+      &= \frac{x^{n + 1}e^x}{n + 1} - \integ{n x^{n - 1} e^x}{x} \\
+      &= \frac{x^{n + 1}e^x}{n + 1} - n I_{n - 1} \qedhere
+ \end{align*}
+\end{proof}
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{x^n \sin x}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{x^{n + 1} \sin x}{n + 1} + x^n \cos x - n(n - 1)I_{n - 2}
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ Integrating by parts twice, we have
+ \begin{align*}
+  I_n &= \integ{x^n \sin x}{x} \\
+      &= \frac{x^{n + 1} \sin x}{n + 1} + \integ{n x^{n - 1} \cos x}{x} \\
+      &= \frac{x^{n + 1} \sin x}{n + 1} + n\parens[\Big]{
+       \frac{x^n \cos x}{n} - \integ{(n - 1)x^{n - 2} \sin x}{x}} \\
+      &= \frac{x^{n + 1} \sin x}{n + 1} + x^n \cos x - n(n - 1)I_{n - 2}
+       \qedhere
+ \end{align*}
+\end{proof}
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{x^n \cos x}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{x^{n + 1} \cos x}{n + 1} - x^n \sin x - n(n - 1)I_{n - 2}
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ Integrating by parts twice, we have
+ \begin{align*}
+  I_n &= \integ{x^n \cos x}{x} \\
+      &= \frac{x^{n + 1} \cos x}{n + 1} - \integ{n x^{n - 1} \sin x}{x} \\
+      &= \frac{x^{n + 1} \cos x}{n + 1} - n\parens[\Big]{
+       \frac{x^n \sin x}{n} + \integ{(n - 1)x^{n - 2} \cos x}{x}} \\
+      &= \frac{x^{n + 1} \cos x}{n + 1} - x^n \sin x - n(n - 1)I_{n - 2}
+       \qedhere
+ \end{align*}
+\end{proof}
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{\sin^n x}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{-\cos x \sin^{n - 1} x + (n - 1) I_{n - 2}} n
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ Integrating by parts, we have
+ \begin{alignat*}2
+  && I_n &= \integ{\sin^n x}{x} \\
+  &&     &= \integ{\sin x \sin^{n - 1}x}{x} \\
+  &&     &= -\cos x \sin^{n - 1} x +
+             \integ{\cos^2 x (n - 1) \sin^{n - 2} x}{x} \\
+  &&     &= -\cos x \sin^{n - 1} x + (n - 1)(I_{n - 2} - I_n) \\
+  &\implies{}& n I_n &= -\cos x \sin^{n - 1} x + (n - 1)I_{n - 2} \qedhere
+ \end{alignat*}
+\end{proof}
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{\cos^n x}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{\sin x \cos^{n - 1} x + (n - 1) I_{n - 2}} n
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ Integrating by parts, we have
+ \begin{alignat*}2
+  && I_n &= \integ{\cos^n x}{x} \\
+  &&     &= \integ{\cos x \cos^{n - 1}x}{x} \\
+  &&     &= \sin x \cos^{n - 1} x +
+             \integ{\sin^2 x (n - 1) \cos^{n - 2} x}{x} \\
+  &&     &= \sin x \cos^{n - 1} x + (n - 1)(I_{n - 2} - I_n) \\
+  &\implies{}& n I_n &= \sin x \cos^{n - 1} x + (n - 1)I_{n - 2} \qedhere
+ \end{alignat*}
+\end{proof}
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{\sinh^n x}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{\cosh x \sinh^{n - 1}x - (n - 1)I_{n - 2}} n
+ \end{equation*}
+\end{theorem}
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{\cosh^n x}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{\sinh x \cosh^{n - 1}x + (n - 1)I_{n - 2}} n
+ \end{equation*}
+\end{theorem}
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{\frac{x^n}{\sqrt{1 - x}}}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{-2x^n \sqrt{1 - x} + 2n I_{n - 1}}{2n + 1}
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ Integrating by parts,
+ \begin{alignat*}2
+  && I_n &= \integ{\frac{x^n}{\sqrt{1 - x}}}{x} \\
+  &&     &= -2x^n \sqrt{1 - x} + \integ{2n x^{n - 1} \sqrt{1 - x}}{x} \\
+  &&     &= -2x^n \sqrt{1 - x} + \integ{\frac{2n x^{n - 1}(1 - x)}
+                                             {\sqrt{1 - x}}}{x} \\
+  &&     &= -2x^n \sqrt{1 - x} + 2n (I_{n - 1} - I_n) \\
+  &\implies{}& (2n + 1)I_n &= -2x^n \sqrt{1 - x} + 2n I_{n - 1} \qedhere
+ \end{alignat*}
+\end{proof}
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{\tan^n x}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{\tan^{n - 1} x}{n - 1} - I_{n - 2}
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ Applying a Pythagorean identity, and then integrating by subtitution,
+ \begin{align*}
+  I_n &= \integ{\tan^n x}{x} \\
+      &= \integ{(\sec^2 x - 1) \tan^{n - 2} x}{x} \\
+      &= \integ{\sec^2 x \tan^{n - 2} x}{x} - I_{n - 2} \\
+      &= \frac{\tan^{n - 1} x}{n - 1} - I_{n - 2} \qedhere
+ \end{align*}
+\end{proof}
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{x^n \sqrt{1 - x^2}}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{-x^{n - 1}(1 - x^2)^{\frac 32} + (n - 1) I_{n - 2}}{n + 2}
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ Integrating by parts, we have
+ \begin{alignat*}2
+  && I_n &= \integ{x^n \sqrt{1 - x^2}}{x} \\
+  &&     &= \integ{x^{n - 1} x \sqrt{1 - x^2}}{x} \\
+  &&     &= -\frac 13 (1 - x^2)^{\frac 32} x^{n - 1} +
+            \integ{\frac 13 (n - 1)(1 - x^2)^{\frac 32}x^{n - 2}}{x} \\
+  &\implies{}& 3 I_n
+         &= -(1 - x^2)^{\frac 32} x^{n - 1} +
+            (n - 1)(I_{n - 2} - I_n) \\
+  &\implies{}& (n + 2)I_n
+         &= -(1 - x^2)^{\frac 32} x^{n - 1} +
+            (n - 1)I_{n - 2} \qedhere
+ \end{alignat*}
+\end{proof}
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{\frac{\sin nx}{\sin x}}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{2 \sin (n - 1) x}{n - 1} + I_{n - 2}
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ By gently applying some trig identities, we get
+ \begin{align*}
+  I_n &= \integ{\frac{\sin nx}{\sin x}}{x} \\
+      &= \integ{\frac{\sin 2x \cos (n - 2)x +
+                      \cos 2x \sin (n - 2) x}{\sin x}}{x} \\
+      &= \integ{\frac{2\sin x \cos x \cos (n - 2)x +
+                      (1 - 2 \sin^2 x) \sin (n - 2) x}{\sin x}}{x} \\
+      &= \integ{(2\cos x \cos (n - 2)x - 2\sin x \sin (n - 2) x)}{x}
+         + I_{n - 2} \\
+      &= \integ{2 \cos (n - 1) x}{x} + I_{n - 2} \\
+      &= \frac{2 \sin (n - 1) x}{n - 1} + I_{n - 2} \qedhere
+ \end{align*}
+\end{proof}
+\begin{theorem}
+ Where
+ \begin{equation*}
+  I_n \defeq \integ{(1 + x^2)^n}{x}
+ \end{equation*}
+ we can use the reduction formula
+ \begin{equation*}
+  I_n = \frac{2n I_{n - 1} + x(1 + x^2)^n}{2n + 1}
+ \end{equation*}
+\end{theorem}
+\begin{proof}
+ Integrating by parts, we have
+ \begin{alignat*}2
+  && I_n &= \integ{(1 + x^2)^n}{x} \\
+  &&     &= I_{n - 1} + \integ{x^2 (1 + x^2)^{n - 1}}{x} \\
+  &&     &= I_{n - 1} + \frac{x(x^2 + 1)^n}{2n} -
+                        \integ{\frac{(x^2 + 1)^n}{2n}}{x} \\
+  &&     &= I_{n - 1} + \frac{x(x^2 + 1)^n}{2n} - \frac 1{2n} I_n \\
+  &\implies{}& (2n + 1) I_n
+         &= I_{n - 1} + x(x^2 + 1)^n \qedhere
+ \end{alignat*}
+\end{proof}
 
 \subsection{Volume of Revolution}
 
