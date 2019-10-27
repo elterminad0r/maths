@@ -32,7 +32,6 @@ def possible_divisors(*, counter=None):
     mutable object with an integer at index 0.
     """
     if counter is None:
-        yield from ((2, 4), (3, 9))
         for n in count(6, 6):
             yield n - 1, (n - 1) ** 2
             yield n + 1, (n + 1) ** 2

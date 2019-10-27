@@ -5,7 +5,7 @@ import Control.Monad
 import Data.List
 
 possible_divisors :: [Integer]
-possible_divisors = map (^2) (2:3:(concat $ transpose [[5,11..], [7,13..]]))
+possible_divisors = map (^2) (concat $ transpose [[5,11..], [7,13..]])
 
 check_squares :: Integer -> [Integer]
 check_squares n = (filter ((==0) . (mod t)) .
