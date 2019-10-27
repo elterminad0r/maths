@@ -166,7 +166,7 @@ denoted \(r\). The first term is denoted \(a\), such that
  Now we can manipulate these a little, to get a nice closed form for \(f(x)\).
  \begin{alignat*}2
   && (1 - \beta x - \alpha x^2) f(x) &= (U_2 - \beta U_1)x^2 + U_1 x \\
-  &\implies{}& f(x) &= \frac{(U_2 - \beta U_1)x^2 + U_1 x}
+  \implies{}&& f(x) &= \frac{(U_2 - \beta U_1)x^2 + U_1 x}
                             {1 - \beta x - \alpha x^2}
  \end{alignat*}
  Now we perform a partial fraction decomposition on \(f(x)\). We do this in a
@@ -185,19 +185,19 @@ denoted \(r\). The first term is denoted \(a\), such that
                  {(1 - \lambda_1 x)(1 - \lambda_2 x)} \\
   && &\equiv - \frac{U_2 - \beta U_1}\alpha +
                 \frac A{1 - \lambda_1 x} + \frac B{1 - \lambda_2 x} \\
-  &\implies{}& (U_2 - \beta U_1)x^2 + U_1 x &\equiv
+  \implies{}&& (U_2 - \beta U_1)x^2 + U_1 x &\equiv
                -\frac{(U_2 - \beta U_1)x^2 + U_1 x}\alpha
                      (1 - \lambda_1 x)(1 - \lambda_2 x) \\
   && &\phantom{\equiv} + A(1 - \lambda_2 x) + B(1 - \lambda_1 x) \\
-  (x = \lambda_1^{-1}) &\implies{}&
+  (x = \lambda_1^{-1}) \implies{}&&
    A\parens[\Big]{1 - \frac{\lambda_2}{\lambda_1}}
    &= \frac{U_2 - \beta U_1 + U_1 \lambda_1}{\lambda_1^2} \\
-  &\implies{}& A &= \frac{U_2 - \beta U_1 + U_1 \lambda_1}
+  \implies{}&& A &= \frac{U_2 - \beta U_1 + U_1 \lambda_1}
                          {\lambda_1(\lambda_1 - \lambda_2)} \\
-  (x = \lambda_2^{-1}) &\implies{}&
+  (x = \lambda_2^{-1}) \implies{}&&
    B\parens[\Big]{1 - \frac{\lambda_1}{\lambda_2}}
    &= \frac{U_2 - \beta U_1 + U_1 \lambda_2}{\lambda_2^2} \\
-  &\implies{}& B &= \frac{U_2 - \beta U_1 + U_1 \lambda_2}
+  \implies{}&& B &= \frac{U_2 - \beta U_1 + U_1 \lambda_2}
                          {\lambda_2(\lambda_2 - \lambda_1)}
  \end{alignat*}
  Now we can use a binomial series expansion to obtain an equivalent series.
@@ -279,13 +279,13 @@ denoted \(r\). The first term is denoted \(a\), such that
  characteristic equation for its eigenvalues.
  \begin{alignat*}4
   && \abs{\mat T - \lambda \mat I} &= 0 \\
-  &\iff{}&
+  \iff{}&&
    \begin{vmatrix}
     -\lambda & 1 \\
     \alpha & \beta - \lambda
    \end{vmatrix} &= 0
-  &\iff{}& \lambda^2 - \beta \lambda - \alpha &= 0 \\
-  &\iff{}& \lambda \in \set{\lambda_1, \lambda_2}
+  \iff{}&& \lambda^2 - \beta \lambda - \alpha &= 0 \\
+  \iff{}&& \lambda \in \set{\lambda_1, \lambda_2}
  \end{alignat*}
  which we defined as such earlier.
 
@@ -296,7 +296,7 @@ denoted \(r\). The first term is denoted \(a\), such that
     -\lambda_1 & 1 \\
     \alpha & \beta - \lambda_1
    \end{pmatrix} \vec e_1 &= \vec 0 \\
-  && &\iff{}&
+  && \iff{}&&
    \begin{pmatrix}
     -\lambda_1 & 1 \\
     -\lambda_1 \lambda_2 & \lambda_2
@@ -311,7 +311,7 @@ denoted \(r\). The first term is denoted \(a\), such that
     -\lambda_2 & 1 \\
     \alpha & \beta - \lambda_2
    \end{pmatrix} \vec e_2 &= \vec 0 \\
-  && &\iff{}&
+  && \iff{}&&
    \begin{pmatrix}
     -\lambda_2 & 1 \\
     -\lambda_1 \lambda_2 & \lambda_1
@@ -400,7 +400,7 @@ denoted \(r\). The first term is denoted \(a\), such that
  and
  \begin{alignat*}4
   &&\vec u_n &= \mat T^{n - 1} \vec u_1 \\
-  &\iff{}&
+  \iff{}&&
    \begin{pmatrix}
     U_n \\
     U_{n + 1}
@@ -423,7 +423,7 @@ denoted \(r\). The first term is denoted \(a\), such that
     U_1(\lambda_2 \lambda_1^n - \lambda_1 \lambda_2^n)
   + U_2(\lambda_2^n - \lambda_1^n) \\
    \end{pmatrix} \\
-   &\implies{}& U_n &=
+   \implies{}&& U_n &=
     -\frac 1{\lambda_1 - \lambda_2} (
        U_1(\lambda_2 \lambda_1^{n - 1} - \lambda_1 \lambda_2^{n - 1})
      + U_2(\lambda_2^{n - 1} - \lambda_1^{n - 1})) \\

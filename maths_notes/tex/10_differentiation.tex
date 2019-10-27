@@ -75,7 +75,7 @@ the derivative.
  \begin{alignat*}{2}
   && f(x)g(x) &= \frac 12 \bracks[\Big]
                   {(f(x))^2 + (g(x))^2 - (f(x) - g(x))^2} \\
-  &\implies{}& \dv{x} (f(x)g(x))
+  \implies{}&& \dv{x} (f(x)g(x))
               &= \frac 12 \dv{x} \bracks[\Big]
                   {(f(x))^2 + (g(x))^2 - (f(x) - g(x))^2} \\
   &&          &= \frac 12 \bracks[\Big]
@@ -91,7 +91,7 @@ the derivative.
  exponentials, eliminating the product so we can again apply the chain rule.
  \begin{alignat*}{2}
   && f(x)g(x) &= e^{\ln f(x) + \ln g(x)} \\
-  &\implies{}& \dv{x} (f(x)g(x))
+  \implies{}&& \dv{x} (f(x)g(x))
               &= \dv{x} e^{\ln f(x) + \ln g(x)} \\
   &&          &= \parens[\bigg]{\frac{f'(x)}{f(x)} + \frac{g'(x)}{g(x)}}
                    e^{\ln f(x) + \ln g(x)} \\
@@ -106,7 +106,7 @@ the derivative.
  This minus will then eliminate. Suppose wlog that \(f(x) < 0\):
  \begin{alignat*}{2}
   && f(x)g(x) &= -e^{\ln(-f(x)) + \ln g(x)} \\
-  &\implies{}& \dv{x} (f(x)g(x))
+  \implies{}&& \dv{x} (f(x)g(x))
               &= -\dv{x} e^{\ln(-f(x)) + \ln g(x)} \\
   &&          &= -\parens[\bigg]{\frac{-f'(x)}{-f(x)}
                                + \frac{g'(x)}{g(x)}}
@@ -135,7 +135,7 @@ more straightforward to use the product rule as a stepping stone.
  \begin{alignat*}{2}
   && h(x) &= \frac{f(x)}{g(x)} \\
   &&      &= f(x) \cdot \frac 1{g(x)} \\
-  &\implies{}& h'(x)
+  \implies{}&& h'(x)
           &= f'(x) \cdot \frac 1{g(x)}
               + f(x) \cdot \parens[\Bigg]{\frac{-g'(x)}{(g(x))^2}}
               \quad \text{from the product and chain rules} \\
@@ -147,10 +147,10 @@ more straightforward to use the product rule as a stepping stone.
  Let
  \begin{alignat*}{2}
   && h(x) &= \frac{f(x)}{g(x)} \\
-  &\implies{}& h(x)g(x) &= f(x) \\
-  &\implies{}& h(x)g'(x) + h'(x)g(x)
+  \implies{}&& h(x)g(x) &= f(x) \\
+  \implies{}&& h(x)g'(x) + h'(x)g(x)
           &= f'(x) \quad \text{from the product and chain rules} \\
-  &\implies{}& h'(x)
+  \implies{}&& h'(x)
           &= \frac{f'(x) - h(x)g'(x)}{g(x)} \\
   &&      &= \frac{f'(x) - \frac{f(x)}{g(x)}g'(x)}{g(x)}
               \quad \text{by definition of \(h\)} \\
@@ -301,17 +301,17 @@ Now if we have some negative integer exponent \(-n\) where
 \(n \in \Integers^+\), we can use implicit differentiation to show the rule
 still holds. Letting \(y = x^{-n}\),
 \begin{alignat*}{2}
- &\implies{}& yx^n &= 1 \\
- &\implies{}& nx^{n - 1}y + x^n \dv<y>{x} &= 0 \\
- &\implies{}& \dv<y>{x} &= -nx^{n - 1}yx^{-n}
+ \implies{}&& yx^n &= 1 \\
+ \implies{}&& nx^{n - 1}y + x^n \dv<y>{x} &= 0 \\
+ \implies{}&& \dv<y>{x} &= -nx^{n - 1}yx^{-n}
      = -nx^{-1}x^{-n} = -nx^{-n - 1}
 \end{alignat*}
 We can then use a little implicit differentiation to carry this onto any
 rational exponent \(p / q \in \Rationals\). We let \(y = x^{p / q}\)
 \begin{alignat*}{2}
- &\implies{}& y^q &= x^p \\
- &\implies{}& qy^{q - 1}\dv<y>{x} &= px^{p - 1} \\
- &\implies{}& \dv<y>{x} &= \frac pq x^{p - 1}y^{1 - q}
+ \implies{}&& y^q &= x^p \\
+ \implies{}&& qy^{q - 1}\dv<y>{x} &= px^{p - 1} \\
+ \implies{}&& \dv<y>{x} &= \frac pq x^{p - 1}y^{1 - q}
      = \frac pq x^{p - 1}x^{(p / q)(1 - q)} \\
  &&  &= \frac pq x^{p - 1 + (p / q) - p}
      = \frac pq x^{(p / q) - 1}

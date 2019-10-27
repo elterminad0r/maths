@@ -34,7 +34,7 @@ common ratio \(b/a\). Therefore,
  &&a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n &=
          a^n \cdot \frac{(b / a)^{n + 1} - 1}{(b / a) - 1} \\
  &&    &= \frac{a^{n + 1} - b^{n + 1}}{a - b} \\
- &\implies{}& (a - b)(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n) &=
+ \implies{}&& (a - b)(a^n + a^{n - 1}b + \dotsb + ab^{n - 1} + b^n) &=
          a^{n + 1} - b^{n + 1}
 \end{alignat*}
 
@@ -83,13 +83,13 @@ There is a formula to give the roots of a general quadratic.
  We can complete the square to solve a general quadratic equation.
  \begin{alignat*}2
   &&ax^2 + bx + c &= 0 \\
-  &\iff{}& x^2 + \frac ba x + \frac ca &= 0 \\
-  &\iff{}& \parens[\Big]{x + \frac b{2a}}^2
+  \iff{}&& x^2 + \frac ba x + \frac ca &= 0 \\
+  \iff{}&& \parens[\Big]{x + \frac b{2a}}^2
       &= \parens[\Big]{\frac b{2a}}^2 - \frac ca
       = \frac{b^2 - 4ac}{4a^2} \\
-  &\iff{}& x + \frac b{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
+  \iff{}&& x + \frac b{2a} &= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}
       = \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\
-  &\iff{}& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \qedhere
+  \iff{}&& x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \qedhere
  \end{alignat*}
 \end{proof}
 Notational note: the notation \(\bullet_0 = \bullet_1 \pm \bullet_2\) is really
@@ -164,10 +164,10 @@ into a sum of smaller rational functions.
     As it has no zeroes or one zero (in the case of the condition for equality)
     \begin{alignat*}2
      &&\Delta = b^2 - 4ac &\le 0 \\
-     &\iff{}&
+     \iff{}&&
      \parens[\Big]{\sum 2 u_i v_i}^2 -
                 4\parens[\Big]{\sum u_i^2}\parens[\Big]{\sum v_i^2} &\le 0 \\
-     &\iff{}& \parens[\Big]{\sum u_i v_i}^2
+     \iff{}&& \parens[\Big]{\sum u_i v_i}^2
          &\le \parens[\Big]{\sum u_i^2} \parens[\Big]{\sum v_i^2} \qedhere
     \end{alignat*}
 \end{proof}
@@ -192,22 +192,22 @@ into a sum of smaller rational functions.
  case, \(n = 2\):
  \begin{alignat*}2
   &&\sqrt{ab} &\le \frac{a + b}2 \\
-  &\iff{}& 4ab &\le a^2 + 2ab + b^2 \\
-  &\iff{}& 0 &\le a^2 - 2ab + b^2 \\
-  &\iff{}& 0 &\le (a - b)^2\quad \text{with equality iff \(a = b\)}
+  \iff{}&& 4ab &\le a^2 + 2ab + b^2 \\
+  \iff{}&& 0 &\le a^2 - 2ab + b^2 \\
+  \iff{}&& 0 &\le (a - b)^2\quad \text{with equality iff \(a = b\)}
  \end{alignat*}
  Then, supposing AM-GM holds for \(n\) and 2, we show that it holds for
  \(2n\). Taking
  \begin{alignat*}3
   &&a &= \sqrt[n]{u_1 u_2 \dotsm u_n} \\
   &&b &= \sqrt[n]{u_{n+1} u_{n+2} \dotsm u_{2n}} \\
-  &\implies{}& a &\le \frac{u_1 + u_2 + \dotsb + u_n}n
+  \implies{}&& a &\le \frac{u_1 + u_2 + \dotsb + u_n}n
           &&\quad \text{with equality iff \(u_1 = \dotsb = u_n\)}\\
   &&b &\le \frac{u_{n + 1} + u_{n + 2} + \dotsb + u_{2n}}n
           &&\quad \text{with equality iff \(u_{n+1} = \dotsb = u_{2n}\)}\\
   &&\text{and}\ \sqrt{ab} &\le \frac{a + b}2
       &&\quad \text{with equality iff \(a = b\)}\\
-  &\implies{}& \sqrt[2n]{u_1 u_2 \dotsm u_{2n}} &\le
+  \implies{}&& \sqrt[2n]{u_1 u_2 \dotsm u_{2n}} &\le
           \frac{u_1 + u_2 + \dotsb u_{2n}}{2n}
           &&\quad \text{with equality iff \(u_1 = \dotsb = u_{2n}\)}
  \end{alignat*}
@@ -215,18 +215,18 @@ into a sum of smaller rational functions.
  Taking
  \begin{alignat*}2
   &&u_n &= \sqrt[n - 1]{u_1 u_2 \dotsm u_{n - 1}} \\
-  &\implies{}& (u_1 u_2 \dotsm u_n)^{1 / n}
+  \implies{}&& (u_1 u_2 \dotsm u_n)^{1 / n}
           &= (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} \\
-  &\implies{}& (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} &\le
+  \implies{}&& (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} &\le
           \frac 1n (u_1 + u_2 + \dotsb u_{n - 1}) +
           \frac 1n (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} \\
-  &\implies{}& \parens[\Big]{1 - \frac 1n}
+  \implies{}&& \parens[\Big]{1 - \frac 1n}
       (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} &\le
       \frac 1n (u_1 + u_2 + \dotsb + u_{n - 1}) \\
-  &\implies{}& \frac {n - 1}n
+  \implies{}&& \frac {n - 1}n
           (u_1 u_2 \dotsb u_{n - 1})^{1 / (n - 1)} &\le
           \frac 1n (u_1 + u_2 + \dotsb + u_{n - 1}) \\
-  &\implies{}& (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} &\le
+  \implies{}&& (u_1 u_2 \dotsm u_{n - 1})^{1 / (n - 1)} &\le
           \frac 1{n - 1} (u_1 + u_2 + \dotsb + u_{n - 1})
  \end{alignat*}
  As equality for \(n\) was iff all \(u_i\) were the same, this is still true.
@@ -346,7 +346,7 @@ into a sum of smaller rational functions.
  \begin{alignat*}2
   && f'(\theta) &= if(\theta) = -h(\theta) + ig(\theta)
                  = g'(\theta) + ih'(\theta) \\
-  &\implies{}&
+  \implies{}&&
    % TODO: centre asterisks
       g'(\theta) &= -h(\theta) \tag{\(\ast\)} \label{eqn_thm_euler_gh} \\
   &&  h'(\theta) &= -g(\theta) \tag{\(\ast\ast\)} \label{eqn_thm_euler_hg}
@@ -441,7 +441,7 @@ into a sum of smaller rational functions.
   && i \rho (\cos \phi + i \sin \phi) &=
                    \dv<\rho>{\theta} (\cos \phi + i \sin \phi)
                  + \dv<\phi>{\theta} \rho (-\sin \phi + i \cos \phi) \\
-  &\implies{}& i \rho \cos \phi - \rho \sin \phi &=
+  \implies{}&& i \rho \cos \phi - \rho \sin \phi &=
                    \dv<\rho>{\theta} (\cos \phi + i \sin \phi)
                  + \dv<\phi>{\theta} \rho (-\sin \phi + i \cos \phi)
  \end{alignat*}
@@ -451,11 +451,11 @@ into a sum of smaller rational functions.
                       - \rho \dv<\phi>{\theta} \sin \phi \\
   && \rho \cos \phi &= \dv<\rho>{\theta} \sin \phi
                      + \rho \dv<\phi>{\theta} \cos \phi \\
-  &\implies{}& \rho \sin^2 \phi \parens[\Big]{\dv<\phi>{\theta} - 1} &=
+  \implies{}&& \rho \sin^2 \phi \parens[\Big]{\dv<\phi>{\theta} - 1} &=
                \rho \cos^2 \phi \parens[\Big]{1 - \dv<\phi>{\theta}} \\
   && \cos \phi \parens[\Big]{\dv<\rho>{\theta} \cos \phi + \rho \sin \phi} &=
      \sin \phi \parens[\Big]{\rho \cos \phi - \dv<\rho>{\theta} \sin \phi} \\
-  &\implies{}& \rho \parens[\Big]{\dv<\phi>{\theta} - 1} &= 0
+  \implies{}&& \rho \parens[\Big]{\dv<\phi>{\theta} - 1} &= 0
    % TODO: centre asterisks
    \tag{\(\ast\)} \label{eq_euler_polar_1} \\
   && \dv<\rho>{\theta} &= 0
@@ -529,8 +529,8 @@ An interesting value that the gamma function takes is for \(z = \frac 12\).
 \end{equation*}
 Letting \(x = u^2\)
 \begin{alignat*}2
- &\implies{}& \dv<x>{u} &= 2u \\
- &\implies{}& \Gamma(\tfrac 12) &=
+ \implies{}&& \dv<x>{u} &= 2u \\
+ \implies{}&& \Gamma(\tfrac 12) &=
      \integ[0]<\infty>{\frac{2u}u e^{-u^2}}{u} \\
  &&  &= 2\integ[0]<\infty>{e^{-u^2}}{u} \\
  &&  &= \sqrt \pi

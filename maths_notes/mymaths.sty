@@ -3,9 +3,6 @@
 % maths symbols and other stuff (supersedes the ams* packages)
 \RequirePackage{mathtools}
 
-% allow maths to break across pages
-% \allowdisplaybreaks
-
 % theorem and proof environments. thmtools creates the List of Theorems.
 \RequirePackage{amsthm}
 \RequirePackage{thmtools}
@@ -76,27 +73,14 @@
 % TODO make this resizeable
 \newcommand*\eval{\bigg\rvert}
 
-% \newcommand*\dd\diff
-
-% \newcommand*\dv[2]{\frac{\diff #1}{\diff #2}}
-% \newcommand*\dvn[3]{\frac{\diff^#1 #2}{\diff #3^#1}}
-
-% \newcommand*\integ[2]{\int #1 \,\diff #2}
-% \newcommand*\inteb[4]{\int_{#3}^{#4} #1 \,\diff #2}
-
 % make the list of theorems set theorems further from numbers so no overlap.
 \makeatletter
 \renewcommand\thmt@listnumwidth{2.9em}
 \makeatother
 
-% provides typesetting of derivatives with \dv and \dd
-% also provides all the qty commands and some auto-scaling for operators like
-% \sin, \cos
-% \RequirePackage{physics}
-
 % provides uptau
 \RequirePackage{upgreek}
-% provides \varnothing
+% provides \mathbb and \varnothing
 \RequirePackage{amssymb}
 % mathscr
 \RequirePackage{mathrsfs}
@@ -136,16 +120,9 @@
 \DeclareMathOperator\Expect{E}
 \DeclareMathOperator\Var{Var}
 \DeclareMathOperator\BigO{\mathcal O}
-% \DeclareMathOperator\arccos{arccos}
-% \DeclareMathOperator\arcsin{arcsin}
-% \DeclareMathOperator\arctan{arctan}
 \DeclareMathOperator\arcsec{arcsec}
 \DeclareMathOperator\arccsc{arccsc}
 \DeclareMathOperator\arccot{arccot}
-% \DeclareMathOperator\cosh{cosh}
-% \DeclareMathOperator\sinh{sinh}
-% \DeclareMathOperator\tanh{tanh}
-% \DeclareMathOperator\coth{coth}
 \DeclareMathOperator\sech{sech}
 \DeclareMathOperator\csch{csch}
 \DeclareMathOperator\arccosh{arccosh}
@@ -154,6 +131,7 @@
 \DeclareMathOperator\arcsech{arcsech}
 \DeclareMathOperator\arccsch{arccsch}
 \DeclareMathOperator\arccoth{arccoth}
+\DeclareMathOperator\sign{sgn}
 
 % all the paired delimiters. These draw a pair of delimiters with saner
 % typesetting, and provide nicer ways to scale them. You ~can~ use the starred
@@ -184,17 +162,33 @@
 
 % General commands for typsetting different types of mathematical object
 % modularity and all that
+% defined equal to
 \newcommand*\defeq\coloneqq
 \newcommand*\mean[1]{\overline{#1}}
+% line segment
 \newcommand*\lseg[1]{\mathit{#1}}
+% point
+\newcommand*\pnt[1]{\mathit{#1}}
+% field
 \newcommand*\fld[1]{\mathit{#1}}
+% matrix
 \newcommand*\mat[1]{\mathbf{#1}}
+% vector
 \renewcommand*\vec[1]{\mathrm{\mathbf{#1}}}
+% vector Along - eg "the vector from A to B"
 \newcommand*\veca[1]{\overrightarrow{\mathrm{\mathbf{#1}}}}
+% unit vector
 \newcommand*\uvec[1]{\hat{\vec{#1}}}
+% the unit vector called i
 \newcommand*\uveci{\uvec{\vec{\textbf{\i}}}}
+% the unit vector called j
 \newcommand*\uvecj{\uvec{\vec{\textbf{\j}}}}
+% the unit vector called k
 \newcommand*\uveck{\uvec{k}}
+% vector dot product
+\newcommand*\vecdot\cdot
+% vector cross product
+\newcommand*\veccross\times
 % combinatorial operators in nXr form
 \newcommand*\nPr[2]{\prescript{#1\mkern-2.5mu}{}P_{#2}}
 \newcommand*\nCr[2]{\prescript{#1\mkern-0.5mu}{}C_{#2}}
@@ -208,6 +202,6 @@
 \newcommand*\Reals{\setstyle R}
 \newcommand*\Complex{\setstyle C}
 \DeclareMathOperator\PowerSet{\mathcal P}
-\newcommand*\conj\bar
+\newcommand*\conj\overline
 % to mark things of interest?
 \newcommand*\note{(\ast)}

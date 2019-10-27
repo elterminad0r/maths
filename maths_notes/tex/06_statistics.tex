@@ -81,7 +81,7 @@ multiplied by some constant coefficient:
 \begin{alignat*} 3
  && S &= \sum_{r = 1}^n \alpha_r X_r
  &&= \alpha_1 X_1 + \alpha_2 X_2 + \dotsb + \alpha_n X_n \\
- &\implies{}& G_S(\eta)
+ \implies{}&& G_S(\eta)
      &= \Expect\parens[\Big]{\eta^{\sum_{r = 1}^n \alpha_r X_r}}
  &&= \Expect(\eta^{\alpha_1 X_1 + \alpha_2 X_2 + \dotsb + \alpha_n X_n}) \\
  && &= \Expect\parens[\Big]{\prod_{r = 1}^n \eta^{\alpha_r X_r}}
@@ -147,13 +147,13 @@ In this case, ``large'' can be taken to mean more than about 30-100.
   \(\eta^k\) (which is \(\Prob(X = k)\)) is
   \(\binom \nu k (1 - \pi)^{\nu - k} \pi^k\).
   \begin{alignat*}2
-  &\implies{}& G_X'(\eta) &= \nu \pi (1 - \pi + \pi \eta)^{\nu - 1} \\
+  \implies{}&& G_X'(\eta) &= \nu \pi (1 - \pi + \pi \eta)^{\nu - 1} \\
   && G_X'(1) &= \nu \pi (1 - pi + pi)^{\nu - 1} = \nu \pi \\
-  &\implies{}& G_X''(\eta)
+  \implies{}&& G_X''(\eta)
       &= \nu(\nu - 1) \pi^2 (1 - \pi + \pi \eta)^{\nu - 2} \\
   && G_X''(1)
       &= \nu(\nu - 1)\pi^2(1 - \pi + \pi)^{\nu - 2} = \nu(\nu - 1)\pi^2 \\
-  &\implies{}& \Expect(X) &= G_X'(1) = \nu \pi \\
+  \implies{}&& \Expect(X) &= G_X'(1) = \nu \pi \\
   && \Var(X) &= G_X''(1) + G_X'(1) - (G_X''(1))^2
       = \nu(\nu - 1) \pi^2 + \nu \pi - (\nu \pi)^2 \\
   && &= \nu \pi - \nu \pi^2 = \nu \pi (1 - \pi) \qedhere
@@ -218,13 +218,13 @@ or per unit time, etc.
  as \(\nu \to \infty\). This means particularly that we can use
  \begin{alignat*}2
   && \Expect(X) = \nu \pi &= \lambda \\
-  &\implies{}& \pi &= \frac \lambda \nu
+  \implies{}&& \pi &= \frac \lambda \nu
  \end{alignat*}
  From Lemma \ref{lem_binom_pgf} we know the PGF of \(Y\):
  \begin{alignat*}2
   && G_Y(\eta) &= (1 - \pi + \pi \eta)^\nu \\
   &&  &= \parens[\Big]{1 - \frac \lambda \nu + \frac \lambda \nu \eta}^\nu \\
-  &\implies{}& G_X(\eta) = \lim_{\nu \to \infty}G_Y(\eta)
+  \implies{}&& G_X(\eta) = \lim_{\nu \to \infty}G_Y(\eta)
       &= \lim_{\nu \to \infty} \parens[\Big]{1 - \frac \lambda \nu
                                   + \frac \lambda \nu \eta}^\nu \\
   &&  &= \lim_{\nu \to \infty} \parens[\Big]
@@ -237,9 +237,9 @@ or per unit time, etc.
   So clearly the coefficient of the term in \(\eta^k\) (ie \(\Prob(X = k)\))
   is \(\frac{\lambda^k e^{-\lambda}}{k!}\). Also,
   \begin{alignat*}2
-  &\implies{}& G_X'(\eta) &= \lambda e^{\lambda(\eta - 1)} \\
+  \implies{}&& G_X'(\eta) &= \lambda e^{\lambda(\eta - 1)} \\
   && G_X'(1) &= \lambda \\
-  &\implies{}& G_X''(\eta) &= \lambda^2 e^{\lambda(\eta - 1)} \\
+  \implies{}&& G_X''(\eta) &= \lambda^2 e^{\lambda(\eta - 1)} \\
   && G_X''(1) &= \lambda^2 \\
   && \Var(X) &= G_X''(1) + G_X'(1) - (G_X''(1))^2
       = \lambda^2 + \lambda - \lambda^2 = \lambda \qedhere
