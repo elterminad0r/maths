@@ -13,8 +13,6 @@ Finding numbers of the form 10 ^ n + 1 divisible by a square greater than 1.
 from itertools import count, takewhile
 from time import time
 
-from progress_bar import format_bar
-
 def possible_divisors(*, counter=None):
     """
     Generate non-trivial squares that could possibly divide 10 ^ n + 1.
