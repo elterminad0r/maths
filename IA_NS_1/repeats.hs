@@ -6,6 +6,7 @@ import Data.List
 import Text.Read
 import Data.Maybe
 import System.Environment
+import Text.Printf
 
 possible_divisors :: [Integer]
 -- Explicitly use an Integer literal just so -Wall doesn't complain
@@ -23,4 +24,6 @@ main = do
     let n = case args of
          []    -> 16
          (s:_) -> fromMaybe 16 $ readMaybe s
-    forM_ [1..n] (print . check_squares)
+    forM_ [1..n] (\k -> do
+                    printf "%2d: " k
+                    print $ check_squares k)
