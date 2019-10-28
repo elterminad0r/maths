@@ -1,6 +1,8 @@
 -- Fairly terse translation of repeats.py into Haskell, for easy speed gain
 -- while probably even gaining some abstraction, rather than losing it.
 
+-- Very scalable due to usage of Integer type.
+
 import Control.Monad
 import Data.List
 import Text.Read
