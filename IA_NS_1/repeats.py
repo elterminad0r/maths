@@ -13,6 +13,9 @@ Finding numbers of the form 10 ^ n + 1 divisible by a square greater than 1.
 from itertools import count, takewhile
 from time import time
 
+# replace this with `import argparse` if you aren't me
+import smartparse as argparse
+
 def possible_divisors(*, counter=None):
     """
     Generate non-trivial squares that could possibly divide 10 ^ n + 1.
@@ -66,5 +69,15 @@ def present_search(n, do_count=True, verbose=True):
         verbose and print("checked {0} =~ {0:.2e} numbers".format(counter[0]))
         verbose and print("~{0:.2e} numbers / s".format(counter[0] / elapsed))
 
+def get_args():
+    """
+    Parse argv
+    """
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("n", nargs="?", type=int, default=16,
+            help="Check up to 10^n + 1")
+    return parser.parse_args()
+
 if __name__ == "__main__":
-    present_search(16)
+    args = get_args()
+    present_search(args.n)
