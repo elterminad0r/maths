@@ -6,7 +6,7 @@
 
 % fleqn aligns equations to the left, a4 paper size, 11pt font, article class
 \documentclass[fleqn,a4paper,11pt]{article}
-\title{IA Vectors and Matrices Example Sheet 1}
+\title{IA Vectors and Matrices Example Sheet 1, Revised Edition}
 \author{Izaak van Dongen (\texttt{imv26})}
 
 \usepackage{mymaths}
@@ -184,14 +184,9 @@
      w &= 0 + \nu (\tfrac 12 (z_1 + z_2) - 0) \\
        &= \nu' (z_1 + z_2)
     \end{align*}
-    Now we can equate the terms
-    \footnote{
-     Probably you could justify this by a change of basis, noting that the 2-D
-     position vectors corresponding to \(z_1\), \(z_2\) are linearly independent
-     if they are to form vertices of a triangle.}
-    in \(z_1\) and
-    \(z_2\) to find the parameters at
-    the intersection of the medians:
+    Now we can equate the terms in \(z_1\) and \(z_2\), as they are linearly
+    independent, to find the parameters at the intersection of the medians
+    through \(z_1\) and \(z_2\):
     \begin{alignat*}2
      &z_1\colon\quad& 1 - \lambda &= \tfrac 12 \mu \\
      &z_2\colon\quad& 1 - \mu &= \tfrac 12 \lambda
@@ -248,8 +243,7 @@
        \iff{}&& \frac{\abs{z - a}}{\abs{z - b}} &= \lambda \\
        \iff{}&& \frac{\abs{z - a}^2}{\abs{z - b}^2} &= \lambda^2 \quad
         \text{as both sides are \(\ge 0\)} \\
-       \iff{}&& \abs{z - a}^2 &= \lambda^2\abs{z - b}^2 \quad
-        \text{as \(a \ne b\)} \\
+       \iff{}&& \abs{z - a}^2 &= \lambda^2\abs{z - b}^2 \\
        \iff{}&& (z - a)(\conj{z - a}) &= \lambda^2(z - b)(\conj{z - b}) \\
        \iff{}&& (z - a)(\conj z - \conj a)
                  &= \lambda^2(z - b)(\conj z - \conj b) \\
@@ -285,7 +279,7 @@
        \iff{}&& \abs[\Big]{z - \frac{\lambda^2 b - a}{\lambda^2 - 1}}^2
                   &= \frac{\lambda^2}{(\lambda^2 - 1)^2}\abs{a - b}^2 \\
        \iff{}&& \abs[\Big]{z - \frac{\lambda^2 b - a}{\lambda^2 - 1}}
-                  &= \frac{\lambda}{\lambda^2 - 1}\abs{a - b}
+                  &= \frac{\lambda}{\abs{\lambda^2 - 1}}\abs{a - b}
       \end{alignat*}}
       Which is to say, if \(\lambda \ne 1\), \(C_\lambda\) corresponds precisely
       to the circle with centre \\ \((\lambda^2 b - a) / (\lambda^2 - 1)\) and
@@ -350,10 +344,10 @@
      \veca{CH} \vecdot \veca{AB}
       &= (\veca{CA} + \veca{AH}) \vecdot \veca{AB} \\
       &= \veca{CA} \vecdot \veca{AB} + \veca{AH} \vecdot \veca{AB} \\
-      &= \veca{CA} \vecdot (\veca{AH} + \veca{BH})
+      &= \veca{CA} \vecdot (\veca{AH} + \veca{HB})
          + \veca{AH} \vecdot \veca{AB} \\
       &= \veca{CA} \vecdot \veca{AH}
-         + \underbrace{\veca{CA} \vecdot \veca{BH}}_{= 0}
+         + \underbrace{\veca{CA} \vecdot \veca{HB}}_{= -0}
          + \veca{AH} \vecdot \veca{AB} \\
       &= \veca{CA} \vecdot \veca{AH} + \veca{AH} \vecdot \veca{AB} \\
       &= \veca{AH} \vecdot (\veca{CA} + \veca{AB}) \\
@@ -381,8 +375,7 @@
                   \frac{\abs{\vec a}^2 - \abs{\vec x}^2}{2 + \abs{\vec y}^2}
     \end{alignat*}
     But we have the Cauchy-Shwarz inequality:
-    \(\vec x \vecdot \vec y \le \abs{\vec x}\abs{\vec y}\),
-    implying
+    \(\vec x \vecdot \vec y \le \abs{\vec x}\abs{\vec y}\), so
     \begin{alignat*}2
      && \frac{\abs{\vec a}^2 - \abs{\vec x}^2}{2 + \abs{\vec y}^2} &\le
         \abs{\vec x}^2\abs{\vec y}^2 \\
@@ -636,6 +629,26 @@
       products of any three of \(\vec a\), \(\vec b\), \(\vec c\), \(\vec d\) is
       0, so, for instance, \(\set{\vec a, \vec b, \vec c}\) is linearly
       dependent, and the whole set must also be linearly dependent.
+     \item Expanding,
+      \begin{align*}
+       [\vec a \veccross \vec b,
+        \vec b \veccross \vec c,
+        \vec c \veccross \vec a] &=
+         (\vec a \veccross \vec b) \vecdot
+         ((\vec b \veccross \vec c) \veccross (\vec c \veccross \vec a)) \\
+        &= (\vec a \veccross \vec b)  \vecdot
+           [((\vec b \veccross \vec c) \vecdot \vec a) \vec c
+            - ((\vec b \veccross \vec c) \vecdot \vec c) \vec a] \\
+        &= (\vec a \veccross \vec b) \vecdot
+           [((\vec b \veccross \vec c) \vecdot \vec a) \vec c] \\
+        &= ((\vec a \veccross \vec b) \vecdot \vec c)
+           ((\vec b \veccross \vec c) \vecdot \vec a) \\
+        &= (\vec c \vecdot (\vec a \veccross \vec b))
+           (\vec a \vecdot (\vec b \veccross \vec c)) \\
+        &= (\vec a \vecdot (\vec b \veccross \vec c))
+           (\vec a \vecdot (\vec b \veccross \vec c)) \\
+        &= [\vec a, \vec b, \vec c]^2
+      \end{align*}
     \end{enumerate}
    \item
     \begin{enumerate}[(i)]
@@ -734,7 +747,8 @@
          and this is precisely the unique solution.
         \item
          If \(\vec a \vecdot \vec b = -1\), we then have that
-         \(\vec c \vecdot \vec a = 0\). Clearly \(\vec r = \vec c\) is a
+         \(\vec c \vecdot \vec a = (\vec r \vecdot \vec a)\cdot 0 = 0\).
+         Clearly \(\vec r = \vec c\) is a
          solution. Suppose \(\vec r' = \vec c + \vec v\) for some
          \(\vec v \ne \vec 0\) is also a solution. Then
          \begin{alignat*}2
