@@ -775,37 +775,37 @@
    \item
     Calculating each magnitude,
     \begin{align*}
-     \abs{\vec e_r}^2 &= \cos^2 \varphi \sin^2 \theta
-                         + \sin^2 \varphi \sin^2 \theta + \cos^2 \theta \\
-                      &= (\sin^2 \varphi + \cos^2 \varphi)\sin^2 \theta
+     \abs{\vec e_r}^2 &= \cos^2 \phi \sin^2 \theta
+                         + \sin^2 \phi \sin^2 \theta + \cos^2 \theta \\
+                      &= (\sin^2 \phi + \cos^2 \phi)\sin^2 \theta
                          + \cos^2 \theta \\
                       &= \sin^2 \theta + \cos^2 \theta = 1 \\
-     \abs{\vec e_\theta}^2 &= \cos^2 \varphi \cos^2 \theta
-                         + \sin^2 \varphi \cos^2 \theta + \sin^2 \theta \\
-                      &= (\sin^2 \varphi + \cos^2 \varphi)\cos^2 \theta
+     \abs{\vec e_\theta}^2 &= \cos^2 \phi \cos^2 \theta
+                         + \sin^2 \phi \cos^2 \theta + \sin^2 \theta \\
+                      &= (\sin^2 \phi + \cos^2 \phi)\cos^2 \theta
                          + \sin^2 \theta \\
                       &= \sin^2 \theta + \cos^2 \theta = 1 \\
-     \abs{\vec e_\varphi}^2 &= \sin^2 \varphi + \cos^2 \varphi = 1
+     \abs{\vec e_\phi}^2 &= \sin^2 \phi + \cos^2 \phi = 1
     \end{align*}
     Calculating each pairwise dot product,
     \begin{align*}
      \vec e_r \vecdot \vec e_\theta &=
-      \cos^2 \varphi \sin \theta \cos \theta
-      + \sin^2 \varphi \sin \theta \cos \theta - \cos \theta \sin \theta \\
-      &= \sin \theta \cos \theta(\sin^2 \varphi + \cos^2 \varphi - 1) = 0 \\
-     \vec e_\theta \vecdot \vec e_\varphi &=
-      -\cos \varphi \cos \theta \sin \varphi
-      + \sin \varphi \cos \theta \cos \varphi + 0 = 0 \\
-     \vec e_\varphi \vecdot \vec e_r &=
-      -\sin \varphi \cos \varphi \sin \theta
-      + \cos \varphi \sin \varphi \sin \theta + 0 = 0
+      \cos^2 \phi \sin \theta \cos \theta
+      + \sin^2 \phi \sin \theta \cos \theta - \cos \theta \sin \theta \\
+      &= \sin \theta \cos \theta(\sin^2 \phi + \cos^2 \phi - 1) = 0 \\
+     \vec e_\theta \vecdot \vec e_\phi &=
+      -\cos \phi \cos \theta \sin \phi
+      + \sin \phi \cos \theta \cos \phi + 0 = 0 \\
+     \vec e_\phi \vecdot \vec e_r &=
+      -\sin \phi \cos \phi \sin \theta
+      + \cos \phi \sin \phi \sin \theta + 0 = 0
     \end{align*}
     so they are orthonormal.
 
     Now by calculating the \(\uvecj\) component of
-    \(\vec e_\varphi \veccross \vec e_r\) as
-    \(\cos \theta \sin \varphi\), we know
-    \(\vec e_\varphi \veccross \vec e_r = +\vec e_\theta\) and the set must be
+    \(\vec e_\phi \veccross \vec e_r\) as
+    \(\cos \theta \sin \phi\), we know
+    \(\vec e_\phi \veccross \vec e_r = +\vec e_\theta\) and the set must be
     right-handed.
 
     The fact that a set of orthonormal vectors must be right-handed or
@@ -822,9 +822,9 @@
     \begin{align*}
      \mat M &=
       \begin{pmatrix}
-       \cos(\varphi + \tfrac 12 \pi) & -\sin(\varphi + \tfrac 12 \pi) & 0
+       \cos(\phi + \tfrac 12 \pi) & -\sin(\phi + \tfrac 12 \pi) & 0
         \\[4pt]
-       \sin(\varphi + \tfrac 12 \pi) & \cos(\varphi + \tfrac 12 \pi) & 0
+       \sin(\phi + \tfrac 12 \pi) & \cos(\phi + \tfrac 12 \pi) & 0
         \\[4pt]
        0 & 0 & 1
       \end{pmatrix}
@@ -836,8 +836,8 @@
       \end{pmatrix} \\
       &=
       \begin{pmatrix}
-       -\sin \varphi & -\cos \varphi & 0 \\
-       \cos \varphi & -\sin \varphi & 0 \\
+       -\sin \phi & -\cos \phi & 0 \\
+       \cos \phi & -\sin \phi & 0 \\
        0 & 0 & 1
       \end{pmatrix}
       \begin{pmatrix}
@@ -847,19 +847,19 @@
       \end{pmatrix} \\
       &=
       \begin{pmatrix}
-       -\sin \varphi & \cos \varphi \sin \theta & \cos \varphi \cos \theta \\
-       \cos \varphi & \sin \varphi \sin \theta & \sin \varphi \cos \theta \\
+       -\sin \phi & \cos \phi \sin \theta & \cos \phi \cos \theta \\
+       \cos \phi & \sin \phi \sin \theta & \sin \phi \cos \theta \\
        0 & \cos \theta & -\sin \theta
       \end{pmatrix}
     \end{align*}
     then
-    \(\mat M \uveci = \vec e_\varphi\),
+    \(\mat M \uveci = \vec e_\phi\),
     \(\mat M \uvecj = \vec e_r\) and
     \(\mat M \uveck = \vec e_\theta\). But since \(\mat M\) is just a series of
     two rotations, it preserves handedness and orthonormality, so since
     \(\set{\uveci, \uvecj, \uveck}\) is a right-handed orthonormal set, so too
-    must be \(\set{\vec e_\varphi, \vec e_r, \vec e_\theta}\), and hence also
-    \(\set{\vec e_r, \vec e_\theta, \vec e_\varphi}\).
+    must be \(\set{\vec e_\phi, \vec e_r, \vec e_\theta}\), and hence also
+    \(\set{\vec e_r, \vec e_\theta, \vec e_\phi}\).
  \end{enumerate}
 
 \end{document}

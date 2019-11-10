@@ -22,14 +22,22 @@
 % mathbb
 \RequirePackage{amssymb}
 
+% this is the hill I'm prepared to die on
+\let\uglyepsilon\epsilon
+\let\epsilon\varepsilon
 \let\uglyphi\phi
 \let\phi\varphi
+
+\DeclareMathOperator\Forall\forall
+\let\ker\relax
+\DeclareMathOperator\Ker{Ker}
+\DeclareMathOperator\Img{Im}
 
 % General commands for typesetting different types of mathematical object
 % modularity and all that
 \newcommand*\lseg[1]{\mathit{#1}}
 \newcommand*\pnt[1]{\mathit{#1}}
-\newcommand*\mat[1]{\mathbf{#1}}
+\newcommand*\mat[1]{\mathit{#1}}
 \renewcommand*\vec[1]{\mathrm{\mathbf{#1}}}
 \newcommand*\veca[1]{\overrightarrow{\mathit{#1}}}
 \newcommand*\uvec[1]{\hat{\vec{#1}}}

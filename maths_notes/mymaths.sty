@@ -103,6 +103,12 @@
 \newcommand*\Tau{\mathrm{T}}
 \newcommand*\Chi{\mathrm{X}}
 
+% this is the hill I'm prepared to die on
+\let\uglyepsilon\epsilon
+\let\epsilon\varepsilon
+\let\uglyphi\phi
+\let\phi\varphi
+
 % indpendent symbol:
 % https://tex.stackexchange.com/questions/79434/double-perpendicular-symbol-for-independence
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
@@ -132,6 +138,9 @@
 \DeclareMathOperator\arccsch{arccsch}
 \DeclareMathOperator\arccoth{arccoth}
 \DeclareMathOperator\sign{sgn}
+\let\ker\relax
+\DeclareMathOperator\Ker{Ker}
+\DeclareMathOperator\Img{Im}
 
 % all the paired delimiters. These draw a pair of delimiters with saner
 % typesetting, and provide nicer ways to scale them. You ~can~ use the starred
