@@ -164,16 +164,35 @@
    \(n_i n_i = 1\), then
    \begin{align*}
     \mat N_{ij} \mat M_{jk}
-     &= (\delta_{ij} - \epsilon_{ijk} n_k + n_i n_j)
-        (\delta_{jk} + \epsilon_{jk\ell} n_\ell) \\
+     &= (\delta_{ij} - \epsilon_{ij\ell} n_\ell + n_i n_j)
+        (\delta_{jk} + \epsilon_{jkq} n_q) \\
+     &= \delta_{ik} + \epsilon_{ikq} n_q
+        - \epsilon_{ik\ell} n_\ell
+        - \epsilon_{ij\ell} \epsilon_{jkq} n_\ell n_q
+        + n_i n_k + \epsilon_{jkq} n_q n_i n_j \\
      &= \delta_{ik} + \epsilon_{ik\ell} n_\ell
-        - \epsilon_{ikk} n_k - \epsilon_{ijk} \epsilon_{jk\ell} n_k n_\ell
-        + n_i n_k + \epsilon_{jk\ell} n_i n_j n_\ell \\
-     &= \delta_{ik} + \epsilon_{ik\ell} n_\ell
-        - 2\delta_{i\ell} n_k n_\ell + n_i n_k \\
-     &= \delta_{ik} + \epsilon_{ik\ell} n_\ell - n_i n_k \\
+        - \epsilon_{ik\ell} n_\ell
+        - \epsilon_{ij\ell} \epsilon_{jkq} n_\ell n_q
+        + n_i n_k \\
+     &= \delta_{ik}
+        - \epsilon_{j\ell i} \epsilon_{jkq} n_\ell n_q
+        + n_i n_k \\
+     &= \delta_{ik}
+        - (\delta_{k\ell}\delta_{iq} - \delta_{q\ell}\delta_{ik}) n_\ell n_q
+        + n_i n_k \\
+     &= \delta_{ik}
+        - n_i n_k + \delta_{ik} n_\ell n\ell
+        + n_i n_k \\
+     &= \delta_{ik}
+        + \delta_{ik} \cdot 1 \\
+     &= 2\delta_{ik}
    \end{align*}
-   % TODO ^^
+   so
+   \begin{alignat*}2
+    && (\mat N \mat M)_{ik} &= 2\delta_{ik} \\
+    \implies{}&& \mat N \mat M &= 2\mat I
+   \end{alignat*}
+   If
    \begin{alignat*}2
     && \vec y &= \vec x + \vec x \veccross \vec n \\
     \iff{}&& y_i &= x_i + (\vec x \veccross \vec n)_i \\
@@ -389,7 +408,7 @@
       &= -Q(\vec x)
     \end{align*}
     So \(Q^2 = -T\). Under \(Q^2\), \(\vec x\) is sent to the plane perpendicular
-    to \(\vec n\) as with \(T\), but is then reflected through the origin.
+    to \(\vec n\) as with \(T\), but is then inverted through the origin.
 
     \(Q^3 + Q\) is the null map, and clearly
     \(Q^2 = -T \implies Q^4 = (-T) \circ (-T) = T^2 = T\)
@@ -431,30 +450,115 @@
                       ((1, 0, 2) \veccross (0, 1, -1)) = \vec 0}\).
     \end{enumerate}
    \item
-    \begin{align*}
-     \mat M
+    If \(\mat M \vec r = \vec 0\), then
+    \begin{alignat*}2
+     && \begin{pmatrix}
+      a & a & b & a \\
+      a & a & b & 0 \\
+      a & b & a & b \\
+      a & b & a & 0
+     \end{pmatrix}
+     \begin{pmatrix}
+      x \\ y \\ z \\ w
+     \end{pmatrix}
+      &= \vec 0 \\
+     \iff{}&& \begin{pmatrix}
+      0 & 0 & 0 & a \\
+      a & a & b & 0 \\
+      0 & 0 & 0 & b \\
+      a & b & a & 0
+     \end{pmatrix}
+     \begin{pmatrix}
+      x \\ y \\ z \\ w
+     \end{pmatrix}
       &=
       \begin{pmatrix}
-       a & a & b & a \\
-       a & a & b & 0 \\
-       a & b & a & b \\
-       a & b & a & 0
-      \end{pmatrix} \\
-      &=
-      \begin{pmatrix}
-       1 & 1 & 0 & 0 \\
-       0 & 1 & 0 & 0 \\
-       0 & 0 & 1 & 1 \\
-       0 & 0 & 0 & 1
+       aw \\ ax + ay + bz \\ bw \\ ax + by + az
       \end{pmatrix}
-      \begin{pmatrix}
-       0 & 0 & 0 & a \\
-       a & a & b & 0 \\
-       0 & 0 & 0 & b \\
-       a & b & a & 0
-      \end{pmatrix}
-    \end{align*}
-    %TODO
+      = \vec 0
+    \end{alignat*}
+    so:
+    \begin{itemize}
+     \item If either of \(a, b\) is not \(0\), then \(w = 0\), and \(x, y, z\)
+           satisfy
+      \begin{align*}
+       ax + ay + bz &= 0 \\
+       ax + by + az &= 0
+      \end{align*}
+      which is to say \((x, y, z)\) lies on the intersection of the planes
+      \(\vec r' \vecdot (a, a, b) = 0\) and
+      \(\vec r' \vecdot (a, b, a) = 0\) (where \(\vec r' = (x, y, z)\)).
+      \begin{itemize}
+       \item
+        If \(a = b\), this is the entire plane
+        \(\vec r' \vecdot (1, 1, 1) = 0\).
+       \item
+        Otherwise, these two normal vectors cannot be parallel and this is the
+        line \\
+        \(\vec r \veccross ((a, a, b) \veccross (a, b, a)) = \vec 0\).
+      \end{itemize}
+     \item If \(a = b = 0\), then the kernel is \(\Reals^4\).
+    \end{itemize}
+    For the image:
+    \begin{itemize}
+     \item
+      If \(a = b = 0\), the image is \(\set{\vec 0}\).
+     \item If \(a = 0\), the image is the span of
+      \(\set{(0, 0, b, b), (b, b, 0, 0), (0, 0, b, 0)}\), which is the span of
+      \(\set{(0, 0, 1, 1), (1, 1, 0, 0), (0, 0, 1, 0)}\), as \(b \ne 0\). These
+      are linearly independent as all combinations of
+      \((0, 0, 1, 1)\) and \((1, 1, 0, 0)\) have the form
+      \((\alpha, \alpha, \beta, \beta)\), so can never give rise to
+      \((0, 0, \gamma, 0)\). The image is therefore a three-dimensional subspace
+      of \(\Reals^4\).
+     \item If \(a\) is nonzero, then the image is the span of
+      \(\set{(a, a, a, a), (a, a, b, b), (b, b, a, a), (a, 0, b, 0)}\).
+      But \(((a + b)/a)\,(a, a, a, a) = (a, a, b, b) + (b, b, a, a)\) is then a
+      nontrivial linear dependence, so the image is just the span of
+      \(\set{(a, a, b, b), (b, b, a, a), (a, 0, b, 0)}\).
+
+      The linear combinations of \((a, a, b, b)\) and
+      \((b, b, a, a)\) have the form
+      \begin{equation*}
+      (\alpha a + \beta b, \alpha a + \beta b,
+       \alpha b + \beta a, \alpha b + \beta a)
+      \end{equation*}
+      These could only ever give rise to \((\gamma a, 0, \gamma b, 0)\) if
+      \begin{align*}
+       \alpha a + \beta b &= 0 \\
+       \alpha b + \beta a &= 0
+      \end{align*}
+      has nonzero solutions for \(\alpha, \beta\). Equivalently, there are
+      nonzero solutions to
+      \begin{equation*}
+       \begin{pmatrix}
+        a & b \\
+        b & a
+       \end{pmatrix}
+       \begin{pmatrix}
+        \alpha \\ \beta
+       \end{pmatrix}
+       = \vec 0
+      \end{equation*}
+      so we need \(a^2 - b^2 = 0\). So:
+      \begin{itemize}
+       \item
+        If \(\abs a \ne \abs b\), then the image is the three dimensional
+        subspace which is the span of
+        \(\set{(a, a, b, b), (b, b, a, a), (a, 0, b, 0)}\).
+       \item
+        If \(a = b\), then the image is the span of
+        \(\set{(a, a, a, a), (a, a, a, a), (a, 0, a, 0)}\), which is the span of
+        \(\set{(1, 1, 1, 1), (1, 0, 1, 0)}\) as \(a \ne 0\). This is a plane in
+        \(\Reals^4\).
+       \item
+        If \(a = -b\), then the image is the span of
+        \(\set{(a, a, -a, -a), (-a, -a, a, a), (a, 0, -a, 0 )}\), which is the
+        span of
+        \(\set{(1, 1, -1, -1), (1, 0, -1, 0)}\), again as \(a \ne 0\). This is a
+        plane in \(\Reals^4\).
+      \end{itemize}
+    \end{itemize}
    \item
     If \(\vec n = (0, 0, 1)\), then
     \begin{alignat*}2
@@ -462,7 +566,7 @@
                 \sin \theta\,(\vec x \veccross \vec n)_i \\
      &&      &= \cos \theta\,x_i + \delta_{i3} x_3(1 - \cos \theta) -
                 \sin \theta\,\epsilon_{ij3}x_j \\
-     \implies{}&& \vec x_i'
+     \implies{}&& \vec x'
       &=
       \begin{pmatrix}
        \cos\theta\,x_1 - \sin\theta\,x_2 \\
@@ -553,7 +657,7 @@
       \begin{itemize}
        \item
         \begin{itemize}
-         \item The examples I have given show that reflection and dilatation do
+         \item The examples I have given show that reflection and dilation do
                not necessarily have determinant 1.
 
          \item
@@ -585,7 +689,7 @@
           \(y = 0\) first it ends up at \((-1, 1)\).
 
          \item
-          Dilatation is commutative. In general,
+          dilation is commutative. In general,
           \begin{equation*}
            \begin{pmatrix*}[r]
             \alpha_1 & 0 \\
@@ -694,7 +798,8 @@
       \end{alignat*}
       A reflection cannot be represented by a complex number in this way, as a
       reflection generally requires a difference of sign on the leading
-      diagonal, and no difference of sign on the trailing diagonal:
+      diagonal, and no difference of sign on the trailing diagonal (and they
+      can't all be \(0\)):
       \begin{equation*}
        \begin{pmatrix*}[r]
         \cos 2\theta & \sin 2\theta \\
@@ -704,16 +809,144 @@
       So the only possible complex number would be \(0\), which is clearly not a
       reflection.
 
-      A dilatation that scales by the same factor \(k\) in every direction is
-      represented by the real number \(k\). A dilatation that does not do this
+      A dilation that scales by the same factor \(k\) in every direction is
+      represented by the real number \(k\). A dilation that does not do this
       cannot be represented as the elements of the leading diagonal must be the
       same.
 
-      A shear cannot be represented, as both elements of the trailing diagonal
-      must have the same modulus, but for a shear one must be zero and one must
-      be nonzero.
+      A non-degenerate shear cannot be represented, as both elements of the
+      trailing diagonal must have the same modulus, but for a shear one must be
+      zero and one must be nonzero.
 
-      A rotation by an angle \(\theta\) is represented by \(e^{i\theta}\).
+      A rotation by an angle \(\theta\) is represented by
+      \(e^{i\theta} = \cos \theta + i \sin \theta\).
+    \end{enumerate}
+   \item
+    \begin{enumerate}[label=(\alph*)]
+     \item
+      \(\mat R(\vec i, \frac \pi 2)_{ij}
+        = \delta_{ij} \cdot 0 + (\vec i)_i (\vec i)_j (1 - 0)
+           - \epsilon_{ijk} (\vec i)_k
+        = \delta_{i1} \delta_{j1} - \epsilon_{ijk} \delta_{k1}\), so
+      \begin{equation*}
+       \mat R(\vec i, \tfrac \pi 2)
+        =
+        \begin{pmatrix*}[r]
+         1 & 0 & 0 \\
+         0 & 0 & -1 \\
+         0 & 1 & 0
+        \end{pmatrix*}
+      \end{equation*}
+      \(\mat R(\vec j, \frac \pi 2)_{ij}
+        = \delta_{ij} \cdot 0 + (\vec j)_i (\vec j)_j (1 - 0)
+           - \epsilon_{ijk} (\vec j)_k
+        = \delta_{i2} \delta_{j2} - \epsilon_{ijk} \delta_{k2}\), so
+      \begin{equation*}
+       \mat R(\vec j, \tfrac \pi 2)
+        =
+        \begin{pmatrix*}[r]
+         0 & 0 & 1 \\
+         0 & 1 & 0 \\
+         -1 & 0 & 0
+        \end{pmatrix*}
+      \end{equation*}
+      and then
+      \begin{equation*}
+       \mat R(\vec i, \tfrac \pi 2)\mat R(\vec j, \tfrac \pi 2)
+        =
+        \begin{pmatrix*}[r]
+         0 & 0 & -1 \\
+         -1 & 0 & 0 \\
+         0 & 1 & 0
+        \end{pmatrix*}
+      \end{equation*}
+      but
+      \begin{equation*}
+       \mat R(\vec j, \tfrac \pi 2)\mat R(\vec i, \tfrac \pi 2)
+        =
+        \begin{pmatrix*}[r]
+         0 & -1 & 0 \\
+         0 & 0 & -1 \\
+         1 & 0 & 0
+        \end{pmatrix*}.
+      \end{equation*}
+     \item
+      Algebraically,
+      \begin{align*}
+       \vec x \mapsto \vec x'
+        &= -\mat H(\vec n) \vec x \\
+        &= -\vec x + 2(\vec x \vecdot \vec n) \vec n \\
+        &= \cos\pi\,\vec x + (1 - \cos\pi)(\vec x \vecdot \vec n) \vec n
+           - \sin \pi\,(\vec x \veccross \vec n) \\
+        &= \mat R(\vec n, \pi) \vec x
+      \end{align*}
+      Geometrically,
+      %TODO
+     \item First, explicitly find the matrix \(\mat H(\vec n)\):
+      \begin{alignat*}2
+       && \mat H(\vec n)_{ij} x_j = x_i' &= x_i - 2(\vec x \vecdot \vec n)n_i \\
+       && &= \delta_{ij} x_j - 2 n_j n_i x_j \\
+       \implies{}&& \mat H(\vec n)_{ij} &= \delta_{ij} - 2 n_i n_j
+      \end{alignat*}
+      Now
+      \(\vec n_\pm
+        = \cos(\frac 12 \theta)\,\vec i \pm \sin(\frac 12 \theta)\,\vec j\), so
+      \begin{alignat*}2
+       \mat H(\vec n_-)
+        &={}&
+        \begin{pmatrix}
+         1 - 2\cos^2\tfrac 12\theta
+          & \phantom{-{}} 2 \cos\tfrac 12\theta\sin\tfrac 12\theta
+          & 0 \\[1ex]
+         \phantom{-{}} 2 \cos\tfrac 12\theta\sin\tfrac 12\theta
+          & 1 - 2\sin^2\tfrac 12\theta
+          & 0 \\[1ex]
+         0 & 0 & 1
+        \end{pmatrix}
+        &=
+        \begin{pmatrix}
+         -\cos\theta & \sin\theta & 0 \\
+         \sin \theta & \cos\theta & 0 \\
+         0 & 0 & 1
+        \end{pmatrix} \\
+       \mat H(\vec n_+)
+        &={}&
+        \begin{pmatrix}
+         1 - 2\cos^2\tfrac 12\theta & -2 \cos\tfrac 12\theta\sin\tfrac 12\theta
+          & 0 \\[1ex]
+         -2 \cos\tfrac 12\theta\sin\tfrac 12\theta & 1 - 2\sin^2\tfrac 12\theta
+          & 0 \\[1ex]
+         0 & 0 & 1
+        \end{pmatrix}
+        &=
+        \begin{pmatrix}
+         -\cos\theta & -\sin\theta & 0 \\
+         -\sin \theta & \cos\theta & 0 \\
+         0 & 0 & 1
+        \end{pmatrix} \\
+       \mat H(\vec i)
+        &=
+        \mathrlap{
+         \begin{pmatrix}
+          -1 & 0 & 0 \\
+          0 & 1 & 0 \\
+          0 & 0 & 1
+         \end{pmatrix}
+        }
+      \end{alignat*}
+      and then
+      \begin{equation*}
+       \mat H(\vec i) \mat H(\vec n_-) =
+        \mat H(\vec n_+) \mat H(\vec i)
+         =
+         \begin{pmatrix}
+          \cos\theta & -\sin\theta & 0 \\
+          \sin\theta & \cos\theta & 0 \\
+          0 & 0 & 1
+         \end{pmatrix}
+         = \mat R(\vec k, \theta).
+      \end{equation*}
+      %TODO
     \end{enumerate}
  \end{enumerate}
 
