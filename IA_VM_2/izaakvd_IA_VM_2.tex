@@ -880,8 +880,29 @@
            - \sin \pi\,(\vec x \veccross \vec n) \\
         &= \mat R(\vec n, \pi) \vec x
       \end{align*}
-      Geometrically,
-      %TODO
+      Geometrically, we can consider the plane through some
+      vector \(\vec x\) and \(\vec n\) (and \(\vec 0\)). We only need to
+      consider this plane as this is where all the action happens. Reflection
+      only adds some component parallel to \(\vec n\), keeping us in this plane,
+      and inversion also keeps us in the plane.
+
+      In this plane, rotation about \(\vec n\) by an angle \(\pi\) is just
+      reflection in the line \(\lambda \vec n\). Reflection through the plane
+      normal to \(\vec n\) just becomes reflection through the line
+      perpendicular to \(\vec n\).
+
+      Then the statement \(-\mat H(\vec n) \vec x = \mat R(\vec n, \pi) \vec x\)
+      is just stating that for some point \(x\) the points \(x''\) from
+      reflecting through some line \(n\) and \(x'\) from reflecting through the
+      perpendicular to that line are symmetrical about the origin. This is
+      clearly true, as these are two opposite corners of the rectangle obtained
+      by reflecting \(x\) through the two perpendicular lines of symmetry of a
+      rectangle.
+      \begin{figure}[H]
+       \begin{center}
+        \includegraphics[width=0.5\textwidth]{q12_b.png}
+       \end{center}
+      \end{figure}
      \item First, explicitly find the matrix \(\mat H(\vec n)\):
       \begin{alignat*}2
        && \mat H(\vec n)_{ij} x_j = x_i' &= x_i - 2(\vec x \vecdot \vec n)n_i \\
