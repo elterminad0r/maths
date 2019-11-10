@@ -23,7 +23,7 @@
       \delta_{ij} v_j &= v_i \\
       \delta_{ij} \delta_{jk} &= \delta_{ik} \\
       \delta_{ij} \delta_{ji} &= \delta_{ii} = 3 \\
-      \delta_{ij} v_i v_j &= v_j v_j = \abs{\vec v}^2 \\
+      \delta_{ij} v_i v_j &= v_j v_j = \abs{\vec v}^2 = \vec v \vecdot \vec v \\
       \epsilon_{ijk} \delta_{jk} &= \epsilon_{ikk} = 0 \\
       \epsilon_{ijk} v_j v_k &=  (\vec v \veccross \vec v)_i = 0 \\
                   \text{or,} &= -\epsilon_{ikj} v_{j} v_{k}
@@ -422,7 +422,8 @@
 
       So \(T\) really only has one degree of freedom, which is along
       \((1, 1, 2)\). \((x + 2y + z)\) can vary over all of \(\Reals\), so the
-      image of \(T\) is the span of \((1, 1, 2)\).
+      image of \(T\) is the span of \((1, 1, 2)\), ie the line
+      \(\set{\vec r = \lambda (1, 1, 2)}\).
 
       The kernel of \(T\) is the set of \(\vec r = (x, y, z)\) for which
       \(x + 2y + z = 0 \iff \vec r \vecdot (1, 2, 1) = 0\). This is the plane
@@ -619,7 +620,7 @@
     has \(R_{ii} = 2\), so assuming that it is a rotation matrix,
     \(\cos \theta = \frac 12\). Also,
     \begin{equation*}
-     \epsilon_{1jk} R_{JK} = \epsilon_{2jk} R_{jk} = \epsilon_{3jk} R_{jk}
+     \epsilon_{1jk} R_{jk} = \epsilon_{2jk} R_{jk} = \epsilon_{3jk} R_{jk}
       = (-1 - 2) \tfrac 13 = -1
     \end{equation*}
     so \(\sin\theta\,n_i = \frac 12\). Take \(\theta \in \intco{0, \pi}\)
@@ -657,8 +658,9 @@
       \begin{itemize}
        \item
         \begin{itemize}
-         \item The examples I have given show that reflection and dilation do
-               not necessarily have determinant 1.
+         \item
+          The examples I have given show that reflection and
+          dil(at)?ation do not necessarily have determinant 1.
 
          \item
           However, the general form of a rotation is
@@ -689,7 +691,7 @@
           \(y = 0\) first it ends up at \((-1, 1)\).
 
          \item
-          dilation is commutative. In general,
+          Dilation is commutative. In general,
           \begin{equation*}
            \begin{pmatrix*}[r]
             \alpha_1 & 0 \\
@@ -806,8 +808,6 @@
         \sin 2\theta & -\cos 2\theta
        \end{pmatrix*}
       \end{equation*}
-      So the only possible complex number would be \(0\), which is clearly not a
-      reflection.
 
       A dilation that scales by the same factor \(k\) in every direction is
       represented by the real number \(k\). A dilation that does not do this
@@ -855,8 +855,8 @@
        \mat R(\vec i, \tfrac \pi 2)\mat R(\vec j, \tfrac \pi 2)
         =
         \begin{pmatrix*}[r]
-         0 & 0 & -1 \\
-         -1 & 0 & 0 \\
+         0 & 0 & 1 \\
+         1 & 0 & 0 \\
          0 & 1 & 0
         \end{pmatrix*}
       \end{equation*}
@@ -865,9 +865,9 @@
        \mat R(\vec j, \tfrac \pi 2)\mat R(\vec i, \tfrac \pi 2)
         =
         \begin{pmatrix*}[r]
-         0 & -1 & 0 \\
+         0 & 1 & 0 \\
          0 & 0 & -1 \\
-         1 & 0 & 0
+         -1 & 0 & 0
         \end{pmatrix*}.
       \end{equation*}
      \item
