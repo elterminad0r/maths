@@ -81,7 +81,7 @@
      &= (\vec c \vecdot \vec b) a_i - (\vec c \vecdot \vec b) b_i \\
      &= ((\vec c \vecdot \vec b)\,\vec a - (\vec c \vecdot \vec b)\,\vec b)_i
    \end{align*}
-   and indeed
+   and therefore
    \(\vec c \veccross (\vec a \veccross \vec b) =
      (\vec c \vecdot \vec b)\,\vec a - (\vec c \vecdot \vec b)\,\vec b\).
    \begin{enumerate}[label=(\alph*)]
@@ -201,7 +201,16 @@
     &&           &= \mat M_{ij} x_j
    \end{alignat*}
    So then \(\vec y = \mat M \vec x \implies
-    \vec x = \mat M^{-1} \vec y = \frac 12 \mat N \vec y\).
+    \vec x = \mat M^{-1} \vec y = \frac 12 \mat N \vec y\), ie
+   \begin{align*}
+    2 x_i &= \mat N_{ij} y_j \\
+          &= (\delta_{ij} - \epsilon_{ijk} n_k + n_i n_j) y_j \\
+          &= y_i - \epsilon_{ijk} y_j n_k + n_i(\vec n \vecdot \vec y) \\
+          &= y_i - (\vec y \veccross \vec n)_i + n_i(\vec n \vecdot \vec y)
+   \end{align*}
+   and
+   \(2\,\vec x
+     = \vec y - \vec y \veccross \vec n + (\vec n \vecdot \vec y) \vec n\).
    \item
     Any set of 5 vectors in \(\Reals^4\) is linearly dependent as
     \(\Reals^4\) has dimension \(4\). So it will be sufficient to find two
@@ -238,7 +247,7 @@
     all scalars \(\lambda\), \(\mu\).
 
     Have \(\vec v, \vec w \in V\). Let \(\vec x = \lambda \vec v + \mu \vec w\)
-    for arbitrary \(\lambda, \mu \in \Reals\). Now for some \(i\),
+    for arbitrary \(\lambda, \mu \in \Reals\). Now for any \(i\),
     \begin{align*}
      x_i &= (\lambda \vec v + \mu \vec w)_i \\
          &= \lambda v_i + \mu w_i \\
@@ -282,10 +291,15 @@
    \item
     The Cauchy-Shwarz inequality states that for
     \(\vec u, \vec v \in \Reals^n\),
-    \(\vec u \vecdot \vec v \le \abs{\vec u} \abs{\vec v}\).
+    \(\abs{\vec u \vecdot \vec v} \le \abs{\vec u} \abs{\vec v}\).
     Equality holds iff \(\vec u \parallel \vec v\), ie
     \(\vec u = \lambda \vec v\) or \(\vec v = \lambda \vec u\) for some
     \(\lambda \in \Reals\).
+
+    This also implies that
+    \(\vec u \vecdot \vec v \le \abs{\vec u} \abs{\vec v}\),
+    possibly with equality if \(\vec u \parallel \vec v\), though we need to
+    then check the sign of \(\vec u \vecdot \vec v\).
     \begin{enumerate}[label=(\alph*)]
      \item \(
       \begin{alignedat}[t]2
@@ -440,15 +454,20 @@
       freely to adjust the first parameter. So \(\Img Q\) is the plane spanned
       by \((1, 0, 2)\) and \((0, 1, -1)\), which you could write as
       \(\set{\alpha (1, 0, 2) + \beta (0, 1, -1) : \alpha, \beta \in \Reals}\)
-      or \(\set{\vec r : \vec r \vecdot ((1, 0, 2) \veccross (0, 1, -1)) = 0}\).
-
+      or
+      \begin{align*}
+       &\set{\vec r : \vec r \vecdot ((1, 0, 2) \veccross (0, 1, -1)) = 0} \\
+       &= \set{\vec r : \vec r \vecdot (-2, 1, 1) = 0} \\
+       &= \set{(x, y, z) : -2x + y + z = 0}
+      \end{align*}
       For \(Q(\vec r)\) to be \(\vec 0\), we need \(x + 2y + 3z = 0\) and
       \(x - y + z = 0\), as \((1, 0, 2)\) and \((0, 1, -1)\) are linearly
       independent. The set of vectors for which this is true is the intersection
       of the planes with normals \((1, 2, 3)\) and \((1, -1, 1)\), which we
       showed earlier is
       \(\set{\vec r : \vec r \veccross
-                      ((1, 0, 2) \veccross (0, 1, -1)) = \vec 0}\).
+                      ((1, 0, 2) \veccross (0, 1, -1)) = \vec 0}
+        = \set{\vec r : \vec r \veccross (-2, 1, 1) = \vec 0}\).
     \end{enumerate}
    \item
     If \(\mat M \vec r = \vec 0\), then
@@ -673,14 +692,28 @@
           indeed having determinant \(\cos^2 \theta + \sin^2 \theta = 1\).
 
          \item
-          The general form of a shear is
+          The general form of a shear parallel to \(\vec i\) with
+          factor \(\lambda\) axis is
           \begin{equation*}
-           \begin{pmatrix*}[r]
-            1 & \lambda \\
-            0 & 1
-           \end{pmatrix*}
+           \mat S(\vec i, \lambda)
+            =
+            \begin{pmatrix*}[r]
+             1 & \lambda \\
+             0 & 1
+            \end{pmatrix*}
           \end{equation*}
-          (or its transpose) which also both have determinant 1.
+          which has determinant 1. This is the general form because in two
+          dimensions a unit vector's perpendicular is determined up to sign,
+          which is irrelevant as \(\lambda\) can be negative.
+
+          A shear parallel to any other unit vector
+          \(\vec n = (\cos \theta, \sin \theta)\) can be expressed
+          as a conjugate of this shear by the rotation \(\mat R(\theta)\):
+          \begin{equation*}
+           \mat S(\vec n, \lambda)
+            = \mat R(\theta) \mat S(\vec i, \lambda) \mat R(\theta)^{-1}
+          \end{equation*}
+          This then clearly also has determinant 1.
         \end{itemize}
        \item
         \begin{itemize}
@@ -693,57 +726,79 @@
          \item
           Dilation is commutative. In general,
           \begin{equation*}
-           \begin{pmatrix*}[r]
+           \begin{pmatrix}
             \alpha_1 & 0 \\
             0 & \beta_1
-           \end{pmatrix*}
-           \begin{pmatrix*}[r]
+           \end{pmatrix}
+           \begin{pmatrix}
             \alpha_2 & 0 \\
             0 & \beta_2
-           \end{pmatrix*}
+           \end{pmatrix}
            =
-           \begin{pmatrix*}[r]
+           \begin{pmatrix}
             \alpha_1 \alpha_2 & 0 \\
             0 & \beta_1 \beta_2
-           \end{pmatrix*}
+           \end{pmatrix}
            =
-           \begin{pmatrix*}[r]
+           \begin{pmatrix}
             \alpha_2 & 0 \\
             0 & \beta_2
-           \end{pmatrix*}
-           \begin{pmatrix*}[r]
+           \end{pmatrix}
+           \begin{pmatrix}
             \alpha_1 & 0 \\
             0 & \beta_1
-           \end{pmatrix*}
+           \end{pmatrix}
           \end{equation*}
          \item
-          Two shears of the same type always commute.
+          Two shears parallel to \(\vec i\) always commute:
           \begin{equation*}
-           \begin{pmatrix*}
+           \begin{pmatrix}
             1 & \lambda \\
             0 & 1
-           \end{pmatrix*}
-           \begin{pmatrix*}
+           \end{pmatrix}
+           \begin{pmatrix}
             1 & \mu \\
             0 & 1
-           \end{pmatrix*}
+           \end{pmatrix}
            =
-           \begin{pmatrix*}
+           \begin{pmatrix}
             1 & \lambda + \mu \\
             0 & 1
-           \end{pmatrix*}
+           \end{pmatrix}
            =
-           \begin{pmatrix*}
+           \begin{pmatrix}
             1 & \mu \\
             0 & 1
-           \end{pmatrix*}
-           \begin{pmatrix*}
+           \end{pmatrix}
+           \begin{pmatrix}
             1 & \lambda \\
             0 & 1
-           \end{pmatrix*}
+           \end{pmatrix}
           \end{equation*}
-          The same fact for the other kind of shear follows immediately from
-          taking transposes.
+          Then by expressing two shears parallel to some \(\vec n\) as
+          conjugates, their commutativity follows.
+
+          Suppose we have the unit vectors
+          \(\vec n \nparallel \vec m\), defining the shears
+          \(\mat S(\vec n, \lambda)\), \(\mat S(\vec m, \mu)\) where at least
+          one of \(\lambda\), \(\mu\) is nonzero. Without loss of generality,
+          take \(\mu \ne 0\). Then supposing these shears are commutative,
+          \begin{alignat*}2
+           && \mat S(\vec m, \mu) \mat S(\vec n, \lambda)
+            &= \mat S(\vec n, \lambda) \mat S(\vec m, \mu) \\
+           \implies{}&&
+            \mat S(\vec m, \mu) \mat S(\vec n, \lambda)\,\vec n
+            &= \mat S(\vec n, \lambda) \mat S(\vec m, \mu)\,\vec n \\
+           \implies{}&&
+            \mat S(\vec m, \mu)\,\vec n
+            &= \mat S(\vec n, \lambda) \mat S(\vec m, \mu)\,\vec n
+          \end{alignat*}
+          So \(\mat S(\vec m, \mu)\,\vec n\) is an eigenvector of
+          \(\mat S(\vec n, \lambda)\). But this is only possible if
+          \(\mat S(\vec m, \mu)\,\vec n \parallel \vec n\), which is impossible
+          since by definition \(\mat S(\vec m, \mu)\) will add some nonzero
+          component of \(\vec m\) to \(\vec n\), and
+          \(\vec m \nparallel \vec n\).
          \item
           Two rotations always commute.
           \begin{align*}
@@ -814,9 +869,12 @@
       cannot be represented as the elements of the leading diagonal must be the
       same.
 
-      A non-degenerate shear cannot be represented, as both elements of the
-      trailing diagonal must have the same modulus, but for a shear one must be
-      zero and one must be nonzero.
+      A non-degenerate shear cannot be represented,
+      as then we could make a shear parallel to \(\vec i\) by taking the
+      conjugate as discussed earlier, which would also be
+      represented by a complex number (see next paragraph).
+      But both elements of the trailing diagonal must have the same modulus, but
+      for this shear one must be zero and one must be nonzero.
 
       A rotation by an angle \(\theta\) is represented by
       \(e^{i\theta} = \cos \theta + i \sin \theta\).
