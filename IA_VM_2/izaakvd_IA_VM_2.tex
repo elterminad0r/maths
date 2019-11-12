@@ -1,8 +1,8 @@
 % Compiling with
-% latexmk -halt-on-error -shell-escape -synctex=1 -pdf maths.tex
+% latexmk -halt-on-error -shell-escape -synctex=1 -pdf
 % (Recommend using a latexmkrc file so as just to run latexmk -pvc, for example)
 % Probably you can achieve the same with an inordinate number of invocations of
-% pdflatex -halt-on-error -shell-escape -synctex=1 maths.tex
+% pdflatex -halt-on-error -shell-escape -synctex=1
 
 % fleqn aligns equations to the left, a4 paper size, 11pt font, article class
 \documentclass[fleqn,a4paper,11pt]{article}
@@ -263,7 +263,7 @@
     this is the set of all vectors in \(\Reals^4\) with components consisting of
     two 1s and two 0s.
    \item
-    Use the check that for a vector space \(V\), a nonempty subset \(U \in V\)
+    Use the check that for a vector space \(W\), a nonempty subset \(U \in W\)
     is a subspace iff
     \\ \((\vec v, \vec w \in U \implies \lambda \vec v + \mu \vec w \in U)\) for
     all scalars \(\lambda\), \(\mu\).
@@ -281,7 +281,7 @@
       \mu(w_i + w_{i + 1} + w_{i + 2} + w_{i + 3}) \\
       &= 0 + 0 = 0
     \end{align*}
-    and \(\vec x\) is indeed in \(V\).
+    and \(\vec x\) is indeed in \(V\), so \(V\) is a subspace of \(\Reals^4\).
 
     Note that any vector in \(V\) necessarily has the form
     \begin{equation*}
