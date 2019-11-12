@@ -998,8 +998,8 @@
         &=
         \begin{pmatrix}
          -\cos\theta & \sin\theta & 0 \\
-         \sin \theta & \cos\theta & 0 \\
-         0 & 0 & 1
+         \phantom{-{}} \sin \theta & \cos\theta & 0 \\
+         \phantom{-{}} 0 & 0 & 1
         \end{pmatrix} \\
        \mat H(\vec n_+)
         &={}&
@@ -1013,17 +1013,17 @@
         &=
         \begin{pmatrix}
          -\cos\theta & -\sin\theta & 0 \\
-         -\sin \theta & \cos\theta & 0 \\
-         0 & 0 & 1
+         -\sin \theta & \phantom{-{}} \cos\theta & 0 \\
+         0 & \phantom{-{}} 0 & 1
         \end{pmatrix} \\
        \mat H(\vec i)
         &=
         \mathrlap{
-         \begin{pmatrix}
+         \begin{pmatrix*}[r]
           -1 & 0 & 0 \\
           0 & 1 & 0 \\
           0 & 0 & 1
-         \end{pmatrix}
+         \end{pmatrix*}
         }
       \end{alignat*}
       and then
@@ -1033,8 +1033,8 @@
          =
          \begin{pmatrix}
           \cos\theta & -\sin\theta & 0 \\
-          \sin\theta & \cos\theta & 0 \\
-          0 & 0 & 1
+          \sin\theta & \phantom{-{}} \cos\theta & 0 \\
+          0 & \phantom{-{}} 0 & 1
          \end{pmatrix}
          = \mat R(\vec k, \theta).
       \end{equation*}
