@@ -46,21 +46,39 @@
          &&                    &= 2\delta_{k\ell} a_\ell \\
          &&                    &= 2 a_k \ (\Forall k)
      \end{alignedat} \)
-    \item For some \(k\), the expression \(\epsilon_{ijk} S_{ij}\) evaluates to
-          \(S_{ij} - S_{ji}\) where \(i\), \(j\) are the two indices other than
-          \(k\) such that \(ijk\) is an even permutation. But then immediately,
-          \(\epsilon_{ijk} S_{ij} = 0 \Forall k \implies
-            S_{ij} - S_{ji} = 0 \implies
-            S_{ij} = S_{ji} \Forall i \ne j\) as each of the choices of
-          \(k\) gives one of the choices of distinct pairs of \(i\), \(j\).
-          The only cases not covered are non-distinct pairs, which just give the
-          trivial statement \(S_{ii} = S_{ii}\).
+    \item
+     For some \(k\), the expression \(\epsilon_{ijk} S_{ij}\) evaluates to
+     \(S_{ij} - S_{ji}\) where \(i\), \(j\) are the two indices other than \(k\)
+     such that \(ijk\) is an even permutation. But then immediately,
+     \(\epsilon_{ijk} S_{ij} = 0 \Forall k \implies S_{ij} - S_{ji} = 0 \implies
+       S_{ij} = S_{ji} \Forall i \ne j\) as each of the choices of \(k\) gives
+     one of the choices of distinct pairs of \(i\), \(j\). The only cases not
+     covered are non-distinct pairs, which just give the trivial statement
+     \(S_{ii} = S_{ii}\).
 
-          Similarly,
-          \(S_{ij} = S_{ji} \Forall i, j \implies
-            S_{ij} - S_{ji} = 0 \Forall i \ne j \implies
-            \epsilon_{ijk} S_{ij} = 0 \Forall k\)
-          picking \(k\) to be the remaining index that is not \(i\) or \(j\).
+     Similarly,
+     \(S_{ij} = S_{ji} \Forall i, j \implies S_{ij} - S_{ji} = 0 \Forall i \ne j
+       \implies \epsilon_{ijk} S_{ij} = 0 \Forall k\) picking
+     \(k\) to be the remaining index that is not \(i\) or \(j\).
+
+     Algebraically,
+     \begin{alignat*}2
+      && S_{ij} &= S_{ji} \\
+      \implies{}&& \epsilon_{ijk} S_{ij} &= \epsilon_{ijk} S_{ji} \\
+      \implies{}&& \epsilon_{ijk} S_{ij} &= \epsilon_{jik} S_{ij} \\
+      &&                                 &= -\epsilon_{ijk} S_{ij} \\
+      \implies{}&& 2\epsilon_{ijk} S_{ij} &= 0 \\
+      \implies{}&& \epsilon_{ijk} S_{ij} &= 0
+     \end{alignat*}
+     and
+     \begin{alignat*}2
+      && \epsilon_{pqk} S_{pq} &= 0 \\
+      \implies{}&& \epsilon_{ijk} \epsilon_{pqk} S_{pq} &= 0 \\
+      \implies{}&& (\delta_{ip} \delta_{jq} - \delta_{iq} \delta_{jp}) S_{pq}
+       &= 0 \\
+      \implies{}&& S_{ij} - S_{ji} &= 0 \\
+      \implies{}&& S_{ij} &= S_{ji}
+     \end{alignat*}
    \end{enumerate}
   \item \(
    \begin{aligned}[t]
