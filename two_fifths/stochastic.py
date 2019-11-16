@@ -51,6 +51,10 @@ def main(N):
                     i / N,
                     format_bar(70, i / N, unicode=True)),
                 end="")
+    print("\r{:7.5f}: {:4.0%} {}".format(
+            run_lengths[3] / max(run_lengths[2] + run_lengths[3], 1),
+            1,
+            format_bar(70, 1, unicode=True)))
     print("Lengths: {}".format(run_lengths))
     print("Total N_3: {}".format(run_lengths[3]))
     print("Total N_2: {}".format(run_lengths[2]))
