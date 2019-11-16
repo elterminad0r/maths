@@ -1,5 +1,7 @@
 """
 Same problem, but by generous application of the central limit theorem.
+
+If you have PyPy, I recommend using that to run this rather than CPython.
 """
 
 # whether or not to use my home-brewed libraries
@@ -28,6 +30,9 @@ def random_arrangement(n, k):
     return indicator
 
 def get_args():
+    """
+    Parse argv
+    """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("N", type=int, nargs="?", default=10 ** 6,
             help="Number of samples to generate")
@@ -35,8 +40,7 @@ def get_args():
 
 def main(N):
     """
-    Efficiently calculate proportions, but also print out every combination for
-    testing purposes.
+    Generate lots of random samples and print some nice progress bars.
     """
     run_lengths = Counter()
     for i in range(N):
