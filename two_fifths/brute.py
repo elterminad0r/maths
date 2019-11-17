@@ -31,8 +31,9 @@ def longest_consecutive_run(members, n):
     integers, allowing for wrapping around the end of the list.
     """
     try:
-        # first false element, backwards from the end of the range
-        start = next(i for i in reversed(range(n)) if not members[i])
+        # first false element, so that when the loop ends we know we're at the
+        # end of a run
+        start = next(ind for ind, m in enumerate(members) if not m)
     except StopIteration:
         return n
     longest_run = current_run = 0
