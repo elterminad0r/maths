@@ -1,0 +1,185 @@
+% Compiling with
+% latexmk -halt-on-error -shell-escape -synctex=1 -pdf
+% (Recommend using a latexmkrc file so as just to run latexmk -pvc, for example)
+% Probably you can achieve the same with an inordinate number of invocations of
+% pdflatex -halt-on-error -shell-escape -synctex=1
+
+% fleqn aligns equations to the left, a4 paper size, 11pt font, article class
+\documentclass[fleqn,a4paper,11pt]{article}
+\title{IA Vectors and Matrices Example Sheet 3}
+\author{Izaak van Dongen (\texttt{imv26})}
+
+\usepackage{mymaths}
+\usepackage{mystyle}
+
+\begin{document}
+ \maketitle\thispagestyle{empty} % no page number under title
+
+ \begin{enumerate}[label=\textbf{\arabic*.}]
+  \item
+   As \(A\) and \(B\) are hermitian, generally we have
+   \(A_{ij} = \conj{A_{ji}}\), and
+   \(B_{ij} = \conj{B_{ji}}\).
+   \begin{enumerate}[label=(\roman*)]
+    \item
+     \begin{itemize}
+      \item
+       \(\tr A = A_{ii} = \conj{A_{ii}} = \conj{\tr A}\), as
+       complex conjugation distributes over addition, and therefore
+       \(\Im(\tr A) = \tfrac 12 (\tr A - \conj{\tr A}) = 0\), ie
+       \(\tr A\) is real.
+      \item
+       Similarly,
+       \begin{align*}
+        \det A
+         &= \sum_\sigma \epsilon(\sigma) \prod_i A_{i\,\sigma(i)} \\
+         &= \sum_\sigma \epsilon(\sigma) \prod_i \conj{A_{\sigma(i)\,i}} \\
+         &= \conj{\sum_\sigma \epsilon(\sigma) \prod_i A_{\sigma(i)\,i}} \\
+         &= \conj{\sum_{\sigma^{-1}} \epsilon(\sigma^{-1})
+                 \prod_i A_{i\,\sigma^{-1}(i)}} \\
+         &= \conj{\det A},\quad
+         \text{as the sum remains over all permutations \footnotemark}
+       \end{align*}
+       \footnotetext{
+        eg if we let \(\tau = \sigma^{-1}\) then the sum is over all
+        permutations \(\tau\), as inversion is a bijection from
+        \(S_n \to S_n\).
+       }
+       so \(\det A\) must be real.
+     \end{itemize}
+    \item \(
+     \begin{aligned}[t]
+     (AB + BA)_{ij}
+       &= A_{ik}B_{kj} + B_{ik}A_{kj} \\
+       &= \conj{A_{ki}} \cdot \conj{B_{jk}} + \conj{B_{ki}} \cdot \conj{A_{jk}}
+       = \conj{A_{ki}B_{jk} + B_{ki}A_{jk}} \\
+       &= \conj{A_{jk}B_{ki} + B_{jk}A_{ki}} \\
+       &= \conj{(AB + BA)_{ji}}
+     \end{aligned}\)
+
+     so \(AB + BA\) is hermitian.
+    \item
+     \begin{itemize}
+      \item \(
+       \begin{aligned}[t]
+        i(AB - BA)_{ij}
+         &= i(A_{ik} B_{kj} - B_{ik} A_{kj}) \\
+         &= \conj{-i}(\conj{(A_{ki} B_{jk} - B_{ki} A_{jk})}) \\
+         &= \conj{-i}(\conj{(A_{ki} B_{jk} - B_{ki} A_{jk})}) \\
+         &= \conj{i(A_{jk} B_{ki} - B_{jk} A_{ki})} \\
+         &= \conj{i(AB - BA)_{ji}}
+       \end{aligned}\)
+
+       so \(i(AB - BA)\) is hermitian.
+      \item
+       For any scalar \(\lambda\) and square matrices \(A\), \(B\), we have that
+       \begin{equation*}
+        \tr(A + B) = (A + B)_{ii} = A_{ii} + B_{ii} = \tr(A) + \tr(B)
+       \end{equation*}
+       and
+       \begin{equation*}
+        \tr(AB) = (AB)_{ii} = A_{ij} B_{ji} = B_{ji} A_{ij} = (BA)_{jj}
+         = \tr(BA)
+       \end{equation*}
+       and
+       \begin{equation*}
+        \tr(\lambda A) = (\lambda A)_{ii} = \lambda A_{ii} = \lambda \tr(A)
+       \end{equation*}
+       so then
+       \begin{equation*}
+        \tr(i(AB - BA)) = i(\tr(AB) - \tr(BA)) = i(\tr(AB) - \tr(AB)) = 0
+       \end{equation*}
+     \end{itemize}
+    \item \(
+      \tr(AB) = (AB)_{ii} = A_{ij} B_{ji} = \conj{A_{ji} B_{ij}}
+       = \conj{(AB)_{jj}} = \conj{\tr(AB)}
+      \)
+
+      so \(\tr(AB)\) is real.
+
+      \(\det(AB) = \det(A)\det(B)\), which is the product of real numbers, so is
+      real.
+     \item Using the earlier commutativity property,
+      \(\tr(UA\,\herm U) = \tr(A\,\herm UU) = \tr(AI) = \tr(A)\).
+
+      Using the multiplicativity of determinants,
+      \(\det(UA\,\herm U) = \det(U)\det(A)\det(\herm U)
+        = \det(U)\det(\herm U)\det(A)
+        = \det(U\herm U)\det(A)
+        = \det(I) \det(A)
+        = \det A
+        \)
+   \end{enumerate}
+  \item
+   \begin{alignat*} 2
+    && \det M
+     &= \begin{vmatrix}
+      a & a^2 & bc \\
+      b & b^2 & ca \\
+      c & c^2 & ab
+     \end{vmatrix} \\
+    \parens*{
+     \begin{aligned}
+      \vec R_M(2) &\to \vec R_M(2) - \vec R_M(1) \\
+      \vec R_M(3) &\to \vec R_M(3) - \vec R_M(1)
+     \end{aligned}} \quad
+    && &= \begin{vmatrix}
+      a & a^2 & bc \\
+      b - a & b^2 - a^2 & ca - bc \\
+      c - a & c^2 - a^2 & ab - bc
+     \end{vmatrix} \\
+    && &= (b - a)(c - a)\begin{vmatrix}
+      a & a^2 & bc \\
+      1 & b + a & -c \\
+      1 & c + a & -b
+     \end{vmatrix} \\
+    \parens*{
+     \begin{aligned}
+      \vec R_M(1) &\to \vec R_M(1) - a\vec R_M(2) \\
+      \vec R_M(3) &\to \vec R_M(3) - \vec R_M(2)
+     \end{aligned}} \quad
+    && &= (b - a)(c - a)\begin{vmatrix}
+      0 & -ab & bc + ac \\
+      1 & b + a & -c \\
+      0 & c - b & -b + c
+     \end{vmatrix} \\
+    && &= (b - a)(c - a)(c - b)\begin{vmatrix}
+      0 & -ab & bc + ac \\
+      1 & b + a & -c \\
+      0 & 1 & 1
+     \end{vmatrix} \\
+    && &= (a - b)(b - c)(c - a)\begin{vmatrix}
+      1 & 1 \\
+      -ab & bc + ac
+     \end{vmatrix} \\
+    && &= (a - b)(b - c)(c - a)(ab + bc + ac)
+   \end{alignat*}
+  \item
+   \begin{lemma}[Rule of Sarrus]
+    The determinant of a \(3 \times 3\) matrix \(M\) is given by
+    \begin{align*}
+     \begin{vmatrix}
+      \color{red}m_{11} & \color{violet}m_{12} & \color{blue}m_{13} \\
+      \color{blue}m_{21} & \color{red}m_{22} & \color{violet}m_{23} \\
+      \color{violet}m_{31} & \color{blue}m_{32} & \color{red}m_{33}
+     \end{vmatrix} =
+     \begin{vmatrix}
+      \color{teal}m_{11} & \color{olive}m_{12} & \color{orange}m_{13} \\
+      \color{olive}m_{21} & \color{orange}m_{22} & \color{teal}m_{23} \\
+      \color{orange}m_{31} & \color{teal}m_{32} & \color{olive}m_{33}
+     \end{vmatrix} &=
+     \begin{aligned}[t]
+      &  \textcolor{red}{m_{11} m_{22} m_{33}}
+       + \textcolor{violet}{m_{12} m_{23} m_{31}}
+       + \textcolor{blue}{m_{13} m_{21} m_{32}} \\
+      &-(\textcolor{teal}{m_{11} m_{23} m_{32}}
+       + \textcolor{olive}{m_{12} m_{21} m_{33}}
+       + \textcolor{orange}{m_{13} m_{22} m_{31}})
+     \end{aligned}
+    \end{align*}
+   \end{lemma}
+   \begin{proof}
+    Consider \(S_3 \cong D_6\).
+   \end{proof}
+ \end{enumerate}
+\end{document}
