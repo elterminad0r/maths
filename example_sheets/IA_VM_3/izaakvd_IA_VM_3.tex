@@ -81,7 +81,7 @@
         \tr(\mat A + \mat B)
          = (\mat A + \mat B)_{ii}
          = \mat A_{ii} + \mat B_{ii}
-         = \tr(\mat A) + \tr(\mat B)
+         = \tr\mat A + \tr\mat B
        \end{equation*}
        and
        \begin{equation*}
@@ -97,7 +97,7 @@
         \tr(\lambda \mat A)
         = (\lambda \mat A)_{ii}
         = \lambda \mat A_{ii}
-        = \lambda \tr(\mat A)
+        = \lambda \tr\mat A
        \end{equation*}
        so then
        \begin{equation*}
@@ -116,18 +116,18 @@
 
       so \(\tr(\mat A\mat B)\) is real.
 
-      \(\det(\mat A\mat B) = \det(\mat A)\det(\mat B)\), which is the product of
+      \(\det(\mat A\mat B) = \det\mat A\det\mat B\), which is the product of
       real numbers, so is real.
      \item Using the earlier commutativity property,
       \(\tr(\mat U\mat A\,\herm{\mat U})
-        = \tr(\mat A\,\herm{\mat U}\mat U) = \tr(\mat AI) = \tr(\mat A)\).
+        = \tr(\mat A\,\herm{\mat U}\mat U) = \tr(\mat A\mat I) = \tr\mat A\).
 
       Using the multiplicativity of determinants,
       \(\det(\mat U\mat A\,\herm{\mat U})
-        = \det(\mat U)\det(\mat A)\det(\herm{\mat U})
-        = \det(\mat U)\det(\herm{\mat U})\det(\mat A)
-        = \det(\mat U\herm{\mat U})\det(\mat A)
-        = \det(\mat I) \det(\mat A)
+        = \det\mat U\det\mat A\det(\herm{\mat U})
+        = \det\mat U\det(\herm{\mat U})\det\mat A
+        = \det(\mat U\herm{\mat U})\det\mat A
+        = \det\mat I \det\mat A
         = \det \mat A
         \)
    \end{enumerate}
@@ -169,6 +169,7 @@
       1 & b + a & -c \\
       0 & 1 & 1
      \end{vmatrix} \\
+    (\text{expanding along the first column})
     && &= (a - b)(b - c)(c - a)\begin{vmatrix}
       1 & 1 \\
       -ab & bc + ac
@@ -204,22 +205,25 @@
     was on the surface of a torus.
    \end{lemma}
    \begin{proof}
-    The 6 permutations in \(S_3\) are, in cycle notation:
+    The \(6\) permutations in \(S_3\) are, in cycle notation, classified by
+    parity:
     \begin{center}
      \begin{tabular}{*4c}
       \bfseries Even & \(\Id\) & \((1\ 3\ 2)\) & \((1\ 2\ 3)\) \\
       \bfseries Odd & \((2\ 3)\) & \((1\ 2)\) & \((1\ 3)\)
      \end{tabular}
     \end{center}
+    as any cycle of odd length is an even permutation.
+
     In the Leibniz definition of the determinant, the even permutations
-    then give the terms
+    then give the positive terms
     \({m_{11} m_{22} m_{33}}\),
     \({m_{12} m_{23} m_{31}}\),
     \({m_{13} m_{21} m_{32}}\).
-    The odd permutations give the terms
+    The odd permutations give the negative terms
     \(m_{11} m_{23} m_{32}\),
     \(m_{12} m_{21} m_{33}\),
-    \(m_{13} m_{22} m_{31}\). So this is indeed the correct formula.
+    \(m_{13} m_{22} m_{31}\). So this is indeed a correct formula.
    \end{proof}
    So
    \begin{align*}
@@ -252,25 +256,29 @@
      z & x & y \\
      y & z & x
     \end{vmatrix} \\
+    && &\dots
    \end{alignat*}
+   But I have no idea where a cube root of unity is supposed to come from :(
    %TODO
   \item
    Using that for any scalar \(\lambda\) and any \(n \times n\) matrix
-   \(\mat M\), \(\det(\mat M) = \det(\tran{\mat M})\) and
-   \(\det(\lambda \mat M) = \lambda^n \det(\mat M)\), we can show that
-   \(\det(\mat A) = \det(\tran{\mat A})
-     = \det(-\mat A) = (-1)^{2n + 1}\det(\mat A) = -\det(\mat A)\), so
-   \(\det(\mat A)\) must be \(0\).
+   \(\mat M\), \(\det\mat M = \det(\tran{\mat M})\) and
+   \(\det(\lambda \mat M) = \lambda^n \det\mat M\), we can show that
+   \(\det\mat A = \det(\tran{\mat A})
+     = \det(-\mat A) = (-1)^{2n + 1}\det\mat A = -\det\mat A\), so
+   \(\det\mat A\) must be \(0\).
   \item
-   Let \(D_i\) denote the \(i \times i\) matrix of this form, so \(D = D_n\),
-   and claim that
-   \(\det D_n = (p + n - 1)(p - 1)^{n - 1}\).
-
-   The base case \(n = 1\) is true: \((p + 1 - 1)(p - 1)^0 = p = \det D_1\).
+   Let \(\mat D_i\) denote the \(i \times i\) matrix of this form, so
+   \(\mat D = \mat D_n\), and claim that
+   \begin{equation*}
+    \det \mat D_n = (p + n - 1)(p - 1)^{n - 1}
+   \end{equation*}
+   The base case \(n = 1\) is true:
+   \((p + 1 - 1)(p - 1)^0 = p = \det \mat D_1\).
 
    Also,
    \begin{alignat*}2
-    && \det D_n
+    && \det \mat D_n
     &= \begin{vmatrix}
      p & 1 & 1 & 1 & \cdots \\
      1 & p & 1 & 1 & \cdots \\
@@ -325,6 +333,7 @@
      1 & 1 & p & \cdots \\
      \vdots & \vdots & \vdots & \ddots
     \end{vmatrix}}_{(n - 1) \times (n - 1)} \\
+    && &= (p - 1)^{n - 1} + (p - 1)\det \mat D_{n - 1} \\
     (\text{by induction hypothesis})\quad
     && &= (p - 1)^{n - 1} + (p - 1) (p + n - 2)(p - 1)^{n - 2} \\
     && &= (p - 1)^{n - 1} + (p + n - 2)(p - 1)^{n - 1} \\
@@ -332,10 +341,10 @@
    \end{alignat*}
    So we are done, by induction.
   \item
-   We present the cofactors as a cofactor matrix \(\Delta\), with entries
-   \(\Delta_{ij}\).
+   We present the cofactors as a cofactor matrix \(\mat \Delta\), with entries
+   \(\mat \Delta_{ij}\).
    \begin{align*}
-    \Delta
+    \mat \Delta
     &= \begin{pmatrix*}[r]
      \begin{vmatrix*}[r]
       2 & 3 \\
@@ -380,11 +389,11 @@
      1 & -2 & 1
     \end{pmatrix*}
    \end{align*}
-   Now the condition \(\mat A_{ij} \Delta_{ik} = \delta_{jk} \det \mat A\) is
-   equivalent to \((\tran \Delta)_{ki} \mat A_{ij} = \delta_{jk} \det \mat A\),
-   ie \(\tran \Delta \mat A = (\det \mat A)I\). So let's calculate:
+   Now the condition \(\mat A_{ij}\mat  \Delta_{ik} = \delta_{jk} \det \mat A\) is
+   equivalent to \((\tran{\mat \Delta})_{ki} \mat A_{ij} = \delta_{jk} \det \mat A\),
+   ie \(\tran{\mat \Delta}\mat A = (\det \mat A)\mat I\). So let's calculate:
    \begin{equation*}
-    \tran \Delta \mat A =
+    \tran{\mat \Delta}\mat A =
     \begin{pmatrix*}[r]
      10 & -4 & 1 \\
      7 & -1 & -2 \\
@@ -520,7 +529,7 @@
      \end{alignat*}
      which is consistent, and is solved by letting \(z = \lambda\) be arbitrary,
      letting \(y = \lambda - 2\), and \(x = 1 - y - z = 3 - 2\lambda \). This is
-     the line \(\vec x = (3, -2, 0) + \lambda(-2, 1, 0)\)
+     the line \(\vec x = (3, -2, 0) + \lambda(-2, 1, 0)\).
     \item If \(t = 6\):
      \begin{alignat*}2
       &&\begin{pmatrix*}[r]
@@ -575,6 +584,9 @@
      1 & a & b \\
      1 & a^2 & b^2
     \end{vmatrix} \\
+    \parens*{
+     \vec c(2) \to \vec c(2) - \vec c(3)
+    } \quad
     && &= \begin{vmatrix}
      1 & 0 & 1 \\
      1 & a - b & b \\
@@ -585,6 +597,9 @@
      1 & 1 & b \\
      1 & a + b & b^2
     \end{vmatrix} \\
+    \parens*{
+     \vec c(3) \to \vec c(3) - \vec c(1)
+    } \quad
     && &= (a - b)\begin{vmatrix}
      1 & 0 & 0 \\
      1 & 1 & b - 1 \\
@@ -595,6 +610,7 @@
      1 & 1 & 1 \\
      1 & a + b & b + 1
     \end{vmatrix} \\
+    (\text{expanding along the first row})
     && &= (a - b)(b - 1)\begin{vmatrix}
      1 & 1 \\
      a + b & b + 1
@@ -886,7 +902,8 @@
    and \(\abs{\alpha} = \abs{\beta}\), so both conditions hold.
   \item
    If \(\mat Q\) is orthogonal, and \(\lambda\) is an eigenvalue of
-   \(\mat Q\), with eigenvector \(\vec v \ne \vec 0\), then
+   \(\mat Q\), with eigenvector \(\vec v \ne \vec 0\), then we can exploit the
+   fact that orthogonal matrices preserve the inner product:
    \begin{alignat*}2
     &&\mat Q \vec v &= \lambda \vec v \\
     \implies{}&&
@@ -908,8 +925,8 @@
    \end{alignat*}
    So all eigenvalues have modulus \(1\). Now as \(\mat Q\) is
    \((2n + 1) \times (2n + 1)\), its characteristic polynomial has odd degree.
-   It therefore has \emph{at least} one real root (for example because for very
-   large negative and positive \(t\), it will have a different sign).
+   It therefore has \emph{at least} one real root (for instancce because between
+   very large negative and positive \(t\), there will be a change of sign).
 
    But since this eigenvalue has modulus \(1\), it is \(\pm 1\). Since the
    eigenvalues are roots of the (real) characteristic polynomial, they are in
@@ -927,26 +944,319 @@
    eigenvalue of \(-1\) (which is interpreted as the existence of an axis that
    is inverted under that transformation (which is therefore a reflection)).
   \item
-   \begin{enumerate}[label=(\alph*)]
+   \begin{enumerate}[label=(\textbf{\Alph*})]
     \item
      \begin{enumerate}[label=(\roman*)]
+      \item Expanding with Lemma \ref{lemma_sarrus},
+       \begin{align*}
+        \chi_{\mat A}(t)
+         &= \det(\mat A - t \mat I) \\
+         &= \begin{vmatrix}
+          5 - t & -3 & 2 \\
+          6 & -4 - t & 4 \\
+          4 & -4 & 5 - t
+         \end{vmatrix} \\
+        &= (5 - t)(-4 - t)(5 - t) - 48 - 48 \\
+        &\phantom{={}} - (-18(5 - t) - 16(5 - t) + 8(-4 - t)) \\
+        &= -(t + 4)(t^2 - 10t + 25) - 96 - (-202 + 26t) \\
+        &= -t^3 + 10t^2 - 4t^2 - 25t + 40t - 26t - 100 - 96 + 202 \\
+        &= -t^3 + 6t^2 - 11t + 6 \\
+        &= (1 - t)(t^2 - 5t + 6) \\
+        &= (1 - t)(t - 2)(t - 3)
+       \end{align*}
+       So the eigenvalues of \(\mat A\) are \(1\), \(2\), \(3\).
       \item
+       The eigenspace \(E_{\lambda_i}\) of an eigenvalue
+       \(\lambda_i\) is the kernel of \(\mat A - \lambda_i \mat I\). So:
+       \begin{alignat*}3
+        \lambda_1 = 1:\quad&&
+        &&\begin{pmatrix}
+         4 & -3 & 2 \\
+         6 & -5 & 4 \\
+         4 & -4 & 4
+        \end{pmatrix}
+        \vec v_1 &= \vec 0 \\
+        \parens*{\vec r(3) \to \tfrac 14 \vec r(3)}\quad
+        && \iff{}&&\begin{pmatrix}
+         4 & -3 & 2 \\
+         6 & -5 & 4 \\
+         1 & -1 & 1
+        \end{pmatrix}
+        \vec v_1 &= \vec 0 \\
+        \parens*{
+         \begin{aligned}
+          \vec r(1) &\to \vec r(1) - \vec r(3) \\
+          \vec r(2) &\to \vec r(2) - \vec r(3) \\
+         \end{aligned}
+        }\quad
+        && \iff{}&&\begin{pmatrix*}[r]
+         0 & 1 & -2 \\
+         0 & 1 & -2 \\
+         1 & -1 & 1
+        \end{pmatrix*}
+        \vec v_1 &= \vec 0
+       \end{alignat*}
+       which is true iff \(\vec v_1\) lies in the intersection of the planes
+       \(\vec x \vecdot \vec(0, 1, -2) = 0\) and
+       \(\vec x \vecdot \vec(1, -1, 1) = 0\), which is a line, which by
+       inspection is given for instance by
+       \(E_{\lambda_1} = \set{\mu (1, 2, 1)}\). So
+       \(\dim E_{\lambda_2} = 1\).
+
+       Then
+       \begin{alignat*}3
+        \lambda_2 = 2:\quad&&
+        &&\begin{pmatrix}
+         3 & -3 & 2 \\
+         6 & -6 & 4 \\
+         4 & -4 & 3
+        \end{pmatrix}
+        \vec v_2 &= \vec 0 \\
+        \parens*{
+         \begin{aligned}
+          \vec r(2) &\to \vec r(2) - 2\vec r(1) \\
+          \vec r(3) &\to \vec r(3) - \tfrac 43\vec r(1)
+         \end{aligned}
+        }
+        &&\iff{}&&\parens*{\begin{array}{crc}
+         3 & -3 & 2 \\
+         0 & 0 & 0 \\
+         0 & 0 & 3 - \tfrac 83
+        \end{array}}
+        \vec v_2 &= \vec 0 \\
+       \end{alignat*}
+       which is true iff \(\vec v_2\) lies in the intersection of the planes
+       \(\vec x \vecdot (3, -3, 2) = 0\) and
+       \(\vec x \vecdot (0, 0, 1) = 0\). By inspection, this is the line
+       \(E_{\lambda_2} = \set{\mu(1, 1, 0)}\). So also
+       \(\dim E_{\lambda_2} = 1\).
+
+       And lastly,
+       \begin{alignat*}3
+        \lambda_3 = 3:\quad&&
+        &&\begin{pmatrix}
+         2 & -3 & 2 \\
+         6 & -7 & 4 \\
+         4 & -4 & 2
+        \end{pmatrix}
+        \vec v_3 &= \vec 0 \\
+        \parens*{
+         \begin{aligned}
+          \vec r(2) &\to \vec r(2) - 3 \vec r(1) \\
+          \vec r(3) &\to \vec r(3) - 2 \vec r(1)
+         \end{aligned}
+        } \quad
+        &&\iff{}&&\begin{pmatrix*}[r]
+         2 & -3 & 2 \\
+         0 & 2 & -2 \\
+         0 & 2 & -2
+        \end{pmatrix*}
+        \vec v_3 &= \vec 0
+       \end{alignat*}
+       which is the intersection of the planes
+       \(\vec x \vecdot (2, -3, 2) = 0\) and
+       \(\vec x \vecdot (0, 1, -1) = 0\), which is by inspection
+       \(E_{\lambda_3} = \set{\mu(1, 2, 2)}\). So also
+       \(\dim E_{\lambda_3} = 1\).
       \item
-      \item
+       So \(\mat A\) is diagonalisable, as its eigenspaces have total dimension
+       \(3\), so the eigenvectors of \(A\) are linearly independent, and are a
+       basis spanning \(\Reals^3\).
+     \end{enumerate}
     \item
      \begin{enumerate}[label=(\roman*)]
+      \item Expanding with Lemma \ref{lemma_sarrus},
+       \begin{align*}
+        \chi_{\mat B}(t)
+         &= \det(\mat B - t\mat I) \\
+         &= \begin{vmatrix}
+          1 - t & -3 & 4 \\
+          4 & -7 - t & 8 \\
+          6 & -7 & 7 - t
+         \end{vmatrix} \\
+         &= (1 - t)(-7 - t)(7 - t) - 112 - 144 \\
+         &\phantom{={}} - (-12(7 - t) + 24(-7 - t) - 56(1 - t)) \\
+         &= (1 - t)(t^2 - 49) - 256 - (-84 + 12t - 168 - 24t - 56 + 56t) \\
+         &= -t^3 + t^2 + 49t - 49 - 256 - (-308 + 44t) \\
+         &= -t^3 + t^2 + 5t + 3 \\
+         &= (t + 1)(-t^2 + 2t + 3) \\
+         &= -(t + 1)^2(t - 3)
+       \end{align*}
+       So the eigenvalues of \(\mat B\) are \(3\), and \(-1\) (with multiplicity
+       \(2\)).
       \item
+       Now to find the eigenspaces:
+       \begin{alignat*}3
+        \lambda_1 = 3:\quad
+        && &&\begin{pmatrix*}[r]
+         -2 & -3 & 4 \\
+         4 & -10 & 8 \\
+         6 & -7 & 4
+        \end{pmatrix*}
+        \vec v_1 &= \vec 0 \\
+        \parens*{
+         \begin{aligned}
+          \vec r(2) &\to \vec r(2) + 2 \vec r(1) \\
+          \vec r(3) &\to \vec r(3) + 3 \vec r(1) \\
+         \end{aligned}
+        } \quad
+        &&\iff{}&&\begin{pmatrix*}[r]
+         -2 & -3 & 4 \\
+         0 & -16 & 16 \\
+         0 & -16 & 16
+        \end{pmatrix*}
+        \vec v_1 &= \vec 0
+       \end{alignat*}
+       which is the intersection of the planes
+       \(\vec x \vecdot (0, 1, -1) = 0\) and
+       \(\vec x \vecdot (-2, -3, 4) = 0\), which is by inspection
+       \(E_{\lambda_1} = \set{\mu(1, 2, 2)}\). So
+       \(\dim E_{\lambda_1} = 1\).
+
+       Then
+       \begin{alignat*}3
+        \lambda_2 = -1:\quad
+        && &&\begin{pmatrix*}[r]
+         2 & -3 & 4 \\
+         4 & -6 & 8 \\
+         6 & -7 & 8
+        \end{pmatrix*}
+        \vec v_2 &= \vec 0 \\
+        \parens*{
+         \begin{aligned}
+          \vec r(2) &\to \vec r(2) - 2 \vec r(1) \\
+          \vec r(3) &\to \vec r(3) - 3 \vec r(1)
+         \end{aligned}
+        } \quad
+        &&\iff{}&&\begin{pmatrix*}[r]
+         2 & -3 & 4 \\
+         0 & 0 & 0 \\
+         0 & -1 & 0
+        \end{pmatrix*}
+        \vec v_2 &= \vec 0 \\
+       \end{alignat*}
+       which is the intersection of the planes
+       \(\vec x \vecdot (2, -3, 4) = 0\) and
+       \(\vec x \vecdot (0, 1, 0) = 0\), which is by inspection the \emph{line}
+       \(E_{\lambda_2} = \set{\mu(2, 0, -1)}\). So
+       \(\dim E_{\lambda_2} = 1\).
       \item
-      \item
+       The sum of the dimensions of the eigenspaces of \(\mat B\) is \(2\), so
+       the eigenvectors of \(\mat B\) cannot possibly form a basis for
+       \(\Reals^3\). So \(\mat B\) is not diagonalisable.
      \end{enumerate}
     \item
      \begin{enumerate}[label=(\roman*)]
       \item
+       Expanding with Lemma \ref{lemma_sarrus} and
+       Listing \ref{listing_py},
+       \begin{align*}
+        \chi_{\mat C}(t)
+         &= \begin{vmatrix}
+          7 - t & -12 & 6 \\
+          10 & -19 - t & 10 \\
+          12 & -24 & 13 - t
+         \end{vmatrix} \\
+         &= (7 - t)(-19 - t)(13 - t) - 1440 - 1440 \\
+         &\phantom{={}} - (-120(13 - t) + 72(-19 - t) - 240(7 - t) \\
+         &= -t^3 + t^2 + t - 1 \\
+         &= (t + 1)(-t^2 + 2t - 1) \\
+         &= -(t + 1)(t - 1)^2
+       \end{align*}
+       So the eigenvalues of \(\mat C\) are \(-1\), and \(1\) (with multiplicity
+       \(2\)).
+       \begin{listing}[H]
+        \inputminted{python}{char_poly.py}
+        \caption{\texttt{char\_poly.py} \label{listing_py}}
+       \end{listing}
       \item
+       Now to find the eigenspaces:
+       \begin{alignat*}3
+        \lambda_1 = -1:\quad
+        && &&\begin{pmatrix*}[r]
+         8 & -12 & 6 \\
+         10 & -18 & 10 \\
+         12 & -24 & 14
+        \end{pmatrix*}
+        \vec v_1 &= \vec 0 \\
+        \parens*{
+         \begin{aligned}
+          \vec r(1) &\to \tfrac 12 \vec r(1) \\
+          \vec r(2) &\to \tfrac 12 \vec r(2) \\
+          \vec r(3) &\to \tfrac 12 \vec r(3) \\
+         \end{aligned}
+        } \quad
+        &&\iff{}&&\begin{pmatrix*}[r]
+         4 & -6 & 3 \\
+         5 & -9 & 5 \\
+         6 & -12 & 7
+        \end{pmatrix*}
+        \vec v_1 &= \vec 0 \\
+        \parens*{
+         \vec r(3) \to \vec r(3) + \vec r(1) - 2\vec r(2)
+        } \quad
+        &&\iff{}&&\begin{pmatrix*}[r]
+         4 & -6 & 3 \\
+         5 & -9 & 5 \\
+         0 & 0 & 0
+        \end{pmatrix*}
+        \vec v_1 &= \vec 0 \\
+       \end{alignat*}
+       This is the intersection of the planes
+       \(\vec x \vecdot(4, -6, 3) = 0\) and
+       \(\vec x \vecdot(5, -9, 5) = 0\). This is the line
+       \(E_{\lambda_1}
+         = \set{\mu (4, -6, 3) \veccross (5, -9, 5)}
+         = \set{\mu (-3, -5, -6)}\). So
+       \(\dim E_{\lambda_1} = 1\).
+
+       Then
+       \begin{alignat*}3
+        \lambda_2 = 1:\quad
+        && &&\begin{pmatrix*}[r]
+         6 & -12 & 6 \\
+         10 & -20 & 10 \\
+         12 & -24 & 12
+        \end{pmatrix*}
+        \vec v_2 &= \vec 0 \\
+        \parens*{
+         \begin{aligned}
+          \vec r(1) &\to \tfrac 16 \vec r(1) \\
+          \vec r(2) &\to \tfrac 1{10} \vec r(2) \\
+          \vec r(3) &\to \tfrac 1{12} \vec r(3)
+         \end{aligned}
+        }
+        &&\iff{}&&\begin{pmatrix*}[r]
+         1 & -2 & 1 \\
+         1 & -2 & 1 \\
+         1 & -2 & 1
+        \end{pmatrix*}
+        \vec v_2 &= \vec 0 \\
+       \end{alignat*}
+       which is true iff \(\vec v_1\) lies in the plane
+       \(\vec x \vecdot (1, -2, 1) = 0\), which can be written for instance as
+       \(E_{\lambda_2} = \set{\mu(1, 1, 1) + \nu(2, 1, 0)}\). So
+       \(\dim E_{\lambda_2} = 2\).
       \item
-     \end{enumerate}
+       The sum of the dimensions of the eigenspaces of \(\mat C\) is \(3\), so
+       the eigenvectors of \(\mat C\) \emph{do} form a basis for
+       \(\Reals^3\), and \(\mat C\) is diagonalisable.
      \end{enumerate}
    \end{enumerate}
-  \item
+  \item \(
+   \begin{aligned}[t]
+    \chi_{\mat A^{-1}}(t)
+    &= \det(\mat A^{-1} - t\mat I) \\
+    &= \det(-\mat A^{-1})\det(t\mat A - \mat I) \\
+    &= \det(-\mat A^{-1})\det(t\mat A - \mat I) \\
+    &= (-1)^n\det(\mat A^{-1})\det(t\mat A - \mat I) \\
+    &= (-1)^n t^n \det(\mat A^{-1})\det(\mat A - \tfrac 1t \mat I) \\
+    &= (-1)^n t^n \det(\mat A^{-1})\chi_{\mat A}(\tfrac 1t) \\
+    &= (-1)^n t^n \det(\mat A^{-1})
+       (a_0 + a_1 \tfrac 1t + a_2 (\tfrac 1t)^2 + \dotsb + a_n (\tfrac 1t)^n) \\
+    &= (-1)^n \det(\mat A^{-1})
+       (a_0 t^n + a_1 t^{n - 1} + a_2 t^{n - 2} + \dotsb + a_n) \\
+    &= (-1)^n \det(\mat A^{-1})(a_n + a_{n - 1} t + \dotsb + a_0 t^n)
+   \end{aligned} \)
  \end{enumerate}
 \end{document}

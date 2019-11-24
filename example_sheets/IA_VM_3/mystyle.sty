@@ -58,3 +58,13 @@
 
 % making colours
 \RequirePackage{xcolor}
+
+% listings of code
+\RequirePackage{minted}
+\setminted{breaklines,
+ breakbytokenanywhere,
+ linenos
+}
+\usemintedstyle{friendly}
+% bigger line numbers
+\renewcommand\theFancyVerbLine{\footnotesize\arabic{FancyVerbLine}}
