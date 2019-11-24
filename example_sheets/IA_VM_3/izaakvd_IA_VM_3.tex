@@ -12,34 +12,32 @@
 \usepackage{mymaths}
 \usepackage{mystyle}
 
-%TODO: insert \mat macros
-
 \begin{document}
  \maketitle\thispagestyle{empty} % no page number under title
 
  \begin{enumerate}[label=\textbf{\arabic*.}]
   \item
-   As \(A\) and \(B\) are hermitian, generally we have
-   \(A_{ij} = \conj{A_{ji}}\), and
-   \(B_{ij} = \conj{B_{ji}}\).
+   As \(\mat A\) and \(\mat B\) are hermitian, generally we have
+   \(\mat A_{ij} = \conj{\mat A_{ji}}\), and
+   \(\mat B_{ij} = \conj{\mat B_{ji}}\).
    \begin{enumerate}[label=(\roman*)]
     \item
      \begin{itemize}
       \item
-       \(\tr A = A_{ii} = \conj{A_{ii}} = \conj{\tr A}\), as
+       \(\tr \mat A = \mat A_{ii} = \conj{\mat A_{ii}} = \conj{\tr \mat A}\), as
        complex conjugation distributes over addition, and therefore
-       \(\Im(\tr A) = \tfrac 12 (\tr A - \conj{\tr A}) = 0\), ie
-       \(\tr A\) is real.
+       \(\Im(\tr \mat A) = \tfrac 12 (\tr \mat A - \conj{\tr \mat A}) = 0\), ie
+       \(\tr \mat A\) is real.
       \item
        Similarly,
        \begin{align*}
-        \det A
-         &= \sum_\sigma \epsilon(\sigma) \prod_i A_{i\,\sigma(i)} \\
-         &= \sum_\sigma \epsilon(\sigma) \prod_i \conj{A_{\sigma(i)\,i}} \\
-         &= \conj{\sum_\sigma \epsilon(\sigma) \prod_i A_{\sigma(i)\,i}} \\
+        \det \mat A
+         &= \sum_\sigma \epsilon(\sigma) \prod_i \mat A_{i\,\sigma(i)} \\
+         &= \sum_\sigma \epsilon(\sigma) \prod_i \conj{\mat A_{\sigma(i)\,i}} \\
+         &= \conj{\sum_\sigma \epsilon(\sigma) \prod_i \mat A_{\sigma(i)\,i}} \\
          &= \conj{\sum_{\sigma^{-1}} \epsilon(\sigma^{-1})
-                 \prod_i A_{i\,\sigma^{-1}(i)}} \\
-         &= \conj{\det A},\quad
+                 \prod_i \mat A_{i\,\sigma^{-1}(i)}} \\
+         &= \conj{\det \mat A},\quad
          \text{as the sum remains over all permutations \footnotemark}
        \end{align*}
        \footnotetext{
@@ -47,74 +45,95 @@
         permutations \(\tau\), as inversion is a bijection from
         \(S_n \to S_n\).
        }
-       so \(\det A\) must be real.
+       so \(\det \mat A\) must be real.
      \end{itemize}
     \item \(
      \begin{aligned}[t]
-     (AB + BA)_{ij}
-       &= A_{ik}B_{kj} + B_{ik}A_{kj} \\
-       &= \conj{A_{ki}} \cdot \conj{B_{jk}} + \conj{B_{ki}} \cdot \conj{A_{jk}}
-       = \conj{A_{ki}B_{jk} + B_{ki}A_{jk}} \\
-       &= \conj{A_{jk}B_{ki} + B_{jk}A_{ki}} \\
-       &= \conj{(AB + BA)_{ji}}
+     (\mat A\mat B + \mat B\mat A)_{ij}
+       &= \mat A_{ik}\mat B_{kj} + \mat B_{ik}\mat A_{kj} \\
+       &= \conj{\mat A_{ki}} \cdot \conj{\mat B_{jk}}
+          + \conj{\mat B_{ki}} \cdot \conj{\mat A_{jk}}
+       = \conj{\mat A_{ki}\mat B_{jk} + \mat B_{ki}\mat A_{jk}} \\
+       &= \conj{\mat A_{jk}\mat B_{ki} + \mat B_{jk}\mat A_{ki}} \\
+       &= \conj{(\mat A\mat B + \mat B\mat A)_{ji}}
      \end{aligned}\)
 
-     so \(AB + BA\) is hermitian.
+     so \(\mat A\mat B + \mat B\mat A\) is hermitian.
     \item
      \begin{itemize}
       \item \(
        \begin{aligned}[t]
-        i(AB - BA)_{ij}
-         &= i(A_{ik} B_{kj} - B_{ik} A_{kj}) \\
-         &= \conj{-i}(\conj{(A_{ki} B_{jk} - B_{ki} A_{jk})}) \\
-         &= \conj{-i}(\conj{(A_{ki} B_{jk} - B_{ki} A_{jk})}) \\
-         &= \conj{i(A_{jk} B_{ki} - B_{jk} A_{ki})} \\
-         &= \conj{i(AB - BA)_{ji}}
+        i(\mat A\mat B - \mat B\mat A)_{ij}
+         &= i(\mat A_{ik} \mat B_{kj} - \mat B_{ik} \mat A_{kj}) \\
+         &= \conj{-i}(\conj{(\mat A_{ki} \mat B_{jk}
+           - \mat B_{ki} \mat A_{jk})}) \\
+         &= \conj{-i}(\conj{(\mat A_{ki} \mat B_{jk}
+           - \mat B_{ki} \mat A_{jk})}) \\
+         &= \conj{i(\mat A_{jk} \mat B_{ki} - \mat B_{jk} \mat A_{ki})} \\
+         &= \conj{i(\mat A\mat B - \mat B\mat A)_{ji}}
        \end{aligned}\)
 
-       so \(i(AB - BA)\) is hermitian.
+       so \(i(\mat A\mat B - \mat B\mat A)\) is hermitian.
       \item
-       For any scalar \(\lambda\) and square matrices \(A\), \(B\), we have that
+       For any scalar \(\lambda\) and square matrices \(\mat A\), \(\mat B\), we
+       have that
        \begin{equation*}
-        \tr(A + B) = (A + B)_{ii} = A_{ii} + B_{ii} = \tr(A) + \tr(B)
+        \tr(\mat A + \mat B)
+         = (\mat A + \mat B)_{ii}
+         = \mat A_{ii} + \mat B_{ii}
+         = \tr(\mat A) + \tr(\mat B)
        \end{equation*}
        and
        \begin{equation*}
-        \tr(AB) = (AB)_{ii} = A_{ij} B_{ji} = B_{ji} A_{ij} = (BA)_{jj}
-         = \tr(BA)
+        \tr(\mat A\mat B)
+        = (\mat A\mat B)_{ii}
+        = \mat A_{ij} \mat B_{ji}
+        = \mat B_{ji} \mat A_{ij}
+        = (\mat B\mat A)_{jj}
+         = \tr(\mat B\mat A)
        \end{equation*}
        and
        \begin{equation*}
-        \tr(\lambda A) = (\lambda A)_{ii} = \lambda A_{ii} = \lambda \tr(A)
+        \tr(\lambda \mat A)
+        = (\lambda \mat A)_{ii}
+        = \lambda \mat A_{ii}
+        = \lambda \tr(\mat A)
        \end{equation*}
        so then
        \begin{equation*}
-        \tr(i(AB - BA)) = i(\tr(AB) - \tr(BA)) = i(\tr(AB) - \tr(AB)) = 0
+        \tr(i(\mat A\mat B - \mat B\mat A));
+        = i(\tr(\mat A\mat B) - \tr(\mat B\mat A));
+        = i(\tr(\mat A\mat B) - \tr(\mat A\mat B)) = 0
        \end{equation*}
      \end{itemize}
     \item \(
-      \tr(AB) = (AB)_{ii} = A_{ij} B_{ji} = \conj{A_{ji} B_{ij}}
-       = \conj{(AB)_{jj}} = \conj{\tr(AB)}
+      \tr(\mat A\mat B)
+      = (\mat A\mat B)_{ii}
+      = \mat A_{ij} \mat B_{ji}
+      = \conj{\mat A_{ji} \mat B_{ij}}
+      = \conj{(\mat A\mat B)_{jj}} = \conj{\tr(\mat A\mat B)}
       \)
 
-      so \(\tr(AB)\) is real.
+      so \(\tr(\mat A\mat B)\) is real.
 
-      \(\det(AB) = \det(A)\det(B)\), which is the product of real numbers, so is
-      real.
+      \(\det(\mat A\mat B) = \det(\mat A)\det(\mat B)\), which is the product of
+      real numbers, so is real.
      \item Using the earlier commutativity property,
-      \(\tr(UA\,\herm U) = \tr(A\,\herm UU) = \tr(AI) = \tr(A)\).
+      \(\tr(\mat U\mat A\,\herm{\mat U})
+        = \tr(\mat A\,\herm{\mat U}\mat U) = \tr(\mat AI) = \tr(\mat A)\).
 
       Using the multiplicativity of determinants,
-      \(\det(UA\,\herm U) = \det(U)\det(A)\det(\herm U)
-        = \det(U)\det(\herm U)\det(A)
-        = \det(U\herm U)\det(A)
-        = \det(I) \det(A)
-        = \det A
+      \(\det(\mat U\mat A\,\herm{\mat U})
+        = \det(\mat U)\det(\mat A)\det(\herm{\mat U})
+        = \det(\mat U)\det(\herm{\mat U})\det(\mat A)
+        = \det(\mat U\herm{\mat U})\det(\mat A)
+        = \det(\mat I) \det(\mat A)
+        = \det \mat A
         \)
    \end{enumerate}
   \item
    \begin{alignat*} 2
-    && \det M
+    && \det \mat M
      &= \begin{vmatrix}
       a & a^2 & bc \\
       b & b^2 & ca \\
@@ -159,7 +178,7 @@
   \item
    \begin{lemma}[Rule of Sarrus]
     \label{lemma_sarrus}
-    The determinant of a \(3 \times 3\) matrix \(M\) is given by
+    The determinant of a \(3 \times 3\) matrix \(\mat M\) is given by
     \begin{align*}
      \begin{vmatrix}
       \color{red}m_{11} & \color{violet}m_{12} & \color{blue}m_{13} \\
@@ -236,11 +255,12 @@
    \end{alignat*}
    %TODO
   \item
-   Using that for any scalar \(\lambda\) and any \(n \times n\) matrix \(M\),
-   \(\det(M) = \det(\tran M)\) and \(\det(\lambda M) = \lambda^n \det(M)\), we
-   can show that
-   \(\det(A) = \det(\tran A) = \det(-A) = (-1)^{2n + 1}\det(A) = -\det(A)\), so
-   \(\det(A)\) must be \(0\).
+   Using that for any scalar \(\lambda\) and any \(n \times n\) matrix
+   \(\mat M\), \(\det(\mat M) = \det(\tran{\mat M})\) and
+   \(\det(\lambda \mat M) = \lambda^n \det(\mat M)\), we can show that
+   \(\det(\mat A) = \det(\tran{\mat A})
+     = \det(-\mat A) = (-1)^{2n + 1}\det(\mat A) = -\det(\mat A)\), so
+   \(\det(\mat A)\) must be \(0\).
   \item
    Let \(D_i\) denote the \(i \times i\) matrix of this form, so \(D = D_n\),
    and claim that
@@ -360,11 +380,11 @@
      1 & -2 & 1
     \end{pmatrix*}
    \end{align*}
-   Now the condition \(A_{ij} \Delta_{ik} = \delta_{jk} \det A\) is equivalent
-   to \((\tran \Delta)_{ki} A_{ij} = \delta_{jk} \det A\), ie
-   \(\tran \Delta A = (\det A)I\). So let's calculate:
+   Now the condition \(\mat A_{ij} \Delta_{ik} = \delta_{jk} \det \mat A\) is
+   equivalent to \((\tran \Delta)_{ki} \mat A_{ij} = \delta_{jk} \det \mat A\),
+   ie \(\tran \Delta \mat A = (\det \mat A)I\). So let's calculate:
    \begin{equation*}
-    \tran \Delta A =
+    \tran \Delta \mat A =
     \begin{pmatrix*}[r]
      10 & -4 & 1 \\
      7 & -1 & -2 \\
@@ -762,8 +782,171 @@
        m_{11} - t & m_{12} \\
        m_{21} & m_{22} - t
       \end{vmatrix} \\
-       &= (m_{11} - t)(m_{22} - t) - m_{12} m_{21}
+       &= (m_{11} - t)(m_{22} - t) - m_{12} m_{21} \\
+       &= t^2 - (m_{11} + m_{22}) t + m_{11} m_{22} - m_{12} m_{21}
      \end{align*}
+     This is a quadratic with real coefficients. If it is to have strictly
+     non-real eigenvalues, then its discriminant must be strictly negative. ie
+     \begin{alignat*}2
+      && (m_{11} + m_{22})^2 - 4(m_{11} m_{22} - m_{12} m_{21}) &< 0 \\
+      \iff{}&& (m_{11} - m_{22})^2 + 4m_{12} m_{21} &< 0 \\
+      \iff{}&& (m_{11} - m_{22})^2 &< -4m_{12} m_{21}
+     \end{alignat*}
+     But \((m_{11} - m_{22})^2 \ge 0\), so \(-4 m_{12} m_{21} > 0\), and
+     therefore \(-4 m_{12} m_{21} \ne 0\), and hence
+     \(m_{12} \ne 0\) and \(m_{21} \ne 0\).
+     The diagonal elements can be zero, for example in our old friend the
+     rotation matrix:
+     \begin{equation*}
+      \mat R = \begin{pmatrix*}[r]
+       0 & - 1 \\
+       1 & 0
+      \end{pmatrix*},
+     \end{equation*}
+     having eigenvalues \(\pm i\).
    \end{enumerate}
+  \item
+   First determine the characteristic equation:
+   \begin{align*}
+    \chi_{\mat A}(t)
+     &= \det(\mat A - t\mat I) \\
+     &= \begin{vmatrix}
+      1 - t & \alpha & 0 \\
+      \beta & 1 - t & 0 \\
+      0 & 0 & 1 - t
+     \end{vmatrix} \\
+     &= (1 - t)\begin{vmatrix}
+      1 - t & \alpha \\
+      \beta & 1 - t
+     \end{vmatrix},\quad (\text{by expanding along the third row}) \\
+     &= (1 - t)((1 - t)^2 - \alpha \beta) \\
+     &= (1 - t)(1 + \sqrt{\alpha \beta} - t)(1 - \sqrt{\alpha \beta} - t)
+   \end{align*}
+   where \(\sqrt{\alpha \beta}\) is the principal square root of
+   \(\alpha \beta\) in \(\Complex\). So the eigenvalues of \(\mat A\) are
+   \(1\), \(1 \pm \sqrt{\alpha \beta}\). Then to find the eigenvectors:
+   \begin{alignat*}3
+    \lambda_1 = 1:\quad&&
+     \begin{pmatrix}
+      0 & \alpha & 0 \\
+      \beta & 0 & 0 \\
+      0 & 0 & 0
+     \end{pmatrix}
+     \vec v_1 &= \vec 0
+     &&\impliedby \vec v_1 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \\
+    \lambda_2 = 1 + \sqrt{\alpha \beta}:\quad&&
+     \begin{pmatrix}
+      -\sqrt{\alpha \beta} & \alpha & 0 \\
+      \beta & -\sqrt{\alpha \beta} & 0 \\
+      0 & 0 & -\sqrt{\alpha \beta}
+     \end{pmatrix}
+     \vec v_2 &= \vec 0
+     &&\impliedby \vec v_2 =
+     \begin{pmatrix} \sqrt \alpha \\ \sqrt \beta \\ 0 \end{pmatrix} \\
+    \lambda_3 = 1 - \sqrt{\alpha \beta}:\quad&&
+     \begin{pmatrix}
+      \sqrt{\alpha \beta} & \alpha & 0 \\
+      \beta & \sqrt{\alpha \beta} & 0 \\
+      0 & 0 & \sqrt{\alpha \beta}
+     \end{pmatrix}
+     \vec v_3 &= \vec 0
+     &&\impliedby \vec v_3 =
+     \begin{pmatrix} -\sqrt \alpha \\ \sqrt \beta \\ 0 \end{pmatrix} \\
+   \end{alignat*}
+   \begin{enumerate}[label=(\roman*)]
+    \item
+     The eigenvalues are real if
+     \(\alpha \beta\) has a real square root, ie it is a non-negative real
+     number.
+    \item
+     The eigenvector \(\vec v_1\) is always orthogonal to
+     \(\vec v_2\) and \(\vec v_3\), so the only interesting case is the
+     orthogonality of \(\vec v_2\) and \(\vec v_3\). These are orthogonal if:
+     \begin{alignat*}2
+      && \herm{\vec v_2} \vec v_3 &= 0 \\
+      \iff{}&&
+      - \conj{\sqrt \alpha} \sqrt \alpha
+      + \conj{\sqrt \beta} \sqrt \beta &= 0 \\
+      \iff{}&&
+      \abs{\sqrt \alpha}^2 &= \abs{\sqrt \beta}^2 \\
+      \iff{}&&
+      \abs{\alpha} &= \abs{\beta}
+     \end{alignat*}
+   \end{enumerate}
+   If both of these conditions hold, then we have that
+   \(\alpha \beta = k\), for some positive real \(k\). But we also know that
+   \(\abs{\alpha} = \abs{\beta}\), so \(k = \abs{\alpha}^2\). But then,
+   \(\beta = k / \alpha = \abs{\alpha^2} / \alpha = \conj{\alpha}\).
+   \(\mat A\) is then hermitian, as the only other elements are the (real)
+   \(1\)s on the leading diagonal.
+
+   For the reverse implication, if \(\mat A\) is hermitian, then
+   \(\beta = \conj \alpha\), and therefore
+   \(\alpha \beta = \abs{\alpha^2} \ge 0\)
+   and \(\abs{\alpha} = \abs{\beta}\), so both conditions hold.
+  \item
+   If \(\mat Q\) is orthogonal, and \(\lambda\) is an eigenvalue of
+   \(\mat Q\), with eigenvector \(\vec v \ne \vec 0\), then
+   \begin{alignat*}2
+    &&\mat Q \vec v &= \lambda \vec v \\
+    \implies{}&&
+    \abs{\mat Q \vec v} &= \abs{\lambda \vec v} \\
+    \implies{}&&
+    \abs{\mat Q \vec v}^2 &= \abs{\lambda}^2 \abs{\vec v}^2 \\
+    \implies{}&&
+    \tran{(\mat Q \vec v)}(\mat Q \vec v) &= \abs{\lambda}^2 \abs{\vec v}^2 \\
+    \implies{}&&
+    \tran{\vec v}\tran{\mat Q}\mat Q \vec v &= \abs{\lambda}^2 \abs{\vec v}^2 \\
+    \implies{}&&
+    \tran{\vec v}\vec v &= \abs{\lambda}^2 \abs{\vec v}^2 \\
+    \implies{}&&
+    \abs{\vec v}^2 &= \abs{\lambda}^2 \abs{\vec v}^2 \\
+    \implies{}&&
+    1 &= \abs{\lambda}^2 \\
+    \implies{}&&
+    1 &= \abs{\lambda}
+   \end{alignat*}
+   So all eigenvalues have modulus \(1\). Now as \(\mat Q\) is
+   \((2n + 1) \times (2n + 1)\), its characteristic polynomial has odd degree.
+   It therefore has \emph{at least} one real root (for example because for very
+   large negative and positive \(t\), it will have a different sign).
+
+   But since this eigenvalue has modulus \(1\), it is \(\pm 1\). Since the
+   eigenvalues are roots of the (real) characteristic polynomial, they are in
+   conjugate pairs (which each multiply to 1, as they all have modulus 1). Since
+   the determinant of \(\mat Q\) is \(1\), the product of all the eigenvalues is
+   \(1\). There must be an odd number of real eigenvalues, and they can't all be
+   \(-1\), as then the product of all the eigenvalues would be \(-1\). So there
+   is at least one eigenvalue of \(1\).
+
+   When \(\mat Q\) is \(3 \times 3\), this can be interpreted as the fact that
+   in \(3\) dimensions, any orthogonal transformation has an axis that is
+   invariant under that transformation, ie every rotation is about an axis.
+
+   If \(\det \mat Q = -1\), then by a similar argument \(\mat Q\) must have an
+   eigenvalue of \(-1\) (which is interpreted as the existence of an axis that
+   is inverted under that transformation (which is therefore a reflection)).
+  \item
+   \begin{enumerate}[label=(\alph*)]
+    \item
+     \begin{enumerate}[label=(\roman*)]
+      \item
+      \item
+      \item
+    \item
+     \begin{enumerate}[label=(\roman*)]
+      \item
+      \item
+      \item
+     \end{enumerate}
+    \item
+     \begin{enumerate}[label=(\roman*)]
+      \item
+      \item
+      \item
+     \end{enumerate}
+     \end{enumerate}
+   \end{enumerate}
+  \item
  \end{enumerate}
 \end{document}
