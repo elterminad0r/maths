@@ -5,19 +5,9 @@
 
 \usepackage{parskip}
 
-\begin{document}
-\(a, b \in \mathcal M\) are conjugate iff \(\mathop\exists g \in \mathcal M\) such that \(a = g b g^{-1}\)
-
-\(\mathscr B\)
-
-\(\bigcup\limits_{g \in G} g H g^{-1}\)
-
-Let Q be a \((2n+1)\times(2n+1)\) orthogonal matrix
-
-\begin{equation*}
- 1 +
+\newcommand*\tensordim[2]{
  \underset{
-  \mathllap{\text{\(n\) times}
+  \mathllap{\text{\(#2\) times}
   \ \left\{
    \vphantom{
     \begin{array}{r}
@@ -29,6 +19,19 @@ Let Q be a \((2n+1)\times(2n+1)\) orthogonal matrix
    \hline \hline \vdots \\[1ex] \hline
   \end{array}
  }
- {\mathrm H}\,\mathbf x
+ {\mathrm #1}
+}
+
+\begin{document}
+\(a, b \in \mathcal M\) are conjugate iff \(\mathop\exists g \in \mathcal M\) such that \(a = g b g^{-1}\)
+
+\(\mathscr B\)
+
+\(\bigcup\limits_{g \in G} g H g^{-1}\)
+
+Let Q be a \((2n+1)\times(2n+1)\) orthogonal matrix
+
+\begin{equation*}
+ 1 + \tensordim{H}{n} \,\mathbf x
 \end{equation*}
 \end{document}
