@@ -175,11 +175,11 @@
      \end{itemize}
    \end{enumerate}
   \item
-   If \(\mat M_{ij} = \delta_{ij} + \epsilon_{ijk} n_k\),
-   \(\mat N_{ij} = \delta_{ij} - \epsilon_{ijk} n_k + n_i n_j\), and
+   If \( M_{ij} = \delta_{ij} + \epsilon_{ijk} n_k\),
+   \( N_{ij} = \delta_{ij} - \epsilon_{ijk} n_k + n_i n_j\), and
    \(n_i n_i = 1\), then
    \begin{align*}
-    \mat N_{ij} \mat M_{jk}
+     N_{ij}  M_{jk}
      &= (\delta_{ij} - \epsilon_{ij\ell} n_\ell + n_i n_j)
         (\delta_{jk} + \epsilon_{jkq} n_q) \\
      &= \delta_{ik} + \epsilon_{ikq} n_q
@@ -214,12 +214,12 @@
     \iff{}&& y_i &= x_i + (\vec x \veccross \vec n)_i \\
     &&           &= x_i + \epsilon_{ijk} x_j n_k \\
     &&           &= \delta_{ij} x_j + \epsilon_{ijk} x_j n_k \\
-    &&           &= \mat M_{ij} x_j
+    &&           &=  M_{ij} x_j
    \end{alignat*}
    So then \(\vec y = \mat M \vec x \implies
     \vec x = \mat M^{-1} \vec y = \frac 12 \mat N \vec y\), ie
    \begin{align*}
-    2 x_i &= \mat N_{ij} y_j \\
+    2 x_i &=  N_{ij} y_j \\
           &= (\delta_{ij} - \epsilon_{ijk} n_k + n_i n_j) y_j \\
           &= y_i - \epsilon_{ijk} y_j n_k + n_i(\vec n \vecdot \vec y) \\
           &= y_i - (\vec y \veccross \vec n)_i + n_i(\vec n \vecdot \vec y)
@@ -615,22 +615,22 @@
     \end{alignat*}
     as expected.
     \begin{alignat*}2
-     && \mat R_{ij} x_j &= x_i' \\
+     &&  R_{ij} x_j &= x_i' \\
      && &= \cos\theta\,x_i + (\vec x \vecdot \vec n)(1 - \cos\theta)\,n_i
            - \sin\theta\,(\vec x \veccross \vec n)_i \\
      && &= \delta_{ij} \cos\theta\,x_j + x_j n_j (1 - \cos\theta)\,n_i
            - \sin\theta\,\epsilon_{ijk}x_j n_k \\
      \implies{}&&
-      \mat R_{ij} &= \delta_{ij} \cos\theta + (1 - \cos\theta)\,n_j n_i
+       R_{ij} &= \delta_{ij} \cos\theta + (1 - \cos\theta)\,n_j n_i
                      - \sin\theta\,\epsilon_{ijk}n_k
     \end{alignat*}
     So
     \begin{align*}
-     \mat R_{ii} &= \delta_{ii} \cos\theta + (1 - \cos\theta)\,n_i n_i
+      R_{ii} &= \delta_{ii} \cos\theta + (1 - \cos\theta)\,n_i n_i
                     - \sin\theta\,\epsilon_{iik}n_k \\
       &= 3\cos \theta + 1 - \cos \theta - 0 \\
       &= 2 \cos \theta + 1 \\
-     \epsilon_{ijk} \mat R_{jk}
+     \epsilon_{ijk}  R_{jk}
       &= \epsilon_{ijk} (\delta_{jk} \cos \theta + (1 - \cos \theta)\,n_j n_i
                          - \sin\theta\,\epsilon_{jk\ell} n_\ell) \\
       &= \epsilon_{ijk} \delta_{jk} \cos \theta +
