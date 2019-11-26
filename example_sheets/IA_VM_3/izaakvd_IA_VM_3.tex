@@ -244,17 +244,17 @@
      y & z & x
     \end{vmatrix} \\
     \parens*{
-     \vec r(1) \to \vec r(1) + \vec r(2) + \vec r(3)
+     \vec c(1) \to \vec c(1) + \vec c(2) + \vec c(3)
     } \quad
     && &= \begin{vmatrix}
-     x + y + z & x + y + z & x + y + z \\
-     z & x & y \\
-     y & z & x
+     x + y + z & y & z \\
+     x + y + z & x & y \\
+     x + y + z & z & x
     \end{vmatrix} \\
     && &= (x + y + z)\begin{vmatrix}
-     1 & 1 & 1 \\
-     z & x & y \\
-     y & z & x
+     1 & y & z \\
+     1 & x & y \\
+     1 & z & x
     \end{vmatrix} \\
     && \Delta(x, y, z) &= \begin{vmatrix}
      x & y & z \\
@@ -287,7 +287,7 @@
      z + \omega^2 x + \omega y & x & y \\
      y + \omega^2 z + \omega x & z & x
     \end{vmatrix} \\
-    && &= (x + \omega^2 y + \omega^2 z)\begin{vmatrix}
+    && &= (x + \omega^2 y + \omega z)\begin{vmatrix}
      1 & y & z \\
      \omega^2 & x & y \\
      \omega & z & x
@@ -941,19 +941,21 @@
   \item
    If \(\mat Q\) is orthogonal, and \(\lambda\) is an eigenvalue of
    \(\mat Q\), with eigenvector \(\vec v \ne \vec 0\), then we can exploit the
-   fact that orthogonal matrices preserve the inner product:
+   fact that orthogonal matrices preserve the inner product
+   \footnote{
+    We have to use the \emph{complex} inner product as even though \(\mat Q\) is
+    real, we can't guarantee that all its eigenvectors are real.
+   }:
    \begin{alignat*}2
     &&\mat Q \vec v &= \lambda \vec v \\
     \implies{}&&
-    \abs{\mat Q \vec v} &= \abs{\lambda \vec v} \\
+    \herm{(\mat Q \vec v)}(\mat Q \vec v)
+     &= \herm{(\lambda \vec v)}(\lambda \vec v) \\
     \implies{}&&
-    \abs{\mat Q \vec v}^2 &= \abs{\lambda}^2 \abs{\vec v}^2 \\
+    \herm{\vec v}\herm{\mat Q}\mat Q \vec v
+     &= \conj \lambda \lambda \herm{\vec v} \vec v \\
     \implies{}&&
-    \tran{(\mat Q \vec v)}(\mat Q \vec v) &= \abs{\lambda}^2 \abs{\vec v}^2 \\
-    \implies{}&&
-    \tran{\vec v}\tran{\mat Q}\mat Q \vec v &= \abs{\lambda}^2 \abs{\vec v}^2 \\
-    \implies{}&&
-    \tran{\vec v}\vec v &= \abs{\lambda}^2 \abs{\vec v}^2 \\
+    \herm{\vec v}\vec v &= \abs{\lambda}^2 \abs{\vec v}^2 \\
     \implies{}&&
     \abs{\vec v}^2 &= \abs{\lambda}^2 \abs{\vec v}^2 \\
     \implies{}&&
@@ -963,7 +965,7 @@
    \end{alignat*}
    So all eigenvalues have modulus \(1\). Now as \(\mat Q\) is
    \((2n + 1) \times (2n + 1)\), its characteristic polynomial has odd degree.
-   It therefore has \emph{at least} one real root (for instancce because between
+   It therefore has \emph{at least} one real root (for instance because between
    very large negative and positive \(t\), there will be a change of sign).
 
    But since this eigenvalue has modulus \(1\), it is \(\pm 1\). Since the
@@ -975,12 +977,45 @@
    is at least one eigenvalue of \(1\).
 
    When \(\mat Q\) is \(3 \times 3\), this can be interpreted as the fact that
-   in \(3\) dimensions, any orthogonal transformation has an axis that is
-   invariant under that transformation, ie every rotation is about an axis.
+   in \(3\) dimensions, any orthogonal transformation with determinant \(1\) has
+   an axis that is invariant under that transformation, ie each one of these
+   transformations is a rotation about an invariant axis.
 
    If \(\det \mat Q = -1\), then by a similar argument \(\mat Q\) must have an
    eigenvalue of \(-1\) (which is interpreted as the existence of an axis that
-   is inverted under that transformation (which is therefore a reflection)).
+   is inverted under that transformation).
+
+   Alternatively, we present the following method due to Jamie Stephenson:
+   \begin{align*}
+    \chi_{\mat Q}(1)
+     &= \det(\mat Q - \mat I) \\
+     &= \det(\mat Q - \mat Q \tran{\mat Q}) \\
+     &= \det \mat Q\det(\mat I - \tran{\mat Q}) \\
+     &= \det(\mat I - \tran{\mat Q}) \\
+     &= \det(\tran{(\mat I - \mat Q)}) \\
+     &= \det(\mat I - \mat Q) \\
+     &= (-1)^{2n + 1}\det(\mat Q - \mat I) \\
+     &= -\det(\mat Q - \mat I) \\
+     &= -\chi_{\mat Q}(1)
+   \end{align*}
+   so \(\chi_{\mat Q}(1) = 0\) and therefore \(1\) is an eigenvalue.
+
+   Similarly, for \(\det \mat Q = -1\),
+   \begin{align*}
+    \chi_{\mat Q}(-1)
+     &= \det(\mat Q + \mat I) \\
+     &= \det(\mat Q + \mat Q \tran{\mat Q}) \\
+     &= \det \mat Q\det(\mat I + \tran{\mat Q}) \\
+     &= -\det(\mat I + \tran{\mat Q}) \\
+     &= -\det(\tran{(\mat I + \mat Q)}) \\
+     &= -\det(\mat I + \mat Q) \\
+     &= -\chi_{\mat Q}(-1)
+   \end{align*}
+   so \(\chi_{\mat Q}(-1) = 0\) and therefore \(-1\) is an eigenvalue. This also
+   does not need \(\mat Q\) to be \((2n + 1) \times (2n + 1)\), which upon
+   reflection is also true for the Fundamental Theorem of Algebra argument, as
+   we end up requiring an odd number of eigenvalues equal to \(-1\). (ie the
+   eigenvalue \(-1\) having odd algebraic multiplicity)
   \item
    \begin{enumerate}[label=(\textbf{\Alph*})]
     \item
@@ -1004,98 +1039,8 @@
        \end{align*}
        So the eigenvalues of \(\mat A\) are \(1\), \(2\), \(3\).
       \item
-       The eigenspace \(E_{\lambda_i}\) of an eigenvalue
-       \(\lambda_i\) is the kernel of \(\mat A - \lambda_i \mat I\). So:
-       \begin{alignat*}3
-        \lambda_1 = 1:\quad&&
-        &&\begin{pmatrix}
-         4 & -3 & 2 \\
-         6 & -5 & 4 \\
-         4 & -4 & 4
-        \end{pmatrix}
-        \vec v_1 &= \vec 0 \\
-        \parens*{\vec r(3) \to \tfrac 14 \vec r(3)}\quad
-        && \iff{}&&\begin{pmatrix}
-         4 & -3 & 2 \\
-         6 & -5 & 4 \\
-         1 & -1 & 1
-        \end{pmatrix}
-        \vec v_1 &= \vec 0 \\
-        \parens*{
-         \begin{aligned}
-          \vec r(1) &\to \vec r(1) - \vec r(3) \\
-          \vec r(2) &\to \vec r(2) - \vec r(3) \\
-         \end{aligned}
-        }\quad
-        && \iff{}&&\begin{pmatrix*}[r]
-         0 & 1 & -2 \\
-         0 & 1 & -2 \\
-         1 & -1 & 1
-        \end{pmatrix*}
-        \vec v_1 &= \vec 0
-       \end{alignat*}
-       which is true iff \(\vec v_1\) lies in the intersection of the planes
-       \(\vec x \vecdot \vec(0, 1, -2) = 0\) and
-       \(\vec x \vecdot \vec(1, -1, 1) = 0\), which is a line, which by
-       inspection is given for instance by
-       \(E_{\lambda_1} = \set{\mu (1, 2, 1)}\). So
-       \(\dim E_{\lambda_2} = 1\).
-
-       Then
-       \begin{alignat*}3
-        \lambda_2 = 2:\quad&&
-        &&\begin{pmatrix}
-         3 & -3 & 2 \\
-         6 & -6 & 4 \\
-         4 & -4 & 3
-        \end{pmatrix}
-        \vec v_2 &= \vec 0 \\
-        \parens*{
-         \begin{aligned}
-          \vec r(2) &\to \vec r(2) - 2\vec r(1) \\
-          \vec r(3) &\to \vec r(3) - \tfrac 43\vec r(1)
-         \end{aligned}
-        }
-        &&\iff{}&&\parens*{\begin{array}{crc}
-         3 & -3 & 2 \\
-         0 & 0 & 0 \\
-         0 & 0 & 3 - \tfrac 83
-        \end{array}}
-        \vec v_2 &= \vec 0 \\
-       \end{alignat*}
-       which is true iff \(\vec v_2\) lies in the intersection of the planes
-       \(\vec x \vecdot (3, -3, 2) = 0\) and
-       \(\vec x \vecdot (0, 0, 1) = 0\). By inspection, this is the line
-       \(E_{\lambda_2} = \set{\mu(1, 1, 0)}\). So also
-       \(\dim E_{\lambda_2} = 1\).
-
-       And lastly,
-       \begin{alignat*}3
-        \lambda_3 = 3:\quad&&
-        &&\begin{pmatrix}
-         2 & -3 & 2 \\
-         6 & -7 & 4 \\
-         4 & -4 & 2
-        \end{pmatrix}
-        \vec v_3 &= \vec 0 \\
-        \parens*{
-         \begin{aligned}
-          \vec r(2) &\to \vec r(2) - 3 \vec r(1) \\
-          \vec r(3) &\to \vec r(3) - 2 \vec r(1)
-         \end{aligned}
-        } \quad
-        &&\iff{}&&\begin{pmatrix*}[r]
-         2 & -3 & 2 \\
-         0 & 2 & -2 \\
-         0 & 2 & -2
-        \end{pmatrix*}
-        \vec v_3 &= \vec 0
-       \end{alignat*}
-       which is the intersection of the planes
-       \(\vec x \vecdot (2, -3, 2) = 0\) and
-       \(\vec x \vecdot (0, 1, -1) = 0\), which is by inspection
-       \(E_{\lambda_3} = \set{\mu(1, 2, 2)}\). So also
-       \(\dim E_{\lambda_3} = 1\).
+       All eigenvalues have multiplicity one so each eigenspace has dimension
+       \(1\), and there isn't anything we need to check.
       \item
        So \(\mat A\) is diagonalisable, as its eigenspaces have total dimension
        \(3\), so the eigenvectors of \(A\) are linearly independent, and are a
@@ -1123,35 +1068,11 @@
        So the eigenvalues of \(\mat B\) are \(3\), and \(-1\) (with multiplicity
        \(2\)).
       \item
-       Now to find the eigenspaces:
-       \begin{alignat*}3
-        \lambda_1 = 3:\quad
-        && &&\begin{pmatrix*}[r]
-         -2 & -3 & 4 \\
-         4 & -10 & 8 \\
-         6 & -7 & 4
-        \end{pmatrix*}
-        \vec v_1 &= \vec 0 \\
-        \parens*{
-         \begin{aligned}
-          \vec r(2) &\to \vec r(2) + 2 \vec r(1) \\
-          \vec r(3) &\to \vec r(3) + 3 \vec r(1) \\
-         \end{aligned}
-        } \quad
-        &&\iff{}&&\begin{pmatrix*}[r]
-         -2 & -3 & 4 \\
-         0 & -16 & 16 \\
-         0 & -16 & 16
-        \end{pmatrix*}
-        \vec v_1 &= \vec 0
-       \end{alignat*}
-       which is the intersection of the planes
-       \(\vec x \vecdot (0, 1, -1) = 0\) and
-       \(\vec x \vecdot (-2, -3, 4) = 0\), which is by inspection
-       \(E_{\lambda_1} = \set{\mu(1, 2, 2)}\). So
-       \(\dim E_{\lambda_1} = 1\).
+       The only eigenvalue with multplicity \(> 1\) is \(-1\), so this is the
+       only one we need to check.
 
-       Then
+       The eigenspace \(E_{\lambda_i}\) of an eigenvalue
+       \(\lambda_i\) is the kernel of \(\mat A - \lambda_i \mat I\). So:
        \begin{alignat*}3
         \lambda_2 = -1:\quad
         && &&\begin{pmatrix*}[r]
@@ -1196,7 +1117,7 @@
           12 & -24 & 13 - t
          \end{vmatrix} \\
          &= (7 - t)(-19 - t)(13 - t) - 1440 - 1440 \\
-         &\phantom{={}} - (-120(13 - t) + 72(-19 - t) - 240(7 - t) \\
+         &\phantom{={}} - (-120(13 - t) + 72(-19 - t) - 240(7 - t)) \\
          &= -t^3 + t^2 + t - 1 \\
          &= (t + 1)(-t^2 + 2t - 1) \\
          &= -(t + 1)(t - 1)^2
@@ -1208,47 +1129,8 @@
         \caption{\texttt{char\_poly.py} \label{listing_py}}
        \end{listing}
       \item
-       Now to find the eigenspaces:
-       \begin{alignat*}3
-        \lambda_1 = -1:\quad
-        && &&\begin{pmatrix*}[r]
-         8 & -12 & 6 \\
-         10 & -18 & 10 \\
-         12 & -24 & 14
-        \end{pmatrix*}
-        \vec v_1 &= \vec 0 \\
-        \parens*{
-         \begin{aligned}
-          \vec r(1) &\to \tfrac 12 \vec r(1) \\
-          \vec r(2) &\to \tfrac 12 \vec r(2) \\
-          \vec r(3) &\to \tfrac 12 \vec r(3) \\
-         \end{aligned}
-        } \quad
-        &&\iff{}&&\begin{pmatrix*}[r]
-         4 & -6 & 3 \\
-         5 & -9 & 5 \\
-         6 & -12 & 7
-        \end{pmatrix*}
-        \vec v_1 &= \vec 0 \\
-        \parens*{
-         \vec r(3) \to \vec r(3) + \vec r(1) - 2\vec r(2)
-        } \quad
-        &&\iff{}&&\begin{pmatrix*}[r]
-         4 & -6 & 3 \\
-         5 & -9 & 5 \\
-         0 & 0 & 0
-        \end{pmatrix*}
-        \vec v_1 &= \vec 0 \\
-       \end{alignat*}
-       This is the intersection of the planes
-       \(\vec x \vecdot(4, -6, 3) = 0\) and
-       \(\vec x \vecdot(5, -9, 5) = 0\). This is the line
-       \(E_{\lambda_1}
-         = \set{\mu (4, -6, 3) \veccross (5, -9, 5)}
-         = \set{\mu (-3, -5, -6)}\). So
-       \(\dim E_{\lambda_1} = 1\).
-
-       Then
+       The only eigenvalue with multplicity \(> 1\) is \(1\), so this is the
+       only one we need to check:
        \begin{alignat*}3
         \lambda_2 = 1:\quad
         && &&\begin{pmatrix*}[r]
@@ -1271,13 +1153,13 @@
         \end{pmatrix*}
         \vec v_2 &= \vec 0 \\
        \end{alignat*}
-       which is true iff \(\vec v_1\) lies in the plane
+       which is true iff \(\vec v_2\) lies in the plane
        \(\vec x \vecdot (1, -2, 1) = 0\), which can be written for instance as
        \(E_{\lambda_2} = \set{\mu(1, 1, 1) + \nu(2, 1, 0)}\). So
        \(\dim E_{\lambda_2} = 2\).
       \item
-       The sum of the dimensions of the eigenspaces of \(\mat C\) is \(3\), so
-       the eigenvectors of \(\mat C\) \emph{do} form a basis for
+       The sum of the dimensions of the eigenspaces of \(\mat C\) is therefore
+       \(3\), so the eigenvectors of \(\mat C\) \emph{do} form a basis for
        \(\Reals^3\), and \(\mat C\) is diagonalisable.
      \end{enumerate}
    \end{enumerate}
