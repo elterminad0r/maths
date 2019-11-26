@@ -6,7 +6,7 @@
 
 % fleqn aligns equations to the left, a4 paper size, 11pt font, article class
 \documentclass[fleqn,a4paper,11pt]{article}
-\title{IA Vectors and Matrices Example Sheet 3}
+\title{IA Vectors and Matrices Example Sheet 3 (revised)}
 \author{Izaak van Dongen (\texttt{imv26})}
 
 \usepackage{mymaths}
@@ -18,13 +18,13 @@
  \begin{enumerate}[label=\textbf{\arabic*.}]
   \item
    As \(\mat A\) and \(\mat B\) are hermitian, generally we have
-   \(\mat A_{ij} = \conj{\mat A_{ji}}\), and
-   \(\mat B_{ij} = \conj{\mat B_{ji}}\).
+   \( A_{ij} = \conj{ A_{ji}}\), and
+   \( B_{ij} = \conj{ B_{ji}}\).
    \begin{enumerate}[label=(\roman*)]
     \item
      \begin{itemize}
       \item
-       \(\tr \mat A = \mat A_{ii} = \conj{\mat A_{ii}} = \conj{\tr \mat A}\), as
+       \(\tr \mat A =  A_{ii} = \conj{ A_{ii}} = \conj{\tr \mat A}\), as
        complex conjugation distributes over addition, and therefore
        \(\Im(\tr \mat A) = \tfrac 12 (\tr \mat A - \conj{\tr \mat A}) = 0\), ie
        \(\tr \mat A\) is real.
@@ -32,11 +32,11 @@
        Similarly,
        \begin{align*}
         \det \mat A
-         &= \sum_\sigma \epsilon(\sigma) \prod_i \mat A_{i\,\sigma(i)} \\
-         &= \sum_\sigma \epsilon(\sigma) \prod_i \conj{\mat A_{\sigma(i)\,i}} \\
-         &= \conj{\sum_\sigma \epsilon(\sigma) \prod_i \mat A_{\sigma(i)\,i}} \\
+         &= \sum_\sigma \epsilon(\sigma) \prod_i  A_{i\,\sigma(i)} \\
+         &= \sum_\sigma \epsilon(\sigma) \prod_i \conj{ A_{\sigma(i)\,i}} \\
+         &= \conj{\sum_\sigma \epsilon(\sigma) \prod_i  A_{\sigma(i)\,i}} \\
          &= \conj{\sum_{\sigma^{-1}} \epsilon(\sigma^{-1})
-                 \prod_i \mat A_{i\,\sigma^{-1}(i)}} \\
+                 \prod_i  A_{i\,\sigma^{-1}(i)}} \\
          &= \conj{\det \mat A},\quad
          \text{as the sum remains over all permutations \footnotemark}
        \end{align*}
@@ -50,11 +50,11 @@
     \item \(
      \begin{aligned}[t]
      (\mat A\mat B + \mat B\mat A)_{ij}
-       &= \mat A_{ik}\mat B_{kj} + \mat B_{ik}\mat A_{kj} \\
-       &= \conj{\mat A_{ki}} \cdot \conj{\mat B_{jk}}
-          + \conj{\mat B_{ki}} \cdot \conj{\mat A_{jk}}
-       = \conj{\mat A_{ki}\mat B_{jk} + \mat B_{ki}\mat A_{jk}} \\
-       &= \conj{\mat A_{jk}\mat B_{ki} + \mat B_{jk}\mat A_{ki}} \\
+       &=  A_{ik} B_{kj} +  B_{ik} A_{kj} \\
+       &= \conj{ A_{ki}} \cdot \conj{ B_{jk}}
+          + \conj{ B_{ki}} \cdot \conj{ A_{jk}}
+       = \conj{ A_{ki} B_{jk} +  B_{ki} A_{jk}} \\
+       &= \conj{ A_{jk} B_{ki} +  B_{jk} A_{ki}} \\
        &= \conj{(\mat A\mat B + \mat B\mat A)_{ji}}
      \end{aligned}\)
 
@@ -64,12 +64,12 @@
       \item \(
        \begin{aligned}[t]
         i(\mat A\mat B - \mat B\mat A)_{ij}
-         &= i(\mat A_{ik} \mat B_{kj} - \mat B_{ik} \mat A_{kj}) \\
-         &= \conj{-i}(\conj{(\mat A_{ki} \mat B_{jk}
-           - \mat B_{ki} \mat A_{jk})}) \\
-         &= \conj{-i}(\conj{(\mat A_{ki} \mat B_{jk}
-           - \mat B_{ki} \mat A_{jk})}) \\
-         &= \conj{i(\mat A_{jk} \mat B_{ki} - \mat B_{jk} \mat A_{ki})} \\
+         &= i( A_{ik}  B_{kj} -  B_{ik}  A_{kj}) \\
+         &= \conj{-i}(\conj{( A_{ki}  B_{jk}
+           -  B_{ki}  A_{jk})}) \\
+         &= \conj{-i}(\conj{( A_{ki}  B_{jk}
+           -  B_{ki}  A_{jk})}) \\
+         &= \conj{i( A_{jk}  B_{ki} -  B_{jk}  A_{ki})} \\
          &= \conj{i(\mat A\mat B - \mat B\mat A)_{ji}}
        \end{aligned}\)
 
@@ -80,15 +80,15 @@
        \begin{equation*}
         \tr(\mat A + \mat B)
          = (\mat A + \mat B)_{ii}
-         = \mat A_{ii} + \mat B_{ii}
+         =  A_{ii} +  B_{ii}
          = \tr\mat A + \tr\mat B
        \end{equation*}
        and
        \begin{equation*}
         \tr(\mat A\mat B)
         = (\mat A\mat B)_{ii}
-        = \mat A_{ij} \mat B_{ji}
-        = \mat B_{ji} \mat A_{ij}
+        =  A_{ij}  B_{ji}
+        =  B_{ji}  A_{ij}
         = (\mat B\mat A)_{jj}
          = \tr(\mat B\mat A)
        \end{equation*}
@@ -96,7 +96,7 @@
        \begin{equation*}
         \tr(\lambda \mat A)
         = (\lambda \mat A)_{ii}
-        = \lambda \mat A_{ii}
+        = \lambda  A_{ii}
         = \lambda \tr\mat A
        \end{equation*}
        so then
@@ -109,8 +109,8 @@
     \item \(
       \tr(\mat A\mat B)
       = (\mat A\mat B)_{ii}
-      = \mat A_{ij} \mat B_{ji}
-      = \conj{\mat A_{ji} \mat B_{ij}}
+      =  A_{ij}  B_{ji}
+      = \conj{ A_{ji}  B_{ij}}
       = \conj{(\mat A\mat B)_{jj}} = \conj{\tr(\mat A\mat B)}
       \)
 
@@ -256,14 +256,52 @@
      z & x & y \\
      y & z & x
     \end{vmatrix} \\
-    && &\dots
+    && \Delta(x, y, z) &= \begin{vmatrix}
+     x & y & z \\
+     z & x & y \\
+     y & z & x
+    \end{vmatrix} \\
+    \parens*{
+     \vec c(1) \to \vec c(1) + \omega \vec c(2) + \omega^2 \vec c(3)
+    } \quad
+    && &= \begin{vmatrix}
+     x + \omega y + \omega^2 z & y & z \\
+     z + \omega x + \omega^2 y & x & y \\
+     y + \omega z + \omega^2 x & z & x
+    \end{vmatrix} \\
+    && &= (x + \omega y + \omega^2 z)\begin{vmatrix}
+     1 & y & z \\
+     \omega & x & y \\
+     \omega^2 & z & x
+    \end{vmatrix} \\
+    && \Delta(x, y, z) &= \begin{vmatrix}
+     x & y & z \\
+     z & x & y \\
+     y & z & x
+    \end{vmatrix} \\
+    \parens*{
+     \vec c(1) \to \vec c(1) + \omega^2 \vec c(2) + \omega \vec c(3)
+    } \quad
+    && &= \begin{vmatrix}
+     x + \omega^2 y + \omega z & y & z \\
+     z + \omega^2 x + \omega y & x & y \\
+     y + \omega^2 z + \omega x & z & x
+    \end{vmatrix} \\
+    && &= (x + \omega^2 y + \omega^2 z)\begin{vmatrix}
+     1 & y & z \\
+     \omega^2 & x & y \\
+     \omega & z & x
+    \end{vmatrix}
    \end{alignat*}
-   But I have no idea where a cube root of unity is supposed to come from :(
-   %TODO
+   So \((x + y + z)\), \((x + \omega y + \omega^2 z)\),
+   \((x + \omega^2 y + \omega z)\) are all factors of
+   \(\Delta(x, y, z)\). But since these multiply to give a coefficient of \(1\)
+   in \(x^3\), they cannot be multiplied by any further factors, so
+   \(\Delta(x, y, z)\) must be the product of these three factors.
   \item
    Using that for any scalar \(\lambda\) and any \(n \times n\) matrix
    \(\mat M\), \(\det\mat M = \det(\tran{\mat M})\) and
-   \(\det(\lambda \mat M) = \lambda^n \det\mat M\), we can show that
+   \(\det(\lambda \mat M) = \lambda^n \det\mat M\), we have that
    \(\det\mat A = \det(\tran{\mat A})
      = \det(-\mat A) = (-1)^{2n + 1}\det\mat A = -\det\mat A\), so
    \(\det\mat A\) must be \(0\).
@@ -271,7 +309,7 @@
    Let \(\mat D_i\) denote the \(i \times i\) matrix of this form, so
    \(\mat D = \mat D_n\), and claim that
    \begin{equation*}
-    \det \mat D_n = (p + n - 1)(p - 1)^{n - 1}
+    \det  \mat D_n = (p + n - 1)(p - 1)^{n - 1}
    \end{equation*}
    The base case \(n = 1\) is true:
    \((p + 1 - 1)(p - 1)^0 = p = \det \mat D_1\).
@@ -333,7 +371,7 @@
      1 & 1 & p & \cdots \\
      \vdots & \vdots & \vdots & \ddots
     \end{vmatrix}}_{(n - 1) \times (n - 1)} \\
-    && &= (p - 1)^{n - 1} + (p - 1)\det \mat D_{n - 1} \\
+    && &= (p - 1)^{n - 1} + (p - 1)\det  \mat D_{n - 1} \\
     (\text{by induction hypothesis})\quad
     && &= (p - 1)^{n - 1} + (p - 1) (p + n - 2)(p - 1)^{n - 2} \\
     && &= (p - 1)^{n - 1} + (p + n - 2)(p - 1)^{n - 1} \\
@@ -389,8 +427,8 @@
      1 & -2 & 1
     \end{pmatrix*}
    \end{align*}
-   Now the condition \(\mat A_{ij}\mat  \Delta_{ik} = \delta_{jk} \det \mat A\) is
-   equivalent to \((\tran{\mat \Delta})_{ki} \mat A_{ij} = \delta_{jk} \det \mat A\),
+   Now the condition \( A_{ij}\mat  \Delta_{ik} = \delta_{jk} \det \mat A\) is
+   equivalent to \((\tran{\mat \Delta})_{ki}  A_{ij} = \delta_{jk} \det \mat A\),
    ie \(\tran{\mat \Delta}\mat A = (\det \mat A)\mat I\). So let's calculate:
    \begin{equation*}
     \tran{\mat \Delta}\mat A =
