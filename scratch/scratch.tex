@@ -1,21 +1,21 @@
 \documentclass{article}
 
-\usepackage{mathtools}
-\usepackage{mathrsfs}
-
 \usepackage{parskip}
+\usepackage{mymaths}
+
+\usepackage{enumitem}
 
 \newcommand*\tensordim[2]{
  \underset{
-  \mathllap{\text{\(#2\) times}
+  \mathllap{#2\ \text{times}
   \ \left\{
    \vphantom{
-    \begin{array}{r}
+    \begin{array}{c}
      \hline \hline \vdots \\[1ex] \hline
     \end{array}
    } \right.
   }
-  \begin{array}{r}
+  \begin{array}{c}
    \hline \hline \vdots \\[1ex] \hline
   \end{array}
  }
@@ -34,4 +34,30 @@ Let Q be a \((2n+1)\times(2n+1)\) orthogonal matrix
 \begin{equation*}
  1 + \tensordim{H}{n} \,\mathbf x
 \end{equation*}
+
+8(b). We say that the relation \(S\) "contains" the relation \(R\) if \(aSb\)
+whenever \(aRb\).  Let \(R\) be the relation on \(Z\) given by ``\(aRb\) if
+\(b = a + 3\)''.  How many equivalence relations on Z contain R?  [Note: the
+answer is neither "one" nor "infinitely many".]
+
+8(c). Give eight relations on the set \(\mathbb Z\), one for each subset of
+\(\set{\text{reflexive}, \text{symmetric}, \text{transitive}}\).  E.g.: one
+obeying all of R, S, T; one obeying R and S but not T; etc.
+
+
+\(a R b\) contains
+
+Find the general solutions of
+\begin{enumerate}[label=(\roman*)]
+ \item \(y_{n + 2} + y_{n + 1} - 6 y_n = n^2\)
+ \item \(y_{n + 2} - 3 y_{n + 1} + 2 y_n = n\)
+ \item \(y_{n + 2} - 4 y_{n + 1} + 4 y_n = a^n\)
+\end{enumerate}
+
+Find the general solutions of \\
+\begin{tabular}{ll}
+  (i) & \(y_{n + 2} + y_{n + 1} - 6 y_n = n^2\) \\
+ (ii) & \(y_{n + 2} - 3 y_{n + 1} + 2 y_n = n\) \\
+(iii) & \(y_{n + 2} - 4 y_{n + 1} + 4 y_n = a^n\) \\
+\end{tabular}
 \end{document}
