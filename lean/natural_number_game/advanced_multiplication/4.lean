@@ -1,4 +1,4 @@
-lemma mul_left_comm (a b c : mynat) : a * (b * c) = b * (a * c) :=
+theorem mul_left_cancel (a b c : mynat) (ha : a ≠ 0) : a * b = a * c → b = c :=
   -- + revert b because the website said so. I still don't /really/ understand
   --   what revert is for, ie how you're supposed to spot that you should use
   --   it.
