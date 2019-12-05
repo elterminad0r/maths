@@ -1,9 +1,7 @@
 lemma add_comm (a b : mynat) : a + b = b + a :=
 begin
   induction b with n hn,
-  rw [add_zero, zero_add],
-  refl,
+  rwa [add_zero, zero_add],
 
-  rw [add_succ, succ_add, hn],
-  refl,
+  rwa [add_succ, succ_add, hn],
 end

@@ -3,6 +3,5 @@ begin
   induction b with n hn,
   repeat {rw add_zero},
   repeat {rw add_succ},
-  rw hn,
-  refl,
+  rwa hn,
 end

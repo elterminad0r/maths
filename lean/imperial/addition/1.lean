@@ -1,9 +1,8 @@
 lemma zero_add (n : mynat) : 0 + n = n :=
 begin
   induction n with m hm,
-  rw add_zero,
-  refl,
+  rwa add_zero,
+
   rw add_succ,
-  rw hm,
-  refl,
+  rwa hm,
 end
