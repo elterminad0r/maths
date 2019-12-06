@@ -2,9 +2,9 @@ theorem mul_left_cancel (a b c : mynat) (ha : a ≠ 0) : a * b = a * c → b = c
   -- + revert b because the website said so. I still don't /really/ understand
   --   what revert is for, ie how you're supposed to spot that you should use
   --   it.
-  -- + I *think* this works because it gives us a hypothesis with
-  --   "forall b" later, which is nicer than just having a hypothesis with "b"
-  --   in. It sort of sneaks b around the induction.
+  -- + I *think* this works because it gives us a hypothesis with "forall b"
+  --   later, which is nicer than just having a hypothesis with "b" in. It sort
+  --   of sneaks b around the induction.
 
   -- induction on c, because a didn't seem to work.
   revert b,

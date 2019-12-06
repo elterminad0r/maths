@@ -2,12 +2,12 @@ theorem mul_left_cancel (a b c : mynat) (ha : a ≠ 0) : a * b = a * c → b = c
   -- This is a longer proof that uses a little more lean machinery, and puts
   -- more stress on my CPU, but to me what this proof is doing makes much more
   -- sense:
-  -- - It first establishes that any two natural numbers have a difference
-  --   (ie one is less than the other), which is actually proved later in
-  --   inequality world.
-  -- - Then taking wlog b = c + d, we use distributivity and cancellation of
+  -- + It first establishes that any two natural numbers have a difference
+  --   (ie one is less than or equal to the other, or can be written as some "d"
+  --   plus the other), which is actually proved later in inequality world.
+  -- + Then taking wlog b = c + d, we use distributivity and cancellation of
   --   addition to get a * d = 0, and then we must have d = 0, so b = c.
-  -- - However I'm not sure how to do wlog properly in Lean, so I end up
+  -- + However I'm not sure how to do wlog properly in Lean, so I end up
   --   introducing a general hypothesis of this form and then applying it twice,
   --   using a lot of symmetry in the second case.
 
