@@ -1,13 +1,13 @@
-\section*{Notation and Definitions}
+\section{Notation and Definitions}
 
-\subsection*{Disclaimer}
+\subsection{Disclaimer}
 
 None of this should be taken as gospel. Although I hope that any definitions I
 make here (and later) are fairly sound, they are only made within the scope of
 this document. Certainly there are many alternative ways to define things, but I
 try to define them in a way that makes things not too complicated (sometimes).
 
-\subsection*{Logical and meta- symbols}
+\subsection{Logical and meta- symbols}
 For expressions \(A\) and \(B\),
 \begin{itemize}
  \item
@@ -68,7 +68,7 @@ For statements \(A\) and \(B\),
   ``iff'' transformations to turn \(A\) into \(B\).
 \end{itemize}
 
-\subsubsection*{Quantifiers}
+\subsubsection{Quantifiers}
 
 The symbol \(\forall\) means ``for all''. This is called the \emph{universal
 quantifier}. You can form statements with it by saying ``for a variable taking
@@ -78,6 +78,17 @@ to zero'' might be written
 \begin{equation*}
  \Forall x \in \Reals : x^2 \ge 0
 \end{equation*}
+If the set you're talking about is the empty set, then the statement is
+automatically true. This called ``vacuous truth'', and it really does make sense
+(to disprove a universally quantified statement, you would have to provide a
+counterexample from the set - but the whole point of the empty set is that
+there's nothing in it to pick!) It is related to the principle of explosion.
+More than likely you have used a vacuous truth jokingly to construct some
+bizarre statement before: ``all integers that square to \(2\) have a decimal
+representation consisting only of \(3\)s.''\footnote{
+ Well, maybe not quite like that.
+}
+
 Similarly, the symbol \(\exists\) means ``there exists''. This is called the
 \emph{existential quantifier}. You can form statements with it by saying ``there
 exists a value in some set so that assigning that value to a variable makes some
@@ -86,6 +97,10 @@ natural number $n$ for which \(\frac 1{100!}n! > 100^n\) might be written
 \begin{equation*}
  \Exists n \in \Naturals : \tfrac 1{100!}n! > 100^n
 \end{equation*}
+In much that same way that a universally quantified statement over the empty set
+is always true, an existentially quantified statement over the empty set is
+always false.
+
 These ``quantifiers'' can be combined to make {\large HUGE} scary statements.
 This is mostly discouraged when you're not doing formal logic but trying to
 communicate maths to other people. An example of how they might be combined is
@@ -118,7 +133,7 @@ example, in number theory, you might write something like
 and by a mix of convention and context, it would be understood that this means
 ``\(\Forall n \in \Naturals\)''.
 
-\subsection*{Sets}
+\subsection{Sets}
 
 A set is a ``collection of objects'', in some sense, where we don't care about
 which order they appear in, just about whether or not they appear. If \(S\) is a
@@ -187,7 +202,7 @@ ordered pairs of elements of \(A\) then \(B\). It is written
 \(S^2\) is often used as a shorthand for \(S \times S\). Similarly, we can write
 \(S^n\) to mean ``the set of ordered n-tuples of elements of \(S\)''.
 
-\subsection*{Functions}
+\subsection{Functions}
 
 A function is a way to assign a \emph{single} value in some set called a
 codomain to each element in some set called a domain. The domain and codomain of
@@ -284,7 +299,7 @@ A nice example of how to use it is to define the absolute value function on
  \end{cases*}
 \end{equation*}
 
-\subsection*{Numbers}
+\subsection{Numbers}
 
 ``\(a \equiv b \pmod n\)'' means ``\(a\) is congruent to \(b\) modulo \(n\)''.
 This is defined to mean \\
@@ -295,7 +310,7 @@ by \(n\).
 
 Note that this is not the same \(\equiv\) as in identities.
 
-\subsection*{Trigonometry}
+\subsection{Trigonometry}
 
 Angles are always in radians. One radian is the angle such that the arc
 subtended by the angle in the unit circle\footnote{
@@ -362,7 +377,7 @@ function. Precisely,
   \end{equation*}
 \end{itemize}
 
-\subsection*{Calculus}
+\subsection{Calculus}
 
 If \(y = f(x)\), then \(y\) is called a \emph{dependent variable}, which
 \emph{depends} on the \emph{independent variable} \(x\).
@@ -403,7 +418,7 @@ written as:
 It can be defined recursively: \(f^{(1)}(x) \defeq f'(x)\) and
 \(f^{(n + 1)}(x) \defeq \dv{x}(f^{(n)}(x)) \Forall n \in \Naturals\).
 
-\subsection*{Integrals}
+\subsection{Integrals}
 
 The discussion of integrals will be, on the whole, somewhat less formal than
 that of derivatives. This is because to really prove things about integrals
@@ -465,7 +480,7 @@ of the integral, the \(x\) doesn't mean anything, so we can change the \(x\) to
 a \(t\), and the value of the definite integral remains the same. Make sure
 never to use a variable as a dummy variable that already exists elsewhere.
 
-\subsubsection*{Fundamental Theorem of Calculus}
+\subsubsection{Fundamental Theorem of Calculus}
 
 The Fundamental Theorem of Calculus tells you\footnote{
  This is not the full statement of the Theorem
