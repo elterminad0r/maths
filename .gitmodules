@@ -1,4 +1,4 @@
 [submodule "iabonus"]
 	path = iabonus
-	url = https://github.com/Sterrs/iabonus
+	url = https://github.com/goedel-gang/iabonus
 	branch = master
