@@ -1,0 +1,218 @@
+\section*{Numbers}
+
+\begin{enumerate}
+ \item
+  State the Binomial Theorem
+  (the expansion of \((a + b)^n\) for any \(n \in \Naturals\)\footnote{
+   \(x^n\) for \(n \in \Naturals\) is defined inductively as follows:
+   \(x^1 = x\) and \(x^{n + 1} = x \cdot x^n\).
+  }), and define the
+  general binomial coefficient.
+
+  Prove that
+  \begin{equation*}
+   \binom nr + \binom n{r + 1} \equiv \binom{n + 1}{r + 1}
+  \end{equation*}
+  Hence prove the Binomial Theorem by induction.
+ \item
+  Prove that \(\Forall x, y \in \Reals : \abs{x + y} \le \abs x + \abs y\), by
+  exhausting the different possible signs and magnitudes of \(x\) and \(y\).
+
+  This is called the \emph{triangle inequality}.
+ \item
+  Let \(y = z - x\) in the triangle inequality to show that
+  \(\abs{z - x} \ge \abs z - \abs x\). Also show that
+  \(\abs{z - x} \ge \abs x - \abs z\), and hence deduce that
+  \(\abs{z - x} \ge \abs[\big]{\abs z - \abs x}\).
+ \item
+  Let \(u_i, v_i \in \Reals\) be two finite sequences of real numbers, for
+  \(i \in \set{1, 2, \dotsc, n}\) (ie both have length \(n\)).
+
+  By considering the number of possible roots of the quadratic
+  \begin{equation*}
+   p(x) = \sum_{i = 1}^n (u_i x - v_i)^2
+  \end{equation*}
+  show that
+  \begin{equation*}
+   \parens[\Big]{\sum_{i = 1}^n u_i v_i}^2
+   \le \parens[\Big]{\sum_{i = 1}^n u_i^2}
+       \parens[\Big]{\sum_{i = 1}^n v_i^2}
+  \end{equation*}
+  and state the condition for equality to hold.
+
+  This is called the \emph{Cauchy-Schwarz inequality}.
+ \item
+  Let \(p_i\), \(i = 1, \dotsc, 6\) be the probability that a biased die rolls
+  the value \(i\). Use the Cauchy-Schwarz inequality to show that the
+  probability of rolling the same value twice in two rolls cannot be made lower
+  than \(\frac 16\). Hence show that there is only one possible set of
+  probabilities for which this chance is exactly \(\frac 16\).
+ \item
+  Let \(a, d, r \in \Reals\) be constants and let \(n \in \Naturals\).
+  Guess and prove by induction formulas for
+  \begin{align*}
+   &\sum_{i = 1}^n \bracks{a + (i - 1)d} \\
+   \text{and}\quad&\sum_{i = 1}^n ar^{i - 1}
+  \end{align*}
+  State for which (if any) values of \(a, d, r\) these formulas fail, and find
+  formulas that work in these cases.
+
+  These are known as \emph{arithmetic progressions} and
+  \emph{geometric progressions}, respectively.
+ \item
+  Consider the sum
+  \begin{equation*}
+   \alpha^n + \alpha^{n - 1}\beta + \alpha^{n - 2}\beta^2 + \dotsb + \beta^n
+  \end{equation*}
+  Write this as a geometric progression, explicitly stating your values of
+  \(a\), \(r\), and \(n\). Hence find and simplify a closed form expression for
+  the sum.
+
+  Hence state a formula for the factorisation of the difference of \(n\)th
+  powers.
+ \item
+  For \(n\) odd, by writing \(\beta^n = -(-\beta)^n\), state a formula for the
+  factorisation of the sum of powers.
+ \item
+  Factorise \(\alpha^{12} - \beta^{12}\) into 6 brackets, each with only integer
+  coefficients.
+ \item
+  Show that \(\sqrt[\sqrt 2]2 = {\sqrt 2}^{\sqrt 2}\).
+ \item
+  Prove using the definition of \(\equiv\) that
+  \begin{equation*}
+  \Forall n \in \Naturals :
+    \Forall a, b, c \in \Integers :
+    b \equiv c \pmod n \implies
+    a + b \equiv a + c \pmod n
+  \end{equation*}
+ \item
+  Prove using the definition of \(\equiv\) that
+  \begin{equation*}
+  \Forall n \in \Naturals :
+    \Forall a, b, c \in \Integers :
+    b \equiv c \pmod n \implies
+    ab \equiv ac \pmod n
+  \end{equation*}
+ \item
+  Briefly explain why
+  \begin{alignat*}3
+   \Forall n \in \Naturals :
+   \Forall a, b \in \Integers &:{}
+   &ab&\equiv ba &&\pmod n \\
+   \Forall n \in \Naturals :
+   \Forall a, b \in \Integers &:{}
+   &a + b&\equiv b + a &&\pmod n
+  \end{alignat*}
+ \item
+  Prove the ``Freshman's Dream'' theorem:
+
+  Let \(p\) be a prime, and let \(a, b \in \Integers\). Then
+  \begin{equation*}
+   (a + b)^p \equiv a^p + b^p \pmod p
+  \end{equation*}
+ \item
+  Hence prove \emph{Fermat's Little Theorem}:
+
+  Let \(p\) be a prime, and \(a \in \Integers\). Then
+  \begin{equation*}
+   a^p \equiv a \pmod p
+  \end{equation*}
+  by induction on \(a\).
+ \item
+  Prove that, for all \(n \in \Naturals\), for all \(a, b, c \in \Integers\),
+  \begin{itemize}
+   \item
+    \(a \equiv a \pmod n\)
+   \item
+    \(a \equiv b \pmod n \implies b \equiv a \pmod n\)
+   \item
+    \(\text{``\(a \equiv b \pmod n\) and \(b \equiv c \pmod n\)''} \implies
+      a \equiv c \pmod n\)
+  \end{itemize}
+  These three properties are \emph{reflexivity}, \emph{symmetry}, and
+  \emph{transitivity}, respectively. Together, they mean that \(\equiv\) is an
+  \emph{equivalence relation}.
+ \item
+  For nonnegative real numbers \(x_i \ge 0\), \(i = 1, \dotsc, n\), define
+  \begin{align*}
+   M_1'(x_1, \dotsc, x_n) &\defeq
+   \frac 1n \sum_{k = 0}^n x_k \\
+   M_0'(x_1, \dotsc, x_n) &\defeq
+   \parens[\Big]{
+    \prod_{k = 0}^n x_k
+   }^{\frac 1n}
+  \end{align*}
+  Prove that for all \(x_1, x_2 \in \Reals_0^+\),
+  \begin{equation*}
+   M_1'(x_1, x_2) \ge M_0'(x_1, x_2)
+  \end{equation*}
+  and state the condition for equality to hold.
+ \item
+  Show that if \(x_i, y_i \ge 0\), \(i = 1, \dotsc, n\), then
+  \begin{align*}
+   M_1'(M_1'(x_1, \dotsc, x_n), M_1'(y_1, \dotsc, x_n)) &=
+   M_1'(x_1, \dotsc, x_n, y_1, \dotsc, y_n) \\
+   \text{and}\quad
+   M_0'(M_0'(x_1, \dotsc, x_n), M_0'(y_0, \dotsc, x_n)) &=
+   M_0'(x_1, \dotsc, x_n, y_0, \dotsc, y_n)
+  \end{align*}
+  and hence deduce that if for some \(n \in \Naturals\),
+  \begin{equation*}
+   M_1'(x_1, \dotsc, x_n) \ge M_0'(x_1, \dotsc, x_n)
+    \Forall x_1, \dotsc, x_n \in \Reals_0^+
+  \end{equation*}
+  then
+  \begin{equation*}
+   M_1'(x_1, \dotsc, x_{2n}) \ge M_0'(x_1, \dotsc, x_{2n})
+    \Forall x_1, \dotsc, x_{2n} \in \Reals_0^+
+  \end{equation*}
+ \item
+  Show that if \(x_i \ge 0\), \(i = 1, \dotsc, n\), then
+  \begin{align*}
+   M_1'(M_1'(x_1, \dotsc, x_n), x_1, \dotsc, x_n) &=
+   M_1'(x_1, \dotsc, x_n) \\
+   \text{and}\quad
+   M_0'(M_0'(x_1, \dotsc, x_n), x_1, \dotsc, x_n) &=
+   M_0'(x_1, \dotsc, x_n)
+  \end{align*}
+  and hence deduce that if for some \(n \in \Naturals_{\ge 2}\),
+  \begin{equation*}
+   M_1'(x_1, \dotsc, x_n) \ge M_0'(x_1, \dotsc, x_n)
+    \Forall x_1, \dotsc, x_n \in \Reals_0^+
+  \end{equation*}
+  then
+  \begin{equation*}
+   M_1'(x_1, \dotsc, x_{n - 1}) \ge M_0'(x_1, \dotsc, x_{n - 1})
+    \Forall x_1, \dotsc, x_{n - 1} \in \Reals_0^+
+  \end{equation*}
+ \item
+  Prove by induction that
+  \begin{equation*}
+   M_1'(x_1, \dotsc, x_n) \ge M_0'(x_1, \dotsc, x_n)
+    \Forall x_1, \dotsc, x_n \in \Reals_0^+
+  \end{equation*}
+  for all \(n\) of the form \(2^m\) for some \(m \in \Naturals\).
+
+  Carefully argue what the condition for equality will be for each \(n\).
+
+  Explain why we can now deduce that
+  \begin{equation*}
+   M_1'(x_1, \dotsc, x_n) \ge M_0'(x_1, \dotsc, x_n)
+    \Forall x_1, \dotsc, x_n \in \Reals_0^+
+  \end{equation*}
+  for all \(n \in \Naturals\). This inequality is often referred to as the
+  \emph{arithmetic mean-geometric mean} inequality, or ``AM-GM''.
+ \item
+  Use AM-GM to find the minimum value of
+  \begin{equation*}
+   \frac xy + \frac{2y}z + \frac{4z}x
+  \end{equation*}
+  where \(x, y, z \in \Reals^+\).
+
+  Also find the maximum value of
+  \begin{equation*}
+   (1 + x - y)(2 + y - z)(3 + z - x)
+  \end{equation*}
+  where \(x, y, z \in \Reals^+\).
+\end{enumerate}

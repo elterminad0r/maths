@@ -1,0 +1,53 @@
+\section*{Logic}
+
+\begin{enumerate}
+ \item
+  Write down the negation of the statement
+  \begin{equation*}
+   \Forall x \in \Reals: f(x) < 0
+  \end{equation*}
+  You should only use positive quantifiers: ``there exists'' and ``for all''.
+  You may have to change the innermost statement. You may wish to refer back to
+  the compositeness example.
+ \item
+  Write down the negation of the statement
+  \begin{equation*}
+   \Exists x \in \Naturals : x_n \equiv 0 \pmod 2
+  \end{equation*}
+ \item
+  Write down the negation of the statement
+  \begin{equation*}
+   \Forall n \in \Integers :
+   \Exists x \in \Reals :
+   f(n) < f(x)
+  \end{equation*}
+  Can you think of a function \(f : \Reals \to \Reals\) for which this is not
+  true?
+ \item
+  Write down the negation of the statement
+  \begin{equation*}
+   \Forall \epsilon \in \set{t \in \Reals: t > 0} :
+   \Exists N \in \Naturals :
+   \Forall m \in \set{a \in \Naturals : a \ge N}:
+   \abs{x_m - \ell} < \epsilon
+  \end{equation*}
+  Let the sequence \(x_n \defeq \sum_{k = 0}^n(\frac 9{10})^k\). Can you think
+  of an \(\ell\) that makes this statement true?
+ \item
+  Can you negate the completely general form of a quantified statement? This is
+  \begin{equation*}
+   \mathop{Q_1} x_1 \in S_1 :
+   \mathop{Q_2} x_2 \in S_2 :
+   \mathop{Q_3} x_3 \in S_3 :
+   \dotsb
+   \mathop{Q_n} x_n \in S_n :
+   P(x_1, x_2, x_3, \dotsc, x_n)
+  \end{equation*}
+  where each \(Q_i\) is either \(\forall\) or \(\exists\), each \(S_i\) is a
+  set, and \(P\) is some statement about \(x_1, x_2, \dotsc, x_n\).
+
+  You may use the statement \(P'\), which is defined as
+  ``\(P'(x_1, x_2, \dotsc, x_n)\) is true iff \(P(x_1, x_2, \dotsc, x_n)\) is
+  false.''. You may also wish to define some new quantifiers \(Q_i'\) in terms
+  of the old quantifiers.
+\end{enumerate}

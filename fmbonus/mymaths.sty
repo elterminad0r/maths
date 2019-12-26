@@ -1,0 +1,131 @@
+\ProvidesPackage{mymaths}
+
+\RequirePackage{mathtools}
+
+% these are mostly commands from commath, but i'd rather define them myself
+\DeclarePairedDelimiter\floor\lfloor\rfloor
+\DeclarePairedDelimiter\ceil\lceil\rceil
+\DeclarePairedDelimiter\intcc[]
+\DeclarePairedDelimiter\intco[)
+\DeclarePairedDelimiter\intoc(]
+\DeclarePairedDelimiter\intoo()
+\DeclarePairedDelimiter\set\{\}
+% I redeclare these so they don't have the weird physics business going on
+% (man can't work out every day)
+\DeclarePairedDelimiter\abs\lvert\rvert
+\DeclarePairedDelimiter\norm\lVert\rVert
+\DeclarePairedDelimiter\parens()
+\DeclarePairedDelimiter\bracks[]
+\DeclarePairedDelimiter\braces\{\}
+
+\newcommand*\defeq\coloneqq
+\newcommand*\eqdef\eqqcolon
+% why not
+\newcommand*\omicron o
+\newcommand*\Alpha{\mathrm{A}}
+\newcommand*\Beta{\mathrm{B}}
+\newcommand*\Epsilon{\mathrm{E}}
+\newcommand*\Zeta{\mathrm{Z}}
+\newcommand*\Eta{\mathrm{H}}
+\newcommand*\Iota{\mathrm{I}}
+\newcommand*\Kappa{\mathrm{K}}
+\newcommand*\Mu{\mathrm{M}}
+\newcommand*\Nu{\mathrm{N}}
+\newcommand*\Omicron{\mathrm{O}}
+\newcommand*\Rho{\mathrm{R}}
+\newcommand*\Tau{\mathrm{T}}
+\newcommand*\Chi{\mathrm{X}}
+
+\RequirePackage{scalerel}
+\usepackage{scalerel}
+\newcommand\BigIota{\scaleobj{1.6}{\iota}}
+
+\DeclareMathOperator\Forall\forall
+\DeclareMathOperator\Exists\exists
+
+\newcommand*\nequiv{\not\equiv}
+
+\newcommand*\degrees[1]{{#1}^\circ}
+
+% this is the hill I'm prepared to die on
+\let\uglyepsilon\epsilon
+\let\epsilon\varepsilon
+\let\uglyphi\phi
+\let\phi\varphi
+
+\newcommand*\polyg\mathit
+\newcommand*\tri[1]{\triangle\polyg{#1}}
+\let\oldangle\angle
+\renewcommand*\angle[1]{\oldangle{\polyg{#1}}}
+\newcommand*\lseg\mathit
+\newcommand*\area[1]{[\mathit{#1}]}
+
+\RequirePackage{amssymb}
+
+\newcommand*\setstyle\mathbb
+\newcommand*\Naturals{\setstyle N}
+\newcommand*\Integers{\setstyle Z}
+\newcommand*\Rationals{\setstyle Q}
+\newcommand*\Reals{\setstyle R}
+\newcommand*\Complex{\setstyle C}
+
+\RequirePackage{xparse}
+
+\NewDocumentCommand\eval{ o m m m }{
+ \IfValueTF{#1}{
+  \bracks[#2]{#4}_{#2}^{#3}
+ }{
+  \bracks{#4}_{#2}^{#3}
+ }
+}
+
+\DeclarePairedDelimiter\evalvert{}\rvert
+
+% TODO: this doesn't actually work to receive a size as argument.
+\NewDocumentCommand\evalline{ o m m m }{
+ \IfValueTF{#1}{
+  \evalvert[#1]{#4}_{#2}^{#3}
+ }{
+  \evalvert{#4}_{#2}^{#3}
+ }
+}
+
+\newcommand*\diff{\mathrm d}
+
+% macro to typeset a simple derivative. If you want the differentiand to be in
+% the numerator, give it as a <> delimited optional argument.
+% Similarly, the order of the derivative can be given as a [] optional argument.
+\NewDocumentCommand\dv{ o d<> m }{%
+ \IfValueTF{#2}{%
+  \IfValueTF{#1}{%
+   \frac{\diff^{#1} #2}{{\diff #3}^{#1}}%
+  }{%
+   \frac{\diff #2}{\diff #3}%
+  }%
+ }{%
+  \IfValueTF{#1}{%
+   \frac{\diff^{#1}}{{\diff #3}^{#1}}%
+  }{%
+   \frac{\diff}{\diff #3}%
+  }%
+ }%
+}
+
+% macro to typeset an integral, centralised etc and so on and so forth.
+% The two optional arguments are upper and lower bounds (really subscript and
+% superscript on the integral, it's up to you what you do with it)
+\NewDocumentCommand\integ{ o d<> m m }{%
+ \IfValueTF{#1}{%
+  \IfValueTF{#2}{%
+   \int_{#1}^{#2} #3 \, \diff #4%
+  }{%
+   \int_{#1} #3 \, \diff #4%
+  }%
+ }{%
+  \IfValueTF{#2}{%
+   \int^{#2} #3 \, \diff #4%
+  }{%
+   \int #3 \, \diff #4%
+  }%
+ }%
+}

@@ -1,0 +1,494 @@
+\section*{Notation and Definitions}
+
+\subsection*{Disclaimer}
+
+None of this should be taken as gospel. Although I hope that any definitions I
+make here (and later) are fairly sound, they are only made within the scope of
+this document. Certainly there are many alternative ways to define things, but I
+try to define them in a way that makes things not too complicated (sometimes).
+
+\subsection*{Logical and meta- symbols}
+For expressions \(A\) and \(B\),
+\begin{itemize}
+ \item
+  ``\(A \equiv B\)'' means ``\(A\) is identical to \(B\)''. Implicitly this
+  means they have the same value for all values that any free variables can take
+  (sometimes this means you have to make an inference about the domain of any
+  free variables based on context).
+
+  For instance, for \(x, y \in \Reals\):
+  \begin{itemize}[label=\raisebox{0.2ex}{\tiny\textbullet}]
+   \item \(\sin x \equiv \cos(\frac \pi 2 - x)\)
+   \item \(x + x \equiv 2x\)
+   \item \(x + y \equiv y + x\)
+   \item \(x + 1 \nequiv x\)
+   \item \(\abs x \nequiv x\)
+  \end{itemize}
+  although for \(x \in \Naturals\), \(\abs x \equiv x\).
+
+  A statement involving a \(\equiv\) is often called an \emph{identity}.
+
+  To prove an identity holds, you have to be very careful. You can't just ``do
+  the same thing to both sides'' to obtain a tautology. In order for this
+  strategy to work, each step must be reversible. It is often much safer to just
+  start with the left hand side, and gradually keep rewriting it until it is
+  equal to the right hand side (or vice versa).
+
+  If you thought you could prove it by doing the same thing to both sides, you
+  can just do that thing to the left hand side and then do it backwards to get
+  to the right hand side, if it is invertible.
+ \item
+  ``\(A \defeq B\)'' means ``\(A\) is defined to be equal to \(B\)''. For
+  instance (in most cases), \(x^2 \defeq x \cdot x\).
+\end{itemize}
+For statements \(A\) and \(B\),
+\begin{itemize}
+ \item
+  ``\(A \implies B\)'' means ``\(A\) implies \(B\)'', or
+  ``\(A\) is a sufficient condition for \(B\)''.
+
+  This \emph{means} that ``whenever \(A\) is true, \(B\) must be true''.
+
+  Counter-intuitively, this means that if \(A\) is always false,
+  ``\(A \implies B\)'' is true (whatever \(B\) is). In logic, this is the
+  principle of explosion - you can deduce anything from a contradiction.
+ \item
+  ``\(A \impliedby B\)'' means ``\(A\) is implied by \(B\)'', or
+  ``\(A\) is a necessary condition for \(B\)''.
+
+  It is equivalent to ``\(B \implies A\)``
+ \item
+  ``\(A \iff B\)'' means ``\(A\) and \(B\) are equivalent'', or
+  ``\(A\) if and only if \(B\)'', or ``\(A\) iff \(B\)'', or
+  ``\(A\) is a sufficient and necessary condition for \(B\)''.
+
+  It is equivalent to ``\(A \implies B\) and \(A \impliedby B\)''. To
+  \emph{prove} ``\(A \iff B\)'', you need to either prove both
+  \(A \implies B\) and \(B \implies A\), or very carefully use a sequence of
+  ``iff'' transformations to turn \(A\) into \(B\).
+\end{itemize}
+
+\subsubsection*{Quantifiers}
+
+The symbol \(\forall\) means ``for all''. This is called the \emph{universal
+quantifier}. You can form statements with it by saying ``for a variable taking
+all values in some set, some statement about that variable is true''. For
+instance, to state that ``all real numbers have a square greater than or equal
+to zero'' might be written
+\begin{equation*}
+ \Forall x \in \Reals : x^2 \ge 0
+\end{equation*}
+Similarly, the symbol \(\exists\) means ``there exists''. This is called the
+\emph{existential quantifier}. You can form statements with it by saying ``there
+exists a value in some set so that assigning that value to a variable makes some
+statement about that variable true''. For instance, the fact that there exists a
+natural number $n$ for which \(\frac 1{100!}n! > 100^n\) might be written
+\begin{equation*}
+ \Exists n \in \Naturals : \tfrac 1{100!}n! > 100^n
+\end{equation*}
+These ``quantifiers'' can be combined to make {\large HUGE} scary statements.
+This is mostly discouraged when you're not doing formal logic but trying to
+communicate maths to other people. An example of how they might be combined is
+to say ``each integer has an additive inverse in the integers'':
+\begin{equation*}
+ \Forall n \in \Integers : \Exists m \in \Integers : m + n = 0
+\end{equation*}
+or if \(n \in \Naturals\) and \(n \ne 1\), ``\(n\) is prime'' might be written
+as follows:
+\begin{equation*}
+ \Forall m \in \set{a \in \Naturals : 2 \le a < n} :
+ \Forall k \in \Naturals :
+ km \ne n
+\end{equation*}
+and ``\(n\) is composite'' might be written as follows:
+\begin{equation*}
+ \Exists m \in \set{a \in \Naturals : 2 \le a < n} :
+ \Exists k \in \Naturals :
+ km = n
+\end{equation*}
+(Can you spot the differences?)
+
+By the way, many people have slightly different habits about putting in colons
+or commas or whatnot between quantifiers. Generally a quantifier applies to
+everything after it unless you see some other parenthesisation.
+
+Sometimes people don't explicitly give the domain of a quantifying variable. For
+example, in number theory, you might write something like
+``\(\Forall n, x_n < x_{n + 1}\)'' (the sequence \(x_n\) is strictly increasing)
+and by a mix of convention and context, it would be understood that this means
+``\(\Forall n \in \Naturals\)''.
+
+\subsection*{Sets}
+
+A set is a ``collection of objects'', in some sense, where we don't care about
+which order they appear in, just about whether or not they appear. If \(S\) is a
+set, and \(x\) is some object, we write \(x \in S\) to mean ``\(x\) is an
+element of \(S\)'' and \(x \notin S\) to mean ``\(x\) is not an element of
+\(S\)''.
+
+``\(\set{s_1, s_2, s_3, \dotsc, s_n}\)'' means ``the set with elements
+\(s_1, s_2, s_3\) up to \(s_n\)''.
+
+``\(\set{s_1, s_2, s_3, \dotsc}\)'' means ``the set with elements for \(i\) a
+natural number''.
+
+We say two sets are equal if they have precisely the same elements. Formally,
+\(A = B\) iff \(\Forall a \in A: a \in B\) and \(\Forall b \in B: b \in A\).
+
+I use the following conventions to talk about sets:
+\begin{center}
+ \begin{tabular}{cc}
+  \toprule
+  \bfseries Notation & \bfseries Set \\
+  \midrule
+  \(\emptyset\) & \(\set{}\) \\
+  \(\Naturals\)
+  & \(\set{1, 2, 3, \dotsc}\) \\
+  \(\Naturals_0\)
+  & \(\set{0, 1, 2, \dotsc}\) \\
+  \(\intcc{a, b}\) & \(\set{x \in \Reals : a \le x \le b}\) \\
+  \(\intco{a, b}\) & \(\set{x \in \Reals : a \le x < b}\) \\
+  \(\intoc{a, b}\) & \(\set{x \in \Reals : a < x \le b}\) \\
+  \(\intoo{a, b}\) & \(\set{x \in \Reals : a < x < b}\) \\
+  \(\Reals^+\) & \(\intoo{0, \infty}\) \\
+  \(\Reals_0^+\) & \(\intco{0, \infty}\) \\
+  \(\Naturals_{\ge m}\) & \(\set{n \in \Naturals : n \ge m}\) \\
+  \bottomrule
+ \end{tabular}
+\end{center}
+A set is a \emph{subset} of another set if each of its elements is contained in
+that set. Formally, \(A\) is a subset of \(B\) iff \(\Forall a \in A : a \in
+B\). Furthermore, a set is a \emph{proper subset} of another set if it is a
+subset and it is not equal to that set.
+
+I will use the notation ``\(A \subseteq B\)'' to denote ``\(A\) is a subset
+of \(B\)'', and ``\(A \subset B\)'' to denote ``\(A\) is a proper subset of
+\(B\)''. Some people use the latter to mean the former, as the notion of proper
+subset is not very often used.
+
+The notion of ``set builder notation'' is also defined. For some well-defined
+property \(P\) of elements of some set \(S\), we write
+``\(\set{x \in S: P(x)}\)'' to mean ``the subset of elements of \(S\) that
+satisfy \(P\)''.
+
+The \emph{difference} of two sets \(A\) and \(B\) is the set of elements in
+\(A\) that are not in \(B\). In symbols,
+\(A \setminus B \defeq \set{a \in A : a \notin B}\).
+
+The \emph{union} of two sets \(A\) and \(B\) is the set of all elements that are
+in either \(A\) or \(B\), and is written \(A \cup B\).
+
+The \emph{intersection} of two sets \(A\) and \(B\) is the set of all elements
+that are in both \(A\) and \(B\), and is written \(A \cap B\).
+
+Lastly, the ``Cartesian product'' of two sets \(A\) and \(B\) is the set of all
+ordered pairs of elements of \(A\) then \(B\). It is written
+\(A \times B \defeq \set{(a, b) : a \in A, b \in B}\). If \(S\) is a set, then
+\(S^2\) is often used as a shorthand for \(S \times S\). Similarly, we can write
+\(S^n\) to mean ``the set of ordered n-tuples of elements of \(S\)''.
+
+\subsection*{Functions}
+
+A function is a way to assign a \emph{single} value in some set called a
+codomain to each element in some set called a domain. The domain and codomain of
+a function can be (are) very important! You might say that the functions \(f(x)
+= x\) and \(f(x) = x^2\) are different, but if their domain was the set
+\(\set{0, 1}\), then they would be the same function!
+
+The notation ``\(f: A \to B\)'' means ``\(f\) is a function from the set \(A\)
+to the set \(B\)'' (then \(A\) is the domain of \(f\), \(B\) is the codomain).
+
+The expression ``\(x \mapsto x^2\)'' means ``the function taking \(x\) to
+\(x^2\)'' (of course this also works for any other well-defined expression
+involving \(x\)). Sometimes these are combined:
+\begin{align*}
+ f: \Reals &\to \Reals \\
+    x &\mapsto x^2
+\end{align*}
+defines a function \(f\) from \(\Reals\) to \(\Reals\), that takes \(x\) to
+\(x^2\). In more familiar applicative notation, \(f(x) = x^2\).
+
+Note that a function need not hit every point in its codomain, we just need each
+output of the function to lie in the codomain.
+
+The subset of the codomain that \(f\) does hit is called the \emph{image} of
+\(f\). Sometimes this is called the range.
+
+\begin{itemize}
+ \item
+  A function that \emph{does} happen to hit each point of its codomain is called
+  a \emph{surjection}, or a \emph{surjective function}. Formally, \(f: A \to B\)
+  is surjective iff \(\Forall b \in B : \Exists a \in A : f(a) = b\).
+
+  A surjective function is sometimes called ``onto''.
+
+  Any function can be made into a surjection by restricting its codomain to be
+  its image.
+ \item
+  A function for which each output is different is called an \emph{injection} or
+  an \emph{injective function}. Formally, \(f: A \to B\) is injective iff
+  \(\Forall a_1 \in A : \Forall a_2 \in A : a_1 \ne a_2
+    \implies f(a_1) \ne f(a_2)\).
+
+  An injective function is sometimes called ``into''. The concept of
+  injectiveness is related to being ``one-to-one''. Certainly a non-injective
+  function must be ``many-to-one''.
+ \item
+  A function that is both injective and surjective is called a \emph{bijection}
+  or a \emph{bijective function}. A bijective function associates each element
+  of its domain with each element of its codomain without repetition. This means
+  that a function \(f: A \to B\) is bijective iff there exists a two-sided
+  inverse: \(\Exists g: B \to A\) such that \(\Forall b \in B : fg(b) = b\) and
+  \(\Forall a \in A : gf(a) = a\).
+\end{itemize}
+
+A formal way to think about a function \(f: A \to B\) is as a subset of
+\(A \times B\) with certain properties. This does not often come up when you're
+actually working with functions.
+
+A useful piece of notation when defining functions is the ``by cases'' notation.
+When we write
+\begin{equation*}
+ x \mapsto
+ \begin{cases*}
+  f_1(x) & if \(P_1(x)\) \\
+  f_2(x) & if \(P_2(x)\) \\
+  \dotsb
+ \end{cases*}
+\end{equation*}
+where \(f_1(x), f_2(x), \dotsc\) are expressions involving \(x\) and
+\(P_1(x), P_2(x), \dotsc\) are statements about \(x\), this means
+``\(x\) maps to the value \(f_1(x)\) if \(P_1(x)\) is true, otherwise it maps to
+\(f_2(x)\) if \(P_2(x)\) is true, \dots''
+This is similar to a program in Python that looks something like this:
+\begin{verbatim}
+def f(x):
+    if P_1(x):
+        return f_1(x)
+    elif P_2(x):
+        return f_2(x)
+    ...
+\end{verbatim}
+It is important to make sure that there is a value to take for each value that
+\(x\) could take. Sometimes this is done by just writing ``otherwise'' for the
+last condition. It is good manners to make sure that the conditions do not
+overlap.
+
+A nice example of how to use it is to define the absolute value function on
+\(\Reals\):
+\begin{equation*}
+ \abs{x} =
+ \begin{cases*}
+  \phantom{-}x & if \(x \ge 0\) \\
+  -x & if \(x < 0\)
+ \end{cases*}
+\end{equation*}
+
+\subsection*{Numbers}
+
+``\(a \equiv b \pmod n\)'' means ``\(a\) is congruent to \(b\) modulo \(n\)''.
+This is defined to mean \\
+``\(\Exists k \in \Integers : a = b + kn\)''.
+
+Loosely, this means that \(a\) and \(b\) leave the same remainder when divided
+by \(n\).
+
+Note that this is not the same \(\equiv\) as in identities.
+
+\subsection*{Trigonometry}
+
+Angles are always in radians. One radian is the angle such that the arc
+subtended by the angle in the unit circle\footnote{
+ The unit circle is the circle with radius \(1\).
+} has length \(1\).
+
+For \(\theta \in \intcc{0, \frac \pi 2}\), \(\sin \theta\) is defined as the
+length of the opposite side of the right triangle with unit hypotenuse and angle
+\(\theta\). \(\cos \theta\) is defined as the length of the adjacent side in the
+same triangle. (In the pathological cases \(\theta = 0\) and
+\(\theta = \frac \pi 2\), the natural limiting values are taken.)
+
+Then for \(\theta \in \Reals\), the definition is extended such that:
+\begin{itemize}
+ \item
+  \(\sin(-\theta) \equiv -\sin \theta\) and
+  \(\cos(-\theta) \equiv \cos \theta\).
+
+  These two identities describe the \emph{parity} of the trigonometric
+  functions. Particularly, this means that \(\sin\) is an \emph{odd} function
+  and \(\cos\) is an \emph{even} function.
+ \item
+  \(\sin(\theta + \pi) \equiv -\sin \theta\) and
+  \(\cos(\theta + \pi) \equiv -\cos \theta\).
+\end{itemize}
+You may wish to take some time to convince yourself that these completely and
+unambiguously define the trigonometric functions as you know them (in the
+familiar wavy shapes).
+
+These definitions are useful because they make the functions be generally
+``nice'', and smooth, in the way you expect. For instance,
+\((\cos t, \sin t)\) for \(t \in \intco{0, 2\pi}\) now gives a smooth
+parametrisation\footnote{
+ This means the set of all points ``traced out'' by the co-ordinate
+ \((\cos t, \sin t)\) as \(t\) varies over
+ \(\intco{0, 2\pi}\).
+} of the unit circle.
+
+Lastly,
+\begin{equation*}
+ \tan \theta \defeq \frac{\sin \theta}{\cos \theta}
+\end{equation*}
+
+When I write ``arc-'' before a trigonometric function, that denotes the inverse
+function. Precisely,
+\begin{itemize}
+ \item
+  \(\arcsin\) is the function on \(\intcc{-1, 1}\) with image
+  \(\intcc{-\frac \pi 2, \frac \pi 2}\) such that
+  \begin{equation*}
+   \sin(\arcsin x) = x \Forall x \in \intcc{1, 1}
+  \end{equation*}
+ \item
+  \(\arccos\) is the function on \(\intcc{-1, 1}\) with image
+  \(\intcc{0, \pi}\) such that
+  \begin{equation*}
+   \cos(\arccos x) = x \Forall x \in \intcc{1, 1}
+  \end{equation*}
+ \item
+  \(\arctan\) is the function on \(\Reals\) with image
+  \(\intcc{-\frac \pi 2, \frac \pi 2}\) such that
+  \begin{equation*}
+   \tan(\arctan x) = x \Forall x \in \Reals
+  \end{equation*}
+\end{itemize}
+
+\subsection*{Calculus}
+
+If \(y = f(x)\), then \(y\) is called a \emph{dependent variable}, which
+\emph{depends} on the \emph{independent variable} \(x\).
+
+If \(y = f(x)\), then the following are all equivalent expressions for ``the
+derivative of \(y\) with respect to \(x\)'':
+\begin{equation*}
+ y'
+ \equiv f'(x)
+ \equiv \dv<y>{x}
+ \equiv \dv{x}(f(x))
+\end{equation*}
+which is defined as follows:
+\begin{equation*}
+ f'(x_0) \defeq
+  \lim_{h \to 0}
+   \bracks[\bigg]{
+    \frac{f(x_0 + h) - f(x_0)} h
+   }
+\end{equation*}
+This is an equivalent definition:
+\begin{equation*}
+ f'(x_0) \defeq
+  \lim_{x \to x_0}
+  \bracks[\bigg]{
+   \frac{f(x) - f(x_0)}{x - x_0}
+  }
+\end{equation*}
+induced by the substitution \(x = x_0 + h\).
+
+Furthermore the ``\(n\)th derivative of \(y\) with respect to \(x\)'' may be
+written as:
+\begin{equation*}
+ f^{(n)}(x)
+ \equiv \dv[n]<y>{x}
+ \equiv \dv[n]{x}(f(x))
+\end{equation*}
+It can be defined recursively: \(f^{(1)}(x) \defeq f'(x)\) and
+\(f^{(n + 1)}(x) \defeq \dv{x}(f^{(n)}(x)) \Forall n \in \Naturals\).
+
+\subsection*{Integrals}
+
+The discussion of integrals will be, on the whole, somewhat less formal than
+that of derivatives. This is because to really prove things about integrals
+requires a fair bit of \emph{really} messy limit work, which isn't particularly
+illuminating if you're doing calculus for the first time.
+
+The \emph{definite integral} of a continuous\footnote{
+ ``Continuous'', for now, means that the graph of \(y = f(x)\) can be drawn
+ without taking your pen(cil) off the page.
+} function \(f\) from \(a\) to \(b\)
+is written
+\begin{equation*}
+ \integ[a]<b>{f(x)}{x}
+\end{equation*}
+If \(a < b\), it means ``the signed area between the graph \(y = f(x)\) and the
+\(x\)-axis between \(x = a\) and \(x = b\)''.
+
+``Signed area'' means that the area can be negative. Particularly, if \(f(x)\)
+is negative for some interval, then the contribution of the area from that
+interval is negative. For example,
+\begin{equation*}
+ \integ[0]<1>{(x - 1)}{x} = -\tfrac 12
+\end{equation*}
+You may wish to draw a diagram to convince yourself that this is true. This also
+means that for instance,
+\begin{equation*}
+ \integ[0]<2>{(x - 1)}{x} = 0
+\end{equation*}
+so you really do have to be careful not to just talk about ``area''.
+
+You may have noticed the parentheses here. Some people would omit these and just
+write
+\begin{equation*}
+ \integ[0]<2>{x - 1}{x}.
+\end{equation*}
+Because an integral is always opened by an integral sign and closed by a
+differential, this isn't ambiguous per se, but the author disagrees with this
+notation. This is because this notation comes from the concept of a Riemann
+integral, which is a limit of the sum of little ``strips'' that make up the
+area. Here ``\(\diff x\)'' is the (infinitesimal) width of the strips, and
+``\(f(x)\)'' is the height of the strips as \(x\) varies. These are multiplied
+together to give the area of each strip, and then summed by the sort of weird
+S-shape, \(\int\). However, this isn't really conveyed by the unparenthesised
+notation, as it just looks like only the \(1\) term is being multiplied by
+\(\diff x\). Hence if you're integrating an integrand involving a sum, I prefer
+to add parentheses, for explicitness' sake.
+
+Moving on. If \(a > b\), then it is natural to define
+\begin{equation*}
+ \integ[a]<b>{f(x)}{x} \defeq -\integ[b]<a>{f(x)}{x}
+\end{equation*}
+and it is also natural to say that if \(a = b\), then
+\begin{equation*}
+ \integ[a]<b>{f(x)}{x} = 0
+\end{equation*}
+
+Note that the \(x\) inside a definite integral is a ``dummy'' variable. Outside
+of the integral, the \(x\) doesn't mean anything, so we can change the \(x\) to
+a \(t\), and the value of the definite integral remains the same. Make sure
+never to use a variable as a dummy variable that already exists elsewhere.
+
+\subsubsection*{Fundamental Theorem of Calculus}
+
+The Fundamental Theorem of Calculus tells you\footnote{
+ This is not the full statement of the Theorem
+} the following:
+\begin{tcolorbox}
+ If \(f\) is a continuous function, then there exist (infinitely many)
+ antiderivatives of \(f\), each differing by a constant. Furthermore, if \(F\)
+ is an antiderivative of \(f\) (that is, \(F'(x) \equiv f(x)\)), then
+ \begin{equation*}
+  \integ[a]<b>{f(x)}{x} \equiv F(b) - F(a)
+ \end{equation*}
+\end{tcolorbox}
+Sometimes people write \(\eval{a}{b}{F(x)}\) or \(\evalline{a}{b}{F(x)}\) to
+mean \(F(b) - F(a)\).
+
+Really, all this means is that ``when you add up all the small changes in
+\(F\), you get the overall change'', which should sound like a reasonable
+statement.
+
+Because of this theorem, people write
+\begin{equation*}
+ \integ{f(x)}{x}
+\end{equation*}
+to mean ``an antiderivative of \(f(x)\) with respect to \(x\)''. This is of
+course only uniquely determined up to a constant, so this is where ``\({}+ C\)''
+comes from.

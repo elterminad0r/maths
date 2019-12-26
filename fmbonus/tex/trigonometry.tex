@@ -1,0 +1,274 @@
+\section*{Trigonometry}
+
+\begin{enumerate}
+ \item
+  Prove the following identities (you should argue from definitions):
+  \begin{itemize}
+   \item
+    \(\sin(\pi - \theta) \equiv \sin \theta\)
+   \item
+    \(\cos(\pi - \theta) \equiv - \cos \theta\)
+   \item
+    \(\sin(\theta + 2\pi) \equiv \sin \theta\)
+   \item
+    \(\cos(\theta + 2\pi) \equiv \cos \theta\)
+   \item
+    \(\sin(\frac \pi 2 - \theta) \equiv \cos \theta\)
+
+    (Here you should start with the case \(\theta \in \intcc{0, \frac \pi 2}\)
+    and then extend the result to \(\Reals\).)
+   \item
+    \(\tan(-\theta) \equiv -\tan \theta\)
+   \item
+    \(\tan(\theta + \pi) \equiv \tan \theta\)
+   \item
+    \(\tan(\frac \pi 2 - \theta) \equiv \dfrac 1{\tan \theta}\)
+  \end{itemize}
+  Consider the set of identities from this question, and the identities
+  describing the parity of \(\sin\) and \(\cos\).
+
+  Find a locally minimal subset of these identities that generates all the
+  others (that is, from which you can prove all the others, but if you remove
+  any element of the subset you can no longer prove all the others).
+ \item
+  Prove Pythagoras' Theorem.
+
+  Hence deduce the Pythagorean identity for \(\sin \theta\) and \(\cos \theta\)
+  when \(\theta \in \intcc{0, \frac \pi 2}\):
+  \begin{equation*}
+   \sin^2 \theta + \cos^2 \theta \equiv 1
+  \end{equation*}
+  It is possible to show that this holds for all \(\theta\) by doing some boring
+  stuff where you consider \(\abs{\sin \theta}\) and \(\abs{\cos \theta}\). I
+  won't bore you with it here, you may just assume it.
+ \item
+  Prove that
+  \begin{align*}
+   \tan^2 \theta + 1 &\equiv \frac 1{\cos^2 \theta} \\
+   \frac 1{\tan^2 \theta} + 1 &\equiv \frac 1{\sin^2 \theta}
+  \end{align*}
+ \item
+  Draw a triangle \(\tri{ABC}\) with \(\lseg{AC}\) horizontal, and
+  \(\angle{BAC}\) and \(\angle{BCA}\) acute. Let \(\angle{BAC} = \theta\).
+
+  Label the sides in the conventional way:
+  \(\lseg{AB} = c\), \(\lseg{BC} = a\), \(\lseg{CA} = b\).
+
+  Drop an altitude\footnote{
+   This is a word for the perpendicular to a side of a triangle the passes
+   through the opposite vertex.
+  } from \(B\) to the point \(D\) on \(\lseg{AC}\).
+
+  Derive the \emph{cosine rule} for angles less than \(\degrees{90}\) by
+  finding the length \(\lseg{BC}\).
+
+  You may now assume that this also holds for \(\theta\) obtuse.
+ \item
+  In the same triangle, derive the \emph{sine area rule} for angles less than
+  \(\degrees{90}\) by finding the area \(\area{\tri{ABC}}\).
+
+  Noting that \(\tri{BCA}\) and \(\tri{CAB}\) are also triangles, immediately
+  state two similar sine area rules.
+
+  Hence deduce the \emph{sine rule}.
+
+  You may now assume that both also hold for obtuse angles.
+ \item
+  Now draw a new triangle, \(\tri{ABC}\) where \(\lseg{BC}\) is vertical, with
+  both \(\angle{ABC}\) and \(\angle{ACB}\) acute, and drop an altitude from
+  \(A\) to the point \(D\) on \(\lseg{BC}\). Let \(\angle{BAD} = \alpha\),
+  \(\angle{CAD} = \beta\).
+
+  Also, let the triangle be scaled so that \(\lseg{AD} = 1\).
+
+  By calculating the length \(\lseg{BC}\) in two different ways, determine the
+  \emph{compound angle formula for cosine}\footnote{
+   \label{foot_compound_angles}%
+   for angles \(< \degrees{90}\)
+  }:
+  \begin{equation*}
+   \cos(\alpha + \beta) \equiv \cos \alpha \cos \beta - \sin \alpha \sin \beta
+  \end{equation*}
+ \item
+  In the same triangle, determine the
+  \emph{compound angle formula for
+  sine}\footnote{
+   See \ref{foot_compound_angles}
+  }, by calculating the area of the triangle in two different ways.
+ \item
+  Suppose that the compound angle formula for cosine holds for all
+  \(\alpha, \beta\).
+
+  Give a different proof of the compound angle formula for sine just using the
+  parities of trig functions and the identity
+  \begin{equation*}
+   \sin x \equiv \cos(\tfrac \pi 2 - x)
+  \end{equation*}
+  You may now assume that both compound angle formulae hold for all
+  \(\alpha, \beta\)\footnote{
+   It's quite straightforward to show this by just bashing all the different
+   extension cases, but not every interesting.}.
+
+  The latter two identities describe the \emph{parity} of \(\cos\) and \(\sin\).
+  Particularly, \(\cos\) is an \emph{even} function, and \(\sin\) is an
+  \emph{odd} function.
+ \item
+  Prove the compound angle formula for tangent:
+  \begin{equation*}
+   \tan(\alpha + \beta) \equiv
+   \frac{\tan \alpha + \tan \beta}{1 - \tan \alpha \tan \beta}
+  \end{equation*}
+ \item
+  Use parities to state compound angle formulae for \(\sin(\alpha - \beta)\),
+  \(\cos(\alpha - \beta)\), and \(\tan(\alpha - \beta)\)
+ \item
+  Write \(\sin 2x\) in terms of \(\sin x\) and \(\cos x\).
+ \item
+  Also write \(\cos 2x\) in terms of \(\sin x\) and \(\cos x\).
+
+  Then use an identity to write \(\cos 2x\) in terms of just \(\sin x\), and
+  also write \(\cos 2x\) in terms of just \(\cos x\).
+ \item
+  Hence write \(\sin^2 x\) as \(A \cos(ax + b) + B \sin(cx + d) + C\).
+
+  Do the same for \(\cos^2 x\).
+ \item
+  By considering \(\sin(\alpha + \beta)\) and \(\sin(\alpha - \beta)\), write
+  \(\sin \alpha \cos \beta\) as a linear combination\footnote{
+   A linear combination of objects is a sum of each of the objects, multiplied
+   by some scalar (a real number in this case).
+  } of trigonometric functions of linear combinations of \(\alpha\) and
+  \(\beta\). This is one of the \emph{product-sum} identities.
+ \item
+  Do the same for \(\sin \alpha \sin \beta\) and
+  \(\cos \alpha \cos \beta\).
+ \item
+  Consider \(\sin \alpha + \sin \beta\). By finding \(\alpha'\) and \(\beta'\)
+  such that \(\alpha' + \beta' = \alpha\) and \(\alpha' - \beta' = \beta\),
+  write \(\sin \alpha + \sin \beta\) as a product of trigonometric functions of
+  linear combinations of \(\alpha\) and \(\beta\), multiplied by some constant.
+
+  Without doing any more algebra, determine a similar formula for
+  \(\sin \alpha - \sin \beta\).
+
+  Also find formulae for \(\cos \alpha + \cos \beta\) and
+  \(\cos \alpha - \cos \beta\).
+ \item
+  Draw triangles to determine the values of
+  \(\sin \frac \pi 6\), \(\sin \frac \pi 4\), \(\sin \frac \pi 3\),
+  \(\cos \frac \pi 6\), \(\cos \frac \pi 4\), \(\cos \frac \pi 3\),
+  \(\tan \frac \pi 6\), \(\tan \frac \pi 4\), \(\tan \frac \pi 3\).
+ \item
+  Find the values of \(\sin \frac{5\pi}{12}\) and \(\cos \frac{5\pi}{12}\) by
+  writing \(5/12\) in a different way.
+
+  Hence deduce the values of \(\sin \frac \pi{12}\) and \(\cos \frac \pi{12}\).
+ \item
+  If \(\theta = \frac \pi 8\), determine the value of
+  \(\cos \theta\) by using an identity for \(\cos 2\theta\).
+
+  Calculate the values of \(\tan \frac \pi 8\) and \(\tan \frac{3\pi}8\).
+
+  Verify your answer by partitioning the regular octagon with unit sides into
+  rectangles, squares, and right isosceles triangles, and finding the distances
+  from the centre to a vertex and the midpoint of an edge.
+ \item
+  Show that if \(\theta = \frac \pi 5\), then \(\sin 2\theta = \sin 3\theta\).
+  Expand both sides and solve for \(\cos \theta\) to determine the value of
+  \(\cos \frac \pi 5\).
+
+  Deduce the value of \(\sin \frac \pi 5\).
+
+  Also show that if \(x\) is the length of any diagonal of a regular pentagon
+  with unit sides, then \(x^2 = x + 1\).
+ \item \label{q_trig_arcsin}
+  Show that the function
+  \begin{align*}
+   f : \intcc{-1, 1} &\to \intcc{0, \pi} \\
+   x &\mapsto \tfrac \pi 2 - \arcsin x
+  \end{align*}
+  satisfies the definition of \(\arccos x\).
+ \item
+  Do a rough sketch of \(\cos x + \sin x\).
+
+  By guessing that \(\cos x + \sin x\) can be written in the form
+  \(R \sin(x + \alpha)\) where \(R\), \(\alpha\) are constants, find
+  suitable constants \(R \in \Reals\) and \(\alpha \in \intco{0, 2\pi}\). Hence
+  justify the shape of your sketch, and find the minimum and maximum values.
+
+  Also sketch \(\sqrt{12} \sin 2x + 2 - 4\sin^2 x\), stating its minimum and
+  maximum values.
+ \item
+  If \(r_1 \sin x + r_2 \cos x \equiv R \sin(x + \alpha)\), where
+  \(R \ge 0\) and \(\alpha \in \intco{0, 2 \pi}\), show that
+  \(R^2 = r_1^2 + r_2^2\) and \(\tan \alpha = r_2 / r_2\).
+
+  Can you deduce the values of both \(R\) and \(\alpha\) given this information?
+ \item
+  Prove the following identities:
+  \begin{alignat*}2
+   (\mathrm{i})&&\quad\frac 1{\sin^2 x} + \frac 1{\cos^2 x}
+   &\equiv \frac 1{\cos^2 x \sin^2 x} \\
+   (\mathrm{ii})&&\quad\cos x + \sin x \tan x
+   &\equiv \frac 1{\cos x} \\
+   (\mathrm{iii})&&\quad\frac 1{\tan x} + \tan x
+   &\equiv \frac 2{\sin 2x} \\
+   (\mathrm{iv})&&\quad\sin(x - y) \sin(x + y)
+   &\equiv (\sin x - \sin y)(\sin x + \sin y)
+  \end{alignat*}
+ \item
+  Use trigonometric identities to sketch the following:
+  \begin{itemize}
+   \item
+    \(\displaystyle \frac{\cos 2x}{\sin(x + \frac \pi 2)}\).
+   \item
+    \(\sin(x + y) = \sin(x - y)\)
+   \item
+    \(\sin x = \sin y\)
+
+    This last sketch is actually quite interesting: this is a general solution
+    that comes up a lot. For instance, when you're looking at
+    \(\sin x = \frac 12\), this is really just \(\sin x = \sin \frac \pi 6\),
+    which is a special case of an equation of this form.
+
+    Can you therefore characterise all solutions to \(\sin 13x = \sin 5x\)?
+  \end{itemize}
+ \item
+  By considering
+  \begin{itemize}
+   \item
+    The isosceles triangle with unit legs adjacent to an angle of \(\theta\)
+   \item
+    The sector of a unit circle subtended by an angle of \(\theta\)
+   \item
+    The right triangle with unit side adjacent to an angle of \(\theta\)
+    (\emph{not} having unit hypotenuse)
+  \end{itemize}
+  (in that order) and drawing a suitable diagram, show that
+  \(\sin \theta < \theta < \tan \theta\) for
+  \(\theta \in \intoo{0, \frac \pi 2}\).
+ \item
+  Hence show that
+  \begin{equation*}
+   \cos x < \frac{\sin x}x < 1
+  \end{equation*}
+  for \(x \in \intoo{-\frac \pi 2, \frac \pi 2}\).
+
+  An \emph{extremely} useful consequence of this uses ``the squeeze theorem''.
+  Since \(\frac{\sin x} x\) is bounded above and below by functions that tend to
+  \(1\) as \(x \to 0\) (from either side of \(0\)),
+  \begin{equation*}
+   \lim_{x \to 0} \frac{\sin x}x = 1
+  \end{equation*}
+  We have now somewhat formally shown that ``\(\sin x\) looks roughly like \(x\)
+  for small \(x\)''. This has many applications in engineering and physics.
+ \item \label{q_trig_weierstrass}
+  Show that if \(t = \tan \frac 12 x\), then
+  \begin{align*}
+   \tan x &\equiv \frac{2t}{1 - t^2} \\
+   \sin x &\equiv \frac{2t}{1 + t^2} \\
+   \cos x &\equiv \frac{1 - t^2}{1 + t^2}
+  \end{align*}
+  What is the value of \(\tan \frac 12 x\) if \(\sin x = \frac 5{13}\) and
+  \(\cos x = \frac{12}{13}\)?
+\end{enumerate}

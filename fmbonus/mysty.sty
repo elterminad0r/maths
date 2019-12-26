@@ -1,0 +1,35 @@
+\ProvidesPackage{mysty}
+
+% change geometry so more of page is used
+\RequirePackage[
+ margin=1in,
+ headheight=13.6pt]{geometry}
+
+\RequirePackage{titling}
+\posttitle{\par\end{center}}
+\setlength{\droptitle}{-60pt}
+\predate{}
+\postdate{}
+\preauthor{}
+\postauthor{}
+
+\RequirePackage{booktabs}
+
+\RequirePackage{enumitem}
+
+\RequirePackage{parskip}
+
+\RequirePackage{tcolorbox}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\RequirePackage{perpage}
+\MakePerPage{footnote}
+
+\makeatletter
+\RequirePackage[hidelinks,pdfencoding=auto,psdextra,
+ pdfauthor={\@author},
+ pdftitle={\@title},
+ pdfsubject={\@title},
+ pdfproducer={LaTeX with hyperref},
+ pdfcreator={pdflatex}]{hyperref}
+\makeatother

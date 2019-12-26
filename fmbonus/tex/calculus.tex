@@ -1,0 +1,437 @@
+\section*{Calculus}
+
+Throughout, you may assume the following properties of a limit:
+
+\begin{tcolorbox}
+ For any functions \(r, s : \Reals \to \Reals\),
+ \begin{itemize}
+  \item
+   If \(\lim_{t \to a} r(t) = b\) and \(\lim_{t \to a} s(t) = c\), then
+   \(\lim_{t \to a} \bracks{r(t) + s(t)} = b + c\)
+  \item
+   If \(\lim_{t \to a} r(t) = b\) and \(\lim_{t \to a} s(t) = c\), then
+   \(\lim_{t \to a} \bracks{r(t) s(t)} = bc\).
+  \item
+   If \(\lim_{t \to a} s(t) = b\) and \(\lim_{t \to b} r(t) = c\), then
+   \(\lim_{t \to a} r(s(t)) = c\).
+ \end{itemize}
+ Here when we say \(\lim_{\ldots} \dotsb = \ell\) we mean that
+ the limit exists, is finite, and is equal to \(\ell\).
+\end{tcolorbox}
+
+\begin{enumerate}
+ \item
+ Prove from first principles that, if
+  \(a\) is a constant and \(f, g\) are differentiable functions,
+  \begin{alignat*}2
+   && \dv{x}(af(x)) &= af'(x) \\
+   &\text{and}\quad&\dv{x}(f(x) + g(x)) &= f'(x) + g'(x)
+  \end{alignat*}
+ \item
+  Use the Binomial Theorem and the first-principles definition of the derivative
+  to prove the \emph{power rule}
+  \begin{equation*}
+   \dv{x}(x^n) \equiv nx^{n - 1}
+  \end{equation*}
+  for all \(n \in \Naturals\).
+ \item
+  For dependent variables \(u = f(x)\), \(v = g(x)\) (where \(f\) and \(g\) are
+  differentiable functions), this is the
+  \emph{product rule} for differentiation:
+  \begin{equation*}
+   \dv{x}(uv) \equiv u'v + uv'
+  \end{equation*}
+  Prove the product rule from first principles, by choosing a suitable place to
+  add and subtract a term \(f(x + h)g(x)\).
+ \item
+  Give an alternative proof of the power rule using induction and the product
+  rule.
+ \item
+  For dependent variables \(u = f(x)\), \(v = g(x)\) (where \(f\) and \(g\) are
+  infinitely differentiable functions), calculate and simplify expressions for
+  \(\dv[2]{x}(uv)\), \(\dv[3]{x}(uv)\), \(\dv[4]{x}(uv)\), \(\dv[5]{x}(uv)\).
+  Hence guess a formula for \(\dv[n]{x}(uv)\), for all \(n \in \Naturals\).
+  Prove that it is correct by induction.
+
+  (This is called the Leibniz rule, which generalises the product rule).
+ \item
+  Let \(f, g\) be differentiable functions. Let \(y = f(x) / g(x)\). Multiply
+  both sides by \(g(x)\), differentiate both sides, and rearrange for
+  \(\dv<y>{x}\) to obtain the \emph{quotient rule}:
+  \begin{equation*}
+   \dv{x}\parens[\Big]{\frac uv}
+    \equiv \frac{vu' - uv'}{v^2}
+  \end{equation*}
+  This formula is probably worth memorising, but that will come through school.
+ \item
+  Let \(n \in \Naturals\). Let \(y = x^{-n}\) (which is defined as \(1 / x^n\)).
+  By multiplying both sides by \(x^n\) and then differentiating both sides, show
+  that the power rule also holds for all \(n \in \Integers\).
+
+  Use the quotient rule to demonstrate the same result instantly.
+ \item
+  If \(f\) is a differentiable function and \(k\) is a non-zero constant,
+  write down the first-principles definition of \(\dv{x}(f(kx))\). By
+  multiplying top and bottom by \(k\) and making an appropriate
+  substitution\footnote{
+   If \(t\) and \(t'\) are related variables so that
+   \(t' \to 0 \implies t \to 0\), then
+   \(\lim_{t \to 0} s(t) = \lim_{t' \to 0} s(t)\).
+  }, show that it is equal to \(kf'(kx)\).
+
+  Show that this also holds if \(k = 0\).
+ \item
+  Use a similar proof to show that if \(f\) is a differentiable function and
+  \(m\) and \(c\) are constants, then \(\dv{x}(f(mx + c)) \equiv mf'(mx + c)\).
+ \item
+  If \(g\) is a differentiable function, find the equation of the tangent to the
+  graph \(y = g(x)\) at the point where \(x = x_0\), in the form
+  \(y = mx + c\). By assuming that as \(x \to x_0\), \(g(x) \approx mx + c\),
+  deduce the \emph{chain rule}:
+  \begin{equation*}
+   \dv{x}(f(g(x))) \equiv g'(x) f'(g(x))
+  \end{equation*}
+  Some people write it in the following form:
+  \begin{equation*}
+   \dv<y>{x} \equiv \dv<y>{u} \cdot \dv<u>{x}
+  \end{equation*}
+  where we let \(u = g(x)\) and \(y = f(u)\), to see that
+  \(\dv<y>{x}
+    = \dv{x}(u) \cdot f'(u)
+    = \dv<u>{x} \cdot \dv{u}(y)\).
+
+  This one is perhaps easier to remember, because it looks like you're just
+  ``cancelling the \(\diff u\,\)s''. Of course, this is not formally what is
+  happening as these are not fractions.
+ \item
+  Let \(y = x^{p/q}\) where \(p, q \in \Integers, q \ne 0\). By raising both
+  sides to the power \(q\) and then differentiating both sides (using the chain
+  rule), show that the power rule also holds for all \(p / q \in \Rationals\).
+
+  Here \(x^{p/q}\), where \(p/q\) is in lowest terms, is defined as ``the real
+  number \(t\) such that \(t^q = x^p\)'', which is the only property you need
+  for this question.
+
+  If \(x\) is positive and \(p\) is even, there are two such numbers. The
+  positive one is then taken.
+
+  If \(x\) is negative and \(q\) is even there is no such number, so the
+  operation is then undefined. It can be shown that otherwise there will exist
+  such a number in \(\Reals\).
+ \item
+  By writing \(\ln(uv) = \ln u + \ln v\), deduce a weak version of the product
+  rule from the chain rule.
+
+  This is a weak version because it is only valid for \(u, v > 0\). Can you use
+  it, or use a similar proof, to deduce a weak product rule for
+  \(u > 0\) and \(v < 0\)?
+ \item
+  Let \(f\) a function that is differentiable at \(x_0\), and \(y = f(x)\) be a
+  graph of that function.
+
+  Let \(h\) be a constant. Find a formula for the gradient of the line through
+  the points where \(x = x_0 - h\) and \(x = x_0 + h\).
+ \item
+  Use the following facts to find the derivative of \(\sin x\):
+  \begin{itemize}
+   \item
+    \(\sin x\) is differentiable.
+   \item
+    If \(f\) is a function that is differentiable at \(x_0\), then, on the graph
+    \(y = f(x)\), the gradient of the line through the points where
+    \(x = x_0 - h\) and \(x = x_0 + h\) approaches the gradient of the tangent
+    at \(x_0\) as \(h \to 0\).
+   \item
+    The compound angle formula for \(\sin\).
+   \item
+    \(\displaystyle
+     \lim_{t \to 0} \frac{\sin t} t = 1
+     \)
+  \end{itemize}
+ \item
+  Hence use a trig identity and the chain rule to deduce the derivative of
+  \(\cos x\), without evaluating any limits.
+ \item
+  Find the derivative of \(\tan x\). Write it in terms of \(\tan x\).
+ \item \label{q_calc_arcsin}
+  If \(y = \arcsin x\), then use implicit differentiation\footnote{
+   This is the name of the trick where you apply a function to both sides, so
+   you can use the chain rule.
+  } to find
+  \(\dv<y>{x}\) in terms of \(y\).
+
+  Since \(-\frac \pi 2 \le y \le \frac \pi 2\), \(\cos y \ge 0\). Hence use the
+  pythagorean identity to write the derivative in terms of \(\sin y\), and
+  therefore write it in terms of \(x\).
+ \item
+  Use question \ref{q_trig_arcsin} from Trigonometry to immediately deduce the
+  derivative of \(\arccos x\).
+ \item
+  Find by similar methods to question \ref{q_calc_arcsin} the derivative of
+  \(\arctan x\).
+ \item
+  Show that if \(f\) and \(g\) are continuous functions and
+  \(a, b, \alpha, \beta \in \Reals\) are constant, then
+  \begin{equation*}
+   \integ[a]<b>{(\alpha f(x) + \beta g(x))}{x} \equiv
+   \alpha \integ[a]<b>{f(x)}{x} +
+   \beta  \integ[a]<b>{g(x)}{x}
+  \end{equation*}
+  by using the Fundamental Theorem of Calculus and considering \(F, G\) such
+  that \(F'(x) = f(x)\) and \(G'(x) = g(x)\), and letting
+  \(L(x) \defeq \alpha F(x) + \beta G(x)\).
+ \item
+  Also use the Fundamental Theorem of Calculus to show that if \(f\) is
+  continuous and \(a, b, c \in \Reals\) are constant, then
+  \begin{equation*}
+   \integ[a]<b>{f(x)}{x} + \integ[b]<c>{f(x)}{x} \equiv
+   \integ[a]<c>{f(x)}{x}
+  \end{equation*}
+  This is not how these facts are normally proved (in fact, you would probably
+  need them to prove the Theorem itself). If you think about areas, they should
+  sound quite reasonable.
+ \item \label{q_calc_int_pwr}
+  If \(\alpha \in \Rationals\), use the power rule to work out
+  \begin{equation*}
+   \integ{x^\alpha}{x}
+  \end{equation*}
+  State the value of \(\alpha\) for which your answer breaks down.
+ \item
+  If \(f, g\) are continuous functions, show that
+  \begin{equation*}
+   \integ[a]<b>{g'(x) f'(g(x))}{x} \equiv
+   \integ[g(a)]<g(b)>{f(x)}{x}
+  \end{equation*}
+  Hence evaluate
+  \begin{itemize}
+   \item \(\displaystyle
+    \integ[a]<b>{f(kx)}{x}
+    \)
+
+    where \(k\) is constant. Convince yourself by means of a sketch that your
+    answer is correct.
+   \item \(\displaystyle
+    \integ{2x \sin(x^2)}{x}
+    \)
+   \item \(\displaystyle
+    \integ{\frac x{\sqrt{x^2 + 1}}}{x}
+    \)
+  \end{itemize}
+ \item
+  If \(u\) and \(v\) are variables dependent on \(x\), use the product rule to
+  show that
+  \begin{equation*}
+   \integ[a]<b>{uv'}{x} = \eval{a}{b}{uv} - \integ[a]<b>{u'v}{x}
+  \end{equation*}
+ \item
+  This question is motivated by question \ref{q_calc_int_pwr}.
+
+  Define
+  \begin{align*}
+   \ell : \Reals^+ &\to \Reals\\
+   x &\mapsto \integ[1]<x>{\frac 1t}{t}
+  \end{align*}
+  By means of a substitution, show that for \(a, b \in \Reals^+\) constant,
+  \begin{equation*}
+   \ell(a) \equiv \integ[b]<ab>{\frac 1t}{t}
+  \end{equation*}
+  and deduce that \(\ell(a) + \ell(b) \equiv \ell(ab)\).
+ \item
+  By means of a different substitution, show that for \(a \in \Reals^+\) and
+  \(n \in \Rationals\), \(n \cdot \ell(a) \equiv \ell(a^n)\).
+ \item
+  Show that for \(a \in \Reals^+\), \(-\ell(a) \equiv \ell(\frac 1a)\).
+ \item
+  Explain briefly why \(a < b \implies \ell(a) < \ell(b)\)\footnote{
+   This means that \(\ell\) is \emph{monotonic increasing}.
+  }.
+
+  Draw a sketch to show that \(\frac 12 \le \ell(2) \le 1\). Hence show that
+  \(\frac n2 \le \ell(2^n) \le n\), and deduce that as \(x \to \infty\),
+  \(\ell(x) \to \infty\).
+
+  Also show that as \(x \to 0^+\), \(\ell(x) \to -\infty\).
+ \item
+  By means of a sketch, show that for \(n \in \Naturals\),
+  \begin{equation*}
+   \ell(n) \le \sum_{k = 1}^n \frac 1k \le 1 + \ell(n)
+  \end{equation*}
+  and deduce that the harmonic series does not converge.
+ \item
+  Since \(\ell\) is monotonic increasing, and it goes from \(-\infty\) and
+  \(\infty\), it is a bijection\footnote{
+   This fact is fairly easy to appreciate, but not so easy to prove. We will
+   just assume it here.
+  } between \(\Reals^+\) and \(\Reals\). Therefore
+  it has an inverse, so let's define \(\xi: \Reals \to \Reals^+\) to be such
+  that
+  \begin{equation*}
+   \ell(\xi(x)) = x \Forall x \in \Reals
+  \end{equation*}
+  For \(a, b \in \Reals\), show that \(\xi(a + b) \equiv \xi(a) \xi(b)\).
+
+  Here you can use the identity defining \(\xi\) to write \(a\) and \(b\) in a
+  different form.
+
+  Also show that for \(n \in \Rationals\), \((\xi(a))^n \equiv \xi(an)\).
+ \item
+  Show that if \(t = \xi(\frac pq \cdot \ell(x))\) then \(t^q = x^p\).
+
+  This means that \(\xi(n \cdot \ell(x))\) coincides with \(x^n\) for all
+  rational \(n\) when \(x\) is positive. Since \(\xi\) and \(\ell\) are both
+  quite nice, ``smooth'' functions, it is nice to \emph{define}
+  \begin{equation*}
+   x^t \defeq \xi(t \cdot \ell(x))
+  \end{equation*}
+  for \(t \in \Reals\) and \(x\) positive. This agrees with the old definitions,
+  and ensures various nice continuity properties.
+
+  If we \emph{define}\footnote{
+   One should stress again that this is not the only definition of \(e\)
+   (although any correct alternative definition should imply that this one is
+   also true)
+  } \(e \defeq \xi(1)\), then
+  \(e^x \equiv \xi(x \cdot \ell(\xi(1))) \equiv \xi(x)\). So in fact \(\xi\) has
+  been the famous ``exponential function'' all this time! This is one of the
+  reasons that the number \(e\) is significant. From now on I will write \(e^x\)
+  or \(\exp x\) instead of \(\xi(x)\), and \(\ln x\) or
+  \(\log x\)\footnote{
+   standing for ``natural logarithm'' (logarithmus naturalis) and ``logarithm'',
+   respectively.
+  }
+  instead of \(\ell(x)\).
+ \item
+  Find the derivative of \(e^x\) (aka \(\xi(x)\)), using the definition of
+  \(\ln x\) (aka \(\ell(x)\)).
+ \item
+  Hence find three different functions that are solutions to the
+  \emph{differential equation}
+  \begin{equation*}
+   f'(x) = f(x)
+  \end{equation*}
+  Find three functions that are solutions to
+  \begin{equation*}
+   f'(x) = 2f(x)
+  \end{equation*}
+  Can you also find two solutions \(f_1, f_2\) to the equation
+  \begin{equation*}
+   f''(x) + 5f'(x) + 6f(x) = 0
+  \end{equation*}
+  and a constant \(x_0\) such that
+  \(f_1(x_0) f_2'(x_0) - f_1'(x_0) f_2(x_0) \ne 0\)?
+ \item
+  Let \(a \in \Reals^+\) be constant. Find the derivative of \(a^x\) from the
+  definition.
+ \item
+  Let \(t \in \Reals\) be constant. Show that the power rule for \(x^t\) holds
+  for all \(t \in \Reals\) when \(x > 0\).
+
+  This is the best we can do for now, since it's not so nice to define
+  irrational powers on negative numbers (eg what should \((-1)^\pi\)
+  be\footnote{
+   In fact, if you were to define it it would almost certainly have to be a
+   complex number.
+  }?)
+
+  An alternative approach to get this result is to just define
+  \(x^t\) for \(t \in \Reals\) as
+  \begin{equation*}
+   \lim_{k \to \infty} x^{(a_k)}
+  \end{equation*}
+  where \(a_k\) is some rational sequence converging to \(t\). This whole
+  approach depends a little more subtly on how you've actually define the real
+  numbers. It is basically an appeal to the continuity of the function
+  \(x^t\).
+ \item
+  Suppose that the function \(e^x\) can be written in the form
+  \begin{align*}
+   e^x
+    &= a_0 + a_1 x + a_2 x^2 + \dotsb \\
+    &= \sum_{k = 0}^\infty a_k x^k
+  \end{align*}
+  where \(a_k\) are constants to be determined. This is called a
+  \emph{power series}. This particular type of power series is called a
+  \emph{Taylor series}, and in fact this is a particular type of Taylor series
+  called a \emph{Maclaurin series}.
+
+  By letting \(x = 0\), deduce what \(a_0\) must be.
+
+  By differentiating both sides, deduce what \(a_1\) must be.
+
+  Find a \(k\)th term for \(a_k\).
+
+  Assuming this series converges, show that
+  \begin{equation*}
+   e =
+   \sum_{k = 0}^\infty \frac 1{k!} =
+   1 + \frac 1{1!} + \frac 1{2!} + \frac 1{3!} + \dotsb
+  \end{equation*}
+  This series is in fact a popular alternative definition of \(e^x\) (and
+  therefore also \(e\)). There is also the weird product formula
+  \begin{equation*}
+   e^x =
+    \lim_{n \to \infty}
+     \parens[\Big]{
+      1 + \frac xn
+     }^n
+  \end{equation*}
+  which the author thinks is weird\footnote{
+   read: doesn't really understand
+  }.
+ \item
+  Also determine Maclaurin series for \(\sin x\) and \(\cos x\).
+ \item
+  Determine the Maclaurin series of \((1 + x)^{-1}\).
+ \item
+  By writing \(t = x^2\), show that the Maclaurin series of \((1 + x^2)^{-1}\)
+  is
+  \begin{equation*}
+   \sum_{k = 0}^\infty (-1)^k x^{2k} = 1 - x^2 + x^4 - x^6 + x^8 + \dotsb
+  \end{equation*}
+  By assuming that this series converges when \(x \in \intcc{0, 1}\) and
+  calculating
+  \begin{equation*}
+   \integ[0]<1>{\frac 1{1 + x^2}}{x}
+  \end{equation*}
+  in two different ways, show that
+  \begin{equation*}
+   \frac \pi 4 = 1 - \frac 13 + \frac 15 - \frac 17 + \frac 19 + \dotsb
+  \end{equation*}
+  You may assume that to integrate a series you can integrate each term
+  separately.
+ \item
+  Suppose that \(f\) is an infinitely differentiable function. Write down its
+  Maclaurin series.
+ \item
+  Suppose that \(f\) is an infinitely differentiable function, and that it can
+  be written in the form
+  \begin{align*}
+   f(x) &= a_0 + a_1(x - x_0) + a_2(x - x_0)^2 + \dotsb \\
+        &= \sum_{k = 0}^\infty a_k(x - x_0)^k
+  \end{align*}
+  where \(x_0\) is some constant, and \(a_k\) are constants to be determined.
+  Determine the constants.
+
+  This is the full \emph{Taylor series} of \(f\).
+
+  Beware that not every function is equal to all of its Taylor series at all
+  points.
+ \item
+  Find \(\integ{\sin^2 x}{x}\).
+ \item
+  Find \(\integ{\sin 7x \cos 13 x}{x}\).
+ \item
+  Show that if \(t = \tan \frac 12 x\), then
+  \begin{equation*}
+   \dv<t>{x} = \frac 2{1 + t^2}
+  \end{equation*}
+  Use this in addition to an identity from question \ref{q_trig_weierstrass}
+  in Trigonometry to determine
+  \begin{equation*}
+   \integ{\frac 1{\sin x}}{x}
+  \end{equation*}
+  This technique is called the \emph{Weierstrass substitution}. It is generally
+  used to transform any integral involving trigonometric functions into an
+  integral of a rational function (which unfortunately doesn't always make it
+  look much easier).
+\end{enumerate}

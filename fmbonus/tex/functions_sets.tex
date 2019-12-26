@@ -1,0 +1,170 @@
+\section*{Functions and Sets}
+
+\begin{enumerate}
+ \item
+  Use quantifiers to write down all the properties that a subset of
+  \(A \times B\) must satisfy for it to correspond to a function from
+  \(A \to B\).
+
+  Write down the conditions for such a subset to correspond to an injective and
+  a surjective function, respectively.
+ \item
+  State a necessary and sufficient condition on \(A\) and \(B\) for
+  \(A \times B\) to correspond to a function from \(A \to B\).
+ \item
+  Show that if \(A\) and \(B\) are sets, and \(A \subseteq B\) and
+  \(B \subseteq A\), then \(A = B\).
+ \item
+  % "getallen"
+  Let \(\Gamma\) be a set with the following properties:
+  \begin{itemize}
+   \item
+    % "zero"
+    There is an element \(\zeta \in \Gamma\).
+   \item
+    % "successor"
+    There is a function \(\Sigma: \Gamma \to \Gamma \setminus \set{\zeta}\) that
+    is a bijection, and satisfies the following:
+   \item
+    % "induction"
+    If \(\BigIota\) is a set such that \(\zeta \in \BigIota\), and
+    \(\Forall \gamma \in \Gamma :
+      \gamma \in \BigIota
+      \implies \Sigma(\gamma) \in \BigIota\),
+    then \(\Gamma \subseteq \BigIota\).
+  \end{itemize}
+  Now we also define an \emph{operation}\footnote{
+   An operation on a set \(S\) is nothing but a function from \(S^2 \to S\).
+  } on \(\Gamma\) as follows:
+  % "addition"
+  \begin{align*}
+   \alpha: \Gamma^2 &\to \Gamma \\
+   (\gamma_1, \gamma_2) &\mapsto
+   \begin{cases*}
+    \gamma_1 & if \(\gamma_2 = \zeta\) \\
+    \Sigma(\alpha(\gamma_1, \gamma')) & if \(\gamma_2 = \Sigma(\gamma')\)
+   \end{cases*}
+  \end{align*}
+  Here is a proof that \(\alpha\) is well-defined for all
+  \(\gamma_1, \gamma_2 \in \Gamma\):
+  \begin{tcolorbox}
+   Let \(\gamma_1\) be an arbitrary element of \(\Gamma\). Consider the
+   following subset of \(\Gamma\):
+   \begin{equation*}
+    \BigIota
+    = \set{\gamma \in \Gamma :
+    \text{\(\alpha(\gamma_1, \gamma)\) is well-defined}}
+   \end{equation*}
+   Note firstly that \(\alpha(\gamma_1, \zeta)\) is well-defined, as it is an
+   explicitly mentioned case that is equal to \(\gamma_1\). So
+   \(\zeta \in \BigIota\).
+
+   Note also that if some \(\gamma_2 \in \BigIota\), then
+   \(\alpha(\gamma_1, \Sigma(\gamma_2)) = \Sigma(\alpha(\gamma_1, \gamma_2))\)
+   by definition, and is therefore well-defined, so then also
+   \(\Sigma(\gamma_2) \in \BigIota\). But then by the third property of
+   \(\Gamma\), \(\Gamma \subseteq \BigIota\). Therefore, \(\Gamma = \BigIota\)
+   and hence \(\alpha(\gamma_1, \gamma_2)\) is well-defined for all
+   \(\gamma_1, \gamma_2 \in \Gamma\).
+  \end{tcolorbox}
+  Prove that \(\Forall \gamma \in \Gamma : \alpha(\zeta, \gamma) = \gamma\).
+
+  Do this by considering the set of all elements \(\gamma \in \Gamma\) such that
+  \(\alpha(\zeta, \gamma) = \gamma\).
+ \item
+  Prove that
+  \(\forall \gamma_1, \gamma_2 \in \Gamma :
+    \alpha(\Sigma(\gamma_1), \gamma_2) = \Sigma(\alpha(\gamma_1, \gamma_2))\).
+
+  Do this by letting \(\gamma_1\) be arbitrary, and considering the set of all
+  elements \(\gamma \in \Gamma\) such that
+  \(\alpha(\Sigma(\gamma_1), \gamma) = \Sigma(\alpha(\gamma_1, \gamma))\).
+ \item
+  Prove that
+  \(\Forall \gamma_1, \gamma_2, \gamma_3 \in \Gamma :
+    \alpha(\alpha(\gamma_1, \gamma_2), \gamma_3) =
+    \alpha(\gamma_1, \alpha(\gamma_2, \gamma_3))\).
+
+  Do this by letting \(\gamma_1, \gamma_2\) be arbitrary and considering the set
+  of all elements \(\gamma \in \Gamma\) such that
+  \(\alpha(\alpha(\gamma_1, \gamma_2), \gamma) =
+    \alpha(\gamma_1, \alpha(\gamma_2, \gamma))\).
+ \item
+  Hence show that
+  \(\Forall \gamma_1, \gamma_2, \gamma_3, \gamma_4 \in \Gamma :
+    \alpha(\gamma_1, \alpha(\gamma_2, \alpha(\gamma_3, \gamma_4))) =
+    \alpha(\alpha(\alpha(\gamma_1, \gamma_2), \gamma_3), \gamma_4)\).
+
+  (Do this without considering any more sets)
+ \item
+  Prove that
+  \(\Forall \gamma_1, \gamma_2 \in \Gamma :
+    \alpha(\gamma_1, \gamma_2) = \alpha(\gamma_2, \gamma_1)\).
+
+  Do this by letting \(\gamma_1\) be arbitrary and considering the set of all
+  elements \(\gamma \in \Gamma\) such that
+  \(\alpha(\gamma_1, \gamma) = \alpha(\gamma, \gamma_1)\). Remember that you
+  have already proved a number of useful results about \(\alpha\).
+ \item
+  Write down an expression for
+  \(\alpha(\Sigma(\Sigma(\zeta)), \Sigma(\Sigma(\Sigma(\Sigma(\zeta)))))\) that
+  does not involve \(\alpha\).
+
+  Can you summarise everything that you have shown about \(\alpha\)? What do
+  you think \(\alpha, \zeta, \Gamma, \Sigma\) represent? What does the property
+  involving \(\BigIota\) represent?
+
+  It is possible to walk through a similar process to define even more useful
+  operations on and properties of \(\Gamma\). If you're interested, there is
+  more to be found at this website:\\
+  \url{uggc://jjjs.vzcrevny.np.hx/~ohmmneq/kran/angheny_ahzore_tnzr/} (ROT13
+  employed to avoid spoilers in the name of the URL).
+ \item
+  We say two sets have the same size if there exists a bijection between them.
+
+  Show from the definition that the sets \(\set{1, 2, 3, 4, 5, 6}\)
+  and \(\set{0.1, -\pi, e, i, 3.14158, 0}\) have the same size.
+ \item
+  Prove from the definition that \(\Integers\) and \(\Naturals\) have the same
+  size.
+ \item
+  Why is the following proof incorrect?
+  \begin{tcolorbox}
+   There is a function \(\sin : \Reals \to \intcc{-1, 1}\). Therefore
+   \(\Reals\) and \(\intcc{-1, 1}\) have the same size.
+  \end{tcolorbox}
+  Can you give a correct proof from the definition that \(\Reals\) and
+  \(\intcc{-1, 1}\) have the same size?
+ \item
+  Prove from the definition that
+  \(\Forall a, b \in \Reals : a < b \implies
+    \text{``\(\intcc{a, b}\) has the same size as \(\intcc{0, 1}\)''}\).
+ \item
+  Prove from the definition that \(\intcc{0, 1}\) and \(\intco{0, 1}\) have the
+  same size.
+ \item
+  The \emph{Cantor-Schr\"oder-Bernstein Theorem} states that if \(A\) and \(B\)
+  are sets, and there exists an injection from \(A\) to \(B\), and there exists
+  an injection from \(B\) to \(A\), then there exists a bijection between
+  \(A\) and \(B\)\footnote{
+   The author will be happy to provide a proof of this fact.
+  }. Use this to find a shorter proof that \(\intcc{0, 1}\) and \(\intco{0, 1}\)
+  have the same size.
+ \item
+  Also use this to prove that \(\Rationals\) and \(\Naturals\) have the same
+  size.
+ \item
+  Let \(\abs S\) denote ``the number of elements of the set \(S\)''.
+
+  Let \(S_1, S_2, \dotsc S_n\) be finite sets. Write down formulae for:
+  \begin{itemize}
+   \item
+    \(\abs{S_1 \cap S_2}\)
+   \item
+    \(\abs{S_1 \cap S_2 \cap S_3}\)
+   \item
+    \(\abs{S_1 \cap S_2 \cap S_3 \cap S_4}\)
+  \end{itemize}
+  Guess a formula for \(\abs{S_1 \cap S_2 \cap \dotsb \cap S_n}\) and prove its
+  correctness by induction.
+\end{enumerate}
