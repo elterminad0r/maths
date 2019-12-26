@@ -1,0 +1,4 @@
+[submodule "iabonus"]
+	path = iabonus
+	url = https://github.com/Sterrs/iabonus
+	branch = master
