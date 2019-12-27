@@ -25,29 +25,6 @@
   \(\abs{z - x} \ge \abs x - \abs z\), and hence deduce that
   \(\abs{z - x} \ge \abs[\big]{\abs z - \abs x}\).
  \item
-  Let \(u_i, v_i \in \Reals\) be two finite sequences of real numbers, for
-  \(i \in \set{1, 2, \dotsc, n}\) (ie both have length \(n\)).
-
-  By considering the number of possible roots of the quadratic
-  \begin{equation*}
-   p(x) = \sum_{i = 1}^n (u_i x - v_i)^2
-  \end{equation*}
-  show that
-  \begin{equation*}
-   \parens[\Big]{\sum_{i = 1}^n u_i v_i}^2
-   \le \parens[\Big]{\sum_{i = 1}^n u_i^2}
-       \parens[\Big]{\sum_{i = 1}^n v_i^2}
-  \end{equation*}
-  and state the condition for equality to hold.
-
-  This is called the \emph{Cauchy-Schwarz inequality}.
- \item
-  Let \(p_i\), \(i = 1, \dotsc, 6\) be the probability that a biased die rolls
-  the value \(i\). Use the Cauchy-Schwarz inequality to show that the
-  probability of rolling the same value twice in two rolls cannot be made lower
-  than \(\frac 16\). Hence show that there is only one possible set of
-  probabilities for which this chance is exactly \(\frac 16\).
- \item
   Let \(a, d, r \in \Reals\) be constants and let \(n \in \Naturals\).
   Guess and prove by induction formulas for
   \begin{align*}
@@ -77,22 +54,39 @@
   Factorise \(\alpha^{12} - \beta^{12}\) into 6 brackets, each with only integer
   coefficients.
  \item
-  Show that \(\sqrt[\sqrt 2]2 = {\sqrt 2}^{\sqrt 2}\).
+  Find all solutions in \(\Reals^+\) to
+  \(\sqrt[\sqrt x]x = {\sqrt x}^{\sqrt x}\).
  \item
   Prove using the definition of \(\equiv\) that
   \begin{equation*}
-  \Forall n \in \Naturals :
-    \Forall a, b, c \in \Integers :
-    b \equiv c \pmod n \implies
-    a + b \equiv a + c \pmod n
+   \Forall n \in \Naturals :
+   \Forall a, b, c \in \Integers :
+   b \equiv c \pmod n \implies
+   a + b \equiv a + c \pmod n
   \end{equation*}
  \item
   Prove using the definition of \(\equiv\) that
   \begin{equation*}
-  \Forall n \in \Naturals :
-    \Forall a, b, c \in \Integers :
-    b \equiv c \pmod n \implies
-    ab \equiv ac \pmod n
+   \Forall n \in \Naturals :
+   \Forall a, b, c \in \Integers :
+   b \equiv c \pmod n \implies
+   ab \equiv ac \pmod n
+  \end{equation*}
+ \item
+  Prove by induction on \(n\) that
+  \begin{equation*}
+    \Forall m \in \Naturals :
+    \Forall a, b \in \Integers :
+    \Forall n \in \Naturals :
+    a \equiv b \pmod m \implies
+    a^n \equiv b^n \pmod m
+  \end{equation*}
+ \item
+  Hence show that \(7^{4n} \equiv 1 \pmod{10} \Forall n \in \Naturals\), and
+  \(7^{2n} \equiv 1 \pmod 4 \Forall n \in \Naturals\). Use
+  this to find the last digit of
+  \begin{equation*}
+   {}^4 7 \defeq 7^{7^{7^7}} = 7^{(7^{(7^7)})}
   \end{equation*}
  \item
   Briefly explain why
@@ -114,7 +108,7 @@
  \item
   Hence prove \emph{Fermat's Little Theorem}:
 
-  Let \(p\) be a prime, and \(a \in \Integers\). Then
+  Let \(p\) be a prime, and \(a \in \Naturals\). Then
   \begin{equation*}
    a^p \equiv a \pmod p
   \end{equation*}
@@ -133,6 +127,29 @@
   These three properties are \emph{reflexivity}, \emph{symmetry}, and
   \emph{transitivity}, respectively. Together, they mean that \(\equiv\) is an
   \emph{equivalence relation}.
+ \item
+  Let \(u_i, v_i \in \Reals\) be two finite sequences of real numbers, for
+  \(i \in \set{1, 2, \dotsc, n}\) (ie both have length \(n\)).
+
+  By considering the number of possible roots of the quadratic
+  \begin{equation*}
+   p(x) = \sum_{i = 1}^n (u_i x - v_i)^2
+  \end{equation*}
+  show that
+  \begin{equation*}
+   \parens[\Big]{\sum_{i = 1}^n u_i v_i}^2
+   \le \parens[\Big]{\sum_{i = 1}^n u_i^2}
+       \parens[\Big]{\sum_{i = 1}^n v_i^2}
+  \end{equation*}
+  and state the condition for equality to hold.
+
+  This is called the \emph{Cauchy-Schwarz inequality}.
+ \item
+  Let \(p_i\), \(i = 1, \dotsc, 6\) be the probability that a biased die rolls
+  the value \(i\). Use the Cauchy-Schwarz inequality to show that the
+  probability of rolling the same value twice in two rolls cannot be made lower
+  than \(\frac 16\). Hence show that there is only one possible set of
+  probabilities for which this chance is exactly \(\frac 16\).
  \item
   For nonnegative real numbers \(x_i \ge 0\), \(i = 1, \dotsc, n\), define
   \begin{align*}
@@ -154,8 +171,8 @@
    M_1'(M_1'(x_1, \dotsc, x_n), M_1'(y_1, \dotsc, x_n)) &=
    M_1'(x_1, \dotsc, x_n, y_1, \dotsc, y_n) \\
    \text{and}\quad
-   M_0'(M_0'(x_1, \dotsc, x_n), M_0'(y_0, \dotsc, x_n)) &=
-   M_0'(x_1, \dotsc, x_n, y_0, \dotsc, y_n)
+   M_0'(M_0'(x_1, \dotsc, x_n), M_0'(y_1, \dotsc, x_n)) &=
+   M_0'(x_1, \dotsc, x_n, y_1, \dotsc, y_n)
   \end{align*}
   and hence deduce that if for some \(n \in \Naturals\),
   \begin{equation*}
@@ -208,11 +225,13 @@
   \begin{equation*}
    \frac xy + \frac{2y}z + \frac{4z}x
   \end{equation*}
-  where \(x, y, z \in \Reals^+\).
+  where \(x, y, z \in \Reals^+\), stating values of \(x, y, z\) that attain this
+  minimum.
 
   Also find the maximum value of
   \begin{equation*}
    (1 + x - y)(2 + y - z)(3 + z - x)
   \end{equation*}
-  where \(x, y, z \in \Reals^+\).
+  where \(x, y, z \in \Reals^+\), stating values of \(x, y, z\) that attain this
+  maximum.
 \end{enumerate}

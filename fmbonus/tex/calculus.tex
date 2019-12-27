@@ -21,12 +21,13 @@ Throughout, you may assume the following properties of a limit:
 
 \begin{enumerate}
  \item
- Prove from first principles that, if
+  Prove from first principles that, if
   \(a\) is a constant and \(f, g\) are differentiable functions,
   \begin{alignat*}2
    && \dv{x}(af(x)) &= af'(x) \\
    &\text{and}\quad&\dv{x}(f(x) + g(x)) &= f'(x) + g'(x)
   \end{alignat*}
+  This means that differentiation is a \emph{linear operator}.
  \item
   Use the Binomial Theorem and the first-principles definition of the derivative
   to prove the \emph{power rule}
@@ -119,6 +120,13 @@ Throughout, you may assume the following properties of a limit:
   operation is then undefined. It can be shown that otherwise there will exist
   such a number in \(\Reals\).
  \item
+  If \(y = \sqrt x\), use the chain rule to show that \(y \dv<y>{x}\) is
+  constant.
+ \item
+  If \(y = \sqrt{\sin x}\), calculate \(y \dv<y>{x}\) using the chain rule.
+
+  In general, determine a formula for \(\dv{x}(y^2)\).
+ \item
   Let \(f\) a function that is differentiable at \(x_0\), and \(y = f(x)\) be a
   graph of that function.
 
@@ -204,18 +212,58 @@ Throughout, you may assume the following properties of a limit:
     where \(k\) is constant. Convince yourself by means of a sketch that your
     answer is correct.
    \item \(\displaystyle
-    \integ{2x \sin(x^2)}{x}
+    \integ[0]<\sqrt \pi>{2x \sin(x^2)}{x}
     \)
    \item \(\displaystyle
     \integ{\frac x{\sqrt{x^2 + 1}}}{x}
     \)
   \end{itemize}
+  This technique is called \emph{integration by substitution}.
+ \item
+  Find the mistake in the reasoning:
+  \begin{tcolorbox}
+   Let
+   \begin{equation*}
+    I \defeq \integ[0]<\pi>{\sin x}{x}
+   \end{equation*}
+   This can be evaluated directly as \(\eval{0}{\pi}{-\cos x} = 2\).
+
+   Also, the function \(\sin x\) can be written as \(g'(x) f'(g(x))\) where
+   \begin{align*}
+    g(x) &\defeq \sin x \\
+    f(x) &\defeq \frac x{\cos(\arcsin x)}
+   \end{align*}
+   so therefore
+   \begin{equation*}
+    I = \integ[\sin 0]<\sin \pi>{f(x)}{x} = 0
+   \end{equation*}
+   and we have \(0 = 2\).
+  \end{tcolorbox}
  \item
   If \(u\) and \(v\) are variables dependent on \(x\), use the product rule to
   show that
   \begin{equation*}
    \integ[a]<b>{uv'}{x} = \eval{a}{b}{uv} - \integ[a]<b>{u'v}{x}
   \end{equation*}
+  Hence show that
+  \begin{equation*}
+   \lim_{t \to \infty}
+    \bracks[\Big]{
+     \integ[0]<t>{x^{n + 1} e^{-x}}{x}
+    } =
+   \lim_{t \to \infty}
+    \bracks[\Big]{
+     (n + 1)\integ[0]<t>{x^n e^{-x}}{x}
+    }
+  \end{equation*}
+  and hence prove that for \(n \in \Naturals_0\),
+  \begin{equation*}
+   n! \equiv \lim_{t \to \infty}
+    \bracks[\Big]{
+     \integ[0]<t>{x^n e^{-x}}{x}
+    }
+  \end{equation*}
+  This technique is called \emph{integration by parts}.
  \item
   This question is motivated by question \ref{q_calc_int_pwr}.
 
@@ -293,6 +341,9 @@ Throughout, you may assume the following properties of a limit:
    respectively.
   }
   instead of \(\ell(x)\).
+ \item
+  If \(f\) is a positive, continuous function determine the derivative of
+  \(\ln(f(x))\).
  \item
   Find the derivative of \(e^x\) (aka \(\xi(x)\)), using the definition of
   \(\ln x\) (aka \(\ell(x)\)).
@@ -434,4 +485,9 @@ Throughout, you may assume the following properties of a limit:
   used to transform any integral involving trigonometric functions into an
   integral of a rational function (which unfortunately doesn't always make it
   look much easier).
+ \item
+  Use the substitution \(u = \cos x\) to determine
+  \begin{equation*}
+   \integ{\tan x}{x}
+  \end{equation*}
 \end{enumerate}

@@ -2,24 +2,55 @@
 
 \begin{enumerate}
  \item
+  Show that addition and multiplication in the complex numbers are commutative
+  and associative.
+ \item
+  Show that multiplication distributes over addition in the complex numbers.
+
+  (This means that
+  \begin{equation*}
+   a(b + c) = ab + ac \Forall a, b, c \in \Complex)
+  \end{equation*}
+ \item
+  Show that if \(x\) is real, then \(x(z_1, z_2) \equiv (x z_1, x z_2)\).
+ \item
+  Show that if \(x, y \in \Reals\), then \((x, y) \equiv x + i y\).
+
+  This gives rise to the conventional notation \(x + iy\) for an arbitrary
+  complex number. That is, if you are given \(z \in \Complex\), it fine to say
+  ``let \(x, y \in \Reals\) be such that \(z = x + iy\).''
+ \item
+  Show that \(i^2 = -1\).
+ \item
+  Show that if \(z, w \in \Complex\), then \(\abs{zw} = \abs z \abs w\).
+ \item
+  If \(x, y \in \Reals\) and \(z = x + iy\), find a \(w \in \Complex\) such that
+  \(zw = \abs{z}^2\). \(w\) is usually written \(\conj z\).
+
+  If \(z \ne 0\), find a complex number \(z^{-1} \in \Complex\) such that
+  \(zz^{-1} = 1\). Write it in terms of \(z\) and \(\conj z\).
+ \item
   Given two complex numbers
   \begin{align*}
-   z_1 &= r_1(\cos \theta_1 + i \sin \theta_1) \\
-   z_2 &= r_2(\cos \theta_2 + i \sin \theta_2)
+   z &= r_1(\cos \theta_1 + i \sin \theta_1) \\
+   w &= r_2(\cos \theta_2 + i \sin \theta_2)
   \end{align*}
-  where \(r_1, r_2, \theta_1, \theta_2 \in \Reals\), draw a diagram in the
-  complex plane\footnote{
+  where \(r_1, r_2, \theta_1, \theta_2 \in \Reals\),
+  calculate the values of \(\abs{z}\) and \(\abs{w}\).
+
+  Draw a diagram in the complex plane\footnote{
    The complex plane is a two-dimensional plane with ``real part'' running along
    the horizontal axis, and ``imaginary part'' running along the vertical axis,
    used to represent complex numbers.
   } to interpret the values of
   \(r_1\), \(r_2\), \(\theta_1\), and \(\theta_2\).
 
-  Calculate \(z_1 z_2\) and write it in the form
-  \(R_1 \cos \phi_1 + R_2 \sin \phi_2\). Hence draw \(z_1 z_2\) on your diagram.
+  Calculate \(zw\) and write it in the form
+  \(R_1 \cos \phi_1 + R_2 \sin \phi_2\). Hence calculate \(\abs{zw}\) and draw
+  \(zw\) on your diagram.
 
-  Could \(z_1\) be any complex number? Write down a pair of values
-  \((r_1, \theta_1)\) so that \(z_1 = -1 - \sqrt 3i\).
+  Could \(z\) be any complex number? Write down a pair of values
+  \((r_1, \theta_1)\) so that \(z = -1 - \sqrt 3i\).
 
   Write down another such pair of values for which \(r_1\) is the same but
   \(\theta_1\) is different. Also write down another pair for which
@@ -59,4 +90,12 @@
   Hence find a solution \(z \in \Complex\) to \(\sin z = 2\).
 
   Is this the only solution?
+ \item
+  We write \(\Integers[i]\) to denote the Gaussian integers, which is the set of
+  complex numbers with integer real and imaginary parts - ie
+  \(\set{a + bi : a, b \in \Integers}\).
+
+  Let \(n \in \Integers[i]\). Show that \(\abs{n}^2 \in \Integers\).
+
+  Explain why \(n^2\) corresponds to a Pythagorean triple.
 \end{enumerate}

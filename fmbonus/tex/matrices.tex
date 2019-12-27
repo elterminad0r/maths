@@ -1,0 +1,24 @@
+\section{Matrices}
+
+This section unfortunately does not make any attempt to define anything, as I
+can only think of one worthwhile question. When you have had the necessary
+definitions and tools defined for you, you may attempt it.
+\begin{enumerate}
+ \item
+  Let \(\vec f_n\) be a sequence of vectors defined as
+  \begin{equation*}
+   \vec f_n \defeq
+   \begin{cases*}
+    \begin{pmatrix} 0 \\ 1 \end{pmatrix} &
+     if \(n = 0\) \\
+    \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}\vec f_{n - 1} &
+     for \(n \in \Naturals\)
+   \end{cases*}
+  \end{equation*}
+  Show that
+  \(\vec f_{n + 2} = \vec f_{n + 1} + \vec f_n\) for all
+  \(n \in \Naturals\), and that \((\vec f_1)_1 = (\vec f_2)_1 = 1\). By
+  writing \(\begin{psmallmatrix} 0 & 1 \\ 1 & 1 \end{psmallmatrix}\) as
+  \(\mat U \mat D \mat U^{-1}\) where \(\mat D\) is a diagonal matrix,
+  find a closed form for the \(n\)th term of the Fibonacci sequence.
+\end{enumerate}

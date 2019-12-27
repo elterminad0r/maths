@@ -17,6 +17,95 @@
   Show that if \(A\) and \(B\) are sets, and \(A \subseteq B\) and
   \(B \subseteq A\), then \(A = B\).
  \item
+  Let \(\abs S\) denote ``the number of elements of the set \(S\)''.
+
+  Let \(S_1, S_2, \dotsc S_n\) be finite sets. Write down formulae for:
+  \begin{itemize}
+   \item
+    \(\abs{S_1 \cap S_2}\)
+   \item
+    \(\abs{S_1 \cap S_2 \cap S_3}\)
+   \item
+    \(\abs{S_1 \cap S_2 \cap S_3 \cap S_4}\)
+  \end{itemize}
+  Guess a formula for \(\abs{S_1 \cap S_2 \cap \dotsb \cap S_n}\) and prove its
+  correctness by induction.
+ \item
+  An operation on a set \(S\) is a function from \(S^2 \to S\).
+
+  An operation \(f\) on a set \(S\) is called \emph{commutative} iff
+  \begin{equation*}
+   f(a, b) = f(b, a) \Forall a, b \in S
+  \end{equation*}
+  and \emph{associative} iff
+  \begin{equation*}
+   f(f(a, b), c) = f(a, f(b, c)) \Forall a, b, c \in S
+  \end{equation*}
+  Write down three associative commutative operations on \(\Integers\).
+  Can you think of a commutative non-associative operation on \(\Integers\)?
+  How about a non-associative commutative operation on \(\Integers\)?
+ \item
+  Find an operation \(f\) on \(\Naturals_0\), satisfying the following axioms:
+  \begin{enumerate}
+   \item
+    \(f\) is an associative operation on \(\Naturals_0\)
+   \item \label{set_gp_axiom}
+    \(\Exists e \in \Naturals_0 : \Forall a \in \Naturals_0 : f(a, e) = a\)
+   \item
+    \(\Forall n \in \Naturals_0 : \Exists m \in \Naturals_0 : f(n, m) = e\),
+    where \(e\) is an element of \(\Naturals_0\) satisfying Axiom
+    \ref{set_gp_axiom}.
+  \end{enumerate}
+  The satisfaction of these axioms means that \((\Naturals_0, f)\) is a
+  \emph{group}.
+
+  Find an operation that makes the set of naturals congruent to
+  \(1\) modulo \(3\)\footnote{
+   written \(3\Naturals_0 + 1 \defeq \set{3n + 1 : n \in \Naturals}\)
+  } a group.
+ \item
+  Let \(S, S'\) be sets, \(f\) be an operation on \(S'\) and
+  \(g\) be a bijection from \(S \to S'\), and \(h\) be an operation on \(S\)
+  defined as \(h(a, b) \defeq g^{-1}(f(g(a), g(b)))\).
+
+  Show that \(f\) is associative if and only if \(h\) is associative.
+
+  Show that \(f\) is commutative if and only if \(h\) is commutative.
+ \item
+  We say two sets have the same size if there exists a bijection between them.
+
+  Show from the definition that the sets \(\set{1, 2, 3, 4, 5, 6}\)
+  and \(\set{0.1, -\pi, e, i, 3.14158, 0}\) have the same size.
+ \item
+  Prove from the definition that \(\Integers\) and \(\Naturals\) have the same
+  size.
+ \item
+  Prove from the definition that
+  \(\Forall a, b \in \Reals : a < b \implies
+    \text{``\(\intcc{a, b}\) has the same size as \(\intcc{0, 1}\)''}\).
+ \item
+  Why is the following proof incorrect?
+  \begin{tcolorbox}
+   There is a function \(\sin : \Reals \to \intcc{-1, 1}\). Therefore
+   \(\Reals\) and \(\intcc{-1, 1}\) have the same size.
+  \end{tcolorbox}
+  Can you give a correct proof from the definition that \(\Reals\) and
+  \(\intcc{-1, 1}\) have the same size?
+ \item
+  Prove from the definition that \(\intcc{0, 1}\) and \(\intco{0, 1}\) have the
+  same size.
+ \item
+  The \emph{Cantor-Schr\"oder-Bernstein Theorem} states that if \(A\) and \(B\)
+  are sets, and there exists an injection from \(A\) to \(B\), and there exists
+  an injection from \(B\) to \(A\), then there exists a bijection between
+  \(A\) and \(B\)\footnote{
+   The author will be happy to provide a proof of this fact.
+  }. Use this to find a shorter proof that \(\intcc{0, 1}\) and \(\intco{0, 1}\)
+  have the same size.
+ \item
+  Also use this to prove that \(\Rationals\) and \(\Naturals\) have the same
+  size.
+ \item
   % "getallen"
   Let \(\Gamma\) be a set with the following properties:
   \begin{itemize}
@@ -35,9 +124,7 @@
       \implies \Sigma(\gamma) \in \BigIota\),
     then \(\Gamma \subseteq \BigIota\).
   \end{itemize}
-  Now we also define an \emph{operation}\footnote{
-   An operation on a set \(S\) is nothing but a function from \(S^2 \to S\).
-  } on \(\Gamma\) as follows:
+  Now we also define an operation  on \(\Gamma\) as follows:
   % "addition"
   \begin{align*}
    \alpha: \Gamma^2 &\to \Gamma \\
@@ -121,52 +208,4 @@
   more to be found at this website:\\
   \url{uggc://jjjs.vzcrevny.np.hx/~ohmmneq/kran/angheny_ahzore_tnzr/} (ROT13
   employed to avoid spoilers in the name of the URL).
- \item
-  We say two sets have the same size if there exists a bijection between them.
-
-  Show from the definition that the sets \(\set{1, 2, 3, 4, 5, 6}\)
-  and \(\set{0.1, -\pi, e, i, 3.14158, 0}\) have the same size.
- \item
-  Prove from the definition that \(\Integers\) and \(\Naturals\) have the same
-  size.
- \item
-  Prove from the definition that
-  \(\Forall a, b \in \Reals : a < b \implies
-    \text{``\(\intcc{a, b}\) has the same size as \(\intcc{0, 1}\)''}\).
- \item
-  Why is the following proof incorrect?
-  \begin{tcolorbox}
-   There is a function \(\sin : \Reals \to \intcc{-1, 1}\). Therefore
-   \(\Reals\) and \(\intcc{-1, 1}\) have the same size.
-  \end{tcolorbox}
-  Can you give a correct proof from the definition that \(\Reals\) and
-  \(\intcc{-1, 1}\) have the same size?
- \item
-  Prove from the definition that \(\intcc{0, 1}\) and \(\intco{0, 1}\) have the
-  same size.
- \item
-  The \emph{Cantor-Schr\"oder-Bernstein Theorem} states that if \(A\) and \(B\)
-  are sets, and there exists an injection from \(A\) to \(B\), and there exists
-  an injection from \(B\) to \(A\), then there exists a bijection between
-  \(A\) and \(B\)\footnote{
-   The author will be happy to provide a proof of this fact.
-  }. Use this to find a shorter proof that \(\intcc{0, 1}\) and \(\intco{0, 1}\)
-  have the same size.
- \item
-  Also use this to prove that \(\Rationals\) and \(\Naturals\) have the same
-  size.
- \item
-  Let \(\abs S\) denote ``the number of elements of the set \(S\)''.
-
-  Let \(S_1, S_2, \dotsc S_n\) be finite sets. Write down formulae for:
-  \begin{itemize}
-   \item
-    \(\abs{S_1 \cap S_2}\)
-   \item
-    \(\abs{S_1 \cap S_2 \cap S_3}\)
-   \item
-    \(\abs{S_1 \cap S_2 \cap S_3 \cap S_4}\)
-  \end{itemize}
-  Guess a formula for \(\abs{S_1 \cap S_2 \cap \dotsb \cap S_n}\) and prove its
-  correctness by induction.
 \end{enumerate}

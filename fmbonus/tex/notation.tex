@@ -82,7 +82,7 @@ If the set you're talking about is the empty set, then the statement is
 automatically true. This called ``vacuous truth'', and it really does make sense
 (to disprove a universally quantified statement, you would have to provide a
 counterexample from the set - but the whole point of the empty set is that
-there's nothing in it to pick!) It is related to the principle of explosion.
+there's nothing in it to provide!) It is related to the principle of explosion.
 More than likely you have used a vacuous truth jokingly to construct some
 bizarre statement before: ``all integers that square to \(2\) have a decimal
 representation consisting only of \(3\)s.''\footnote{
@@ -97,7 +97,7 @@ natural number $n$ for which \(\frac 1{100!}n! > 100^n\) might be written
 \begin{equation*}
  \Exists n \in \Naturals : \tfrac 1{100!}n! > 100^n
 \end{equation*}
-In much that same way that a universally quantified statement over the empty set
+In much the same way that a universally quantified statement over the empty set
 is always true, an existentially quantified statement over the empty set is
 always false.
 
@@ -144,8 +144,8 @@ element of \(S\)'' and \(x \notin S\) to mean ``\(x\) is not an element of
 ``\(\set{s_1, s_2, s_3, \dotsc, s_n}\)'' means ``the set with elements
 \(s_1, s_2, s_3\) up to \(s_n\)''.
 
-``\(\set{s_1, s_2, s_3, \dotsc}\)'' means ``the set with elements for \(i\) a
-natural number''.
+``\(\set{s_1, s_2, s_3, \dotsc}\)'' means ``the set with elements \(s_i\) for
+\(i\) a natural number''.
 
 We say two sets are equal if they have precisely the same elements. Formally,
 \(A = B\) iff \(\Forall a \in A: a \in B\) and \(\Forall b \in B: b \in A\).
@@ -313,7 +313,7 @@ Note that this is not the same \(\equiv\) as in identities.
 \subsection{Trigonometry}
 
 Angles are always in radians. One radian is the angle such that the arc
-subtended by the angle in the unit circle\footnote{
+subtended by that angle in the unit circle\footnote{
  The unit circle is the circle with radius \(1\).
 } has length \(1\).
 
@@ -376,6 +376,8 @@ function. Precisely,
    \tan(\arctan x) = x \Forall x \in \Reals
   \end{equation*}
 \end{itemize}
+Their images are chosen in this way as this is the first sensible ``slice'' of
+the regular trig function that hits all of \(\intcc{1, 1}\).
 
 \subsection{Calculus}
 
@@ -452,7 +454,7 @@ so you really do have to be careful not to just talk about ``area''.
 You may have noticed the parentheses here. Some people would omit these and just
 write
 \begin{equation*}
- \integ[0]<2>{x - 1}{x}.
+ \integ[0]<2>{x - 1}{x}
 \end{equation*}
 Because an integral is always opened by an integral sign and closed by a
 differential, this isn't ambiguous per se, but the author disagrees with this
@@ -482,9 +484,7 @@ never to use a variable as a dummy variable that already exists elsewhere.
 
 \subsubsection{Fundamental Theorem of Calculus}
 
-The Fundamental Theorem of Calculus tells you\footnote{
- This is not the full statement of the Theorem
-} the following:
+The Fundamental Theorem of Calculus tells you the following:
 \begin{tcolorbox}
  If \(f\) is a continuous function, then there exist (infinitely many)
  antiderivatives of \(f\), each differing by a constant. Furthermore, if \(F\)
@@ -492,18 +492,53 @@ The Fundamental Theorem of Calculus tells you\footnote{
  \begin{equation*}
   \integ[a]<b>{f(x)}{x} \equiv F(b) - F(a)
  \end{equation*}
+ Furthermore, if
+ \begin{equation*}
+  G(x) \defeq \integ[x_0]<x>{f(t)}{t}
+ \end{equation*}
+ for some \(x_0\), then \(G'(x) \equiv f(x)\)
 \end{tcolorbox}
 Sometimes people write \(\eval{a}{b}{F(x)}\) or \(\evalline{a}{b}{F(x)}\) to
 mean \(F(b) - F(a)\).
 
 Really, all this means is that ``when you add up all the small changes in
 \(F\), you get the overall change'', which should sound like a reasonable
-statement.
+statement. The consequence of this theorem is basically that differentiation and
+integration are inverse processes, in some sense.
 
-Because of this theorem, people write
+Because of this theorem, people write the \emph{indefinite integral}
 \begin{equation*}
  \integ{f(x)}{x}
 \end{equation*}
 to mean ``an antiderivative of \(f(x)\) with respect to \(x\)''. This is of
 course only uniquely determined up to a constant, so this is where ``\({}+ C\)''
 comes from.
+
+\subsection{Complex Numbers}
+
+\(\Complex\) is the set of complex numbers. \(\Complex\) is defined as
+\(\Reals^2\) equipped with the operations of addition and multiplication as
+follows:
+\begin{align*}
+ (z_1, z_2) + (w_1, w_2) &\defeq (z_1 + w_1, z_2 + w_2) \\
+ (z_1, z_2) \cdot (w_1, w_2) &\defeq (z_1 w_1 - z_2 w_2, z_1 w_2 + z_2 w_1)
+\end{align*}
+We refer to the element \((0, 1)\) as \(i\). Also, if \(x\) is a real number,
+then \(x\) is associated with the complex number \((x, 0) \in \Complex\).
+
+If
+\((z_1, z_2) \in \Complex\), then the \emph{real part} is defined as
+\begin{equation*}
+ \Re((z_1, z_2)) \defeq z_1
+\end{equation*}
+and the \emph{imaginary part} is defined as
+\begin{equation*}
+ \Im((z_1, z_2)) \defeq z_2
+\end{equation*}
+Also we write the \emph{modulus} as
+\begin{equation*}
+ \abs[\big]{(z_1, z_2)} \defeq \sqrt{z_1^2 + z_2^2}
+\end{equation*}
+If you have met complex numbers before, this definition may seem ``backwards''.
+However, if you argue from this direction, it's much more obvious to show that
+this number system is worthwhile at all.
