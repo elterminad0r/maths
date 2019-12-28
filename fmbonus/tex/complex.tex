@@ -29,7 +29,7 @@
 
   If \(z \ne 0\), find a complex number \(z^{-1} \in \Complex\) such that
   \(zz^{-1} = 1\). Write it in terms of \(z\) and \(\conj z\).
- \item
+ \item \label{q_compl_args}
   Given two complex numbers
   \begin{align*}
    z &= r_1(\cos \theta_1 + i \sin \theta_1) \\
@@ -56,13 +56,26 @@
   \(\theta_1\) is different. Also write down another pair for which
   \(\theta_1\) is the same but \(r_1\) is different.
  \item
-  Carefully write down the first eight terms of \(e^{ix}\). By comparing with
-  the Maclaurin series of \(\sin x\) and \(\cos x\), write down a sensible
-  formula for \(e^{ix}\), of the form \(\alpha \cos x + \beta \sin x\) where
+  Carefully write down the first eight terms of the Maclaurin series of
+  \(e^{i\theta}\) (by expanding \(e^x\) where \(x = i\theta\)). By comparing
+  with the Maclaurin series of \(\sin \theta\) and \(\cos \theta\), write down a
+  sensible formula for \(e^{i\theta}\), of the form
+  \(\alpha \cos \theta + \beta \sin \theta\) where
   \(\alpha, \beta \in \Complex\).
  \item
-  You may now assume that this formula is correct. You may also assume that
-  \((e^z)^w = e^{zw}\) still holds \(\Forall z, w \in \Complex\).
+  You may now assume that this formula is correct\footnote{
+   Really, this is just how we define \(e^z\) for \(z \in \Complex\), so its
+   correctness is literally trivial.
+  }.
+
+  Use question \ref{q_compl_args} to show that for \(\theta, \phi \in \Reals\),
+  \(e^{i\theta} e^{i\phi} \equiv e^{i(\theta + \phi)}\).
+ \item
+  For \(z = x + iy \in \Complex\), we now further define
+  \(e^z \defeq e^x e^{iy}\).
+
+  Hence prove by induction that for \(z \in \Complex\), \(n \in \Naturals\),
+  \((e^z)^n \equiv e^{nz}\).
 
   Write down the values of \(e^{i\pi}\), \(e^{i\pi / 2}\),
   \(e^{i\pi / 4}\), \(e^{i\pi / 3}\), and \(e^{2 i \pi}\).
@@ -71,13 +84,40 @@
   \((\cos \theta + i \sin \theta)^n\) in the form \(\cos \phi + i \sin \phi\).
 
   This is called ``de Moivre's Theorem''.
-
-  Give a more rigorous proof of de Moivre's Theorem by induction.
  \item
-  By considering the real part of
-  \(e^{5ix}\), deduce a formula for \(\cos 5x\) in terms of \(\cos x\).
-
-  You may wish to write \(c = \cos x\) for convenience.
+  By considering the real part of \(e^{5ix}\), show that
+  \begin{equation*}
+   \cos 5x \equiv 16\cos^5 x - 20\cos^3 x + 5\cos x
+  \end{equation*}
+  You may wish to write \(c = \cos x\) and \(s = \sin x\) for convenience.
+  % cos 5x = Re((c + is)^5)
+  %        = c^5 - c^3 s^2 + c s^4
+  %        = c^5 - 10 c^3 (1 - c^2) + 5 c (1 - c^2)^2
+  %        = c^5 - 10c^3 + 10c^5 + 5c - 10c^3 + 5c^5
+  %        = 16c^5 - 20c^3 + 5c
+ \item
+  Show that if \(n \in \Naturals\),
+  \begin{align*}
+   \cos 2nx &\equiv
+    \sum_{r = 0}^{n - 1}
+     (-1)^r \binom{2n}{2r} \cos^{2(n - r)} x \sin^{2r} x \\
+   \sin 2nx &\equiv
+    \sum_{r = 0}^{n - 1}
+     (-1)^r \binom{2n}{2r + 1} \cos^{2(n - r) - 1} x \sin^{2r + 1} x
+  \end{align*}
+  and deduce that
+  \begin{equation*}
+   \tan 2nx \equiv
+   \frac{\sum_{r = 0}^{n - 1} (-1)^r \binom{2n}{2r + 1} \tan^{2r + 1} x}
+        {\sum_{r = 0}^{n - 1} (-1)^r \binom{2n}{2r} \tan^{2r} x}
+  \end{equation*}
+  % cos 2nx + i·sin 2nx = (c + is)^2n
+  %                    = Σ (2n)Cr c^(2n - r) (is)^r
+  %                    = Σ (2n)Cr c^(2n - r) i^r s^r
+  %                    = Σ (2n)C(2r) c^(2n - 2r) i^2r s^2r +
+  %                      Σ (2n)C(2r + 1) c^(2n - 2r - 1) i^(2r + 1) s^(2r + 1)
+  %                    = Σ (2n)C(2r) c^(2n - 2r) (-1)^2r s^2r +
+  %                     iΣ (2n)C(2r + 1) c^(2n - 2r - 1) (-1)^r s^(2r + 1)
  \item
   Write down \(\alpha_1, \alpha_2, \beta_1, \beta_2 \in \Complex\) such that
   \begin{align*}
@@ -90,6 +130,14 @@
   Hence find a solution \(z \in \Complex\) to \(\sin z = 2\).
 
   Is this the only solution?
+  %      (e^ix - e^-ix)/2i = 2
+  % ⇔          e^2ix - 1 = 4ie^ix
+  % ⇔ e^2ix - 4ie^ix - 1 = 0
+  % ⇔               e^ix = (4i ± √(-12)) / 2
+  %                      = i(2 ± √3)
+  %                      = e^(iπ/2 + log(2 ± √3))
+  % ⇔                 iz = iπ(1/2 + 2n) + log(2 ± √3)
+  % ⇔                  z = π(1/2 + 2n) - i·log(2 ± √3)
  \item
   We write \(\Integers[i]\) to denote the Gaussian integers, which is the set of
   complex numbers with integer real and imaginary parts - ie
@@ -99,3 +147,6 @@
 
   Explain why \(n^2\) corresponds to a Pythagorean triple.
 \end{enumerate}
+
+\subsection{An aside on complex exponentiation}
+%TODO

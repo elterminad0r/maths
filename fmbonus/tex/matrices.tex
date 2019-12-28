@@ -21,4 +21,18 @@ definitions and tools defined for you, you may attempt it.
   writing \(\begin{psmallmatrix} 0 & 1 \\ 1 & 1 \end{psmallmatrix}\) as
   \(\mat U \mat D \mat U^{-1}\) where \(\mat D\) is a diagonal matrix,
   find a closed form for the \(n\)th term of the Fibonacci sequence.
+  % a nice way to do this is to write
+  %             [ 0 1 ]
+  % f_{n + 2} = [     ] f_{n + 1}
+  %             [ 1 1 ]
+  %
+  %             [[ 1 0 ]   [ -1 1 ]]
+  %           = [[     ] + [      ]] f_{n + 1}
+  %             [[ 0 1 ]   [  1 0 ]]
+  %
+  %                         [ -1 1 ] [ 0 1 ]
+  %           = f_{n + 1} + [      ] [     ] f_n
+  %                         [  1 0 ] [ 1 1 ]
+  %
+  %           = f_{n + 1} + f_n
 \end{enumerate}

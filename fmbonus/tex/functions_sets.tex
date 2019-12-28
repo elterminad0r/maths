@@ -4,15 +4,20 @@
  \item
   Write down the set that is a subset of every set.
  \item
-  Use quantifiers to write down all the properties that a subset of
-  \(A \times B\) must satisfy for it to correspond to a function from
-  \(A \to B\).
+  Use quantifiers to write down all the properties that a subset
+  \(R \subseteq A \times B\) must satisfy for it to correspond to a function
+  from \(A \to B\).
+  % ∀ (a₁, b₁) ∈ R : ∀ (a₂, b₂) ∈ R : a₁ ≠ a₂
+  % ∀ a ∈ A : ∃ (a', b') ∈ R : a = a'
 
   Write down the conditions for such a subset to correspond to an injective and
   a surjective function, respectively.
+  % ∀ (a₁, b₁) ∈ R : ∀ (a₂, b₂) ∈ R : a₁ ≠ a₂ ⇒ b₁ ≠ b₂
+  % ∀ b ∈ B : ∃ (a', b') ∈ R : b = b'
  \item
   State a necessary and sufficient condition on \(A\) and \(B\) for
   \(A \times B\) to correspond to a function from \(A \to B\).
+  % A is the empty set, or |B| = 1
  \item
   Show that if \(A\) and \(B\) are sets, and \(A \subseteq B\) and
   \(B \subseteq A\), then \(A = B\).
@@ -42,10 +47,45 @@
    f(f(a, b), c) = f(a, f(b, c)) \Forall a, b, c \in S
   \end{equation*}
   Write down three associative commutative operations on \(\Integers\).
+  % a * b = a + b
+  % a * b = a · b
+  % a * b = 0
   Can you think of a commutative non-associative operation on \(\Integers\)?
-  How about a non-associative commutative operation on \(\Integers\)?
+  % eg a * b := 2(a + b)
+  How about a non-commutative associative operation on \(\Integers\)?
+  % eg a * b := a
+  %
+  % Also, on ℕ, concatenation is such an operation. This operation can then be
+  % applied to ℤ via question \ref{q_functions_op_biject}. This is already less
+  % trivial, and somewhat suggests the following:
+  %
+  % Consider the question "construct an operation on ℤ that makes ℤ into a
+  % non-abelian group". This is in some sense more interesting, because it means
+  % that the operation will be less "trivial" than the easy answer above. It is
+  % certainly a stronger condition, but also induces a certain way of thinking
+  % that makes this question suddenly much more straightforward, if you know a
+  % little group theory.
+  %
+  % GL₂(ℚ) is a countably infinite, non-abelian group, since
+  % [1 1][1 0]   [2 1]
+  % [   ][   ] = [   ]
+  % [0 1][1 1]   [1 1]
+  % but
+  % [1 0][1 1]   [1 1]
+  % [   ][   ] = [   ]
+  % [1 1][0 1]   [1 2]
+  % Since both GL₂(ℚ) and ℤ are countably infinite, there exists a bijection
+  % between them. Then simply define
+  % a * b = AB
+  % where A, B are the matrices associated with a, b resp, and we mean to take
+  % the number associated with the matrix AB.
  \item
   Find an operation \(f\) on \(\Naturals_0\), satisfying the following axioms:
+  % one way is to say "think of the even numbers as the nonnegative integers,
+  % and the odd numbers as the negative integers. Then just use addition as
+  % defined on the integers."
+  %
+  % Alternatively, "bitwise XOR" also works.
   \begin{enumerate}
    \item
     \(f\) is an associative operation on \(\Naturals_0\)
@@ -63,26 +103,40 @@
   \(1\) modulo \(3\)\footnote{
    written \(3\Naturals_0 + 1 \defeq \set{3n + 1 : n \in \Naturals}\)
   } a group.
- \item
+  % biject them with N_0
+ \item \label{q_functions_op_biject}
   Let \(S, S'\) be sets, \(f\) be an operation on \(S'\) and
   \(g\) be a bijection from \(S \to S'\), and \(h\) be an operation on \(S\)
   defined as \(h(a, b) \defeq g^{-1}(f(g(a), g(b)))\).
 
   Show that \(f\) is associative if and only if \(h\) is associative.
+  % ⇒ implication given by
+  % h(a, h(b, c)) = g^-1(f(g(a), g(g^-1(f(g(b), g(c))))))
+  %               = g^-1(f(g(a), f(g(b), g(c))))
+  %               = g^-1(f(f(g(a), g(b)), g(c)))
+  %               = g^-1(f(g(g^-1(f(g(a), g(b)))), g(c)))
+  %               = h(h(a, b), c)
+  % and ⇐ implication given by noting that
+  % f(a, b) = g(h(g^-1(a), g^-1(b)))
+  % so you can recycle the argument.
 
   Show that \(f\) is commutative if and only if \(h\) is commutative.
+  % similar process
  \item
   We say two sets have the same size if there exists a bijection between them.
 
   Show from the definition that the sets \(\set{1, 2, 3, 4, 5, 6}\)
   and \(\set{0.1, -\pi, e, i, 3.14158, 0}\) have the same size.
+  % define case-by-case
  \item
   Prove from the definition that \(\Integers\) and \(\Naturals\) have the same
   size.
+  % some bijection like even-odd positive-negative as above.
  \item
   Prove from the definition that
   \(\Forall a, b \in \Reals : a < b \implies
     \text{``\(\intcc{a, b}\) has the same size as \(\intcc{0, 1}\)''}\).
+  % linear map bijecting
  \item
   Why is the following proof incorrect?
   \begin{tcolorbox}
@@ -91,20 +145,24 @@
   \end{tcolorbox}
   Can you give a correct proof from the definition that \(\Reals\) and
   \(\intcc{-1, 1}\) have the same size?
+  % x / (|x| + 1) is a nice function for this.
  \item
   Prove from the definition that \(\intcc{0, 1}\) and \(\intco{0, 1}\) have the
   same size.
+  % map 2^n to 2^(n - 1) where n ∈ ℤ, otherwise identity map
  \item
   The \emph{Cantor-Schr\"oder-Bernstein Theorem} states that if \(A\) and \(B\)
   are sets, and there exists an injection from \(A\) to \(B\), and there exists
   an injection from \(B\) to \(A\), then there exists a bijection between
   \(A\) and \(B\)\footnote{
    The author will be happy to provide a proof of this fact.
-  }. Use this to find a shorter proof that \(\intcc{0, 1}\) and \(\intco{0, 1}\)
+  }. Use this to find a simpler proof that \(\intcc{0, 1}\) and \(\intco{0, 1}\)
   have the same size.
+  % x maps to x / 2 is an injection both ways
  \item
   Also use this to prove that \(\Rationals\) and \(\Naturals\) have the same
   size.
+  % p / q (in lowest terms) maps to 2^p 3^q, and inclusion map
  \item
   % "getallen"
   Let \(\Gamma\) be a set with the following properties:
@@ -160,6 +218,9 @@
 
   Do this by considering the set of all elements \(\gamma \in \Gamma\) such that
   \(\alpha(\zeta, \gamma) = \gamma\).
+  % α(ζ, ζ) = ζ
+  % α(ζ, Σ(γ)) = Σ(α(ζ, γ))
+  %            = Σ(γ)
  \item
   Prove that
   \(\forall \gamma_1, \gamma_2 \in \Gamma :
@@ -168,6 +229,10 @@
   Do this by letting \(\gamma_1\) be arbitrary, and considering the set of all
   elements \(\gamma \in \Gamma\) such that
   \(\alpha(\Sigma(\gamma_1), \gamma) = \Sigma(\alpha(\gamma_1, \gamma))\).
+  % α(Σ(γ₁), ζ) = Σ(γ₁) = Σ(α(γ₁, ζ))
+  % α(Σ(γ₁), Σ(γ₂)) = Σ(α(Σ(γ₁), γ₂))
+  %                 = Σ(Σ(α(γ₁, γ₂)))
+  %                 = Σ(α(γ₁, Σ(γ₂))
  \item
   Prove that
   \(\Forall \gamma_1, \gamma_2, \gamma_3 \in \Gamma :
@@ -176,8 +241,14 @@
 
   Do this by letting \(\gamma_1, \gamma_2\) be arbitrary and considering the set
   of all elements \(\gamma \in \Gamma\) such that
-  \(\alpha(\alpha(\gamma_1, \gamma_2), \gamma) =
-    \alpha(\gamma_1, \alpha(\gamma_2, \gamma))\).
+  \(\alpha(\alpha(\gamma_1, \gamma_2), \gamma)
+  = \alpha(\gamma_1, \alpha(\gamma_2, \gamma))\).
+  % α(α(γ₁, γ₂), ζ) = α(γ₁, γ₂)
+  %                 = α(ζ, α(γ₁, γ₂))
+  % α(α(γ₁, γ₂), Σ(γ₃)) = Σ(α(α(γ₁, γ₂), γ₃))
+  %                     = Σ(α(γ₁, α(γ₂, γ₃)))
+  %                     = α(γ₁, Σ(α(γ₂, γ₃)))
+  %                     = α(γ₁, α(γ₂, Σ(γ₃)))
  \item
   Hence show that
   \(\Forall \gamma_1, \gamma_2, \gamma_3, \gamma_4 \in \Gamma :
@@ -185,6 +256,8 @@
     \alpha(\alpha(\alpha(\gamma_1, \gamma_2), \gamma_3), \gamma_4)\).
 
   (Do this without considering any more sets)
+  % α(γ₁, α(γ₂, α(γ₃, γ₄))) = α(α(γ₁, γ₂), α(γ₃, γ₄))
+  %                         = α(α(α(γ₁, γ₂), γ₃), γ₄)
  \item
   Prove that
   \(\Forall \gamma_1, \gamma_2 \in \Gamma :
@@ -194,6 +267,11 @@
   elements \(\gamma \in \Gamma\) such that
   \(\alpha(\gamma_1, \gamma) = \alpha(\gamma, \gamma_1)\). Remember that you
   have already proved a number of useful results about \(\alpha\).
+  % α(γ₁, ζ) = γ₁
+  %          = α(ζ, γ₁)
+  % α(γ₁, Σ(γ₂)) = Σ(α(γ₁, γ₂))
+  %              = Σ(α(γ₂, γ₁))
+  %              = α(Σ(γ)₂, γ₁)
  \item
   Write down an expression for
   \(\alpha(\Sigma(\Sigma(\zeta)), \Sigma(\Sigma(\Sigma(\Sigma(\zeta)))))\) that
