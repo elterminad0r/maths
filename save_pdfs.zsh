@@ -19,11 +19,13 @@ for f in **.pdf~pdf**; do
     fi
     if [ -f $oldpdfpath ]; then
         if diff $f $oldpdfpath; then
-            echo "skipping $f"
+            echo -n s
         else
+            echo \\n$f
             cp $f $pdfpath
         fi
     else
+        echo \\n$f
         cp $f $pdfpath
     fi
 done
