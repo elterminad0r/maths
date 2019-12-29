@@ -23,9 +23,14 @@
   Show that \(i^2 = -1\).
  \item
   Show that if \(z, w \in \Complex\), then \(\abs{zw} = \abs z \abs w\).
+  % |(x + iy)(t + is)| = |xt - ys + i(yt + xs)|
+  %                    = √((xt - ys)^2 + (yt + xs)^2)
+  %                    = √(x²t² + y²s² - 2xtys + y²t² + x²s² + 2ytxs)
+  %                    = √(x²t² + y²s² + y²t² + x²s²)
+  %                    = √((x² + y²)(t² + s²))
  \item
   If \(x, y \in \Reals\) and \(z = x + iy\), find a \(w \in \Complex\) such that
-  \(zw = \abs{z}^2\). \(w\) is usually written \(\conj z\).
+  \(zw = \abs z^2\). \(w\) is usually written \(\conj z\).
 
   If \(z \ne 0\), find a complex number \(z^{-1} \in \Complex\) such that
   \(zz^{-1} = 1\). Write it in terms of \(z\) and \(\conj z\).
@@ -36,14 +41,13 @@
    w &= r_2(\cos \theta_2 + i \sin \theta_2)
   \end{align*}
   where \(r_1, r_2, \theta_1, \theta_2 \in \Reals\),
-  calculate the values of \(\abs{z}\) and \(\abs{w}\).
+  calculate the values of \(\abs z\) and \(\abs w\).
 
   Draw a diagram in the complex plane\footnote{
    The complex plane is a two-dimensional plane with ``real part'' running along
    the horizontal axis, and ``imaginary part'' running along the vertical axis,
    used to represent complex numbers.
-  } to interpret the values of
-  \(r_1\), \(r_2\), \(\theta_1\), and \(\theta_2\).
+  } to interpret the values of \(r_1\), \(r_2\), \(\theta_1\), and \(\theta_2\).
 
   Calculate \(zw\) and write it in the form
   \(R_1 \cos \phi_1 + R_2 \sin \phi_2\). Hence calculate \(\abs{zw}\) and draw
@@ -64,8 +68,8 @@
   \(\alpha, \beta \in \Complex\).
  \item
   You may now assume that this formula is correct\footnote{
-   Really, this is just how we define \(e^z\) for \(z \in \Complex\), so its
-   correctness is literally trivial.
+   Really, this is just how we choose to define \(e^z\) for \(z \in \Complex\),
+   so its correctness is literally trivial.
   }.
 
   Use question \ref{q_compl_args} to show that for \(\theta, \phi \in \Reals\),
@@ -143,10 +147,59 @@
   complex numbers with integer real and imaginary parts - ie
   \(\set{a + bi : a, b \in \Integers}\).
 
-  Let \(n \in \Integers[i]\). Show that \(\abs{n}^2 \in \Integers\).
+  Let \(n \in \Integers[i]\). Show that \(\abs n^2 \in \Integers\).
 
   Explain why \(n^2\) corresponds to a Pythagorean triple.
 \end{enumerate}
 
 \subsection{An aside on complex exponentiation}
-%TODO
+
+I will try to convince you here that our definition for \(e^{ix}\) really is the
+right one. If we are to define \(e^{ix}\) in \(\Complex\), then we would like
+two things: \(e^{i \cdot 0} = 1\), and \(\dv{x} (e^{ix}) = ie^{ix}\). The latter
+is \emph{crucial} as the exponential function is so interlinked with calculus.
+An exponential that we could not differentiate would hardly be an exponential
+function at all.
+
+But since multiplication by \(i\), aka
+\(\cos \frac \pi 2 + i \sin \frac \pi 2\) is just anti-clockwise rotation by
+\(\degrees{90}\) in the complex plane (cf question \ref{q_compl_args}), this
+means that if we consider the point tracing out \(e^{it}\) as \(t\) varies its
+``velocity'' is always perpendicular to its ``position'' with respect to the
+origin. Furthermore, we can differentiate again to get
+\(\dv[2]{x} (e^{ix}) = -e^{ix}\), so its ``acceleration'' is always towards the
+origin. Now, if you have done some physics, this should start to sound familiar.
+This is just a simple stable circular orbit!
+
+If you trust differential equations, suppose that
+\(e^{it} \equiv x(t) + i y(t)\). Then \(x'' = -x\) and \(y'' = -y\), and we have
+the initial conditions \(x(0) = 1\), \(x'(0) = 0\), and \(y(0) = 0\),
+\(y'(0) = 1\). These are sufficient to show that
+\(x(t) = \cos t\) and \(y(t) = \sin t\).
+
+It is then \emph{devilishly} difficult to define \(z^w\) satisfactorily for
+general \(z, w \in \Complex\). It is tempting to just say something like ``write
+z in the form \(re^{i\theta}\) where \(r \in \Reals^+\) and
+\(\theta \in \intco{0, 2\pi}\), and define \(z^w \defeq e^{(\ln r + z')w}\)''.
+However, then useful identities like \((zw)^c = z^c w^c\) start to fail:
+\begin{align*}
+ (-1)^{1/2} (-1)^{1/2}
+  &= (e^{i\pi})^{1/2} (e^{i\pi})^{1/2} \\
+  &= e^{i\pi/2} e^{i\pi/2} \\
+  &= -1 \\
+ ((-1) \cdot (-1))^{1/2}
+  &= 1^{1/2} \\
+  &= (e^{0 \cdot i})^{1/2} \\
+  &= e^0 \\
+  &= 1
+\end{align*}
+(Interesting side note: almost whatever definition you \emph{do} use, \(i^i\)
+will be real).
+
+Sometimes people exploit this fact to create ``paradoxes'' and dubious proofs of
+\(1 = -1\) and so on.
+
+A way to resolve this is to just call \(z^w\) a ``multivalued'' function
+(violating everything we know and hold dear about functions), that takes on
+the values corresponding to each \(\theta \in \Reals\), rather than just the
+\(\theta \in \intco{0, 2\pi}\).
