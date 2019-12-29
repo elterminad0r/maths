@@ -150,6 +150,26 @@
   Let \(n \in \Integers[i]\). Show that \(\abs n^2 \in \Integers\).
 
   Explain why \(n^2\) corresponds to a Pythagorean triple.
+ \item \label{q_comp_zw_exp}
+  Spot the mistake in the reasoning:
+  \begin{tcolorbox}
+   \begin{align*}
+    (-1)^{1/2} (-1)^{1/2}
+     &= (e^{i\pi})^{1/2} (e^{i\pi})^{1/2} \\
+     &= e^{i\pi/2} e^{i\pi/2} \\
+     &= -1
+   \end{align*}
+   but also,
+   \begin{align*}
+    (-1)^{1/2} (-1)^{1/2}
+     &= ((-1) \cdot (-1))^{1/2} \\
+     &= 1^{1/2} \\
+     &= (e^{0 \cdot i})^{1/2} \\
+     &= e^0 \\
+     &= 1
+   \end{align*}
+   so \(-1 = 1\).
+  \end{tcolorbox}
 \end{enumerate}
 
 \subsection{An aside on complex exponentiation}
@@ -181,23 +201,11 @@ It is then \emph{devilishly} difficult to define \(z^w\) satisfactorily for
 general \(z, w \in \Complex\). It is tempting to just say something like ``write
 z in the form \(re^{i\theta}\) where \(r \in \Reals^+\) and
 \(\theta \in \intco{0, 2\pi}\), and define \(z^w \defeq e^{(\ln r + z')w}\)''.
-However, then useful identities like \((zw)^c = z^c w^c\) start to fail:
-\begin{align*}
- (-1)^{1/2} (-1)^{1/2}
-  &= (e^{i\pi})^{1/2} (e^{i\pi})^{1/2} \\
-  &= e^{i\pi/2} e^{i\pi/2} \\
-  &= -1 \\
- ((-1) \cdot (-1))^{1/2}
-  &= 1^{1/2} \\
-  &= (e^{0 \cdot i})^{1/2} \\
-  &= e^0 \\
-  &= 1
-\end{align*}
+However, then useful identities like \((zw)^c = z^c w^c\) start to fail, which
+is demonstrated by question \ref{q_comp_zw_exp}.
+
 (Interesting side note: almost whatever definition you \emph{do} use, \(i^i\)
 will be real).
-
-Sometimes people exploit this fact to create ``paradoxes'' and dubious proofs of
-\(1 = -1\) and so on.
 
 A way to resolve this is to just call \(z^w\) a ``multivalued'' function
 (violating everything we know and hold dear about functions), that takes on
