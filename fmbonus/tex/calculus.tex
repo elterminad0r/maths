@@ -122,7 +122,8 @@ Throughout, you may assume the following properties of a limit:
  \item
   Let \(y = x^{p/q}\) where \(p, q \in \Integers, q \ne 0\). By raising both
   sides to the power \(q\) and then differentiating both sides (using the chain
-  rule), show that the power rule also holds for all \(p / q \in \Rationals\).
+  rule), show that the power rule also holds for all \(p / q \in \Rationals\)
+  (when \(x > 0\)).
   %              y^q = x^p
   % ⇒ q y^(q - 1) y' = p x^(p - 1)
   %             ⇒ y' = (p / q) x^(p - 1)  y^(1 - q)
@@ -131,17 +132,6 @@ Throughout, you may assume the following properties of a limit:
   %                  = (p / q) x^((p(1 - q) + q(p - 1)) / q)
   %                  = (p / q) x^((p - q) / q)
   %                  = (p / q) x^((p / q) - 1)
-
-  Here \(x^{p/q}\), where \(p/q\) is in lowest terms, is defined as ``the real
-  number \(t\) such that \(t^q = x^p\)'', which is the only property you need
-  for this question.
-
-  If \(x\) is positive and \(p\) is even, there are two such numbers. The
-  positive one is then taken.
-
-  If \(x\) is negative and \(q\) is even there is no such number, so the
-  operation is then undefined. It can be shown that otherwise there will exist
-  such a number in \(\Reals\).
  \item
   If \(y = \sqrt x\)\footnote{
    \(\sqrt x\) is of course defined as \(x^{1/2}\).

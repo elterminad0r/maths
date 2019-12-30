@@ -2,11 +2,53 @@
 
 \begin{enumerate}
  \item
+  If \(n \in \Naturals\), \(x^n\) is defined inductively as follows:
+  \(x^1 = x\) and \(x^{n + 1} = x \cdot x^n\).
+
+  Prove by induction on \(b\) that for \(a, b \in \Naturals\),
+  \(x^{a + b} \equiv x^a x^b\).
+  % x^(a+1) = x^a x^1 ✓
+  % x^(a + b + 1) = x x^(a + b)
+  %               = x x^a x^b
+  %               = x^a x^(b + 1)
+  You may assume commutativity and associativity of multiplication.
+ \item
+  Show that if \(a, b \in \Naturals\), then
+  \((x^a)^n \equiv x^{an}\) by induction on \(n\).
+  % (x^a)^1 = x^(a · 1) ✓
+  % (x^a)^(n + 1) = x^a x^(an)
+  %               = x^(an + a)
+  %               = x^(a(n + 1))
+
+  Deduce that \((x^a)^n \equiv (x^n)^a\).
+ \item
+  Furthermore, we define \(x^0\) to be \(1\) and
+  \(x^{-n}\) to be the multiplicative inverse of \(x^n\). It can be shown that
+  the above identities still hold, by working through some cases, but that's a
+  waste of everyone's time. Let's assume it.
+
+  Now for \(x \in \Reals^+\) and \(p/q \in \Rationals\), we define \(x^{p/q}\),
+  as ``the positive real number \(t\) such that \(t^q = x^p\)''.
+
+  It can be shown that there is always exactly one such number, but that
+  requires defining the reals first, which is a \(\Reals\text{oyal}\) pain.
+
+  We're just not defining it on the negative numbers since you can only define
+  it some of the time, and then you have to start worrying about whether or not
+  \(p/q\) is in lowest terms, and it's basically just annoying, and it's hardly
+  even useful.
+
+  Prove that for \(x \in \Reals^+\) and \(a/b, c/d \in \Rationals\),
+  \(x^{a/b} x^{c/d} \equiv x^{(ad + bc)/bd}\).
+  % (x^(a/b) x^(c/d))^(bd) = x^ad x^bc ✓
+
+  Also show that if \(n \in \Naturals\), then \((x^{a/b})^n \equiv x^{an/b}\).
+  % ((x^(a/b))^n)^b = (x^(a/b))^(nb)
+  %                 = (x^(a))^n
+  %                 = x^(an)
+ \item
   State the Binomial Theorem
-  (the expansion of \((a + b)^n\) for any \(n \in \Naturals\)\footnote{
-   \(x^n\) for \(n \in \Naturals\) is defined inductively as follows:
-   \(x^1 = x\) and \(x^{n + 1} = x \cdot x^n\).
-  }), and define the
+  (the expansion of \((a + b)^n\) for any \(n \in \Naturals\)), and define the
   general binomial coefficient.
 
   Prove that
@@ -56,6 +98,11 @@
  \item
   Find all solutions in \(\Reals^+\) to
   \(\sqrt[\sqrt x]x = {\sqrt x}^{\sqrt x}\).
+
+  Strictly speaking, this question is being a bit silly because I haven't
+  defined what most of this means yet. Once you have done Calculus you should be
+  able to come up with a more systematic approach, but for now just think of
+  this question as a fun little curiosity.
  \item
   Prove using the definition of \(\equiv\) that
   \begin{equation*}
