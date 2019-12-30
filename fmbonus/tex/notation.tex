@@ -301,14 +301,31 @@ A nice example of how to use it is to define the absolute value function on
 
 \subsection{Numbers}
 
+\subsubsection{Modular arithmetic}
+
 ``\(a \equiv b \pmod n\)'' means ``\(a\) is congruent to \(b\) modulo \(n\)''.
 This is defined to mean \\
 ``\(\Exists k \in \Integers : a = b + kn\)''.
 
-Loosely, this means that \(a\) and \(b\) leave the same remainder when divided
-by \(n\).
+Loosely, this means that \(a\) and \(b\) leave the same positive remainder when
+divided by \(n\). If you know about ``mod'' from programming, this is perhaps a
+more obvious sounding definition, but it is much harder to work with.
 
 Note that this is not the same \(\equiv\) as in identities.
+
+\subsubsection{Induction}
+
+If you can prove that a statement is true for some natural number \(n\), and
+that if the statement is true for some number \(m\)\footnote{
+ This assumption is sometimes called the inductive hypothesis
+}, it must also be true for
+\(m + 1\), then you have proved that the statement is true for all \(m \ge n\),
+by induction.
+
+Induction should not be thought of as some arcane black magic method of proof.
+Induction is really just a way to formalise things that are obviously true.
+Whenever you write ``\ldots'', probably what you're really doing is proof by
+induction. Induction is your friend.
 
 \subsection{Trigonometry}
 
