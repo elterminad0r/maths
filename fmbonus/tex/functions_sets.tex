@@ -55,6 +55,25 @@
   % a * b = a · b
   % a * b = 0
 
+ \item \label{q_functions_op_biject}
+  Let \(S, S'\) be sets, \(f\) be an operation on \(S'\) and
+  \(g\) be a bijection from \(S \to S'\), and \(h\) be an operation on \(S\)
+  defined as \(h(a, b) \defeq g^{-1}(f(g(a), g(b)))\).
+
+  Show that \(f\) is associative if and only if \(h\) is associative.
+  % ⇒ implication given by
+  % h(a, h(b, c)) = g^-1(f(g(a), g(g^-1(f(g(b), g(c))))))
+  %               = g^-1(f(g(a), f(g(b), g(c))))
+  %               = g^-1(f(f(g(a), g(b)), g(c)))
+  %               = g^-1(f(g(g^-1(f(g(a), g(b)))), g(c)))
+  %               = h(h(a, b), c)
+  % and ⇐ implication given by noting that
+  % f(a, b) = g(h(g^-1(a), g^-1(b))),
+  % so you can recycle the argument.
+
+  Show that \(f\) is commutative if and only if \(h\) is commutative.
+  % similar process
+ \item
   Can you think of a commutative non-associative operation on \(\Integers\)?
   % eg a * b := 2(a + b)
 
@@ -110,24 +129,6 @@
    written \(3\Naturals_0 + 1 \defeq \set{3n + 1 : n \in \Naturals}\)
   } a group.
   % biject them with N_0
- \item \label{q_functions_op_biject}
-  Let \(S, S'\) be sets, \(f\) be an operation on \(S'\) and
-  \(g\) be a bijection from \(S \to S'\), and \(h\) be an operation on \(S\)
-  defined as \(h(a, b) \defeq g^{-1}(f(g(a), g(b)))\).
-
-  Show that \(f\) is associative if and only if \(h\) is associative.
-  % ⇒ implication given by
-  % h(a, h(b, c)) = g^-1(f(g(a), g(g^-1(f(g(b), g(c))))))
-  %               = g^-1(f(g(a), f(g(b), g(c))))
-  %               = g^-1(f(f(g(a), g(b)), g(c)))
-  %               = g^-1(f(g(g^-1(f(g(a), g(b)))), g(c)))
-  %               = h(h(a, b), c)
-  % and ⇐ implication given by noting that
-  % f(a, b) = g(h(g^-1(a), g^-1(b))),
-  % so you can recycle the argument.
-
-  Show that \(f\) is commutative if and only if \(h\) is commutative.
-  % similar process
  \item
   We say two sets have the same size if there exists a bijection between them.
 

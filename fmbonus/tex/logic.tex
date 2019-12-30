@@ -53,4 +53,25 @@
   ``\(P'(x_1, x_2, \dotsc, x_n)\) is true iff \(P(x_1, x_2, \dotsc, x_n)\) is
   false.''. You may also wish to define some new quantifiers \(Q_i'\) in terms
   of the old quantifiers.
+ \item
+  Here is a proof by induction that if \(n \in \Naturals\), then any finite
+  subset \(S \subset \Naturals\) of \(n\) natural numbers is either all odd or
+  all even.
+  \begin{tcolorbox}
+   In the base case, \(n = 1\), there is a single number. This number is either
+   odd or even, so there is nothing to check.
+
+   Now suppose we have a set \(S \subset \Naturals\) of size \(n + 1\):
+   \(S = \set{s_1, s_2, \dotsc, s_{n - 1}, s_n}\). Consider also the two sets
+   \(A = \set{s_1, s_2, \dotsc, s_{n - 1}} \subset S\) and
+   \(B = \set{s_2, \dotsc, s_{n - 1}, s_n} \subset S\).
+
+   \(A\) and \(B\) are sets of size \(n\), so by inductive hypothesis, the
+   elements of \(A\) are either all odd or all even, and similarly for \(B\).
+
+   But then all elements of \(A\) and \(B\) have the same parity as \(s_2\), and
+   hence all elements of \(S\) have the same parity as \(s_2\). So all elements
+   of \(S\) have the same parity, and by induction we are done.
+  \end{tcolorbox}
+  Where is the mistake?
 \end{enumerate}
