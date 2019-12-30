@@ -11,6 +11,7 @@
   % x^(a + b + 1) = x x^(a + b)
   %               = x x^a x^b
   %               = x^a x^(b + 1)
+
   You may assume commutativity and associativity of multiplication.
  \item
   Show that if \(a, b \in \Naturals\), then
@@ -42,10 +43,11 @@
   \(x^{a/b} x^{c/d} \equiv x^{(ad + bc)/bd}\).
   % (x^(a/b) x^(c/d))^(bd) = x^ad x^bc ✓
 
-  Also show that if \(n \in \Naturals\), then \((x^{a/b})^n \equiv x^{an/b}\).
-  % ((x^(a/b))^n)^b = (x^(a/b))^(nb)
-  %                 = (x^(a))^n
-  %                 = x^(an)
+  Also show that \((x^{a/b})^{c/d} \equiv x^{ac/bd}\).
+  % ((x^(a/b))^(c/d))^bd = (x^(a/b))^(bc)
+  %                      = x^(ac)
+
+  (You need not use induction for either of these.)
  \item
   State the Binomial Theorem
   (the expansion of \((a + b)^n\) for any \(n \in \Naturals\)), and define the
