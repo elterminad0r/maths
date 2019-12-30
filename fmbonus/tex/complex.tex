@@ -7,10 +7,7 @@
  \item
   Show that multiplication distributes over addition in the complex numbers.
 
-  (This means that
-  \begin{equation*}
-   a(b + c) = ab + ac \Forall a, b, c \in \Complex)
-  \end{equation*}
+  (This means that \(a(b + c) = ab + ac \Forall a, b, c \in \Complex\))
  \item
   Show that if \(x\) is real, then \(x(z_1, z_2) \equiv (x z_1, x z_2)\).
  \item
@@ -170,6 +167,18 @@
    \end{align*}
    so \(-1 = 1\).
   \end{tcolorbox}
+ \item
+  Find a proper subset \(G \subset \Complex\) satisfying the following
+  properties:
+  \begin{itemize}
+   \item
+    There is a \(z \in G\) with \(\Re(z) \ne 0\).
+   \item
+    There is a \(z \in G\) with \(\Im(z) \ne 0\).
+   \item
+    For all \(z, w \in G\), we have \(z  + (-1 \cdot w) \in G\).
+  \end{itemize}
+  Is there such a \(G\) that is finite?
 \end{enumerate}
 
 \subsection{An aside on complex exponentiation}
@@ -200,9 +209,10 @@ the initial conditions \(x(0) = 1\), \(x'(0) = 0\), and \(y(0) = 0\),
 It is then \emph{devilishly} difficult to define \(z^w\) satisfactorily for
 general \(z, w \in \Complex\). It is tempting to just say something like ``write
 z in the form \(re^{i\theta}\) where \(r \in \Reals^+\) and
-\(\theta \in \intco{0, 2\pi}\), and define \(z^w \defeq e^{(\ln r + z')w}\)''.
-However, then useful identities like \((zw)^c = z^c w^c\) start to fail, which
-is demonstrated by question \ref{q_comp_zw_exp}.
+\(\theta \in \intco{0, 2\pi}\), and define
+\(z^w \defeq e^{(\ln r + i\theta)w}\)''.
+However, then useful identities like \((zw)^c = z^c w^c\) start to fail (cf
+question \ref{q_comp_zw_exp}).
 
 (Interesting side note: almost whatever definition you \emph{do} use, \(i^i\)
 will be real).
