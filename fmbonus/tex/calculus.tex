@@ -133,6 +133,21 @@ Throughout, you may assume the following properties of a limit:
   %                  = (p / q) x^((p - q) / q)
   %                  = (p / q) x^((p / q) - 1)
  \item
+  Let \(y = f^{-1}(x)\). Show that
+  \begin{equation*}
+   \dv<y>{x} = \frac 1{f'(y)}
+  \end{equation*}
+  % f(y) = x
+  % f'(y) y' = 1
+  % y' = 1 / f'(y)
+  %    = 1 / (dx/dy)
+
+  This fact is sometimes written as
+  \begin{equation*}
+   \dv<y>{x} = 1 \Big/ \dv<x>{y}
+  \end{equation*}
+  which is yet another ``fraction-like'' property of derivatives.
+ \item
   If \(y = \sqrt x\)\footnote{
    \(\sqrt x\) is of course defined as \(x^{1/2}\).
   }, show that \(y \dv<y>{x}\) is constant.
