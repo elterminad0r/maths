@@ -454,8 +454,14 @@ Throughout, you may assume the following properties of a limit:
  \item
   Show that \(x^a x^b \equiv x^{a + b}\) holds for \(x \in \Reals^+\),
   \(a, b \in \Reals\).
+  % exp(a ln x) exp(b ln x) = exp((a + b) ln x)
 
-  Also show that \((x^a)^n \equiv x^{an}\) if \(n \in \Rationals\).
+  Also show that \((x^a)^b \equiv x^{ab}\).
+  % exp(b ln exp(a ln x)) = exp(ba ln x)
+
+  Also show that \((xy)^a \equiv x^a y^a\) if \(y \in \Reals^+\).
+  % exp(a ln xy) = exp(a ln x + a ln y)
+  %              = exp(a ln x) exp(a ln y)
  \item
   By writing \(\ln(uv) = \ln u + \ln v\), deduce a weak version of the product
   rule from the chain rule.

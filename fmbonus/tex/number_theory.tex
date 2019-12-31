@@ -14,6 +14,13 @@
 
   You may assume commutativity and associativity of multiplication.
  \item
+  Prove by induction on \(n\) that \((xy)^n \equiv x^n y^n\).
+  % (xy)^1 = xy
+  % (xy)^(n + 1) = xy (xy)^n
+  %              = xy x^n y^n
+  %              = x x^n y y^n
+  %              = x^(n + 1) y^(n + 1)
+ \item
   Show that if \(a, b \in \Naturals\), then
   \((x^a)^n \equiv x^{an}\) by induction on \(n\).
   % (x^a)^1 = x^(a · 1) ✓
@@ -28,8 +35,11 @@
   the above identities still hold, by working through some cases, but that's a
   waste of everyone's time. Let's assume it.
 
-  Now for \(x \in \Reals^+\) and \(p/q \in \Rationals\), we define \(x^{p/q}\),
-  as ``the positive real number \(t\) such that \(t^q = x^p\)''.
+  Now for \(x \in \Reals^+\)\footnote{
+   Note that everything up til now only needs \(x\) and \(y\) to have some
+   commutative associative multiplication defined on them.
+  } and \(p/q \in \Rationals\), we define \(x^{p/q}\), as ``the positive real
+  number \(t\) such that \(t^q = x^p\)''.
 
   It can be shown that there is always exactly one such number, but that
   requires defining the reals first, which is a \(\Reals\text{oyal}\) pain.
@@ -47,7 +57,11 @@
   % ((x^(a/b))^(c/d))^bd = (x^(a/b))^(bc)
   %                      = x^(ac)
 
-  (You need not use induction for either of these.)
+  Also show that \((xy)^{a/b} \equiv x^{a/b} y^{a/b}\).
+  % (x^(a/b) y^(a/b))^b = x^a y^a
+  %                     = (xy)^a
+
+  (You need not use induction for any of these.)
  \item
   State the Binomial Theorem
   (the expansion of \((a + b)^n\) for any \(n \in \Naturals\)), and define the
