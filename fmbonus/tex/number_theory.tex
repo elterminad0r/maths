@@ -30,28 +30,38 @@
 
   Deduce that \((x^a)^n \equiv (x^n)^a\).
  \item
-  Furthermore, we define \(x^0\) to be \(1\) and
-  \(x^{-n}\) to be the multiplicative inverse of \(x^n\). It can be shown that
-  the above identities still hold, by working through some cases, but that's a
-  waste of everyone's time. Let's assume it.
-
-  Now for \(x \in \Reals^+\)\footnote{
-   Note that everything up til now only needs \(x\) and \(y\) to have some
+  We now wish to define \(x^n\) in general, for \(n \in \Integers\) (and this
+  time for \(x \in \Reals^+\)\footnote{
+   Note that everything up until now only needs \(x\) and \(y\) to have some
    commutative associative multiplication defined on them.
-  } and \(p/q \in \Rationals\), we define \(x^{p/q}\), as ``the positive real
-  number \(t\) such that \(t^q = x^p\)''.
+  }.
+
+  If the identity \(x^{a + b} \equiv x^a x^b\) is to hold, show that
+  we have no choice but to define \(x^0 \defeq 1\), and that therefore
+  \(x^{-a} \equiv \frac 1{x^a}\).
+
+  It can be shown that the other identities from above also hold under these
+  definitions.
+ \item
+  Now for \(x \in \Reals^+\) and \(p/q \in \Rationals\), we define \(x^{p/q}\),
+  as ``the positive real number \(t\) such that \(t^q = x^p\)''.
 
   It can be shown that there is always exactly one such number, but that
   requires defining the reals first, which is a \(\Reals\text{oyal}\) pain.
 
-  We're just not defining it on the negative numbers since you can only define
-  it some of the time, and then you have to start worrying about whether or not
-  \(p/q\) is in lowest terms, and it's basically just annoying, and it's hardly
-  even useful.
+  Show that \(x^{a / 1} \equiv x^a\).
 
-  This definition is useful, because for instance \(x^{a/1} \equiv x^a\), and as
-  we will see, this definition preserves a number of other useful properties.
+  Show that \(x^{a / b} \equiv x^{na/nb}\). (not just by simplifying the
+  fraction - what we want to show is that it doesn't matter how you write the
+  fraction. This is incidentally why we're just not defining it on the negative
+  numbers since you can only define it some of the time, and then you have to
+  start worrying about whether or not \(p/q\) is in lowest terms, and it's
+  basically just annoying, and it's hardly even useful.)
 
+  These two facts, in addition to the definitional fact that \((x^{a/b})^b
+  \equiv x^a\), are good indications that this is the right definition. This
+  definition will be further justified in the following questions.
+ \item
   Prove that for \(x \in \Reals^+\) and \(a/b, c/d \in \Rationals\),
   \(x^{a/b} x^{c/d} \equiv x^{(ad + bc)/bd}\).
   % (x^(a/b) x^(c/d))^(bd) = x^ad x^bc ✓
