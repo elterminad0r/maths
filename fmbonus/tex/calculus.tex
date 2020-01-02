@@ -238,6 +238,15 @@ Throughout, you may assume the following properties of a limit:
    \integ[a]<b>{g'(x) f(g(x))}{x} \equiv
    \integ[g(a)]<g(b)>{f(x)}{x}
   \end{equation*}
+  The fraction-cancelling formulation of this fact is
+  \begin{equation*}
+   \integ[a]<b>{f(u) \dv<u>{x}}{x} \equiv
+   \integ[g(a)]<g(b)>{f(u)}{u}
+  \end{equation*}
+  if \(u = g(x)\).
+
+  This technique is called \emph{integration by substitution}.
+ \item
   Hence evaluate
   \begin{itemize}
    \item \(\displaystyle
@@ -253,7 +262,6 @@ Throughout, you may assume the following properties of a limit:
     \integ{\frac x{\sqrt{x^2 + 1}}}{x}
     \)
   \end{itemize}
-  This technique is called \emph{integration by substitution}.
  \item
   Find the mistake in the reasoning:
   \begin{tcolorbox}
@@ -324,6 +332,7 @@ Throughout, you may assume the following properties of a limit:
   \begin{equation*}
    \integ[a]<b>{uv'}{x} = \eval{a}{b}{uv} - \integ[a]<b>{u'v}{x}
   \end{equation*}
+ \item
   Hence show that
   \begin{equation*}
    \lim_{t \to \infty}
