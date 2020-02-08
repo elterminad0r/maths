@@ -2,3 +2,7 @@
 	path = iabonus
 	url = https://github.com/goedel-gang/iabonus
 	branch = master
+[submodule "dexter-notes"]
+	path = dexter-notes
+	url = https://github.com/goedel-gang/cam-notes
+	branch = master

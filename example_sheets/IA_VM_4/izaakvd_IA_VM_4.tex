@@ -6,7 +6,7 @@
 
 % fleqn aligns equations to the left, a4 paper size, 11pt font, article class
 \documentclass[fleqn,a4paper,11pt]{article}
-\title{IA Vectors and Matrices Example Sheet 4}
+\title{IA Vectors and Matrices Example Sheet 4 (revised)}
 \author{Izaak van Dongen (\texttt{imv26})}
 
 \usepackage{mymaths}
@@ -36,7 +36,7 @@
        \vdots & \vdots & \ddots
       \end{vmatrix} \quad \text{by expanding along the first column} \\
      &= (A_{11} - t)(A_{22} - t) \dotsm (A_{nn} - t)
-      \quad \text{by induction on \(n\) if you really care}
+      \quad \text{by induction on \(n\)}
    \end{align*}
    So clearly the roots of \(\chi_{\mat A}(t)\) (ie the eigenvalues of
    \(\mat A\)) are precisely \(A_{11}, \dotsc, A_{nn}\).
@@ -69,7 +69,7 @@
    (by checking \(\frac 19 + \frac 49 + \frac 49 = 1\),
    \(\frac 12 + \frac 12 = 1\) and
    \(\frac 12 \sqrt 2(\frac 23 - \frac 23) = 0\)), we need the third column to
-   be normal to both, and have unit length. There are two such vectors -
+   be orthogonal to both, and have unit length. There are two such vectors -
    \((\frac 13, \frac 23, \frac 23) \veccross \sqrt 2(0, \frac 12, \frac 12)
      = (-\frac 23 \sqrt 2, \frac 16 \sqrt 2, \frac 16 \sqrt 2)\)
    and \(-1\) times the above, so \(a, b, c\) are only uniquely determined up to
@@ -502,13 +502,13 @@
      =
      \begin{pmatrix}
       2 - 7 & -6 + 14 \\
-      1 - 0 & -3 + 2 \\
+      1 - 0 & -3 + 0 \\
       5 - 3 & -15 + 6
      \end{pmatrix}
      =
      \begin{pmatrix*}[r]
       -5 & 8 \\
-      1 & -1 \\
+      1 & -3 \\
       2 & -9
      \end{pmatrix*}
     \end{equation*}
@@ -750,7 +750,8 @@
      \end{pmatrix}
      \vec v_3 &= \vec 0 \\
      &&\impliedby{}&&
-     \vec v_3 &= \frac 1{12} \begin{pmatrix} 3 \\ 0 \\ \sqrt 3 \end{pmatrix}
+     \vec v_3 &= \frac 1{\sqrt{12}}
+                 \begin{pmatrix} 3 \\ 0 \\ \sqrt 3 \end{pmatrix}
     \end{alignat*}
     Since \(\mat A\) is symmetric and each eigenvector has algebraic
     multiplicity \(1\), orthogonality is guaranteed.
@@ -761,8 +762,8 @@
     principle axes defined by the orthonormal eigenbasis
     \(\vec v_1, \vec v_2, \vec v_3\).
 
-    So this curve is a sort of rotated ellipsoid:
-    % TODO TODO TODO
+    So this curve is a sort of rotated ellipsoid. An attempt at a diagram is to
+    be found at the end of this question.
    \item
     The characteristic polynomial is
     \begin{align*}
@@ -813,16 +814,16 @@
     and then since \(\mat B\) is symmetric, these are all orthogonal.
 
     By another happy coincidence,
-    \(\tran{\vec x} (\frac 12 \mat A) \vec x = 1\) is equivalent to
-    \(x^2 + y^2 + z^2 - xy - yz - xz = 1\). Since \(\frac 12 \mat A\) has the
-    same eigenvectors as \(\mat A\) but with each eigenvector halved, this form
+    \(\tran{\vec x} (\frac 12 \mat B) \vec x = 1\) is equivalent to
+    \(x^2 + y^2 + z^2 - xy - yz - xz = 1\). Since \(\frac 12 \mat B\) has the
+    same eigenvectors as \(\mat B\) but with each eigenvalue halved, this form
     is then diagonalised into \(\frac 32 v^2 + \frac 32 w^2 = 1\) where
     \(v, w\) are the components along any two orthogonal axes in the eigenspace
     \(E_{\lambda_2}\). This is to say that really this is just the set of points
-    of distance \(\sqrt{\frac 23}\) from the null space of \(\mat A\), giving an
+    of distance \(\sqrt{\frac 23}\) from the null space of \(\mat B\), giving an
     infinitely long cylinder.
-    % TODO TODO TODO
   \end{enumerate}
+  \includepdf[pages=-]{q10_diagram.pdf} \label{diag_q10}
  \item
   We will try to write \(2x^2 + 2xy + 4yz + z^2\)
   as \(\tran{\vec x} \mat A \vec x\) where \(\mat A\) is symmetric.
@@ -852,7 +853,7 @@
   Now we can find the eigenvalues of \(\mat A\):
   \begin{align*}
    \chi_{\mat A}(t)
-   &= \det(\mat a - t\mat I) \\
+   &= \det(\mat A - t\mat I) \\
    &=
    \begin{vmatrix}
     2 - t & 1 & 0 \\
@@ -884,6 +885,7 @@
    &= -(\mat A + i \mat S)
   \end{align*}
   since the hermitian conjugate of a real matrix is just its transpose.
+  Therefore \(\mat A + i\mat S\) is indeed anti-hermitian.
 
   Then since \(\mat A + i\mat S\) is anti-hermitian,
   its eigenvalues are purely imaginary, and since \(1\) is not purely imaginary,
