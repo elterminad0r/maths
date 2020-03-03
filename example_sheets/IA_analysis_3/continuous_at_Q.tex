@@ -1,0 +1,169 @@
+% Compiling with
+% latexmk -halt-on-error -shell-escape -synctex=1 -pdf
+% (Recommend using a latexmkrc file so as just to run latexmk -pvc, for example)
+% Probably you can achieve the same with an inordinate number of invocations of
+% pdflatex -halt-on-error -shell-escape -synctex=1
+
+% fleqn aligns equations to the left, a4 paper size, 11pt font, article class
+\documentclass[fleqn,a4paper,11pt]{article}
+
+% for some reason it won't work properly until later
+\title{There does not exist a function from R to R that is continuous
+       precisely on Q.}
+\author{\texorpdfstring{Izaak van Dongen (\texttt{imv26})}
+                       {Izaak van Dongen (imv26)}}
+
+\usepackage{mymaths}
+\usepackage{mystyle}
+
+\begin{document}
+\title{\texorpdfstring{There does not exist a function \(\R \to \R\) that is
+                       continuous precisely on \(\Q\)}
+                      {There does not exist a function from R to R that is
+                       continuous precisely on Q}}
+ \maketitle\thispagestyle{empty} % no page number under title
+
+ \section*{Abstract}
+
+ We aim to prove that there does not exist a function \(\R \to \R\) that is
+ continuous precisely on \(\Q\).
+
+ \section*{\texorpdfstring{There does not exist a function
+                           \boldmath\(\R \to \R\) that is continuous precisely
+                           on \boldmath\(\Q\)}
+                          {There does not exist a function from R to R that is
+                           continuous precisely on Q}}
+
+ \begin{lemma} \label{lemma_closed_intersection}
+  If \((a_n)\), \((b_n)\) are sequences in \(\R\) such that \(a_n \le b_n\) and
+  \begin{equation*}
+   \intcc{a_1, b_1} \supseteq \intcc{a_2, b_2} \supseteq \intcc{a_3, b_3}
+   \supseteq \dotsb
+  \end{equation*}
+  then \(\bigcap_{n = 1}^\infty \intcc{a_n, b_n} \ne \emptyset\).
+ \end{lemma}
+ \begin{proof}
+  For convenience, say \(S \defeq \bigcap_{n = 1}^\infty \intcc{a_n, b_n}\).
+
+  Since these intervals are nested,
+  \(a_{n + 1} \in \intcc{a_n, b_n}\) and particularly \(a_{n + 1} \ge a_n\) for
+  all \(n\), so \((a_n)\) is monotone increasing. Furthermore,
+  \(a_n \in \intcc{a_1, b_1}\) for all \(n\), so \(a_n \le b_1\) and
+  \((a_n)\) is bounded above. Hence we can set
+  \(a = \lim_{n \to \infty} a_n\).
+
+  Now to prove \(a \in S\) (which is sufficient to show that
+  \(S \ne \emptyset\)), we need \(a \ge a_n\) for all \(n\), which is clear,
+  since if we had some \(N\) such that \(a < a_N\), then we would have
+  \(\abs{a - a_n} \ge \epsilon\) for all \(n \ge N\), where
+  \(\epsilon = a_N - a > 0\), since \(a_n \ge a_N\). This would imply
+  \(a_n \nto a\), a contradiction.
+
+  We also need \(a \le b_n\) for all \(n\). This is true since if we had an
+  \(N\) with \(a > b_N\), then by convergence of \(a_n\), we could pick
+  \(M\) such that \(a - a_M < a - b_N\), so \(a_M > b_N\). But then
+  %              Max
+  letting \(K = \max\set{N, M}\), \(K \ge M \implies a_K \ge a_M\), as \((a_n)\)
+  is increasing, and \(K \ge N \implies b_K \le b_N\), as \((b_n)\) is
+  decreasing by a similar argument to earlier. Hence \(a_K > b_K\), which is a
+  contradiction.
+
+  Hence \(a \in S\) and \(S \ne \emptyset\).
+ \end{proof}
+
+ \begin{theorem}
+  There does not exist a function \(\R \to \R\) that is continuous precisely on
+  \(\Q\).
+ \end{theorem}
+ \begin{proof}
+  Suppose that there is such a function, \(f: \R \to \R\).
+
+  By the countability of \(\Q\), let \((x_n)\) be an enumeration of the
+  rationals.
+
+  Let \((\epsilon_n)\) be a sequence with
+  \(\epsilon_n > 0, \epsilon_n \to 0\), for example \(\epsilon_n = 1/n\).
+
+  Now by continuity of \(f\), choose an \emph{irrational}
+  \(\delta_1 > 0\) such that
+  \begin{equation*}
+   \abs{x - x_1} \le \delta_1 \implies \abs{f(x) - f(x_1)} < \epsilon_1
+  \end{equation*}
+  Note the non-strict inequality - this can be achieved by first picking
+  \(\delta_1'\) such that this holds for the strict inequality, and then
+  choosing a suitable smaller \(\delta_1\) - particularly, any
+  \(\delta_1 \in \intoo{0, \delta_1'} \setminus \Q\).
+
+  Now for convenience, discard all the rationals not in
+  \(\intcc{x_1 - \delta_1, x_1 + \delta_1}\) from our enumeration, so
+  \(x_2 \in \intcc{x_1 - \delta_1, x_1 + \delta_1}\).
+
+  Since we picked \(\delta_1 \notin \Q\), and by definition \(x_1 \in \Q\), we
+  have \(x_1 \pm \delta_1 \notin \Q\), so in fact \(x_2\) is neither of the
+  endpoints and \(x_2 \in \intoo{x_1 - \delta_1, x_1 + \delta_1}\).
+
+  Now pick an irrational \(\delta_2 > 0\) such that
+  \begin{equation*}
+   \abs{x - x_2} \le \delta_1 \implies \abs{f(x) - f(x_2)} < \epsilon_2
+  \end{equation*}
+  \emph{and}
+  \(x_1, x_1 \pm \delta_1 \notin \intcc{x_2 - \delta_2, x_2 + \delta_2}\) -
+  ie the new interval should not contain \(x_1\), or either of the endpoints.
+  This can be done since we can again first use continuity to select a
+  \(\delta_2'\) and then pick
+  \(\delta_2 \in \intoo{0,
+                        \min
+                         \set{\delta_2',
+                              \abs{x_2 - x_1},
+                              \abs{x_2 - (x_1 \pm \delta_1)}}} \setminus \Q\).
+
+  Repeat this procedure to obtain a sequence \((\delta_n)\) with
+  \begin{equation*}
+   \abs{x - x_n} \le \delta_n \implies \abs{f(x) - f(x_n)} < \epsilon_n
+  \end{equation*}
+  and
+  \(x_n, x_n \pm \delta_n
+    \notin \intcc{x_{n + 1} - \delta_{n + 1}, x_{n + 1} + \delta_{n + 1}}\).
+
+  Particularly, we get a \emph{nested} sequence
+  \begin{equation*}
+   \intcc{x_1 - \delta_1, x_1 + \delta_1} \supsetneq
+   \intcc{x_2 - \delta_2, x_2 + \delta_2} \supsetneq
+   \intcc{x_3 - \delta_3, x_3 + \delta_3} \supsetneq \dotsb
+  \end{equation*}
+  where \(f\) is getting ``more and more continuous'' as we go along.
+
+  By Lemma \ref{lemma_closed_intersection}, we can pick a real
+  \(\alpha \in \bigcap_{n = 1}^\infty \intcc{x_n - \delta_n, x_n + \delta_n}\).
+  Note that \(\alpha \ne x_n \pm \delta_n\) for any \(n\), since we made the
+  intervals strictly nested.
+
+  By the fact that
+  \(x_n \notin \intcc{x_{n + 1} - \delta_{n + 1}, x_{n + 1} + \delta_{n + 1}}\),
+  \(\alpha\) must be irrational, since \(\Q\) is countable and this construction
+  therefore ``dodges'' all of the rationals.
+
+  But also, given \(\epsilon > 0\), we can pick an \(n\) such that
+  \(\epsilon_n < \frac 12 \epsilon\) (since \(\epsilon_n \to 0\)). Now by
+  construction,
+  \begin{equation*}
+   \abs{x - x_n} < \delta_n \implies \abs{f(x) - f(x_n)} < \epsilon_n
+  \end{equation*}
+  Since \(\alpha \in \intcc{x_n - \delta_n, x_n + \delta_n}\), we have
+  \(\abs{f(\alpha) - f(x_n)} < \epsilon_n\), so letting
+  \(\delta = \min\set{\abs{\alpha - (x_n \pm \delta_n)}}\)
+  (so \(\delta > 0\) and \(\intoo{\alpha - \delta, \alpha + \delta} \subset
+                           \intcc{x_n - \delta_n, x_n + \delta_n}\)),
+  \begin{align*}
+   \abs{x - \alpha } < \delta \implies
+   \abs{f(x) - f(\alpha)}
+   &= \abs{f(x) - f(x_n) + f(x_n) - f(\alpha)} \\
+   &\le \abs{f(x) - f(x_n)} + \abs{f(x_n) - f(\alpha)} \\
+   &\le \epsilon_n + \epsilon_n \\
+   &< \epsilon
+  \end{align*}
+  So \(f\) is continuous at \(\alpha\).
+ \end{proof}
+ In fact, this proof shows that a function \(\R \to \R\) cannot be continuous at
+ precisely any set that is countable and dense in \(\R\).
+\end{document}
