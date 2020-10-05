@@ -1,0 +1,151 @@
+\documentclass[a4paper,12pt]{article}
+\author{Alastair Horn, Izaak van Dongen}
+\title{chill pure questions to eat meals to}
+
+\usepackage{mysty}
+\usepackage{mymaths}
+
+% Embed source files into PDF in case of loss. You can view or extract the
+% source files by doing `pdfdetach -list <file.pdf>` or
+% `pdfdetach -saveall <file.pdf>`, using pdfdetach from poppler, or some other
+% suitable method.
+\usepackage{embedall}
+\embedfile{mymaths.sty}
+\embedfile{mysty.sty}
+
+\begin{document}
+\maketitle
+
+The following was motivated by mealtime discussions. Sometimes prior knowledge
+is assumed.
+
+\begin{enumerate}
+ \item
+  The relation ``\(\isom\)'' is an equivalence relation on any set of groups.
+  Determine (with proof) the equivalence classes up to isomorphism of
+  \begin{align*}
+   \{  & \Z,\ \Q,\ \R,\ \Z \dprod \Z,\ \Q \dprod \Q,
+     \\& \Q / \Z,\ \R / \Z,\ \Sym(\Z),\ \Sym(\R),
+     \\& S^1,\ \R^\times,\ \R_{>0}^\times,\ \Q^\times,\ \Q_{>0}^\times,
+     \\& S^1 \dprod S^1,\ \R^\times \dprod \R^\times,
+         \ \Q^\times \dprod \Q^\times,\ \Sym(\Z) \dprod \Sym(\Z)
+     \\& S_\infty, A_\infty, D_\infty, \Z^\N, \Z^\Z, \Z^\R
+     \}
+  \end{align*}
+  Here
+  \begin{itemize}
+   \item
+    \(S^1 = \{z \in \C : \abs z = 1\}\).
+   \item
+    For any set \(S\),
+    \(\Sym(S) = \{f\colon S \to S : \text{\(f\) is a bijection}\}\) is the group
+    of \emph{symmetries} or \emph{permutations} of \(S\).
+   \item
+    eg \(\R^\times = (\R \setminus \{0\}, \cdot)\) is the group of nonzero
+    reals under multiplication.
+   \item
+    eg \(\R_{>0}^\times = (\R_{>0}, \cdot)\) is the group of positive reals
+    under multiplication.
+   \item
+    \(S_\infty = \bigcup_n S_n\) is the group of permutations of \(\N\)
+    affecting only finitely many elements.
+   \item
+    \(A_\infty = \bigcup_n A_n\) is the group of even permutations of \(\N\)
+    affecting only finitely many elements. This is a subgroup of \(S_\infty\).
+   \item
+    \(D_\infty\) is the group of isometries of \(\Z\):
+    \(D_\infty
+      = \{f\colon \Z \to \Z : \forall x, y. \abs{f(x) - f(y)} = \abs{x - y}\}\).
+   \item
+    For a group \(G\) and a nonempty set \(S\), \(G^S\) is the group of functions
+    from \(S\) to \(G\) under pointwise operations
+    (ie \(\forall x. (f \cdot_{(G^S)} g)(x) = f(x) \cdot_G g(x)\)).
+  \end{itemize}
+  You are free to prove that any of these are groups if you don't believe me.
+ \item
+  If \(A, B, G\) are groups, we say that \(A \dprod B\) is a
+  \emph{decomposition} of \(G\) if \(G \isom A \dprod B\), and neither of \(A\)
+  and \(B\) is trivial. We say that a group \(G\) is \emph{decomposable} if
+  there exists a decomposition of \(G\).
+
+  Which of the following groups are decomposable?
+  \begin{multicols}{4}
+   \begin{itemize}
+    \item
+     \(\Z\)
+    \item
+     \(\Q\)
+    \item
+     \(\C\)
+    \item
+     \(\Q^\times\)
+    \item
+     \(\R^\times\)
+    \item
+     \(\C^\times\)
+    \item
+     \(\Q_{>0}^\times\)
+    \item
+     \(\Q / \Z\)
+   \end{itemize}
+  \end{multicols}
+ \item
+  Here is a strengthening of Cayley's theorem in the case of finite groups.
+  \begin{tcolorbox}
+   If \(G\) is a group of finite order, then \(G\) is isomorphic to a subgroup
+   of \(A_n\) for some \(n\).
+  \end{tcolorbox}
+  Is it true?
+ \item
+  Does \(\R\) have any subgroups of index \(2\)? Of finite index other than
+  \(1\)?
+ \item
+  If the Axiom of Choice is assumed, it is a famous result than then every
+  vector space has a basis. Particularly, \(\R\) and \(\C\) both have bases as
+  \(\Q\)-vector spaces. These bases must have the same cardinality, so in fact
+  they induce an isomorphism of additive groups, \(\R \isom \C\).
+
+  Prove that if \(\R \isom \C\), then \(\R/\Z \isom \C^\times\).
+ \item
+  Let \(G_1 \sgp G_2 \sgp G_3 \sgp ...\) be a chain of groups ordered by
+  inclusion. Let \(G = \bigcup_n G_n\). Show that \(G\) is a group with the
+  natural operation ``given \(a, b \in G\), let \(i\) be such that
+  \(a, b \in G_i\). Then \(a \cdot_G b \defeq a \cdot_{G_i} b\)''.
+
+  Show that if each \(G_i\) is simple, then \(G\) is simple.
+ \item
+  Let \(G\) be a group, and let \(a, b \in G\). Must \(ab\) have the same order
+  as \(ba\)?
+ \item
+  Find a natural operation \(\ast\) on \(\N\) that is associative, but not
+  commutative\footnote{If your answer mentioned the word ``bijection'', go and
+  stand in the corner, think about what you've done, and think of an operation
+  that is associative and \emph{anticommutative}, ie
+  \(a \ast b = b \ast a \iff a = b\)}.
+ \item
+  Is every \(x \in \R\) the root of some nonzero power series with coefficients
+  in \(\Q\)?
+
+  Is every \(z \in \C\) the root of some nonzero power series with coefficients
+  in \(\Q\)?
+ \item
+  Complete \url{https://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/}.
+ \item
+  Let \(\vec f_n\) be a sequence of vectors defined by
+  \begin{align*}
+   \vec f_0 \defeq
+    \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+   &&
+   \vec f_{n + 1} \defeq
+    \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}\vec f_n
+  \end{align*}
+  Show that
+  \(\vec f_{n + 2} = \vec f_{n + 1} + \vec f_n\) for all
+  \(n \in \N\), and that \((\vec f_1)_1 = (\vec f_2)_1 = 1\). By
+  writing \(\begin{psmallmatrix} 0 & 1 \\ 1 & 1 \end{psmallmatrix}\) as
+  \(\mat U \mat D \mat U^{-1}\) where \(\mat D\) is a diagonal matrix,
+  find a closed form for the \(n\)th term of the Fibonacci sequence, without
+  resorting to any applied nonsense or guesswork.
+\end{enumerate}
+
+\end{document}

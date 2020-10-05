@@ -1,0 +1,31 @@
+\ProvidesPackage{mysty}
+
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\makeatother
+
+\RequirePackage[margin=2cm]{geometry}
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+
+\renewcommand*\maketitle{
+ \makeatletter
+ \textbf{\thetitle}
+ \hspace*\fill \theauthor
+ \vspace{0.3cm}
+ \makeatother
+}
+
+\RequirePackage{tcolorbox}
+\RequirePackage{parskip}
+
+\RequirePackage{multicol}
+
+\RequirePackage[hidelinks,pdfencoding=auto,psdextra,
+ pdfauthor={\theauthor},
+ pdftitle={\thetitle},
+ pdfsubject={\thetitle},
+ pdfproducer={LaTeX with hyperref},
+ pdfcreator={pdflatex}]{hyperref}
