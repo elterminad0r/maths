@@ -1,0 +1,225 @@
+% Compiling with
+% latexmk -halt-on-error -shell-escape -synctex=1 -pdf <file.tex>
+% (Recommend using a latexmkrc file so as just to run latexmk -pvc, for example)
+% Probably you can achieve the same with an inordinate number of invocations of
+% pdflatex -halt-on-error -shell-escape -synctex=1 <file.tex>
+
+% fleqn aligns equations to the left, a4 paper size, 11pt font, article class
+\documentclass[fleqn,a4paper,11pt]{article}
+\title{Some Remarks about Algebra}
+\author{\texorpdfstring{Izaak van Dongen (\texttt{imv26})}
+                       {Izaak van Dongen (imv26)}}
+
+\usepackage{mymaths}
+\usepackage{mystyle}
+
+% Embed source files into PDF in case of loss. You can view or extract the
+% source files by doing `pdfdetach -list <file.pdf>` or
+% `pdfdetach -saveall <file.pdf>`, using pdfdetach from poppler, or some other
+% suitable method.
+\usepackage{embedall}
+\embedfile{mymaths.sty}
+\embedfile{mystyle.sty}
+
+\begin{document}
+\maketitle
+
+\section[Question 14, GRM Sheet 3]{Question 14, GRM Sheet 3\footnote{%
+ This answer was developed in collaboration with Alastair Horn, although any
+ mistakes are certainly my own.}}
+
+\begin{tcolorbox}
+ ``If a UFD has at least one irreducible, must it have infinitely many (pairwise
+ non-associate) irreducibles?''
+\end{tcolorbox}
+
+% TODO: integral domain, X non-unit
+
+Consider the ring \(\Q\dbrack X\). Note that \(1 + X \in \Q\dbrack X\) is a
+unit, since
+\begin{equation*}
+ (1 + X)(1 - X + X^2 - X^3 + \dotsb + (-1)^n X^n + \dotsb) = 1
+\end{equation*}
+since the coefficient in \(X^n\) for \(n > 0\) in the product is
+\((-1)^n + (-1)^{n + 1} = 0\). In fact, suppose that
+\(f = \sum_n a_n X^n \in \Q\dbrack X\) has \(a_0 = 0\) (ie, \(X \divides f\)).
+Then we can define
+\begin{equation*}
+ 1 - f + f^2 - f^3 + \dotsb + (-1)^n f^n + \dotsb \in \Q\dbrack X
+\end{equation*}
+as the formal power series \(\sum_n a_n' X^n\) where
+\(a_n' = \sum_{i = 0}^\infty ((-1)^i f^i)_n\), where \((g)_n\) denotes ``the
+coefficient in \(X^n\) in \(g\)''. This sum is convergent and well-defined in
+\(\Q\) precisely because \(X \divides f\), so \(X^i \divides f^i\), ie
+\((f^i)_n = 0\) for any \(n < i\), so really
+\(a_n' = \sum_{i = 0}^n ((-1)^i f^i)_n\). Then
+\begin{equation*}
+ (1 + f)(1 - f + f^2 - f^3 + \dotsb + (-1)^n f^n + \dotsb) = 1
+\end{equation*}
+since
+\begin{align*}
+ (1 + f)(1 - f + f^2 - \dotsb)
+  &= (1 - f + f^2 - \dotsb) + f(1 - f + f^2 - \dotsb) \\
+  &= (1 - f + f^2 - \dotsb) + (f - f^2 + f^3 - \dotsb) \\
+  &= 1
+\end{align*}
+where these manipulations are allowable due to similar considerations about
+\(X^n\) only appearing finitely often - eg
+\begin{align*}
+ (f(1 - f + f^2 - \dotsb))_n
+  &= (f(1 - f + f^2 - \dotsb + (-1)^n f^n))_n \\
+  &= (f - f^2 + f^3 - \dotsb + (-1)^n f^{n + 1})_n \\
+  &= (f - f^2 + f^3 - \dotsb)_n
+\end{align*}
+So in fact any element of \(\Q\dbrack X\) of the form \(1 + f\) for such an
+\(f\) is a unit. If \(0 \ne a \in \Q\), the constant series
+\(a \in \Q\dbrack X\) is also a unit, inverted by the inverse \(a^{-1}\) of
+\(a\) in \(\Q\). Therefore it is in fact the case that any element of
+\(\Q\dbrack X\) with a nonzero constant term \(a\) is an associate of a series
+with constant term \(1\), so is a unit.
+
+Now let \(f = \sum_n a_n X^n\), \(g = \sum_n b_n X^n\) be arbitrary nonzero
+elements of \(\Q\dbrack X\). Let \(i\) and \(j\) be the least respective
+naturals such that \(a_i \ne 0\), and \(b_j \ne 0\). Then
+\((fg)_{ij} = a_i b_j \ne 0\), and for all \(k < ij\), \((fg)_k = 0\). This
+shows that \(\Q\dbrack X\) is an integral domain, but also that the degree of
+the least significant terms is additive when multiplying in \(\Q\dbrack X\).
+
+
+Therefore, for any \(f \in \Q\dbrack X\), we have that the degree of the least
+significant term of \(Xf\) is at least \(1\). Therefore, \(X\) is not a unit,
+and in fact, \(X^n\) for \(n > 0\) is not a unit. If \(f\) is an arbitrary
+nonzero element with \(i\) as before, then factoring out \(X^i\) - say
+\(f = X^i h\) - leaves a power series \(h\) with a nonzero constant term. So
+\(h\) is a unit, so in fact every element \(f\) of \(\Q\dbrack X\) is an
+associate of \(X^i\), where \(i\) is the degree of the least significant term of
+\(f\).
+
+So the ``associate classes'' in \(\Q\dbrack X\) are exactly the classes of
+associates of \(X^n\), for \(n \in \N\).
+
+Suppose then that \(I \ideal \Q\dbrack X\). Let \(n\) be the least \(n\) such
+that \(X^n \in I\) (ie, such that the class of associates of \(X^n\) intersects
+\(I\)). Then \(I = (X^n)\), since it must contain \(X^n\), and if
+\(I\) contained an element not in \((X^n)\), that element would have to be an
+associate of \(X^k\) with \(k < n\), contradicting minimality of \(n\). So
+\(\Q\dbrack X\) is a PID, and hence a UFD.
+
+But, up to associates, the non-units in \(\Q\dbrack X\) are \(\{X^n\}\). For
+\(n > 1\), \(X^n = X X^{n - 1}\) is a decomposition into non-units, so \(X^n\)
+is not irreducible. \(X\), however, \emph{is} irreducible, as the only possible
+way to factor it requires at least one factor to have a nonzero constant term,
+ie one factor must be a unit. So \(\Q\dbrack X\) contains exactly one
+irreducible, up to associates.
+
+\section{Question 13, GRM Sheet 3}
+
+Define \(\conj{a + b\sqrt 2} \defeq a - b\sqrt 2\), and
+\begin{alignat*}2
+ N :&& \Z[\sqrt 2] &\to \N \\
+     &&a + b\sqrt 2 &\mapsto
+         \abs{(a + b \sqrt 2)\conj{(a + b\sqrt 2)}}
+         = \abs{a^2 - 2b^2}
+\end{alignat*}
+Noting that
+\begin{align*}
+ \conj{(a + b\sqrt 2)(c + d\sqrt 2)}
+ &= ac + 2bd - (ad + bc)\sqrt 2 \\
+ &= \conj{(a + b\sqrt 2)} \cdot \conj{(c + d\sqrt 2)}
+\end{align*}
+we must have \(N(xy) = N(x)N(y)\), so \(N\) satisfies the first condition to be
+a Euclidean function.
+
+Now let \(x = a + b\sqrt 2\) and \(0 \ne y = c + d \sqrt 2\) be arbitrary.
+Calculating in \(\Q[\sqrt 2]\),
+\begin{align*}
+ \frac xy
+  &= \frac{ac - 2bd + (bc - ad)\sqrt 2}{c^2 - 2d^2} \\
+  &= \frac{ac - 2bd}{c^2 - 2d^2} + \frac{bc - ad}{c^2 - 2d^2} \cdot \sqrt 2
+\end{align*}
+But both of these two fractions are within at most \(\tfrac 12\) of an integer.
+Say \(q_1, q_2 \in \Z\) with
+\begin{equation*}
+ \abs[\bigg]{q_1 - \frac{ac - 2bd}{c^2 - 2d^2}} \le \tfrac 12, \qquad
+ \abs[\bigg]{q_2 - \frac{bc - ad}{c^2 - 2d^2}} \le \tfrac 12
+\end{equation*}
+Say \(q = q_1 + q_2 \sqrt 2\). Then letting \(r = x - yq\), we get
+\(x = yq + r\), where
+\begin{align*}
+ N(r)
+  &= N(x - yq) \\
+  &= N(y)N(x/y - q),
+    \quad \text{using the obvious extension of \(N\) to \(\Q[\sqrt 2]\)} \\
+  &= N(y) \abs[\Bigg]{\parens[\bigg]{q_1 - \frac{ac - 2bd}{c^2 - 2d^2}}^2
+            - 2\parens[\bigg]{q_2 - \frac{bc - ad}{c^2 - 2d^2}}^2} \\
+  &\le N(y) \bracks[\Bigg]{\abs[\bigg]{q_1 - \frac{ac - 2bd}{c^2 - 2d^2}}^2
+            + 2\abs[\bigg]{q_2 - \frac{bc - ad}{c^2 - 2d^2}}^2} \\
+  &\le N(y) \bracks{(\tfrac 12)^2 + 2(\tfrac 12)^2} \\
+  &< N(y)
+\end{align*}
+So \(N\) is a proper Euclidean function, since also \(N(1) = 1\).
+
+Now \(a + b\sqrt 2\) is a unit iff its norm is \(1\), ie \(a^2 - 2b^2 = \pm 1\),
+since \(N\) is a Euclidean function. This is very reminiscent of a Pell
+equation.
+
+Note that \(1 + \sqrt 2\) certainly is a unit, with inverse \(-1 + \sqrt 2\).
+
+Now suppose \(a + b\sqrt 2 > 1\) is a unit with the usual \(>\) in \(\R\).
+Then its inverse is \(\pm(a - b\sqrt 2)\), so \(\abs{a - b\sqrt 2} < 1\), so
+\(-1 < a - b\sqrt 2\) and \(-1 < -a + b \sqrt 2\). Therefore \(0 < a + b\sqrt 2
++ a - b\sqrt 2 = 2a\) and similarly \(0 < 2b\sqrt 2\), so \(a\) and \(b\) are
+both positive. But \(1 + \sqrt 2\) is clearly the smallest element of
+\(\Z[\sqrt 2]\) with both coefficients positive. So it is the least unit that's
+at least \(1\).
+
+Now suppose that \(x \in \Z[\sqrt 2]\) is a positive unit.
+\((1 + \sqrt 2)^n \to \infty\) monotonically as \(n \to \infty\) and
+\((1 + \sqrt 2)^n \to 0\) monotonically as \(n \to -\infty\). Therefore there is
+some \(n \in \Z\) with \((1 + \sqrt 2)^n \le x < (1 + \sqrt 2)^{n + 1}\). Then
+multiplying by \((1 + \sqrt 2)^{-n}\), we get
+\(1 \le x(1 + \sqrt 2)^{-n} < 1 + \sqrt 2\). Since there is no unit strictly
+contained between \(1\) and \(1 + \sqrt 2\), \(x(1 + \sqrt 2)^{-n} = 1\), so
+\(x = (1 + \sqrt 2)^n\), for some \(n \in \Z\).
+
+If \(x\) is instead a negative unit, then \(-x\) is a positive unit. So
+\(x = -(1 + \sqrt 2)^n\) for some \(n \in \Z\).
+
+Of course, since \((1 + \sqrt 2)^{-1} = (-1 + \sqrt 2)\), when \(n < 0\), we can
+write \((1 + \sqrt 2)^n = (-1 + \sqrt 2)^{-n} = (-1)^n (1 - \sqrt 2)^{-n}\). So
+indeed the units are exactly \(\pm(1 \pm \sqrt 2)^n\).
+
+\section{Question 13, Sheet 3, 2013}
+
+\begin{tcolorbox}
+ Let \(R\) be a ring on ground-set \(\Z\) whose multiplication is the same as
+ the usual multiplication on \(\Z\). Must its addition be the same as the usual
+ addition on \(\Z\)?
+\end{tcolorbox}
+
+Suppose \(R = (\Z, \oplus, \cdot)\) is a ring, where \(\cdot\) is the usual
+multiplication, and \(\oplus\) is some operation that satisfies the ring axioms.
+
+\(R\) still has multiplicative identity \(1\). The additive identity must also
+be \(0\), since if \(0_R\) is an additive identity, the map
+\(x \mapsto 0_R \cdot x\) is not injective, but multiplication by anything
+other than \(0\) in \(\Z\) is an injective function.
+
+Note that
+\(1 \oplus (-1) = (-1)^2 \oplus (-1) = (-1)((-1) \oplus 1)\), so we must have
+\(1 \oplus (-1) = 0\), as \(R\) is an integral domain and \(-1 \ne 1\). So the
+additive inverse of \(1\) in \(R\) is \(-1\), and therefore in general the
+additive inverse of \(n\) is \(-n\).
+
+Suppose \(R\) has finite characteristic. Then its characteristic must be some
+prime \(p\), as \(R\) is still an integral domain, and if it had characteristic
+\(c = ab\) where \(a, b < c\), then \(a\) and \(b\) (interpreted as multiples of
+\(1_R\)) would be zero divisors. \(R\) also doesn't have characteristic \(1\) as
+it is non-trivial.
+
+Then the subring generated by \(1\) has order \(p\), so is isomorphic to
+\(\Z/p\Z\), so is a field. All of its nonzero elements are units, but \(\Z\)
+only has two units, and both of them are generated by \(1\) in \(R\), so in fact
+\(p = 3\).
+
+\end{document}

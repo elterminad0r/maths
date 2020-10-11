@@ -14,3 +14,7 @@
 	path = jeffrey
 	url = https://github.com/ioannad/jeffrey/
 	branch = master
+[submodule "leaning"]
+	path = leaning
+	url = https://github.com/Sterrs/leaning
+	branch = master

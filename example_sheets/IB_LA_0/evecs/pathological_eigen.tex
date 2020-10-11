@@ -1,0 +1,105 @@
+% Compiling with
+% latexmk -halt-on-error -shell-escape -synctex=1 -pdf <file.tex>
+% (Recommend using a latexmkrc file so as just to run latexmk -pvc, for example)
+% Probably you can achieve the same with an inordinate number of invocations of
+% pdflatex -halt-on-error -shell-escape -synctex=1 <file.tex>
+
+% fleqn aligns equations to the left, a4 paper size, 11pt font, article class
+\documentclass[fleqn,a4paper,11pt]{article}
+\title{A Short Exposition of Linear Maps with pathological Eigenbehaviour}
+\author{\texorpdfstring{Izaak van Dongen (\texttt{imv26})}
+                       {Izaak van Dongen (imv26)}}
+\date{}
+
+\usepackage{mymaths}
+\usepackage{mystyle}
+
+% Embed source files into PDF in case of loss. You can view or extract the
+% source files by doing `pdfdetach -list <file.pdf>` or
+% `pdfdetach -saveall <file.pdf>`, using pdfdetach from poppler, or some other
+% suitable method.
+\usepackage{embedall}
+\embedfile{mymaths.sty}
+\embedfile{mystyle.sty}
+
+\begin{document}
+\maketitle
+
+Let \(V\) be an \(\R\)-vector space, and let \(\alpha: V \to V\) be a linear
+map.
+\begin{itemize}
+ \item
+  \adjustbox{valign=t}{
+   \begin{tcolorbox}
+    Can \(\alpha\) have no eigenvalues over \(\R\)?
+   \end{tcolorbox}
+  }
+
+  Yes. Let \(V = \R^2\), and let \(\alpha\) have matrix
+  \(A = \begin{psmallmatrix} 0 & -1 \\ 1 & 0 \end{psmallmatrix}\) in the standard
+  basis. Then \(\chi_A(t) = t^2 + 1\), which has no real roots.
+
+  An infinite-dimensional example is \(V = \R^\N\), and
+  \(\alpha((x_1, x_2, x_3, \dotsc)) = (0, x_1, x_2, \dotsc)\).
+
+  Then if \(\alpha((x_n)) = \lambda (x_n)\), we have
+  \(x_1 = \lambda \cdot 0 = 0\), and
+  \(x_{n + 1} = \lambda x_n\). By induction, then, \(x_n = 0\) for all \(n\), so
+  \(\alpha\) has no nontrivial eigenspaces.
+ \item
+  \adjustbox{valign=t}{
+   \begin{tcolorbox}
+    Is it possible that all \(\lambda \in \R\) are an eigenvalue of \(\alpha\)?
+   \end{tcolorbox}
+  }
+
+  Yes. Let \(V = \R^\R\), and define
+  \begin{align*}
+   \alpha: \R^\R &\to \R^\R \\
+               f &\mapsto (x \mapsto x f(x))
+  \end{align*}
+  \(\alpha\) is linear, since
+  \begin{equation*}
+   \alpha(\lambda f + \mu g)(x)
+    = x \cdot (\lambda f + \mu g)(x)
+    = \lambda x f(x) + \mu x g(x)
+    = \lambda \alpha(f)(x) + \mu \alpha(g)(x)
+  \end{equation*}
+  But for all \(\lambda \in \R\), the indicator function
+  \(\mathbf 1_{\set\lambda}\) is then an eigenvector of \(\alpha\) with
+  eigenvalue \(\lambda\).
+
+  For a smaller example, this also works for the direct sum of
+  \(\R\) copies of \(\R\).
+ \item
+  \adjustbox{valign=t}{
+   \begin{tcolorbox}
+    Is it possible that precisely the \(\lambda \in \Q\) are an eigenvalue of
+    \(\alpha\)?
+   \end{tcolorbox}
+  }
+
+  Yes. Let \(V = \R^\Q\), and define
+  \begin{align*}
+   \alpha: \R^\Q &\to \R^\Q \\
+               f &\mapsto (x \mapsto x f(x))
+  \end{align*}
+  \(\alpha\) is again linear for very similar reasons to last time.
+
+  Then clearly for any \(\lambda \in \Q\), \(\mathbf 1_{\set \lambda}\) is again
+  an eigenvector of \(\alpha\) with eigenvalue \(\lambda\).
+
+  Now suppose \(0 \ne f \in \R^\Q\) and \(\lambda \in \R\) are such that
+  \(\alpha(f) = \lambda f\).
+
+  Then \(f\) is nonzero at some \(x\). Since
+  \(x f(x) = \lambda f(x) \implies x = \lambda\),
+  \(\lambda\) was rational.
+
+  So the only eigenvalues of \(\alpha\) are rational.
+
+  This also works for the direct sum of \(\Q\) copies of \(\R\).
+\end{itemize}
+
+
+\end{document}

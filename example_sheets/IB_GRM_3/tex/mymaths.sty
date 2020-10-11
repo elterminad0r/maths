@@ -1,0 +1,66 @@
+\ProvidesPackage{mymaths}
+
+% maths symbols and other stuff (supersedes the ams* packages)
+\RequirePackage{mathtools}
+
+% all the paired delimiters. These draw a pair of delimiters with saner
+% typesetting, and provide nicer ways to scale them. You ~can~ use the starred
+% version of each environment for autoscaling, but that's not very cool and you
+% should just set the sizes yourself. It's not that hard.
+
+\RequirePackage{stmaryrd}
+
+\DeclarePairedDelimiter\set\{\}
+% I redeclare these so they don't have the weird physics business going on
+% (man can't work out every day)
+\DeclarePairedDelimiter\abs\lvert\rvert
+\DeclarePairedDelimiter\parens()
+\DeclarePairedDelimiter\bracks[]
+\DeclarePairedDelimiter\dbrack\llbracket\rrbracket
+\DeclarePairedDelimiter\cycsgp\langle\rangle
+\DeclarePairedDelimiter\intco[)
+
+% mathbb
+\RequirePackage{amssymb}
+
+% this is the hill I'm prepared to die on
+\let\uglyepsilon\epsilon
+\let\epsilon\varepsilon
+\let\uglyphi\phi
+\let\phi\varphi
+
+\DeclareMathOperator\Forall\forall
+\DeclareMathOperator\Ker{Ker}
+\DeclareMathOperator\Img{Im}
+\DeclareMathOperator\vspan{span}
+\DeclareMathOperator\sgn{sgn}
+
+\let\oldRe\Re
+\let\oldIm\Im
+\let\Re\relax
+\let\Im\relax
+\DeclareMathOperator\Re{Re}
+\DeclareMathOperator\Im{Im}
+\DeclareMathOperator\Tor{Tor}
+
+% General commands for typesetting different types of mathematical object
+% drop-in commands for some sets
+% modularity and all that
+\newcommand*\setstyle\mathbb
+\newcommand*\N{\setstyle N}
+\newcommand*\Z{\setstyle Z}
+\newcommand*\Q{\setstyle Q}
+\newcommand*\R{\setstyle R}
+\newcommand*\CC{\setstyle C}
+\newcommand*\sgp\le
+\newcommand*\divides\mid
+\newcommand*\ndivides\nmid
+\newcommand*\isom\cong
+\newcommand*\defeq\coloneqq
+\newcommand*\dprod\times
+\newcommand*\mcong\equiv
+\newcommand*\ideal\vartriangleleft
+\newcommand*\conj\overline
+
+
+\newcommand*\degrees[1]{#1^\circ}

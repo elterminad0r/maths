@@ -1,0 +1,53 @@
+\ProvidesPackage{mystyle}
+
+% so the title can be accessed by fancyhdr (and is automatically correctly
+% spelled etc)
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\makeatother
+
+% more advanced handling of utf8 and fonts or something. apparently good to have
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+
+% this is basically good for hyphenation if you're not sure about the locale
+\RequirePackage[UKenglish]{babel}
+
+% change geometry so more of page is used
+\RequirePackage[
+ margin=1in,
+ headheight=13.6pt]{geometry}
+
+% custom document header/footer
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\thetitle}
+\fancyhead[R]{\theauthor}
+\fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+
+% better fonts, apparently
+\RequirePackage{lmodern}
+% fixes some small caps things
+\RequirePackage{slantsc}
+
+% \url function and clickable table of contents. no ugly red boxes though
+\RequirePackage[hidelinks,pdfencoding=auto,psdextra,
+ % WARNING: set by hand
+ pdfauthor={Izaak van Dongen (imv26)},
+ pdftitle={\thetitle},
+ pdfsubject={\thetitle},
+ pdfproducer={LaTeX with hyperref},
+ pdfcreator={pdflatex}]{hyperref}
+
+% For fancy numbering specifications of enumerations
+\RequirePackage{enumerate}
+\RequirePackage{enumitem}
+
+% no paragraph indent - after tocloft because of starttoc
+\RequirePackage[parfill]{parskip}
+
+\RequirePackage{tcolorbox}
