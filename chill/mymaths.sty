@@ -8,20 +8,74 @@
 \renewcommand*\C{\mathbb C}
 \newcommand*\N{\mathbb N}
 \newcommand*\Q{\mathbb Q}
+\renewcommand*\P{\mathbb P}
 \newcommand*\seq[1]{(#1 _n)_{n = 1}^\infty}
+
+\newcommand*\GL{\mathrm{GL}}
+\newcommand*\SL{\mathrm{SL}}
+\newcommand*\PGL{\mathrm{PGL}}
+\newcommand*\PSL{\mathrm{PSL}}
+\renewcommand*\O{\mathrm{O}}
+\newcommand*\SO{\mathrm{SO}}
+\renewcommand*\U{\mathrm{U}}
+\newcommand*\SU{\mathrm{SU}}
+\newcommand*\RL{\mathrm{RL}}
 
 \newcommand*\nsgp\vartriangleleft
 \newcommand*\sgp\leq
 \newcommand*\isom\cong
+\newcommand*\nisom\ncong
+\newcommand*\equip\sim
 \newcommand*\dprod\times
 \renewcommand*\vec\mathbf
 \newcommand*\mat\mathbf
 \newcommand*\defeq\coloneqq
+\newcommand*\divides\mid
+\newcommand*\ndivides\nmid
+
+\newcommand*\tran[1]{{#1}^{\mathsf T}}
+\newcommand*\herm[1]{{#1}^{\dagger}}
+
+\newcommand*\Id{\mathrm{Id}}
 
 \newcommand*\powerset{\mathcal P}
+
+% this is the hill I'm prepared to die on
+\let\uglyepsilon\epsilon
+\let\epsilon\varepsilon
+\let\uglyphi\phi
+\let\phi\varphi
 
 \DeclarePairedDelimiter\abs\lvert\rvert
 \DeclarePairedDelimiter\set\{\}
 \DeclarePairedDelimiter\intoo()
+\DeclarePairedDelimiter\intco[)
+\DeclarePairedDelimiter\cycsgp\langle\rangle
 
 \DeclareMathOperator\Sym{Sym}
+\DeclareMathOperator\Ker{Ker}
+\DeclareMathOperator\sgn{sgn}
+\DeclareMathOperator\Isom{Isom}
+
+% work-around for proof from
+% https://tex.stackexchange.com/questions/305174/proof-environment-produces-proof-proof-only-when-thmbox-is-used
+\RequirePackage{amsthm}
+
+% letltxmacro is like a cleverer version of let, that works with robust
+% commands or something
+% https://tex.stackexchange.com/questions/88001/when-to-use-letltxmacro
+\RequirePackage{letltxmacro}
+
+\LetLtxMacro\amsproof\proof
+\LetLtxMacro\amsendproof\endproof
+
+\RequirePackage{thmtools}
+
+\AtBeginDocument{%
+  \LetLtxMacro\proof\amsproof
+  \LetLtxMacro\endproof\amsendproof
+}
+
+\declaretheorem{theorem}
+\declaretheorem{lemma}
+

@@ -17,31 +17,116 @@
 \maketitle
 
 The following was motivated by mealtime discussions. Sometimes prior knowledge
-is assumed.
+of fairly late Michaelmas content is assumed.
 
 \begin{enumerate}
  \item
   The relation ``\(\isom\)'' is an equivalence relation on any set of groups.
   Determine (with proof) the equivalence classes up to isomorphism of
+  % unfortunate consequences of choice:
+  % Q * R/Z =~ R * Q/Z =~ R
+  % R * R/Z =~ R/Z
+  % R/Z * Q/Z =~ R/Z * R/Z
+  % TODO: figure out whether or not GL_2(R) =~ GL_3(R), add that.
+  \allowdisplaybreaks
   \begin{align*}
-   \{  & \Z,\ \Q,\ \R,\ \Z \dprod \Z,\ \Q \dprod \Q,
-     \\& \Q / \Z,\ \R / \Z,\ \Sym(\Z),\ \Sym(\R),
-     \\& S^1,\ \R^\times,\ \R_{>0}^\times,\ \Q^\times,\ \Q_{>0}^\times,
-     \\& S^1 \dprod S^1,\ \R^\times \dprod \R^\times,
-         \ \Q^\times \dprod \Q^\times,\ \Sym(\Z) \dprod \Sym(\Z)
-     \\& S_\infty, A_\infty, D_\infty, \Z^\N, \Z^\Z, \Z^\R
-     \}
+   \set{  & \Z,\ \Q,\ \R,\ \Z \dprod \Z,\ \Q \dprod \Q,
+        \\& \Q / \Z,\ \R / \Z,\ \Sym(\Z),\ \Sym(\R),
+        \\& S^1,\ \R^\times,\ \R_{>0}^\times,\ \Q^\times,\ \Q_{>0}^\times,
+        \\& S^1 \dprod S^1,\ \R^\times \dprod \R^\times,
+            \ \Q^\times \dprod \Q^\times,\ \Sym(\Z) \dprod \Sym(\Z),
+        \\& S_\infty,\ A_\infty,\ D_\infty,\ \Z^\N,\ \Z^\Z,\ \Z^\R,\ \Isom(\R),
+          \ C_2^\N,\ C_2^\R,
+        \\& \R \dprod \Z,\ \Q \dprod \Z,\ \Q \dprod (\Q/\Z),
+            \ \Z \dprod (\R/\Z),\ \Z \dprod (\Q/\Z),
+        \\& (\R/\Z) \dprod (\R/\Z),\ \ (\Q/\Z) \dprod (\Q/\Z),
+        \\& \R \dprod C_2,\ \Q \dprod C_2,\ \Z \dprod C_2,
+            \ (\R/\Z) \dprod C_2,\ (\Q/\Z) \dprod C_2,
+        \\& \GL_2(\Q),\ \GL_3(\Q),
+          \ \GL_4(\Q),\ \GL_\infty(\Q),
+          \ \GL_2(\R),\ \GL_3(\R),
+          \ \GL_4(\R),\ \GL_\infty(\R),
+        \\& \GL_2(\C),\ \GL_3(\C),
+          \ \GL_4(\C),\ \GL_\infty(\C),
+          \ \GL_2(\Z),\ \GL_3(\Z),
+          \ \GL_4(\Z),\ \GL_\infty(\Z),
+        \\& \SL_2(\Q),\ \SL_3(\Q),
+          \ \SL_4(\Q),\ \SL_\infty(\Q),
+          \ \SL_2(\R),\ \SL_3(\R),
+          \ \SL_4(\R),\ \SL_\infty(\R),
+        \\& \SL_2(\C),\ \SL_3(\C),
+          \ \SL_4(\C),\ \SL_\infty(\C),
+          \ \SL_2(\Z),\ \SL_3(\Z),
+          \ \SL_4(\Z),\ \SL_\infty(\Z),
+        \\& \PGL_2(\Q),\ \PGL_3(\Q),
+          \ \PGL_4(\Q),\ \PGL_\infty(\Q),
+          \ \PGL_2(\R),\ \PGL_3(\R),
+          \ \PGL_4(\R),\ \PGL_\infty(\R),
+        \\& \PGL_2(\C),\ \PGL_3(\C),
+          \ \PGL_4(\C),\ \PGL_\infty(\C),
+          \ \PGL_2(\Z),\ \PGL_3(\Z),
+          \ \PGL_4(\Z),\ \PGL_\infty(\Z),
+        \\& \PSL_2(\Q),\ \PSL_3(\Q),
+          \ \PSL_4(\Q),\ \PSL_\infty(\Q),
+          \ \PSL_2(\R),\ \PSL_3(\R),
+          \ \PSL_4(\R),\ \PSL_\infty(\R),
+        \\& \PSL_2(\C),\ \PSL_3(\C),
+          \ \PSL_4(\C),\ \PSL_\infty(\C),
+          \ \PSL_2(\Z),\ \PSL_3(\Z),
+          \ \PSL_4(\Z),\ \PSL_\infty(\Z),
+        \\& \O_2(\Q),\ \O_3(\Q),
+          \ \O_4(\Q),\ \O_\infty(\Q),\ \SO_2(\Q),
+          \ \SO_3(\Q),\ \SO_4(\Q),\ \SO_\infty(\Q),
+        \\& \O_2(\R),\ \O_3(\R),
+          \ \O_4(\R),\ \O_\infty(\R),\ \SO_2(\R),
+          \ \SO_3(\R),\ \SO_4(\R),\ \SO_\infty(\R),
+        \\& \O_2(\C),\ \O_3(\C),
+          \ \O_4(\C),\ \O_\infty(\C),\ \SO_2(\C),
+          \ \SO_3(\C),\ \SO_4(\C),\ \SO_\infty(\C),
+        \\& \O_2(\Z),\ \O_3(\Z),
+          \ \O_4(\Z),\ \O_\infty(\Z),\ \SO_2(\Z),
+          \ \SO_3(\Z),\ \SO_4(\Z),\ \SO_\infty(\Z),
+        \\& \U(2),\ \U(3),
+          \ \U(4),\ \U(\infty),\ \SU(2),
+          \ \SU(3),\ \SU(4),\ \SU(\infty),
+        \\& \RL_2^{\cycsgp{-1}}(\Q),
+          \ \RL_3^{\cycsgp{-1}}(\Q),
+          \ \RL_4^{\cycsgp{-1}}(\Q),
+          \ \RL_2^{\cycsgp{-1}}(\R),
+          \ \RL_3^{\cycsgp{-1}}(\R),
+          \ \RL_4^{\cycsgp{-1}}(\R),
+        \\& \RL_2^{\cycsgp{-1}}(\C),
+          \ \RL_3^{\cycsgp{-1}}(\C),
+          \ \RL_4^{\cycsgp{-1}}(\C),
+          \ \RL_2^{\cycsgp i}(\C),
+          \ \RL_3^{\cycsgp i}(\C),
+          \ \RL_4^{\cycsgp i}(\C),
+        \\& \RL_2^{S^1}(\C),
+          \ \RL_3^{S^1}(\C),
+          \ \RL_4^{S^1}(\C),
+          \ \RL_2^{\Q_{>0}^\times}(\Q),
+          \ \RL_3^{\Q_{>0}^\times}(\Q),
+          \ \RL_4^{\Q_{>0}^\times}(\Q),
+        \\& \RL_2^{\R_{>0}^\times}(\R),
+          \ \RL_3^{\R_{>0}^\times}(\R),
+          \ \RL_4^{\R_{>0}^\times}(\R),
+          \ \RL_2^{\R_{>0}^\times}(\C),
+          \ \RL_3^{\R_{>0}^\times}(\C),
+          \ \RL_4^{\R_{>0}^\times}(\C),
+   }
   \end{align*}
   Here
   \begin{itemize}
    \item
-    \(S^1 = \{z \in \C : \abs z = 1\}\).
+    \(S^1 = \set{z \in \C : \abs z = 1}\) is the group of complex numbers of
+    modulus \(1\) under multiplication.
    \item
     For any set \(S\),
-    \(\Sym(S) = \{f\colon S \to S : \text{\(f\) is a bijection}\}\) is the group
-    of \emph{symmetries} or \emph{permutations} of \(S\).
+    \(\Sym(S) = \set{f\colon S \to S : \text{\(f\) is a bijection}}\) is the
+    group of \emph{symmetries} or \emph{permutations} of \(S\), under
+    composition.
    \item
-    eg \(\R^\times = (\R \setminus \{0\}, \cdot)\) is the group of nonzero
+    eg \(\R^\times = (\R \setminus \set{0}, \cdot)\) is the group of nonzero
     reals under multiplication.
    \item
     eg \(\R_{>0}^\times = (\R_{>0}, \cdot)\) is the group of positive reals
@@ -53,15 +138,83 @@ is assumed.
     \(A_\infty = \bigcup_n A_n\) is the group of even permutations of \(\N\)
     affecting only finitely many elements. This is a subgroup of \(S_\infty\).
    \item
-    \(D_\infty\) is the group of isometries of \(\Z\):
-    \(D_\infty
-      = \{f\colon \Z \to \Z : \forall x, y. \abs{f(x) - f(y)} = \abs{x - y}\}\).
+    \(D_\infty = \Isom(\Z)\) is the group of isometries of \(\Z\):
+    \begin{equation*}
+     D_\infty
+       = \set{f\colon \Z \to \Z: \forall x, y, \abs{f(x) - f(y)} = \abs{x - y}}
+    \end{equation*}
    \item
-    For a group \(G\) and a nonempty set \(S\), \(G^S\) is the group of functions
-    from \(S\) to \(G\) under pointwise operations
-    (ie \(\forall x. (f \cdot_{(G^S)} g)(x) = f(x) \cdot_G g(x)\)).
+    For a group \(G\) and a nonempty set \(S\), \(G^S\) is the group of
+    functions from \(S\) to \(G\) under pointwise operations
+    (ie \(\forall x, (f \cdot_{(G^S)} g)(x) = f(x) \cdot_G g(x)\)).
+   \item
+    If \(R\) is a commutative unital ring, then
+    \begin{itemize}
+     \item
+      \(\GL_n(R)\) is the group of invertible \(n \times n\) matrices
+      with components in \(R\). The ``general linear group''.
+
+      \(\GL_\infty(R) = \bigcup_n \GL_n(R)\), with the natural
+      inclusion. This is a mostly custom definition.
+     \item
+      \(\SL_n(R)\) is the subgroup of \(\GL_n(R)\) of matrices
+      with determinant \(1\). The ``special linear group''.
+
+      \(\SL_\infty(R) = \bigcup_n \SL_n(R)\) with the natural
+      inclusion. This is isomorphic to the subgroup of
+      \(\GL_\infty(R)\) of matrices with determinant \(1\), after
+      noting that the determinant can lift to this union.
+      This is a mostly custom definition.
+     \item
+      \(\PGL_n(R)\) is the quotient
+      \(\GL_n(R) / Z\), where \(Z \nsgp \GL_n(R)\) is the
+      subgroup of scalar matrices
+      \(Z = \set{\lambda \mat I: \lambda \in R^\times}\).
+      The ``projective general linear group''.
+
+      \(\PGL_\infty(R) = \bigcup_n \PGL_n(R)\). The existence of this inclusion
+      a bit more involved. This is a mostly custom definition.
+     \item
+      \(\PSL_n(R) = SL_n(R) / (SL_n(R) \cap Z)\).
+      The ``projective special linear group''.
+
+      \(\PSL_\infty(R) = \bigcup_n \PSL_n(R)\). The existence of this inclusion
+      a bit more involved. This is a mostly custom definition.
+     \item
+      \(\O_n(R)\) is the group of matrices that are orthogonal -
+      ie, such that \(\mat M \tran{\mat M} = \mat I\).
+      The ``orthogonal group''.
+
+      The fact that this is defined over any ring and not just \(\R\) is custom.
+
+      \(\O_\infty(R) = \bigcup_n \O_n(R)\), with the natural inclusion. This is
+      a mostly custom definition.
+     \item
+      \(\SO_n(R)\) is the subgroup of \(\O_n(R)\) of orthogonal matrices of
+      determinant \(1\). The ``special orthogonal group''.
+
+      \(\SO_\infty(R) = \bigcup_n \SO_n(R)\), with the natural inclusion. This
+      is a mostly custom definition.
+     \item
+      \(\U(n)\) is the subgroup of \(\GL_n(\C)\) of matrices that are unitary -
+      ie such that \(\mat M \herm{\mat M} = \mat I\).
+      The ``unitary group''.
+
+      \(\U(\infty) = \bigcup_n \U(n)\) with the natural inclusion. This is a
+      mostly custom definition.
+     \item
+      If \(G \sgp R^\times\), then \(\RL_n^G(R)\) is the subgroup of
+      \(\GL_n(R)\) with determinants in \(G\). This generalises \(\SL\) and
+      \(\GL\), since \(\SL_n(R) = \RL_n^{\set 1}(R)\), and
+      \(\GL_n(R) = \RL_n^{R^\times}(R)\).
+      The ``restricted linear group''. This definition is completely made up.
+    \end{itemize}
   \end{itemize}
-  You are free to prove that any of these are groups if you don't believe me.
+  This question is not supposed to be unpleasantly long and depressing.
+  Rather, it is a very pleasant source of interesting sub-questions to think
+  about over a long period of time.
+  Be advised that this question can be done performing
+  fewer direct comparisons than \(\tfrac 12 n(n - 1)\).
  \item
   If \(A, B, G\) are groups, we say that \(A \dprod B\) is a
   \emph{decomposition} of \(G\) if \(G \isom A \dprod B\), and neither of \(A\)
@@ -90,6 +243,10 @@ is assumed.
    \end{itemize}
   \end{multicols}
  \item
+  Are there infinitely many pairwise non-isomorphic groups of infinite order?
+
+  Are there uncountably many?
+ \item
   Here is a strengthening of Cayley's theorem in the case of finite groups.
   \begin{tcolorbox}
    If \(G\) is a group of finite order, then \(G\) is isomorphic to a subgroup
@@ -97,15 +254,27 @@ is assumed.
   \end{tcolorbox}
   Is it true?
  \item
-  Does \(\R\) have any subgroups of index \(2\)? Of finite index other than
-  \(1\)?
+  Does \(\R\) have any proper subgroups of finite index?
  \item
   If the Axiom of Choice is assumed, it is a famous result than then every
   vector space has a basis. Particularly, \(\R\) and \(\C\) both have bases as
   \(\Q\)-vector spaces. These bases must have the same cardinality, so in fact
   they induce an isomorphism of additive groups, \(\R \isom \C\).
 
-  Prove that if \(\R \isom \C\), then \(\R/\Z \isom \C^\times\).
+  Prove that if \(\R \isom \C\), then \(S^1 \isom \C^\times\).
+
+  By assuming further that \(\R \isom \R \dprod \Q\), show that
+  \begin{itemize}
+   \item
+    \(\Q \dprod (\R/\Z) \isom \R \dprod (\Q/\Z) \isom
+      \R \dprod (\R/\Z) \isom (\R/\Z)\)
+   \item
+    \((\R/\Z) \dprod (\Q/\Z) \isom (\R/\Z) \dprod (\R/\Z)\)
+   \item
+    \(\R/\Q \isom \R\)
+    (be careful here! \(A \isom B\) and \(C \isom D\) don't necessarily imply
+    \(A/C \isom B/D\))
+  \end{itemize}
  \item
   Let \(G_1 \sgp G_2 \sgp G_3 \sgp ...\) be a chain of groups ordered by
   inclusion. Let \(G = \bigcup_n G_n\). Show that \(G\) is a group with the
@@ -129,7 +298,13 @@ is assumed.
   Is every \(z \in \C\) the root of some nonzero power series with coefficients
   in \(\Q\)?
  \item
-  Complete \url{https://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/}.
+  Complete \url{https://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/}
+  \texttt{:)}.
+
+  This is a great resource to learn about both how interactive theorem proving
+  works (which is likely a big part of the future of maths), and to learn how
+  to actually build up from Peano's axioms, which is not completely
+  straightforward, despite being boldly skipped by Numbers and Sets.
  \item
   Let \(\vec f_n\) be a sequence of vectors defined by
   \begin{align*}
