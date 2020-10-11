@@ -10,3 +10,7 @@
 	path = decomposition
 	url = https://github.com/goedel-gang/decomposition
 	branch = master
+[submodule "jeffrey"]
+	path = jeffrey
+	url = https://github.com/ioannad/jeffrey/
+	branch = master
