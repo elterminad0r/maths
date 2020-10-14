@@ -1,0 +1,150 @@
+\documentclass[a4paper,12pt]{article}
+\title{Markov Chains}
+\author{Roland Bauerschmidt}
+\date{Michaelmas 2020}
+
+\usepackage{mysty}
+\usepackage{mymaths}
+
+% Embed source files into PDF in case of loss. You can view or extract the
+% source files by doing `pdfdetach -list <file.pdf>` or
+% `pdfdetach -saveall <file.pdf>`, using pdfdetach from poppler, or some other
+% suitable method.
+\usepackage{embedall}
+\embedfile{mymaths.sty}
+\embedfile{mysty.sty}
+
+\begin{document}
+%TODO: fix topmargins
+\thispagestyle{firststyle}
+\footnotetext[1]{%
+ Typesetting by Izaak van Dongen. I provide no guarantee of accurate
+ transcription. Original can be found here:
+ \url{http://www.statslab.cam.ac.uk/~rb812/teaching/mc2020/example1.pdf}}
+
+\begin{enumerate}[label=\arabic*.,leftmargin=*]
+ \item
+  Let \(X = (X_n)_{n \ge 0}\) be a Markov chain. Show that, conditioned on
+  \(X_m = i\), \mbox{\(Z = (Z_n)_{n \ge 0}\)} given by
+  \(Z_n = X_{n + m}\) is a Markov chain with starting state \(i\).
+ \item
+  Let \(X = (X_n)_{n \ge 0}\) be a sequence of independent random variables.
+  Show that \(X\) is a Markov chain. Under what condition is this chain
+  homogeneous?
+ \item
+  Let \(X = (X_n)_{n \ge 0}\) be a sequence of fair coin tosses (with the two
+  possible outcomes interpreted as \(0\) and \(1\)) and set
+  \(M_n = \max_{k \le n} X_k\). Show that \((M_n)_{n \ge 0}\) is a Markov chain
+  and find the transition probabilities.
+ \item (Harder)
+  Let \(S = (S_n)_{n \ge 0}\) be a simple (possibly asymmetric) random walk on
+  \(\Z\) with \(S_0 = 0\). Show that \(X_n = \abs{S_n}\) defines a Markov chain
+  and find its transition probabilities. Let \(M_n = \max_{k \le n} S_k\) and
+  show that \(Y_n = M_n - S_n\) defines a Markov chain.
+ \item
+  Let \(X = (X_n)_{n \ge 0}\) be a Markov chain and let \((n_r)_{r \ge 0}\) be an
+  unbounded increasing sequence of positive integers. Show that
+  \(Y_r = X_{n_r}\) defines a (possibly inhomogeneous) Markov chain. Find the
+  transition probabilities of \(Y\) when \(n_r = 2r\) and \(X\) is a simple
+  random walk.
+ \item
+  Let \(X = (X_n)_{n \ge 0}\) and \(Y = (Y_n)_{n \ge 0}\) be Markov chains on
+  the integers \(\Z\). Is \mbox{\(Z_n = X_n + Y_n\)} necessarily a Markov chain?
+  Justify your answer.
+ \item
+  A flea hops about at random on the vertices of a triangle where each hop is
+  from the currently occupied vertex to one of the other two vertices, each with
+  probability \(1/2\). Find the probability that after \(n\) hops, the flea is
+  back where it started.
+
+  Now suppose that the flea is twice as likely to jump clockwise as
+  anticlockwise. What is the probability that after \(n\) hops the flea is back
+  where it started now?
+  [Hint: \(1/2 \pm i/(2 \sqrt 3) = (1 / \sqrt 3)e^{\pm i\pi/6}\).]
+ \item
+  A die is `fixed' so that when it is rolled, the score cannot be the same as
+  the previous score, all other scores having probability \(1/5\). If the first
+  score is \(6\), what is the probability \(p\) that the \(n\)th score is \(6\)?
+  What is the probability that the \(n\)th score is \(j\), where \(j \ne 6\)?
+
+  Suppose instead that the die cannot score one greater (mod \(6\)) than the
+  previous score, all other five scores having equal probability. What is the
+  new value of \(p\)? [Hint: Think about the relationship between the two dice.]
+ \item
+  Let \(X = (X_n)_{n \ge 0}\) be a Markov chain on \(\set{1, 2, 3}\) with
+  transition matrix
+  \begin{equation*}
+   P =
+   \begin{bmatrix}
+    0 & 1 & 0 \\
+    0 & 2/3 & 1/3 \\
+    p & 1 - p & 0
+   \end{bmatrix}
+  \end{equation*}
+  Find \(\Prob{X_n = 1 \given X_0 = 1}\) in each of the following cases:
+  \begin{multicols}{3}
+   \begin{enumerate}[label=(\alph*)]
+    \item
+     \(p = 1/16\)
+    \item
+     \(p = 1/6\)
+    \item[\(\text{(c)}^\ast\)]
+     \(p = 1/12\)
+   \end{enumerate}
+  \end{multicols}
+ \item
+  Identify the communicating classes of the transition matrix
+  \begin{equation*}
+   P =
+   \begin{bmatrix}
+    1/2 & 0 & 0 & 0 & 1/2 \\
+    0 & 1/2 & 0 & 1/2 & 0 \\
+    0 & 0 & 1 & 0 & 0 \\
+    0 & 1/4 & 1/4 & 1/4 & 1/4 \\
+    1/2 & 0 & 0 & 0 & 1/2 \\
+   \end{bmatrix}_.
+  \end{equation*}
+ \item
+  Show that every transition matrix on a finite state space has at least one
+  closed communicating class. Find an example of a transition matrix with no
+  closed communicating class.
+ \item
+  A gambler has £2 and needs to increase it to £10 in a hurry. She can play a
+  game with the following rules: a fair coin is tossed; if a player bets on the
+  side which actually turns up, she wins a sum equal to her stake, and her stake
+  is returned; otherwise she loses her stake. The gambler decides to use a bold
+  strategy in which she stakes all her money if she has £5 or less and otherwise
+  stakes just enough to increase her capital, if she wins, to £10.
+
+  Let \(X_0 = 2\) and \(X = (X_n)_{\ge 0}\) be her capital after \(n\) throws.
+  Prove that the gambler will achieve her aim with probability \(1/5\). What is
+  the expected number of tosses until she either achieves her aim or loses her
+  capital?
+ \item (Optional)
+  Let \(X = (X_n)_{n \ge 0}\) be a Markov chain on \(\set{0, 1, \dotsc}\) with
+  transition probabilities given by
+  \begin{align*}
+   p_{0,1} = 1, &&
+   p_{i,i+1} + p_{i,i-1} = 1, &&
+   p_{i,i+1} = \parens[\Big]{\frac{i + 1}i}^2 p_{i,i-1},&&
+   (i \ge 1)
+  \end{align*}
+  Show that if \(X_0\) = 0, then the probability that \(X_n \ge 1\) for all
+  \(n \ge 1\) is \(6/\pi^2\).
+ \item (Optional)
+  Let \(Y_1, Y_2, \dotsc\) be i.i.d random variables with
+  \(\Prob{Y_1 = 1} = \Prob{Y_1 = -1} = 1/2\) and set
+  \(X_0 = 1\), \(X_n = X_0 + Y_1 + \dotsb + Y_n\) for \(n \ge 1\). Define
+  \begin{equation*}
+   H_0 = \inf \set{n \ge 0: X_n = 0}.
+  \end{equation*}
+  Find the probability generating function \(\phi(s) = \Exp{S^{H_0}}\).
+
+  Suppose the common distribution of the \(Y_i\) is changed to
+  \mbox{\(\Prob{Y_1 = 2} = \Prob{Y_1 = -1} = 1/2\)}. Show that the probability
+  generating function \(\phi\) now satisfies
+  \begin{equation*}
+   s\phi^3 - 2\phi + s = 0
+  \end{equation*}
+\end{enumerate}
+\end{document}

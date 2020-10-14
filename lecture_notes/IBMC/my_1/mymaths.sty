@@ -1,0 +1,20 @@
+\ProvidesPackage{mymaths}
+
+\RequirePackage{mathtools}
+\RequirePackage{amssymb}
+
+\newcommand*\Prob[1]{\mathbb P[#1]}
+\newcommand*\Exp[1]{\mathbb E[#1]}
+\newcommand*\given\mid
+
+\newcommand*\Z{\mathbb Z}
+
+% this is the hill I'm prepared to die on
+\let\uglyepsilon\epsilon
+\let\epsilon\varepsilon
+\let\uglyphi\phi
+\let\phi\varphi
+
+\DeclarePairedDelimiter\abs\lvert\rvert
+\DeclarePairedDelimiter\set\{\}
+\DeclarePairedDelimiter\parens()
