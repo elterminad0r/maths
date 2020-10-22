@@ -17,31 +17,55 @@
 \maketitle
 
 The following was motivated by mealtime discussions. Sometimes prior knowledge
-of fairly late Michaelmas content is assumed.
+of content is assumed.
 
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
  \item
   The relation ``\(\isom\)'' is an equivalence relation on any set of groups.
   Determine (with proof) the equivalence classes up to isomorphism of
-  % unfortunate consequences of choice:
-  % Q * R/Z =~ R * Q/Z =~ R
-  % R * R/Z =~ R/Z
-  % R/Z * Q/Z =~ R/Z * R/Z
-  % TODO: figure out whether or not GL_2(R) =~ GL_3(R), add that.
-  \allowdisplaybreaks
-  \begin{align*}
+  % TODO: add some more finite direct products.
+  % TODO: does PGL_infty exist?????
+  % TODO: {}^N D_6
+  % TODO: The Horn group {}_H^S G
+  % TODO: The countable version of {}^S G:
+  %       maybe {}^S G^{(\aleph_1)}, {}_H^S G^{(\aleph_1)}
+  % TODO: stochastic group
+  \begingroup \allowdisplaybreaks \begin{align*}
    \set{  & \Z,\ \Q,\ \R,\ \Z \dprod \Z,\ \Q \dprod \Q,
-        \\& \Q / \Z,\ \R / \Z,\ \Sym(\Z),\ \Sym(\R),
-        \\& S^1,\ \R^\times,\ \R_{>0}^\times,\ \Q^\times,\ \Q_{>0}^\times,
-        \\& S^1 \dprod S^1,\ \R^\times \dprod \R^\times,
-            \ \Q^\times \dprod \Q^\times,\ \Sym(\Z) \dprod \Sym(\Z),
-        \\& S_\infty,\ A_\infty,\ D_\infty,\ \Z^\N,\ \Z^\Z,\ \Z^\R,\ \Isom(\R),
-          \ C_2^\N,\ C_2^\R,
-        \\& \R \dprod \Z,\ \Q \dprod \Z,\ \Q \dprod (\Q/\Z),
-            \ \Z \dprod (\R/\Z),\ \Z \dprod (\Q/\Z),
+          \ \Q / \Z,\ \R / \Z,
+          \ S^1,\ \R^\times,\ \R_{>0}^\times,\ \Q^\times,\ \Q_{>0}^\times,
+          \ \R^\times \dprod \R^\times,
+          \ \Q^\times \dprod \Q^\times,
+        \\& \Aut(\Z),\ \Aut(\Q),\ \Aut(\Q \dprod \Q),\ \Aut(\Q/\Z),
+          \ \Aut(\Z \dprod \Z \dprod \Z),\ \Aut(\Q) \dprod \Aut(\Z),
+        \\& \Sym(\Z),\ \Sym(\R),
+          \ S_\infty,\ A_\infty,\ D_\infty,\ \Z^\N,\ \Z^\Z,\ \Z^\R,\ \Isom(\R),
+          \ C_2^\N,\ C_2^\R,\ Q_8^\N,\ Q_8^\R,\ \Q^\N,\ \Q^\R,
+        \\& \R^\N,\ \R^\R,\ {}^\N\Z,\ {}^\R\Z,\ {}^\N C_2,\ {}^\R C_2,
+          \ {}^\N Q_8,\ {}^\R Q_8,\ {}^\N\Q,\ {}^\R\Q,\ {}^\N\R,\ {}^\R\R,
+            {\textstyle
+          \ \bigoplus_{x \in \R} \Z,
+          \ \bigoplus_{x \in \R} Q_8,
+          \ \bigoplus_{x \in \R} C_2,
+            }
+        \\& {\textstyle
+            \prod_{n \in \N} C_n,\ \prod_{n \in \N} D_{2n},
+          \ \prod_{n \in \N} C_2^n,\ \prod_{n \in \N} C_{2^n},
+          \ \prod_{n \in \N} S_n,\ \prod_{n \in \N} A_n,\ \prod_{n \in \N} \Z,
+          \ \prod_{n \in \N} \Q,
+            }
+        \\& {\textstyle
+            \bigoplus_{n \in \N} C_n,
+          \ \bigoplus_{n \in \N} D_{2n},
+          \ \bigoplus_{n \in \N} C_2^n,\ \bigoplus_{n \in \N} C_{2^n},
+          \ \bigoplus_{n \in \N} S_n,\ \bigoplus_{n \in \N} A_n,
+          \ \bigoplus_{n \in \N} \Z,\ \bigoplus_{n \in \N} \Q,
+            }
+        \\& S^1 \dprod S^1,\ \R \dprod \Z,\ \Q \dprod \Z,\ \Q \dprod (\Q/\Z),
+          \ \Z \dprod (\R/\Z),\ \Z \dprod (\Q/\Z),\ \Sym(\Z) \dprod \Sym(\Z),
         \\& (\R/\Z) \dprod (\R/\Z),\ \ (\Q/\Z) \dprod (\Q/\Z),
-        \\& \R \dprod C_2,\ \Q \dprod C_2,\ \Z \dprod C_2,
-            \ (\R/\Z) \dprod C_2,\ (\Q/\Z) \dprod C_2,
+          \ \R \dprod C_2,\ \Q \dprod C_2,\ \Z \dprod C_2,
+          \ (\R/\Z) \dprod C_2,\ (\Q/\Z) \dprod C_2,
         \\& \GL_2(\Q),\ \GL_3(\Q),
           \ \GL_4(\Q),\ \GL_\infty(\Q),
           \ \GL_2(\R),\ \GL_3(\R),
@@ -59,21 +83,21 @@ of fairly late Michaelmas content is assumed.
           \ \SL_2(\Z),\ \SL_3(\Z),
           \ \SL_4(\Z),\ \SL_\infty(\Z),
         \\& \PGL_2(\Q),\ \PGL_3(\Q),
-          \ \PGL_4(\Q),\ \PGL_\infty(\Q),
+          \ \PGL_4(\Q),%\ \PGL_\infty(\Q),
           \ \PGL_2(\R),\ \PGL_3(\R),
-          \ \PGL_4(\R),\ \PGL_\infty(\R),
+          \ \PGL_4(\R),%\ \PGL_\infty(\R),
         \\& \PGL_2(\C),\ \PGL_3(\C),
-          \ \PGL_4(\C),\ \PGL_\infty(\C),
+          \ \PGL_4(\C),%\ \PGL_\infty(\C),
           \ \PGL_2(\Z),\ \PGL_3(\Z),
-          \ \PGL_4(\Z),\ \PGL_\infty(\Z),
+          \ \PGL_4(\Z),%\ \PGL_\infty(\Z),
         \\& \PSL_2(\Q),\ \PSL_3(\Q),
-          \ \PSL_4(\Q),\ \PSL_\infty(\Q),
+          \ \PSL_4(\Q),%\ \PSL_\infty(\Q),
           \ \PSL_2(\R),\ \PSL_3(\R),
-          \ \PSL_4(\R),\ \PSL_\infty(\R),
+          \ \PSL_4(\R),%\ \PSL_\infty(\R),
         \\& \PSL_2(\C),\ \PSL_3(\C),
-          \ \PSL_4(\C),\ \PSL_\infty(\C),
+          \ \PSL_4(\C),%\ \PSL_\infty(\C),
           \ \PSL_2(\Z),\ \PSL_3(\Z),
-          \ \PSL_4(\Z),\ \PSL_\infty(\Z),
+          \ \PSL_4(\Z),%\ \PSL_\infty(\Z),
         \\& \O_2(\Q),\ \O_3(\Q),
           \ \O_4(\Q),\ \O_\infty(\Q),\ \SO_2(\Q),
           \ \SO_3(\Q),\ \SO_4(\Q),\ \SO_\infty(\Q),
@@ -89,32 +113,92 @@ of fairly late Michaelmas content is assumed.
         \\& \U(2),\ \U(3),
           \ \U(4),\ \U(\infty),\ \SU(2),
           \ \SU(3),\ \SU(4),\ \SU(\infty),
+        \\& \PO_2(\Q),\ \PO_3(\Q),
+          \ \PO_4(\Q),%\ \PO_\infty(\Q),
+          \ \PSO_2(\Q),
+          \ \PSO_3(\Q),\ \PSO_4(\Q),%\ \PSO_\infty(\Q),
+        \\& \PO_2(\R),\ \PO_3(\R),
+          \ \PO_4(\R),%\ \PO_\infty(\R),
+          \ \PSO_2(\R),
+          \ \PSO_3(\R),\ \PSO_4(\R),%\ \PSO_\infty(\R),
+        \\& \PO_2(\C),\ \PO_3(\C),
+          \ \PO_4(\C),%\ \PO_\infty(\C),
+          \ \PSO_2(\C),
+          \ \PSO_3(\C),\ \PSO_4(\C),%\ \PSO_\infty(\C),
+        \\& \PO_2(\Z),\ \PO_3(\Z),
+          \ \PO_4(\Z),%\ \PO_\infty(\Z),
+          \ \PSO_2(\Z),
+          \ \PSO_3(\Z),\ \PSO_4(\Z),%\ \PSO_\infty(\Z),
+        \\& \PU(2),\ \PU(3),
+          \ \PU(4),%\ \PU(\infty),
+          \ \PSU(2),
+          \ \PSU(3),\ \PSU(4),%\ \PSU(\infty),
         \\& \RL_2^{\cycsgp{-1}}(\Q),
           \ \RL_3^{\cycsgp{-1}}(\Q),
           \ \RL_4^{\cycsgp{-1}}(\Q),
-          \ \RL_2^{\cycsgp{-1}}(\R),
+          \ \RL_\infty^{\cycsgp{-1}}(\Q),
+        \\& \RL_2^{\cycsgp{-1}}(\R),
           \ \RL_3^{\cycsgp{-1}}(\R),
           \ \RL_4^{\cycsgp{-1}}(\R),
+          \ \RL_\infty^{\cycsgp{-1}}(\R),
         \\& \RL_2^{\cycsgp{-1}}(\C),
           \ \RL_3^{\cycsgp{-1}}(\C),
           \ \RL_4^{\cycsgp{-1}}(\C),
-          \ \RL_2^{\cycsgp i}(\C),
+          \ \RL_\infty^{\cycsgp{-1}}(\C),
+        \\& \RL_2^{\cycsgp i}(\C),
           \ \RL_3^{\cycsgp i}(\C),
           \ \RL_4^{\cycsgp i}(\C),
+          \ \RL_\infty^{\cycsgp i}(\C),
         \\& \RL_2^{S^1}(\C),
           \ \RL_3^{S^1}(\C),
           \ \RL_4^{S^1}(\C),
-          \ \RL_2^{\Q_{>0}^\times}(\Q),
+          \ \RL_\infty^{S^1}(\C),
+        \\& \RL_2^{\Q_{>0}^\times}(\Q),
           \ \RL_3^{\Q_{>0}^\times}(\Q),
           \ \RL_4^{\Q_{>0}^\times}(\Q),
+          \ \RL_\infty^{\Q_{>0}^\times}(\Q),
         \\& \RL_2^{\R_{>0}^\times}(\R),
           \ \RL_3^{\R_{>0}^\times}(\R),
           \ \RL_4^{\R_{>0}^\times}(\R),
-          \ \RL_2^{\R_{>0}^\times}(\C),
+          \ \RL_\infty^{\R_{>0}^\times}(\R),
+        \\& \RL_2^{\R_{>0}^\times}(\C),
           \ \RL_3^{\R_{>0}^\times}(\C),
           \ \RL_4^{\R_{>0}^\times}(\C),
+          \ \RL_\infty^{\R_{>0}^\times}(\C),
+        \\& \PRL_2^{\cycsgp{-1}}(\Q),
+          \ \PRL_3^{\cycsgp{-1}}(\Q),
+          \ \PRL_4^{\cycsgp{-1}}(\Q),
+          %\ \PRL_\infty^{\cycsgp{-1}}(\Q),
+        \\& \PRL_2^{\cycsgp{-1}}(\R),
+          \ \PRL_3^{\cycsgp{-1}}(\R),
+          \ \PRL_4^{\cycsgp{-1}}(\R),
+          %\ \PRL_\infty^{\cycsgp{-1}}(\R),
+        \\& \PRL_2^{\cycsgp{-1}}(\C),
+          \ \PRL_3^{\cycsgp{-1}}(\C),
+          \ \PRL_4^{\cycsgp{-1}}(\C),
+          %\ \PRL_\infty^{\cycsgp{-1}}(\C),
+        \\& \PRL_2^{\cycsgp i}(\C),
+          \ \PRL_3^{\cycsgp i}(\C),
+          \ \PRL_4^{\cycsgp i}(\C),
+          %\ \PRL_\infty^{\cycsgp i}(\C),
+        \\& \PRL_2^{S^1}(\C),
+          \ \PRL_3^{S^1}(\C),
+          \ \PRL_4^{S^1}(\C),
+          %\ \PRL_\infty^{S^1}(\C),
+        \\& \PRL_2^{\Q_{>0}^\times}(\Q),
+          \ \PRL_3^{\Q_{>0}^\times}(\Q),
+          \ \PRL_4^{\Q_{>0}^\times}(\Q),
+          %\ \PRL_\infty^{\Q_{>0}^\times}(\Q),
+        \\& \PRL_2^{\R_{>0}^\times}(\R),
+          \ \PRL_3^{\R_{>0}^\times}(\R),
+          \ \PRL_4^{\R_{>0}^\times}(\R),
+          %\ \PRL_\infty^{\R_{>0}^\times}(\R),
+        \\& \PRL_2^{\R_{>0}^\times}(\C),
+          \ \PRL_3^{\R_{>0}^\times}(\C),
+          \ \PRL_4^{\R_{>0}^\times}(\C),
+          %\ \PRL_\infty^{\R_{>0}^\times}(\C),
    }
-  \end{align*}
+  \end{align*} \endgroup
   Here
   \begin{itemize}
    \item
@@ -125,6 +209,9 @@ of fairly late Michaelmas content is assumed.
     \(\Sym(S) = \set{f\colon S \to S : \text{\(f\) is a bijection}}\) is the
     group of \emph{symmetries} or \emph{permutations} of \(S\), under
     composition.
+   \item
+    For any group \(G\), \(\Aut(G)\) is the group of isomorphisms from
+    \(G \to G\) (``automorphisms'') under composition.
    \item
     eg \(\R^\times = (\R \setminus \set{0}, \cdot)\) is the group of nonzero
     reals under multiplication.
@@ -148,6 +235,37 @@ of fairly late Michaelmas content is assumed.
     functions from \(S\) to \(G\) under pointwise operations
     (ie \(\forall x, (f \cdot_{(G^S)} g)(x) = f(x) \cdot_G g(x)\)).
    \item
+    For a nonempty set \(S\) and a collection of groups
+    \(\mathcal G = \set{G_s \mid s \in S}\), \(\prod_{s \in S} G_s\) is the
+    direct product of \(\mathcal G\). This is the obvious generalisation of
+    direct products to possibly infinite sets.
+
+    It can be constructed as the set of functions
+    \(f: S \to \bigcup \mathcal G\) such that for all \(s \in S\),
+    \(f(s) \in G_s\), under pointwise operations.
+
+    It is possible for the \(G_s\) not to be distinct - eg
+    \(\prod_{s \in S} \Z\) is perfectly well-defined.
+   \item
+    For a nonempty set \(S\) and a collection of groups
+    \(\mathcal G = \set{G_s \mid s \in S}\), \(\bigoplus_{s \in S} G_s\) is the
+    direct sum of \(\mathcal G\). This is, loosely, the set of points in the
+    Cartesian product that differ from the identity only finitely often.
+
+    It can be constructed as the subgroup of \(\prod_{s \in S} G_s\) of all
+    \(f\) such that \(f(s) \ne e_{G_s}\) only finitely often.
+   \item
+    For a nonempty set \(S\) and a group \(G\), \({}^SG\) is the subgroup of
+    \(G^S\) of all \(f: S \to G\) such that there exists some \(g \in G\) such
+    that \(f(s) \ne g\) only finitely often.
+
+    This is a definition and notation that I made up.
+   \item
+    For a nonempty set \(S\), a group \(G\), and a subgroup \(H \sgp G\), the
+    \emph{Horn group} on the data \((S, G, H)\), denoted
+    \({}_H^S G\), is the subgroup of \({}^S G\) for all \(f\) such that there
+    exists \(h \in H\) such that \(f(s) \ne h\) only finitely often.
+   \item
     If \(R\) is a commutative unital ring, then
     \begin{itemize}
      \item
@@ -155,7 +273,15 @@ of fairly late Michaelmas content is assumed.
       with components in \(R\). The ``general linear group''.
 
       \(\GL_\infty(R) = \bigcup_n \GL_n(R)\), with the natural
-      inclusion.
+      inclusion, given by identifying \(M \in \GL_n(R)\) with the block matrix
+      \begin{equation*}
+       \begin{pmatrix}
+        M & 0 \\
+        0 & 1 \\
+       \end{pmatrix} \in \GL_{n + 1}(R).
+      \end{equation*}
+      This can be thought of as matrices of infinite size, that disagree with
+      the infinite identity matrix only finitely often.
      \item
       \(\SL_n(R)\) is the subgroup of \(\GL_n(R)\) of matrices
       with determinant \(1\). The ``special linear group''.
@@ -166,19 +292,22 @@ of fairly late Michaelmas content is assumed.
       noting that the determinant can lift to this union.
      \item
       \(\PGL_n(R)\) is the quotient
-      \(\GL_n(R) / Z\), where \(Z \nsgp \GL_n(R)\) is the
+      \(\GL_n(R) / Z_n(R)\), where \(Z_n(R) \nsgp \GL_n(R)\) is the
       subgroup of scalar matrices
-      \(Z = \set{\lambda \mat I: \lambda \in R^\times}\).
+      \(Z_n(R) = \set{\lambda \mat I: \lambda \in R^\times}\).
       The ``projective general linear group''.
 
-      \(\PGL_\infty(R) = \bigcup_n \PGL_n(R)\). The existence of this inclusion
-      a bit more involved.
+      % \(\PGL_\infty(R) = \bigcup_n \PGL_n(R)\). The existence of this inclusion
+      % is slightly more involved. Let
+      % \(\phi: \GL_{n + 1}(R) \to \PGL_{n + 1}(R)\) be the quotient map, and
+      % \(\rho: \GL_n(R) \to \GL_{n + 1}(R)\) be the usual top-leftwise inclusion.
+
+      % Then \(\Ker(\phi \circ \rho) = \rho^{-1}(Z_{n + 1}(R)) \) %TODO TODO TODO
      \item
-      \(\PSL_n(R) = SL_n(R) / (SL_n(R) \cap Z)\).
+      \(\PSL_n(R) = \SL_n(R) / (Z_n(R) \cap \SL_n(R))\).
       The ``projective special linear group''.
 
-      \(\PSL_\infty(R) = \bigcup_n \PSL_n(R)\). The existence of this inclusion
-      a bit more involved.
+      % \(\PSL_\infty(R) = \bigcup_n \PSL_n(R)\).
      \item
       \(\O_n(R)\) is the group of matrices that are orthogonal -
       ie, such that \(\mat M \tran{\mat M} = \mat I\).
@@ -195,16 +324,49 @@ of fairly late Michaelmas content is assumed.
      \item
       \(\U(n)\) is the subgroup of \(\GL_n(\C)\) of matrices that are unitary -
       ie such that \(\mat M \herm{\mat M} = \mat I\).
-      The ``unitary group''.
+      The ``unitary group''. (Note that \(\herm{\mat M}\) means
+      \(\conj{\tran{\mat M}}\), the conjugate of the transpose).
 
       \(\U(\infty) = \bigcup_n \U(n)\) with the natural inclusion. This is a
       mostly custom definition.
+     \item
+      \(\SU_n(R)\) is the subgroup of \(\U_n(R)\) of unitary matrices of
+      determinant \(1\). The ``special unitary group''.
+
+      \(\SU_\infty(R) = \bigcup_n \SU_n(R)\), with the natural inclusion.
+     \item
+      \(\PO_n(R) = \O_n(R) / (Z_n(R) \cap \O_n(R))\). The ``projective
+      orthogonal group''.
+
+      % \(\PO_\infty(R) = \bigcup_n \PO_n(R)\).
+     \item
+      \(\PSO_n(R) = \SO_n(R) / (Z_n(R) \cap \SO_n(R))\). The ``projective
+      special orthogonal group''.
+
+      % \(\PSO_\infty(R) = \bigcup_n \PSO_n(R)\).
+     \item
+      \(\PU(n) = \U(n) / (Z_n(\C) \cap \U(n))\). The ``projective unitary
+      group''.
+
+      % \(\PU(\infty) = \bigcup_n \PU(n)\).
+     \item
+      \(\PSU(n) = \SU(n) / (Z_n(\C) \cap \SU(n)\). The ``projective special
+      unitary group''.
+
+      % \(\PSU(\infty) = \bigcup_n \PSU(n)\).
      \item
       If \(G \sgp R^\times\), then \(\RL_n^G(R)\) is the subgroup of
       \(\GL_n(R)\) with determinants in \(G\). This generalises \(\SL\) and
       \(\GL\), since \(\SL_n(R) = \RL_n^{\set 1}(R)\), and
       \(\GL_n(R) = \RL_n^{R^\times}(R)\).
       The ``restricted linear group''. This definition is completely made up.
+
+      \(\RL_\infty^G(R) = \bigcup_n \RL_n^G(R)\).
+     \item
+      \(\PRL_n^G(R) = \RL_n^G(R) / (Z_n(R) \cap \RL_n^G(R))\). The ``projective
+      restricted linear group''.
+
+      % \(\PRL_\infty^G(R) = \bigcup_n \PRL_n^G(R)\).
     \end{itemize}
   \end{itemize}
   This question is not supposed to be unpleasantly long and depressing.
@@ -212,6 +374,11 @@ of fairly late Michaelmas content is assumed.
   about over a long period of time.
   Be advised that this question can be done performing
   fewer direct comparisons than \(\tfrac 12 n(n - 1)\).
+
+  Disclaimer: the authors have not yet produced a full answer to this question,
+  and they cannot answer some of this question without the use of some Linear
+  Algebra. Particularly, you are well within your right to ignore all the matrix
+  groups.
  \item
   If \(A, B, G\) are groups, we say that \(A \dprod B\) is a
   \emph{decomposition} of \(G\) if \(G \isom A \dprod B\), and neither of \(A\)
@@ -248,6 +415,14 @@ of fairly late Michaelmas content is assumed.
   \begin{tcolorbox}
    If \(G\) is a group of finite order, then \(G\) is isomorphic to a subgroup
    of \(A_n\) for some \(n\).
+  \end{tcolorbox}
+  Is it true?
+ \item
+  Here is a strengthening of the Cantor-Schr\"oder-Bernstein theorem, for
+  groups.
+  \begin{tcolorbox}
+   If \(G\) and \(H\) are groups, and there are injective homomorphisms
+   \(\phi: G \to H\) and \(\rho: H \to G\), then \(G \isom H\).
   \end{tcolorbox}
   Is it true?
  \item
@@ -288,6 +463,28 @@ of fairly late Michaelmas content is assumed.
   stand in the corner, think about what you've done, and think of an operation
   that is associative and \emph{anticommutative}, ie
   \(a \ast b = b \ast a \iff a = b\)}.
+ \item
+  A relation \(\le\) on a set \(S\) is a \emph{total order} if
+  \begin{itemize}
+   \item
+    \(\le\) is \emph{antisymmetric}: For all \(a, b \in S\), if \(a \le b\) and
+    \(b \le a\), then \(a = b\).
+   \item
+    \(\le\) is transitive
+   \item
+    \(\le\) is connex: For all \(a, b \in S\), either
+    \(a \le b\) or \(b \le a\).
+  \end{itemize}
+  Two totally ordered sets \((S, \le)\) and \((T, \preceq)\) are
+  \emph{order-isomorphic} if there is a bijection \(\phi: S \to T\) such that
+  for all \(s_1, s_2 \in S\),
+  \(s_1 \le s_2 \iff \phi(s_1) \preceq \phi(s_2)\).
+
+  Is every countable totally ordered set order-isomorphic to some subset of
+  \(\Q\) with the usual \(\le\) on \(\Q\)?
+
+  Is every totally ordered set that injects into \(\R\) order-isomorphic to some
+  subset of \(\R\) with the usual \(\le\) on \(\R\)?
  \item
   Is every \(x \in \R\) the root of some nonzero power series with coefficients
   in \(\Q\)?

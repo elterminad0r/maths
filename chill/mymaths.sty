@@ -19,7 +19,12 @@
 \newcommand*\SO{\mathrm{SO}}
 \renewcommand*\U{\mathrm{U}}
 \newcommand*\SU{\mathrm{SU}}
+\newcommand*\PO{\mathrm{PO}}
+\newcommand*\PSO{\mathrm{PSO}}
+\newcommand*\PU{\mathrm{PU}}
+\newcommand*\PSU{\mathrm{PSU}}
 \newcommand*\RL{\mathrm{RL}}
+\newcommand*\PRL{\mathrm{PRL}}
 
 \newcommand*\nsgp\vartriangleleft
 \newcommand*\sgp\leq
@@ -35,6 +40,7 @@
 
 \newcommand*\tran[1]{{#1}^{\mathsf T}}
 \newcommand*\herm[1]{{#1}^{\dagger}}
+\newcommand*\conj\overline
 
 \newcommand*\Id{\mathrm{Id}}
 
@@ -48,11 +54,14 @@
 
 \DeclarePairedDelimiter\abs\lvert\rvert
 \DeclarePairedDelimiter\set\{\}
+\DeclarePairedDelimiter\parens()
 \DeclarePairedDelimiter\intoo()
 \DeclarePairedDelimiter\intco[)
+\DeclarePairedDelimiter\intcc[]
 \DeclarePairedDelimiter\cycsgp\langle\rangle
 
 \DeclareMathOperator\Sym{Sym}
+\DeclareMathOperator\Aut{Aut}
 \DeclareMathOperator\Ker{Ker}
 \DeclareMathOperator\sgn{sgn}
 \DeclareMathOperator\Isom{Isom}
@@ -77,5 +86,6 @@
 }
 
 \declaretheorem{theorem}
-\declaretheorem{lemma}
+\declaretheorem[sibling=theorem]{lemma}
+\declaretheorem[sibling=theorem]{corollary}
 
