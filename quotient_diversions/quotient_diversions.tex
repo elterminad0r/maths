@@ -1,0 +1,98 @@
+\documentclass[a4paper,12pt]{article}
+\author{Izaak van Dongen}
+\title{Quotient Diversions}
+
+\usepackage{mysty}
+\usepackage{mymaths}
+
+% Embed source files into PDF in case of loss. You can view or extract the
+% source files by doing `pdfdetach -list <file.pdf>` or
+% `pdfdetach -saveall <file.pdf>`, using pdfdetach from poppler, or some other
+% suitable method.
+\usepackage{embedall}
+\embedfile{mymaths.sty}
+\embedfile{mysty.sty}
+
+\begin{document}
+\maketitle
+
+This document concerns the following statement regarding \emph{diversions} of
+homomorphisms into quotients:
+\footnotetext[1]{%
+  If you really care, \(\forall g \in G, \theta(\psi(g)) = \phi(g)\).%
+}
+\begin{tcolorbox}
+ Let \(G\) and \(H\) be groups, and let \(K \nsgp H\). Let
+ \(\phi: G \to H/K\) be a homomorphism.
+
+ Then there is some homomorphism \(\psi: G \to H\) such that
+ \(\theta \compose \psi = \phi\),\footnotemark[1]
+ where \(\theta: H \to H/K\) is the quotient map.
+\end{tcolorbox}
+Let \(G = C_2 = \cycsgp{-1}\), \(H = Q_8\), and \(K = \cycsgp{i}\).
+Then \(K \nsgp H\) because it is of index \(2\), and \(H/K \isom C_2\).
+
+So let \(\phi: G \to H/K\) be an isomorphism.
+Note that if \(\psi: C_2 \to Q_8\) is a nontrivial homomorphism, then
+\(\psi(-1)\) has order \(2\) in \(Q_8\). Therefore \(\psi(-1) = -1 \in K\). Then
+\(\psi(C_2) \subseteq K\), so particularly \(\theta \compose \psi\) is trivial.
+
+So \(\theta \compose \psi\) cannot be \(\phi\).
+
+\begin{tcolorbox}
+ Let \(V\) and \(W\) be finite-dimensional vector spaces, and let
+ \(U \sspace W\). Let \(\alpha: V \to W/U\) be a linear map.
+
+ Then there is some linear map \(\beta: V \to W\) such that
+ \(\theta \compose \beta = \alpha\), where \(\theta: W \to W/U\) is the quotient
+ map.
+\end{tcolorbox}
+
+Let \(\mathcal B = \set{\vec b_1, \dotsc, \vec b_n}\) be a basis of \(U\), and
+extend it to a basis
+\(\mathcal B'
+   = \set{\vec b_1, \dotsc, \vec b_n, \vec b_{n + 1}, \dotsc, \vec b_m}\)
+of \(W\). Note that
+\(\mathcal B'' = \set{\vec b_{n + 1} + U, \dotsc, \vec b_m + U}\) is a basis for
+\(W/U\) (exercise in notes):
+\begin{itemize}
+ \item
+  \(\mathcal B''\) spans:
+
+  Let \(\vec v + U \in W/U\). Since \(\vec v \in W\), we have
+  \(\vec v + U
+     = \sum_{i = 1}^m \lambda_i \vec b_i + U
+     = \sum_{i = n + 1}^m \lambda_i (\vec b_i + U)\), for some \(\lambda_i\),
+  since for \(1 \le i \le n\), \(\vec b_i + U = \vec 0 + U\).
+ \item
+  \(\mathcal B''\) is free:
+
+  Suppose \(\sum_{i = n + 1}^m \lambda_i \vec b_i + U = \vec 0 + U\).
+  Particularly, \(\sum_{i = n + 1}^m \lambda_i \vec b_i + \vec u = \vec 0\) for
+  some \(\vec u \in U\). Since \(\vec u \in U\), we have
+  \(\vec u = \sum_{i = 1}^n \mu_i \vec b_i\), for some \(\mu_i\).
+
+  Then
+  \(\sum_{i = 1}^n \mu_i \vec b_i + \sum_{i = n + 1}^m \lambda_i \vec b_i
+    = \vec 0\)
+  implies that \(\lambda_i \equiv 0\), because \(\mathcal B'\) is free.
+\end{itemize}
+All of this said, let
+\(\mathcal A = \set{\vec a_1, \dotsc, \vec a_\ell}\) be a basis of \(V\). For
+each \(1 \le i \le \ell\), let \(\lambda_j^{(i)}\) be such that
+\(\alpha(\vec a_i) = \sum_{j = n + 1}^m \lambda_j^{(i)} \vec b_j + U\).
+
+Then define \(\beta: \mathcal A \to W\) by
+\(\beta(\vec a_i) = \sum_{j = n + 1}^m \lambda_j^{(i)} \vec b_j\), for each
+\(1 \le i \le \ell\).
+
+By the universal property of \(\mathcal A\), we can linearly extend \(\beta\) to
+a linear map \(V \to W\). Then note that for all \(1 \le i \le \ell\),
+\(\theta(\beta(\vec a_i))
+   = \sum_{j = n + 1}^m \lambda_j^{(i)} \vec b_j + U
+   = \alpha(\vec a_i)\)
+
+Since \(\alpha\) and \(\theta \compose \beta\) agree on \(\mathcal A\), they
+must be the same map (agree on all values).
+
+\end{document}

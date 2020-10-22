@@ -1,0 +1,65 @@
+\ProvidesPackage{mymaths}
+
+\RequirePackage{mathtools}
+\RequirePackage{amssymb}
+
+\newcommand*\nsgp\vartriangleleft
+\newcommand*\sgp\leq
+\newcommand*\sspace\leq
+\newcommand*\isom\cong
+\renewcommand*\vec\mathbf
+\newcommand*\mat\mathbf
+\newcommand*\defeq\coloneqq
+\newcommand*\compose\circ
+
+\newcommand*\tran[1]{{#1}^{\mathsf T}}
+\newcommand*\herm[1]{{#1}^{\dagger}}
+\newcommand*\conj\overline
+
+\newcommand*\Id{\mathrm{Id}}
+
+\newcommand*\powerset{\mathcal P}
+
+% this is the hill I'm prepared to die on
+\let\uglyepsilon\epsilon
+\let\epsilon\varepsilon
+\let\uglyphi\phi
+\let\phi\varphi
+
+\DeclarePairedDelimiter\abs\lvert\rvert
+\DeclarePairedDelimiter\set\{\}
+\DeclarePairedDelimiter\parens()
+\DeclarePairedDelimiter\intoo()
+\DeclarePairedDelimiter\intco[)
+\DeclarePairedDelimiter\intcc[]
+\DeclarePairedDelimiter\cycsgp\langle\rangle
+
+\DeclareMathOperator\Sym{Sym}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Ker{Ker}
+\DeclareMathOperator\sgn{sgn}
+\DeclareMathOperator\Isom{Isom}
+
+% work-around for proof from
+% https://tex.stackexchange.com/questions/305174/proof-environment-produces-proof-proof-only-when-thmbox-is-used
+\RequirePackage{amsthm}
+
+% letltxmacro is like a cleverer version of let, that works with robust
+% commands or something
+% https://tex.stackexchange.com/questions/88001/when-to-use-letltxmacro
+\RequirePackage{letltxmacro}
+
+\LetLtxMacro\amsproof\proof
+\LetLtxMacro\amsendproof\endproof
+
+\RequirePackage{thmtools}
+
+\AtBeginDocument{%
+  \LetLtxMacro\proof\amsproof
+  \LetLtxMacro\endproof\amsendproof
+}
+
+\declaretheorem{theorem}
+\declaretheorem[sibling=theorem]{lemma}
+\declaretheorem[sibling=theorem]{corollary}
+
