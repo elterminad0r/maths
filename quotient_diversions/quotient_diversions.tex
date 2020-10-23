@@ -18,17 +18,17 @@
 
 This document concerns the following statement regarding \emph{diversions} of
 homomorphisms into quotients:
-\footnotetext[1]{%
-  If you really care, \(\forall g \in G, \theta(\psi(g)) = \phi(g)\).%
-}
 \begin{tcolorbox}
  Let \(G\) and \(H\) be groups, and let \(K \nsgp H\). Let
  \(\phi: G \to H/K\) be a homomorphism.
 
  Then there is some homomorphism \(\psi: G \to H\) such that
- \(\theta \compose \psi = \phi\),\footnotemark[1]
+ \(\theta \compose \psi = \phi\),\footnotemark[\getrefnumber{foot_ext}]
  where \(\theta: H \to H/K\) is the quotient map.
 \end{tcolorbox}
+\footnotetext[1]{\label{foot_ext}%
+  If you really care, \(\forall g \in G, \theta(\psi(g)) = \phi(g)\).%
+}
 Let \(G = C_2 = \cycsgp{-1}\), \(H = Q_8\), and \(K = \cycsgp{i}\).
 Then \(K \nsgp H\) because it is of index \(2\), and \(H/K \isom C_2\).
 
