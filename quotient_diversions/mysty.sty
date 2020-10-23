@@ -18,7 +18,8 @@
  \makeatother
 }
 
-\RequirePackage{refcount}
+\renewcommand*\thefootnote{\fnsymbol{footnote}}
+\newcommand*\fnref[1]{\textsuperscript{\ref{#1}}}
 
 \RequirePackage{tcolorbox}
 \RequirePackage{adjustbox}
