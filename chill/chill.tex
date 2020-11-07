@@ -260,11 +260,24 @@ of content is assumed.
     that \(f(s) \ne g\) only finitely often.
 
     This is a definition and notation that I made up.
+
+    We extend this definition further by defining
+    \({}^SG^{(1)}\) to be the subgroup of \(G^S\) of all \(f: S \to G\) such
+    that there is some \(g \in G\) such that \(f(s) \ne g\) only countably
+    often.
+    (Which is to say, \(\abs{\set{s \in S \mid f(s) \ne g}} < \aleph_1\),
+    assuming Choice (which is true). This leads to a definition of
+    \({}^SG^{(\alpha)}\) for general ordinals \(\alpha\). Then naturally,
+    \({}^SG = {}^SG^{(0)}\).)
    \item
     For a nonempty set \(S\), a group \(G\), and a subgroup \(H \sgp G\), the
     \emph{Horn group} on the data \((S, G, H)\), denoted
-    \({}_H^S G\), is the subgroup of \({}^S G\) for all \(f\) such that there
+    \({}_H^S G\), is the subgroup of \({}^S G\) of all \(f\) such that there
     exists \(h \in H\) such that \(f(s) \ne h\) only finitely often.
+
+    The countable Horn group \({}_H^S G^{(1)}\) is the subgroup of
+    \({}^S G^{(1)}\) of all \(f\) such that there exists \(h \in H\) such that
+    \(f(s) \ne h\) only countably often.
    \item
     If \(R\) is a commutative unital ring, then
     \begin{itemize}

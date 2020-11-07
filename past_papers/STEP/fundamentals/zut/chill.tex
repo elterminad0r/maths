@@ -1,0 +1,321 @@
+\documentclass[a4paper,12pt]{article}
+\author{Izaak van Dongen}
+\title{Recurring concepts in STEP}
+
+\usepackage{mysty}
+\usepackage{mymaths}
+
+% Embed source files into PDF in case of loss. You can view or extract the
+% source files by doing `pdfdetach -list <file.pdf>` or
+% `pdfdetach -saveall <file.pdf>`, using pdfdetach from poppler, or some other
+% suitable method.
+\usepackage[main]{embedall}
+\embedfile{mymaths.sty}
+\embedfile{mysty.sty}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+%TODO: t = tan x/2 for sec and cosec integrals
+
+\section{Introduction}
+
+Here I list some skills/tricks/concepts/fundamentals that I think are useful in
+STEP. I provide accompanying actual questions.
+
+The questions here come from a very broad range of years and papers.
+Particularly, from
+\begin{multicols}3
+ \begin{itemize}
+  \item 1994, paper I
+  \item 1995, paper I
+  \item 1996, paper II
+  \item 1997, paper I
+  \item 1997, paper III
+  \item 1998, paper I
+  \item 2000, paper I
+  \item 2000, paper II
+  \item 2002, paper I
+  \item 2005, paper I
+  \item 2006, paper II
+  \item 2006, paper III
+  \item 2007, paper I
+  \item 2007, paper II
+  \item 2007, paper III
+  \item 2008, paper I
+  \item 2009, paper I
+  \item 2010, paper II
+  \item 2011, paper II
+  \item 2011, paper III
+  \item 2012, paper II
+  \item 2012, paper III
+  \item 2013, paper III
+  \item 2015, paper I
+  \item 2015, paper II
+  \item 2015, paper III
+  \item 2017, paper II
+  \item 2017, paper III
+ \end{itemize}
+\end{multicols}
+It is worth giving some consideration to which papers you wish to save to use as
+a full practice paper (or particularly if any of your teachers had any papers in
+mind to use as practice...). However, it is always possible to still do a paper
+as a full practice paper even if you've done a question from it. Think of this
+as challenge mode.
+
+There is likely some overlap between these questions and the questions that
+Clive Johnson likes to set. He won't mind if you've done them already and just
+hand them in though, or if you pick some different questions.
+
+As an author of a document relating to STEP, I am obliged to remind the reader
+that in STEP it is \emph{crucial} to present a clear argument in your answer,
+not just a calculation.
+
+We begin.
+
+\section{Integration}
+
+\subsection{Particular substitutions exploiting symmetry}
+
+This section concerns substitutions such as \(t = x + \sqrt{1 + x^2}\).
+(Remember the trick here was to spot that \(1/t\) simplifies nicely!)
+
+This substitution is particularly powerful because we can write \(x\) and
+\(\sqrt{1 + x^2}\) as rational functions of \(t\). So if you have any rational
+function of \(x\) and \(\sqrt{1 + x^2}\), this substitution transforms its
+integral into a rational function of \(t\).
+
+\subsubsection{1994, Paper I, Question 8}
+\begin{center}
+ \includegraphics[width=0.8\textwidth]{screenshots/1994_I_8.png}
+\end{center}
+
+\subsubsection{1998, Paper I, Question 2}
+\begin{center}
+ \includegraphics[width=0.9\textwidth]{screenshots/1998_I_2.png}
+\end{center}
+
+\subsubsection{2006, Paper II, Question 4}
+\begin{center}
+ \includegraphics[width=0.8\textwidth]{screenshots/2006_II_4.png}
+\end{center}
+
+\subsubsection{2009, Paper I, Question 6}
+\begin{center}
+ \includegraphics[width=0.9\textwidth]{screenshots/2009_I_6.png}
+\end{center}
+
+\subsubsection{2010, Paper II, Question 4}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2010_II_4.png}
+\end{center}
+
+\subsubsection{2012, Paper II, Question 3}
+\begin{center}
+ \includegraphics[width=0.9\textwidth]{screenshots/2012_II_3.png}
+\end{center}
+
+\subsubsection{2015, Paper II, Question 6}
+\begin{center}
+ \includegraphics[width=0.8\textwidth]{screenshots/2015_II_6.png}
+\end{center}
+
+\subsubsection{2015, Paper III, Question 1}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2015_III_1.png}
+\end{center}
+
+\subsection{The tangent half-angle substitution}
+
+This section concerns the substitution \(t = \tan \tfrac 12 x\).
+
+As the below questions show, this substitution is particularly powerful because
+it transforms the integral of any rational function of trigonometric functions
+into a rational function of \(t\).
+
+\subsubsection{Deriving formula book equations}
+
+Use the substitution \(t = \tan \tfrac 12 x\) to show directly that
+\begin{align*}
+ \int \csc x\,\mathrm dx = \ln \abs{\tan \tfrac 12 x} + C,&&
+ \int \sec x\,\mathrm dx = 2 \ln \abs*{\frac{1 + t}{1 - t}} + C.
+\end{align*}
+Prove the trigonometric identities
+\begin{equation*}
+ \frac{1 + t}{1 - t} = \sec x + \tan x = \tan(\tfrac 12 x + \tfrac 14 \pi)
+\end{equation*}
+and
+\begin{equation*}
+ \tan \tfrac 12 x = \csc x - \cot x.
+\end{equation*}
+
+\subsubsection{2000, Paper II, Question 6}
+\begin{center}
+ \includegraphics[width=0.95\textwidth]{screenshots/2000_II_6.png}
+\end{center}
+
+\subsubsection{2013, Paper III, Question 1}
+\begin{center}
+ \includegraphics[width=0.95\textwidth]{screenshots/2013_III_1.png}
+\end{center}
+
+\subsection{Taking clever linear combinations}
+
+\subsubsection{1995, Paper I, Question 2}
+\begin{center}
+ \includegraphics[width=0.9\textwidth]{screenshots/1995_I_2.png}
+\end{center}
+
+\subsubsection{2002, Paper I, Question 7}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2002_I_7.png}
+\end{center}
+
+\subsubsection{2006, Paper III, Question 2}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2006_III_2.png}
+\end{center}
+
+\subsubsection{2007, Paper I, Question 3}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2007_I_3.png}
+\end{center}
+
+\subsubsection{2007, Paper III, Question 3}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2007_III_3.png}
+\end{center}
+
+\subsection{Indirectly establishing equalities between integrals}
+
+\subsubsection{2007, Paper III, Question 7}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2007_III_7.png}
+\end{center}
+
+\subsubsection{2011, Paper III, Question 6}
+\begin{center}
+ \includegraphics[width=0.95\textwidth]{screenshots/2011_III_6.png}
+\end{center}
+
+\subsubsection{2017, Paper III, Question 6}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2017_III_6.png}
+\end{center}
+
+\subsection{Sum-product identities}
+
+I've only found one really good question that uses this, but the idea this
+question uses to deal with products of trig functions inside integrals is
+\emph{really really important}.
+
+\subsubsection{2009, Paper I, Question 7}
+\begin{center}
+ \includegraphics[width=0.9\textwidth]{screenshots/2009_I_7.png}
+\end{center}
+
+\subsection{This question}
+
+I can't spoil the question, but there's a \emph{crucial} property of this
+expression for \(f''(x)\) that you would profit greatly from being aware of.
+
+\subsubsection{2011, Paper II, Question 6}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2011_II_6.png}
+\end{center}
+
+\subsection{Integrating step functions}
+
+\subsubsection{2000, Paper I, Question 3}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2000_I_3.png}
+\end{center}
+
+\subsection{Miscellaneous}
+
+\subsubsection{1997, Paper I, Question 7}
+\begin{center}
+ \includegraphics[width=0.9\textwidth]{screenshots/1997_I_7.png}
+\end{center}
+
+\section{Fibonacci numbers and induction}
+
+\subsubsection{1996, Paper II, Question 3}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/1996_II_3.png}
+\end{center}
+
+\subsubsection{2010, Paper II, Question 3}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2010_II_3.png}
+\end{center}
+
+\subsubsection{2012, Paper III, Question 8}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2012_III_8.png}
+\end{center}
+
+\section{Working with inequalities}
+
+\subsubsection{1997, Paper III, Question 4}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/1997_III_4.png}
+\end{center}
+
+\subsubsection{2007, Paper II, Question 7}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2007_II_7.png}
+\end{center}
+
+\subsubsection{2017, Paper II, Question 4}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2017_II_4.png}
+\end{center}
+
+\section{Working with definitions}
+
+\subsubsection{2006, Paper III, Question 8}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2006_III_8.png}
+\end{center}
+
+\subsubsection{2008, Paper I, Question 1}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2008_I_1.png}
+\end{center}
+
+\subsubsection{2012, Paper II, Question 2}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2012_II_2.png}
+\end{center}
+
+\subsubsection{2015, Paper III, Question 2}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2015_III_2.png}
+\end{center}
+
+\section{Miscellaneous}
+
+\subsection{Irrationality of \(e\)}
+
+\subsubsection{1997, Paper III, Question 7}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/1997_III_7.png}
+\end{center}
+
+\subsection{Telescoping products}
+
+\subsubsection{2005, Paper I, Question 7}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2005_I_7.png}
+\end{center}
+
+\subsection{Deriving trigonometric special angle formulae}
+
+\subsubsection{2015, Paper I, Question 2}
+\begin{center}
+ \includegraphics[width=\textwidth]{screenshots/2015_I_2.png}
+\end{center}
+
+\end{document}
