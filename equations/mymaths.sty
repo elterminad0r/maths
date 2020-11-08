@@ -11,40 +11,7 @@
 \renewcommand*\P{\mathbb P}
 \newcommand*\seq[1]{(#1 _n)_{n = 1}^\infty}
 
-\newcommand*\GL{\mathrm{GL}}
-\newcommand*\SL{\mathrm{SL}}
-\newcommand*\PGL{\mathrm{PGL}}
-\newcommand*\PSL{\mathrm{PSL}}
-\renewcommand*\O{\mathrm{O}}
-\newcommand*\SO{\mathrm{SO}}
-\renewcommand*\U{\mathrm{U}}
-\newcommand*\SU{\mathrm{SU}}
-\newcommand*\PO{\mathrm{PO}}
-\newcommand*\PSO{\mathrm{PSO}}
-\newcommand*\PU{\mathrm{PU}}
-\newcommand*\PSU{\mathrm{PSU}}
-\newcommand*\RL{\mathrm{RL}}
-\newcommand*\PRL{\mathrm{PRL}}
-
-\newcommand*\nsgp\vartriangleleft
-\newcommand*\sgp\leq
-\newcommand*\isom\cong
-\newcommand*\nisom\ncong
-\newcommand*\equip\sim
-\newcommand*\dprod\times
-\renewcommand*\vec\mathbf
-\newcommand*\mat\mathbf
 \newcommand*\defeq\coloneqq
-\newcommand*\divides\mid
-\newcommand*\ndivides\nmid
-
-\newcommand*\tran[1]{{#1}^{\mathsf T}}
-\newcommand*\herm[1]{{#1}^{\dagger}}
-\newcommand*\conj\overline
-
-\newcommand*\Id{\mathrm{Id}}
-
-\newcommand*\powerset{\mathcal P}
 
 % this is the hill I'm prepared to die on
 \let\uglyepsilon\epsilon
@@ -55,16 +22,11 @@
 \DeclarePairedDelimiter\abs\lvert\rvert
 \DeclarePairedDelimiter\set\{\}
 \DeclarePairedDelimiter\parens()
+\DeclarePairedDelimiter\bracks[]
 \DeclarePairedDelimiter\intoo()
 \DeclarePairedDelimiter\intco[)
 \DeclarePairedDelimiter\intcc[]
 \DeclarePairedDelimiter\cycsgp\langle\rangle
-
-\DeclareMathOperator\Sym{Sym}
-\DeclareMathOperator\Aut{Aut}
-\DeclareMathOperator\Ker{Ker}
-\DeclareMathOperator\sgn{sgn}
-\DeclareMathOperator\Isom{Isom}
 
 % work-around for proof from
 % https://tex.stackexchange.com/questions/305174/proof-environment-produces-proof-proof-only-when-thmbox-is-used
@@ -88,4 +50,62 @@
 \declaretheorem{theorem}
 \declaretheorem[sibling=theorem]{lemma}
 \declaretheorem[sibling=theorem]{corollary}
+
+\RequirePackage{xparse}
+
+\newcommand*\diff{\mathrm d}
+
+% macro to typeset a simple derivative. If you want the differentiand to be in
+% the numerator, give it as a <> delimited optional argument.
+% Similarly, the order of the derivative can be given as a [] optional argument.
+\NewDocumentCommand\dv{ o d<> m }{%
+ \IfValueTF{#2}{%
+  \IfValueTF{#1}{%
+   \frac{\diff^{#1} #2}{{\diff #3}^{#1}}%
+  }{%
+   \frac{\diff #2}{\diff #3}%
+  }%
+ }{%
+  \IfValueTF{#1}{%
+   \frac{\diff^{#1}}{{\diff #3}^{#1}}%
+  }{%
+   \frac{\diff}{\diff #3}%
+  }%
+ }%
+}
+
+\NewDocumentCommand\fdv{ o d<> m }{%
+ \IfValueTF{#2}{%
+  \IfValueTF{#1}{%
+   {\diff^{#1} #2} / {{\diff #3}^{#1}}%
+  }{%
+   {\diff #2} / {\diff #3}%
+  }%
+ }{%
+  \IfValueTF{#1}{%
+   {\diff^{#1}} / {{\diff #3}^{#1}}%
+  }{%
+   {\diff} / {\diff #3}%
+  }%
+ }%
+}
+
+% macro to typeset an integral, centralised etc and so on and so forth.
+% The two optional arguments are upper and lower bounds (really subscript and
+% superscript on the integral, it's up to you what you do with it)
+\NewDocumentCommand\integ{ o d<> m m }{%
+ \IfValueTF{#1}{%
+  \IfValueTF{#2}{%
+   \int_{#1}^{#2} #3 \, \diff #4%
+  }{%
+   \int_{#1} #3 \, \diff #4%
+  }%
+ }{%
+  \IfValueTF{#2}{%
+   \int^{#2} #3 \, \diff #4%
+  }{%
+   \int #3 \, \diff #4%
+  }%
+ }%
+}
 
