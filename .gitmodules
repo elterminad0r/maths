@@ -18,3 +18,7 @@
 	path = leaning
 	url = https://github.com/Sterrs/leaning
 	branch = master
+[submodule "equations"]
+	path = equations
+	url = https://github.com/Sterrs/equations
+	branch = master

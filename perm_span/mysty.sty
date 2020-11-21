@@ -1,22 +1,12 @@
 \ProvidesPackage{mysty}
 
-\makeatletter
-\let\thetitle\@title
-\let\theauthor\@author
-\makeatother
+\newcommand\thetitle{On the span of the permutation matrices}
+\newcommand\theauthor{Izaak van Dongen (imv26)}
 
 \RequirePackage[margin=2cm]{geometry}
 
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
-
-\renewcommand*\maketitle{
- \makeatletter
- \textbf{\thetitle}
- \hspace*\fill \theauthor
- \vspace{0.3cm}
- \makeatother
-}
 
 \RequirePackage{tcolorbox}
 \RequirePackage{adjustbox}
@@ -35,5 +25,5 @@
  pdfcreator={pdflatex}]{hyperref}
 
 % prevent unauthorised line breaks in inline equations
-% \binoppenalty=\maxdimen
-% \relpenalty=\maxdimen
+\binoppenalty=\maxdimen
+\relpenalty=\maxdimen

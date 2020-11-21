@@ -1,0 +1,208 @@
+\documentclass[a4paper,12pt]{article}
+\author{Izaak van Dongen (\texttt{imv26})}
+\title{On the span of the permutation matrices in \(\mathcal M_{n \times n}\)}
+
+\usepackage{mysty}
+\usepackage{mymaths}
+
+% Embed source files into PDF in case of loss. You can view or extract the
+% source files by doing `pdfdetach -list <file.pdf>` or
+% `pdfdetach -saveall <file.pdf>`, using pdfdetach from poppler, or some other
+% suitable method.
+\usepackage[main]{embedall}
+\embedfile{mymaths.sty}
+\embedfile{mysty.sty}
+
+\begin{document}
+\maketitle
+
+We concern ourselves with the set \(\mathscr P_n = \Span S_n\), where
+\(S_n\) is thought of as those matrices in \(\mathcal M_{n \times n}\) each of
+whose columns and rows has all zeroes, except for exactly one \(1\). Most of the
+following works for any ground field, so long as it has more than one element,
+since all we really appeal to is the existence of distinct \(0\) and \(1\)
+elements.
+
+Note that every row and column of such a matrix has components summing to \(1\).
+Particularly, each row and column sums to the same number.
+
+This property is preserved under linear combinations, but for \(n\) reasonably
+large, there are matrices not having this property. Hence, despite the fact that
+\(n!\) is much bigger than \(n^2\), \(\mathscr P_n \ne \mathcal M_{n \times n}\)
+for \(n > 1\).
+
+This means that \(\mathscr P_n\) is a subspace of the (non-diagonal) magic
+square space of \(n \times n\) matrices, which we will call \(\mathfrak M_n\).
+
+\begin{theorem}
+ \(\dim \mathfrak M_n = n^2 - 2n + 2\).
+\end{theorem}
+\begin{proof}
+ We are fresh-faced linear algebraists, so we do some yucky calculation.
+
+ Firstly, for \(1 \le i, j \le n - 1\), define a block matrix
+ \begin{equation*}
+  \mat B_{ij} =
+  \begin{pmatrix}
+   \mat E_{ij} & \vec v_i \\[1ex]
+   \tran{\vec v_j} & 3 - n
+  \end{pmatrix} \in \mathfrak M_n
+ \end{equation*}
+ where \(\mat E_{ij}\) is the usual \((n - 1) \times (n - 1)\) ``basis matrix''
+ with entries \((\mat E_{ij})_{k\ell} = \delta_{ik} \delta_{j\ell}\), and
+ \(\vec v_i\) is the unusual basis vector for \(\R^{n - 1}\) with
+ \([\vec v_i]_j = 1 - \delta_{ij}\).
+
+ Then since the \(\mat E_{ij}\) are all linearly independent, all the
+ \(\mat B_{ij}\) are independent. Furthermore, \(\mat B_{ij} \in \mathfrak M_n\)
+ for all \(i, j \le n - 1\), since each row and each column sums to \(1\).
+
+ Also define \(\mat B\) with \([\mat B]_{ij} = 1\). \(\mat B\) is then also in
+ \(\mathfrak M_n\), and \(\mat B\) is linearly independent of the previous
+ \(\mat B_{ij}\)s, since if it was to be in their span, it would have to be
+ precisely the sum of each \(\mat B_{ij}\), but then we would have
+ \(1 = (\mat B)_{nn} = (3 - n)(n - 1)^2\), implying that
+ \(\abs{3 - n} = \abs{n - 1} = 1\), implying \(n = 2\). But when \(n = 2\), we
+ only have the matrix \(\mat B_{11}\), which is not equal to \(\mat B\).
+
+ This proves that \(\dim \mathfrak M_n \ge (n - 1)^2 + 1 = n^2 - 2n + 2\), as we
+ have a linearly independent set of size \((n - 1)^2 + 1\).
+
+ Now suppose \(\mat A \in \mathfrak M_n\). Say \(\mat A = (a_{ij})\). Note that
+ if we are given \(a_{ij}\) for \(1 \le i, j \le n - 1\), and we are also given
+ \(a_{1n}\), then we can deduce that the ``magic constant'' of \(\mat A\) must
+ be \(C_{\mat A} = \sum_{j = 1}^n a_{1j}\), and from there, we can deduce that
+ for any \(i, j \le n - 1\),
+ \begin{align*}
+  a_{in} = C_{\mat A} - \sum_{k = 1}^{n - 1} a_{ik}, &&
+  a_{nj} = C_{\mat A} - \sum_{k = 1}^{n - 1} a_{kj}
+ \end{align*}
+ and that \(a_{nn} = C_{\mat A} - \sum_{k = 1}^{n - 1} a_{nk}\).
+
+ To prove that this does give a matrix \(\mat A\) in \(\mathfrak M_n\), the only
+ thing to check is that \(\sum_{k = 1}^n a_{kn} = C_\mat A\). This isn't so
+ hard, since
+ \begin{align*}
+  \sum_{k = 1}^n a_{kn}
+   &= \sum_{k = 1}^n \bracks[\Big]{
+       C_{\mat A} - \sum_{\ell = 1}^{n - 1} a_{k\ell}} \\
+   &= n \cdot C_{\mat A} -
+       \sum_{k = 1}^n \sum_{\ell = 1}^{n - 1} a_{k\ell} \\
+   &= n \cdot C_{\mat A} -
+       \sum_{\ell = 1}^{n - 1} \sum_{k = 1}^n a_{k\ell} \\
+   &= n \cdot C_{\mat A} -
+       \sum_{\ell = 1}^{n - 1} C_{\mat A} \\
+   &= C_{\mat A}
+ \end{align*}
+ It follows that by setting one of the pre-supposed \(a_{ij}\)s-and-\(a_{1n}\)
+ to \(1\) and the rest to \(0\), and applying this procedure, we can obtain a
+ set of \((n - 1)^2 + 1\) vectors that span \(\mathfrak M_n\), because each
+ remaining component has been expressed as a linear combination of the original
+ given components.
+\end{proof}
+\begin{corollary}
+ The \(\mat B_{ij}\)-and-\(\mat B\) we found are in fact a basis for
+ \(\mathfrak M_n\).
+\end{corollary}
+\begin{theorem}
+ \(\mathscr P_n = \mathfrak M_n\).
+\end{theorem}
+\begin{proof}
+ We only need to show \(\mathfrak M_n \subspace \mathscr P_n = \Span S_n\).
+
+ We do this as yuckily as we possibly can.
+
+ It suffices to write each basis element \(\mat B_{ij}\) of \(\mathfrak M_n\),
+ from earlier, as a linear combination of permutation matrices.
+
+ We do \(\mat B\) first. This one is nice, because by symmetry,
+ \(\mat B = ((n - 1)!)^{-1} \sum_{\mat P \in S_n} \mat P\).
+
+ Now we do \(\mat B_{11}\).
+
+ For \(1 \le i \le n - 1\), define the permutation matrix \(\mat P_i\) by its
+ action on the standard basis \((\vec e_i)\):
+ \begin{itemize}
+  \item
+   For \(1 \le j \le n - 1\),
+   \(\mat P_i \vec e_j = \vec e_{i + j \bmod n - 1}\), taking the result of the
+   modulo operation to be between \(1\) and \(n - 1\).
+  \item
+   \(\mat P_i \vec e_n = \vec e_n\)
+ \end{itemize}
+ That is to say \(\mat P_i\) fixes \(\vec e_n\) and cycles
+ \(\vec e_1, \dotsc, \vec e_{n - 1}\) forwards by \(i\) steps. Note that
+ \(\mat P_{n - 1} = \mat I_n\).
+
+ Then let \(\mat M = \sum_{i = 1}^{n - 2} \mat P_i = (m_{ij})\).
+ Clearly, \(m_{nn} = n - 2\).
+
+ Furthermore, if \(1 \le i, j \le n - 1\), then
+ \begin{itemize}
+  \item
+   If \(i \ne j\), then \(m_{ij} = 1\), since there is exactly one \(\mat P_k\)
+   in the sum with ``\(ij\)''-component equal to \(1\)
+   (that is, \(\mat P_{i - j \bmod n - 1}\)).
+  \item
+   \(m_{ii} = 0\), as no \(\mat P_k\) in the sum fixes any of the first
+   \(n - 1\) basis vectors.
+  \item
+   \(m_{in} = 0\), as each \(\mat P_k\) in the sum has ``\(in\)''-component
+   equal to \(0\).
+  \item
+   Similarly, \(m_{ni} = 0\).
+ \end{itemize}
+ So let \(\mat N = \mat B - \mat M - \mat B_{11} = (n_{ij})\).
+
+ Since \(\mat B\) and \(\mat M\) are in \(\mathscr P_n\), it suffices to prove
+ that \(\mat N \in \mathscr P_n\). But, observe:
+ \begin{itemize}
+  \item
+   If \(2 \le i, j \le n - 1\), then
+   \begin{itemize}
+    \item
+     \(n_{ii} = b_{ii} - m_{ii} - [\mat B_{11}]_{ii} = 1 - 0 - 0 = 1\).
+    \item
+     If \(i \ne j\), then
+     \(n_{ij} = b_{ij} - m_{ij} - [\mat B_{11}]_{ij} = 1 - 1 - 0 = 0\).
+    \item
+     \(n_{1j} = b_{1j} - m_{1j} - [\mat B_{11}]_{1j} = 1 - 1 - 0 = 0\).
+    \item
+     \(n_{nj} = b_{nj} - m_{nj} - [\mat B_{11}]_{nj} = 1 - 0 - 1 = 0\).
+    \item
+     \(n_{i1} = b_{i1} - m_{i1} - [\mat B_{11}]_{i1} = 1 - 1 - 0 = 0\).
+    \item
+     \(n_{in} = b_{in} - m_{in} - [\mat B_{11}]_{in} = 1 - 0 - 1 = 0\).
+   \end{itemize}
+  \item
+   \(n_{11} = b_{11} - m_{11} - [\mat B_{11}]_{11} = 1 - 0 - 1 = 0\).
+  \item
+   \(n_{1n} = b_{1n} - m_{1n} - [\mat B_{11}]_{1n} = 1 - 0 - 0 = 1\).
+  \item
+   \(n_{nn}
+     = b_{nn} - m_{nn} - [\mat B_{11}]_{nn} = 1 - (3 - n) - (n - 2) = 0\).
+  \item
+   \(n_{n1} = b_{n1} - m_{n1} - [\mat B_{11}]_{n1} = 1 - 0 - 0 = 1\).
+ \end{itemize}
+ So in fact, \(\mat N\) is the permutation matrix that transposes \(\vec e_1\)
+ and \(\vec e_n\), and certainly \(\mat N \in \mathscr P_n\).
+
+ Now, noting that \(S_n\) acts transitively on
+ \(\set{\mat B_{ij} \mid 1 \le i, j \le n - 1}\) by multiplication\footnote{%
+  Exercise :D}, fix some other basis matrix
+ \(\mat B_{ij}\), and fix a permutation matrix \(\mat P\) such that
+ \(\mat B_{ij} = \mat P \mat B_{11}\). Write
+ \(\mat B_{11} = \sum_{\mat Q \in S_n} \lambda_{\mat Q} \mat Q\).
+
+ Then
+ \(\mat B_{ij}
+   = \sum_{\mat Q \in S_N} \lambda_{\mat Q} (\mat P \mat Q)
+   \in \mathscr P_n\).
+ %TODO
+\end{proof}
+\begin{corollary}
+ \(\dim \mathscr P_n = n^2 - 2n + 2\).
+\end{corollary}
+
+
+\end{document}
