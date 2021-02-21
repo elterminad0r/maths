@@ -22,3 +22,11 @@
 	path = equations
 	url = https://github.com/Sterrs/equations
 	branch = master
+[submodule "froup-fenerator"]
+	path = froup-fenerator
+	url = https://github.com/Sterrs/froup-fenerator/
+	branch = main
+[submodule "example_sheets/analyfis-and-tofology"]
+	path = example_sheets/analyfis-and-tofology
+	url = https://github.com/goedel-gang/analyfis-and-tofology.git
+	branch = main
