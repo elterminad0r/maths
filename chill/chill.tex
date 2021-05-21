@@ -424,6 +424,9 @@ of content is assumed.
 
   Are there uncountably many?
  \item
+  Let \(G\) be a group, and let \(a, b \in G\). Must \(ab\) have the same order
+  as \(ba\)?
+ \item
   Here is a strengthening of Cayley's theorem in the case of finite groups.
   \begin{tcolorbox}
    If \(G\) is a group of finite order, then \(G\) is isomorphic to a subgroup
@@ -468,8 +471,21 @@ of content is assumed.
 
   Show that if each \(G_i\) is simple, then \(G\) is simple.
  \item
-  Let \(G\) be a group, and let \(a, b \in G\). Must \(ab\) have the same order
-  as \(ba\)?
+  Let \(G\) be a group. Show that the following are equivalent:
+  \begin{enumerate}[label=(\roman*)]
+   \item
+    \(G\) is abelian.
+   \item
+    The map \(\phi: G \to G, g \mapsto g^{-1}\) is a homomorphism.
+   \item
+    The map \(\phi: G \to G, g \mapsto g^2\) is a homomorphism.
+   \item
+    The set \(\Delta = \set{(g, g) \mid g \in G} \subset G \dprod G\) is a
+    normal subgroup of \(G \dprod G\).
+   \item
+    For any \(a, b, n \in \Z\) and any \(g, h \in G\), we have
+    \((g^a h^b)^n = g^{an} h^{bn}\) (ie, \(G\) is a \(\Z\)-module).
+  \end{enumerate}
  \item
   Find a natural operation \(\ast\) on \(\N\) that is associative, but not
   commutative\footnote{If your answer mentioned the word ``bijection'', go and
